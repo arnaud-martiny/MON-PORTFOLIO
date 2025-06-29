@@ -1,0 +1,250 @@
+{
+  "meta": {
+    "title": "Arnaud Martiny | Portfolio",
+    "description": "Portfolio de Arnaud Martiny — étudiant en Écriture Multimédia à l'ISFSC. Découvrez mes projets en web, design, Shopify et e-learning."
+  },
+  "loader": {
+    "welcome": "BIENVENUE DANS MON UNIVERS"
+  },
+  "nav": {
+    "logo": "AM.",
+    "home": "Accueil",
+    "home_special": "Accueil",
+    "about": "À propos",
+    "skills": "Compétences",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "ARNAUD MARTINY",
+    "subtitle": "Développeur Full-Stack & Créatif Digital",
+    "contactButton": "Me contacter"
+  },
+  "about": {
+    "title": "À PROPOS DE MOI",
+    "paragraph1": "Passionné de technologie, j'aime explorer toutes les facettes d'un projet digital.",
+    "paragraph2": "De la création d'un site en PHP au développement front-end d'un site vitrine, en passant par l'analyse UX/UI, j'ai développé une grande polyvalence.",
+    "paragraph3": "Cette curiosité technique est le reflet de ma personnalité : avide de défis, ouvert aux nouvelles expériences et toujours prêt à construire, que ce soit du code ou mon prochain voyage.",
+    "imageAlt": "Portrait de moi pour illustrer la section -À propos-",
+    "skillsTags": [
+      "Full-Stack Dev",
+      "JavaScript (ES6+)",
+      "Shopify",
+      "PHP & MySQL",
+      "Figma",
+      "UX/UI Design",
+      "Git & GitHub",
+      "GTM & Analytics",
+      "SEO & Performance",
+      "API & Intégrations"
+    ]
+  },
+  "counters": {
+    "age": "Ans",
+    "webProjects": "Projets Web",
+    "passion": "Passion (%)",
+    "masteredTech": "Technologies Maîtrisées"
+  },
+  "webProjectsModal": {
+    "title": "Mes Projets Web",
+
+    "project1Title": "Portfolio Personnel",
+    "project1Desc": "Le site sur lequel vous naviguez ! Un portfolio moderne conçu pour présenter mes projets et compétences, avec des animations CSS custom et une structure entièrement responsive. <i>(Le projet méta par excellence !)</i>",
+    "project1Link": "Explorer le code source",
+
+    "project2Title": "Site Vitrine Nowa Logistics",
+    "project2Desc": "Site vitrine réalisé durant mon premier stage chez <strong>Nowa Market</strong> pour leur nouvelle activité de logistique durable.<br>Conçu et développé de A à Z (HTML, CSS, JS), ce projet inclut 5 pages, une charte graphique sur mesure, un formulaire de contact et une interface entièrement responsive. J'ai géré l'ensemble du processus, du design UX/UI sur Figma à l'intégration technique. Une superbe expérience au service d'un projet à impact positif ! 🌱<br><em>(Mise en ligne prochainement)</em>",
+    "project2Link": "Bientôt disponible",
+
+    "project3Title": "Fast 'N Friends",
+    "project3Desc": "Site de covoiturage étudiant développé en PHP avec comme CMS WordPress.<br>Interface responsive, profil utilisateur. Tout a été appris sur le tas ! <i>(on le voit sur certaines pages ;-)</i>",
+    "project3Link": "Voir le projet",
+
+    "project4Title": "Site E-learning",
+    "project4Desc": "Un projet de cours qui consiste à créer un contenant pour une formation via WordPress <i>(en guise de CMS)</i>.<br>L'objectif était de structurer un parcours pédagogique et de le rendre accessible et agréable pour l'utilisateur.",
+    "project4Link": "Voir le projet"
+  },
+  "portfolioSection": {
+    "title": "MES PROJETS",
+    "filterAll": "Tous",
+    "filterWeb": "Web",
+    "filterDesign": "Design",
+    "filterShopify": "Shopify",
+    "items": [
+      {
+        "category": "web",
+        "imageSrc": "assets/img/FNF-logo.svg",
+        "imageAlt": "Projet Fast N Friends",
+        "title": "Fast N Friends",
+        "description": "Site responsive en PHP/WordPress",
+        "link": "https://fastnfriends.emu.isfsc.be/"
+      },
+      {
+        "category": "shopify",
+        "imageSrc": "assets/img/SHOPIFY-logo.svg",
+        "imageAlt": "Gestion Boutique Shopify",
+        "title": "Gestion Boutique E-commerce",
+        "description": "Gestion complète d'une boutique Shopify : Gestion des commandes, du Front-End, la mise en ligne de produits, UX,...",
+        "link": "#",
+        "isInfo": true
+      },
+      {
+        "category": "web",
+        "imageSrc": "assets/img/learning-logo.svg",
+        "imageAlt": "Projet E-learning",
+        "title": "E-learning",
+        "description": "Site de formation avec WordPress en tant que CMS",
+        "link": "https://elearning1.emu.isfsc.be/"
+      },
+      {
+        "category": "web",
+        "imageText": "AM.",
+        "title": "Portfolio Personnel",
+        "description": "Développement front-end avec animations",
+        "link": "#",
+        "isInfo": true
+      }
+    ]
+  },
+
+  "skillsSection": {
+    "title": "MA GALAXIE DE COMPÉTENCES",
+    "planets": [
+      {
+        "id": "frontend",
+        "name": "Front-End",
+        "description": "Je transforme des maquettes en interfaces web fluides, interactives et entièrement responsives pour offrir une expérience utilisateur impeccable."
+      },
+      {
+        "id": "backend",
+        "name": "Back-End",
+        "description": "Je conçois la logique serveur, les bases de données et les APIs qui donnent vie aux applications et assurent leur bon fonctionnement."
+      },
+      {
+        "id": "design",
+        "name": "Design & UX/UI",
+        "description": "De l'analyse des besoins à la création de prototypes sur Figma, je conçois des parcours utilisateurs intuitifs et des interfaces esthétiques."
+      },
+      {
+        "id": "shopify",
+        "name": "Shopify & E-commerce",
+        "description": "Développement de thèmes sur-mesure, optimisation de la performance et gestion complète de boutiques en ligne pour maximiser les conversions."
+      },
+      {
+        "id": "tools",
+        "name": "Outils & Écosystème",
+        "description": "Ma boîte à outils pour versionner avec Git, analyser les données avec GTM & Analytics et optimiser le SEO pour une visibilité maximale."
+      }
+    ],
+    "languagesTitle": "Langues",
+    "languages": [
+      {
+        "name": "Français",
+        "levelText": "Natif",
+        "levelMistake": "Débutant",
+        "jsonComment": "/* Communication fluide et rédaction technique */"
+      },
+      {
+        "name": "Anglais",
+        "levelText": "Courant",
+        "levelMistake": "Limité",
+        "jsonComment": "/* Anglais professionnel courant */"
+      }
+    ]
+  },
+
+  "experienceSection": {
+    "title": "EXPÉRIENCE & FORMATION",
+    "items": [
+      {
+        "title": "Obtention du CESS - École secondaire Plurielle Maritime",
+        "date": "2023",
+        "description": "Diplôme d'enseignement secondaire supérieur."
+      },
+      {
+        "title": "Études en<a href=\"https://isfsc.be/ecriture-multimedia/\" target=\"_blank\"> Écriture Multimédia à L'isfsc</a>",
+        "date": "2023 - Présent",
+        "description": "Formation axée sur la création de contenu numérique en tout genres tels que des sites WEB, des affiches, des maquettes de sites, l'analyse WEB, des petits jeux, de la gestion de projets,..."
+      },
+      {
+        "title": "Gestion Boutique Shopify",
+        "date": "2023",
+        "description": "Gestion des commandes, du Front-End, la mise en ligne de produits, UX,..."
+      },
+      {
+        "title": "<a href=\"https://fastnfriends.emu.isfsc.be/\" target=\"_blank\">Création Site Web de Fast 'N Friends</a>",
+        "date": "2024",
+        "description": "Développement d'un site internet \"responsive\" en PHP avec comme CMS WordPress, pour un projet d'études."
+      },
+      {
+        "title": "<a href=\"https://elearning1.emu.isfsc.be/\" target=\"_blank\">Création du site d'E-learning</a>",
+        "date": "2025",
+        "description": "Création d'un site pour le cours de e-learning via WordPress <i>(comme CMS, encore !)</i> pour héberger une formation en ligne fictive."
+      },
+      {
+        "title": "Stage chez Nowa Market",
+        "date": "2025 (Prévu)",
+        "description": "Stage en marketing digital et gestion de projet web. Participation à la stratégie de contenu, SEO, et gestion des campagnes publicitaires. Application pratique des compétences acquises en écriture multimédia dans un environnement professionnel dynamique."
+      },
+      {
+        "title": "Création de mon Portfolio",
+        "date": "2025",
+        "description": "<b>Mon portfolio est un projet clé dans ma carrière.</b> <br><br>C'est le fruit de plusieurs mois de travail, conçu pour être à la fois un outil de présentation et un espace interactif mettant en avant mes compétences en développement web, design, et création de contenu. <br><br>Ce projet démontre non seulement mes capacités techniques mais aussi mon engagement à proposer un produit soigné et fonctionnel.",
+        "description2": "Ce portfolio a été réalisé avec des technologies modernes comme HTML, CSS, JavaScript et des outils de développement front-end. Il a pour objectif de refléter mon approche créative tout en étant entièrement responsive et optimisé pour une expérience utilisateur fluide."
+      }
+    ]
+  },
+  "contactSection": {
+    "title": "ME CONTACTER",
+    "address": "Bruxelles, Belgique",
+    "phone": "+32 0492 451 456",
+    "email": "arnaudmartiny0@gmail.com",
+    "form": {
+      "namePlaceholder": "Nom",
+      "emailPlaceholder": "Email",
+      "subjectPlaceholder": "Sujet",
+      "messagePlaceholder": "Message",
+      "submitButton": "Envoyer",
+      "errorMessage": "Le formulaire de contact est en travaux, mais vous pouvez me contacter par mail ! N'hésitez pas : <a href=\"mailto:arnaudmartiny0@gmail.com\">arnaudmartiny0@gmail.com</a>"
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Arnaud Martiny. Tous droits réservés."
+  },
+
+  "featuredProjects": {
+    "title": "Mes Réalisations Web",
+    "items": [
+      {
+        "category": "Portfolio Personnel",
+        "title": "Arnaud Martiny - Portfolio",
+        "imageSrc": "assets/img/project-portfolio.png",
+        "imageAlt": "Aperçu du projet Portfolio",
+        "description": "Le site sur lequel vous naviguez ! Un portfolio moderne conçu pour présenter mes projets et compétences, avec des animations CSS/JS custom et une structure entièrement responsive. Le projet méta par excellence, un vrai bac à sable pour expérimenter.",
+        "tech": ["HTML", "CSS", "JavaScript", "GSAP", "i18n"],
+        "liveLink": "https://arnaud-martiny-portfolio.pages.dev/",
+        "codeLink": "#"
+      },
+      {
+        "category": "Site Vitrine Professionnel",
+        "title": "Nowa Logistics",
+        "imageSrc": "assets/img/project-nowa.png",
+        "imageAlt": "Aperçu du projet Nowa Logistics",
+        "description": "Réalisé durant mon stage chez Nowa Market, ce site vitrine pour leur activité de logistique durable a été développé de A à Z. Mon rôle couvrait le design UX/UI sur Figma, le développement front-end et l'intégration d'un formulaire de contact fonctionnel.",
+        "tech": ["HTML", "CSS", "JavaScript", "Figma"],
+        "liveLink": "#",
+        "codeLink": "#"
+      },
+      {
+        "category": "Projet Étudiant",
+        "title": "Fast 'N Friends",
+        "imageSrc": "assets/img/project-fnf.png",
+        "imageAlt": "Aperçu du projet Fast N Friends",
+        "description": "Un site de covoiturage étudiant développé en PHP avec WordPress comme CMS. Ce projet a été une excellente opportunité d'apprendre sur le tas la gestion de profils utilisateurs, la responsivité et les bases de données.",
+        "tech": ["PHP", "WordPress", "CSS", "MySQL"],
+        "liveLink": "https://fastnfriends.emu.isfsc.be/home/",
+        "codeLink": "#"
+      }
+    ]
+  }
+}

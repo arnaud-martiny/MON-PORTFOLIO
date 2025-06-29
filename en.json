@@ -1,0 +1,250 @@
+{
+  "meta": {
+    "title": "Arnaud Martiny | Portfolio",
+    "description": "Portfolio of Arnaud Martiny — Multimedia Writing student at ISFSC. Discover my projects in web, design, Shopify, and e-learning."
+  },
+  "loader": {
+    "welcome": "WELCOME TO MY UNIVERSE"
+  },
+  "nav": {
+    "logo": "AM.",
+    "home": "Home",
+    "home_special": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "ARNAUD MARTINY",
+    "subtitle": "Full-Stack Developer & Digital Creative",
+    "contactButton": "Contact Me"
+  },
+  "about": {
+    "title": "ABOUT ME",
+    "paragraph1": "Passionate about technology, I love to explore every facet of a digital project.",
+    "paragraph2": "From creating a PHP website to developing the front-end of a showcase site and conducting UX/UI analysis, I have developed a strong versatility.",
+    "paragraph3": "This technical curiosity reflects my personality: eager for challenges, open to new experiences, and always ready to build—whether it's code or my next trip.",
+    "imageAlt": "Portrait of me to illustrate the About section",
+    "skillsTags": [
+      "Full-Stack Dev",
+      "JavaScript (ES6+)",
+      "Shopify",
+      "PHP & MySQL",
+      "Figma",
+      "UX/UI Design",
+      "Git & GitHub",
+      "GTM & Analytics",
+      "SEO & Performance",
+      "API & Integrations"
+    ]
+  },
+  "counters": {
+    "age": "Years Old",
+    "webProjects": "Web Projects",
+    "passion": "Passion (%)",
+    "masteredTech": "Mastered Technologies"
+  },
+  "webProjectsModal": {
+    "title": "My Web Projects",
+
+    "project1Title": "Personal Portfolio",
+    "project1Desc": "The very site you're browsing! A modern portfolio designed to showcase my projects and skills, featuring custom CSS animations and a fully responsive layout. <i>(The ultimate meta project!)</i>",
+    "project1Link": "Explore the source code",
+
+    "project2Title": "Nowa Logistics Showcase Website",
+    "project2Desc": "A showcase website built during my first internship at <strong>Nowa Market</strong> for their new sustainable logistics business.<br>Designed and developed from scratch (HTML, CSS, JS), this project includes 5 pages, a custom visual identity, a functional contact form, and a fully responsive interface. I managed the entire process, from UX/UI design in Figma to technical integration. A great hands-on experience supporting a project with a positive impact! 🌱<br><em>(Launching soon)</em>",
+    "project2Link": "Coming Soon",
+
+    "project3Title": "Fast 'N Friends",
+    "project3Desc": "A student carpooling website developed in PHP using WordPress as a CMS.<br>Responsive interface, user profiles. Everything was learned on the fly! <i>(and it might show on some pages ;-)</i>",
+    "project3Link": "View Project",
+
+    "project4Title": "E-learning Website",
+    "project4Desc": "A class project focused on creating a platform for a training course, using WordPress <i>(as the CMS)</i>.<br>The goal was to structure a learning path and make it accessible and user-friendly.",
+    "project4Link": "View Project"
+  },
+  "portfolioSection": {
+    "title": "MY PROJECTS",
+    "filterAll": "All",
+    "filterWeb": "Web",
+    "filterDesign": "Design",
+    "filterShopify": "Shopify",
+    "items": [
+      {
+        "category": "web",
+        "imageSrc": "assets/img/FNF-logo.svg",
+        "imageAlt": "Fast N Friends Project",
+        "title": "Fast N Friends",
+        "description": "Responsive site in PHP/WordPress",
+        "link": "https://fastnfriends.emu.isfsc.be/"
+      },
+      {
+        "category": "shopify",
+        "imageSrc": "assets/img/SHOPIFY-logo.svg",
+        "imageAlt": "Shopify Store Management",
+        "title": "E-commerce Store Management",
+        "description": "Full management of a Shopify store: Order management, Front-End, product listing, UX,...",
+        "link": "#",
+        "isInfo": true
+      },
+      {
+        "category": "web",
+        "imageSrc": "assets/img/learning-logo.svg",
+        "imageAlt": "E-learning Project",
+        "title": "E-learning",
+        "description": "Training site with WordPress as CMS",
+        "link": "https://elearning1.emu.isfsc.be/"
+      },
+      {
+        "category": "web",
+        "imageText": "AM.",
+        "title": "Personal Portfolio",
+        "description": "Front-end development with animations",
+        "link": "#",
+        "isInfo": true
+      }
+    ]
+  },
+
+  "skillsSection": {
+    "title": "MY GALAXY OF SKILLS",
+    "planets": [
+      {
+        "id": "frontend",
+        "name": "Front-End",
+        "description": "I turn mockups into fluid, interactive, and fully responsive web interfaces to deliver a flawless user experience."
+      },
+      {
+        "id": "backend",
+        "name": "Back-End",
+        "description": "I design the server logic, databases, and APIs that bring applications to life and ensure they run smoothly."
+      },
+      {
+        "id": "design",
+        "name": "Design & UX/UI",
+        "description": "From needs analysis to creating prototypes in Figma, I design intuitive user journeys and aesthetic interfaces."
+      },
+      {
+        "id": "shopify",
+        "name": "Shopify & E-commerce",
+        "description": "Custom theme development, performance optimization, and complete management of online stores to maximize conversions."
+      },
+      {
+        "id": "tools",
+        "name": "Tools & Ecosystem",
+        "description": "My toolbox for versioning with Git, analyzing data with GTM & Analytics, and optimizing SEO for maximum visibility."
+      }
+    ],
+    "languagesTitle": "Languages",
+    "languages": [
+      {
+        "name": "French",
+        "levelText": "Native",
+        "levelMistake": "Beginner",
+        "jsonComment": "/* Flawless communication and technical writing */"
+      },
+      {
+        "name": "English",
+        "levelText": "Fluent",
+        "levelMistake": "Basic",
+        "jsonComment": "/* Fluent in professional English */"
+      }
+    ]
+  },
+
+  "experienceSection": {
+    "title": "EXPERIENCE & EDUCATION",
+    "items": [
+      {
+        "title": "Obtained CESS - Plurielle Maritime Secondary School",
+        "date": "2023",
+        "description": "Upper secondary education diploma."
+      },
+      {
+        "title": "Studies in <a href=\"https://isfsc.be/ecriture-multimedia/\" target=\"_blank\">Multimedia Writing at ISFSC</a>",
+        "date": "2023 - Present",
+        "description": "Training focused on creating all kinds of digital content such as websites, posters, website mockups, web analytics, small games, project management,..."
+      },
+      {
+        "title": "Shopify Store Management",
+        "date": "2023",
+        "description": "Order management, Front-End, product listing, UX,..."
+      },
+      {
+        "title": "<a href=\"https://fastnfriends.emu.isfsc.be/\" target=\"_blank\">Creation of Fast 'N Friends Website</a>",
+        "date": "2024",
+        "description": "Development of a responsive website in PHP with WordPress as CMS, for a study project."
+      },
+      {
+        "title": "<a href=\"https://elearning1.emu.isfsc.be/\" target=\"_blank\">Creation of the E-learning site</a>",
+        "date": "2025",
+        "description": "Creation of a site for the e-learning course via WordPress <i>(as CMS, again!)</i> to host a fictitious online training."
+      },
+      {
+        "title": "Internship at Nowa Market",
+        "date": "2025 (Planned)",
+        "description": "Internship in digital marketing and web project management. Involvement in content strategy, SEO, and management of advertising campaigns. Practical application of multimedia writing skills in a dynamic professional environment."
+      },
+      {
+        "title": "Creation of my Portfolio",
+        "date": "2025",
+        "description": "<b>My portfolio is a key project in my career.</b> <br><br>It is the result of several months of work, designed to be both a presentation tool and an interactive space showcasing my skills in web development, design, and content creation. <br><br>This project demonstrates not only my technical abilities but also my commitment to delivering a polished and functional product.",
+        "description2": "This portfolio was built with modern technologies like HTML, CSS, JavaScript, and front-end development tools. It aims to reflect my creative approach while being fully responsive and optimized for a smooth user experience."
+      }
+    ]
+  },
+  "contactSection": {
+    "title": "CONTACT ME",
+    "address": "Brussels, Belgium",
+    "phone": "+32 0492 451 456",
+    "email": "arnaudmartiny0@gmail.com",
+    "form": {
+      "namePlaceholder": "Name",
+      "emailPlaceholder": "Email",
+      "subjectPlaceholder": "Subject",
+      "messagePlaceholder": "Message",
+      "submitButton": "Send",
+      "errorMessage": "The contact form is under construction, but you can contact me by email! Don't hesitate: <a href=\"mailto:arnaudmartiny0@gmail.com\">arnaudmartiny0@gmail.com</a>"
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Arnaud Martiny. All rights reserved."
+  },
+
+  "featuredProjects": {
+    "title": "My Web Creations",
+    "items": [
+      {
+        "category": "Personal Portfolio",
+        "title": "Arnaud Martiny - Portfolio",
+        "imageSrc": "assets/img/project-portfolio.png",
+        "imageAlt": "Preview of the Portfolio project",
+        "description": "The very site you are currently browsing! A modern portfolio designed to showcase my projects and skills, featuring custom CSS/JS animations and a fully responsive layout. The ultimate meta-project, and a true sandbox for experimentation.",
+        "tech": ["HTML", "CSS", "JavaScript", "GSAP", "i18n"],
+        "liveLink": "https://arnaud-martiny-portfolio.pages.dev/",
+        "codeLink": "#"
+      },
+      {
+        "category": "Professional Showcase Website",
+        "title": "Nowa Logistics",
+        "imageSrc": "assets/img/project-nowa.png",
+        "imageAlt": "Preview of the Nowa Logistics project",
+        "description": "Built during my internship at Nowa Market, this showcase site for their sustainable logistics business was developed from scratch. My role covered UX/UI design in Figma, front-end development, and the integration of a functional contact form.",
+        "tech": ["HTML", "CSS", "JavaScript", "Figma"],
+        "liveLink": "#",
+        "codeLink": "#"
+      },
+      {
+        "category": "Student Project",
+        "title": "Fast 'N Friends",
+        "imageSrc": "assets/img/project-fnf.png",
+        "imageAlt": "Preview of the Fast N Friends project",
+        "description": "A student carpooling website developed in PHP with WordPress as its CMS. This project was an excellent opportunity to learn user profile management, responsiveness, and database fundamentals on the fly.",
+        "tech": ["PHP", "WordPress", "CSS", "MySQL"],
+        "liveLink": "https://fastnfriends.emu.isfsc.be/home/",
+        "codeLink": "#"
+      }
+    ]
+  }
+}

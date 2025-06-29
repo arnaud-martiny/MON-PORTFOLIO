@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <!-- La lang sera mise à jour par JS -->
+  <head>
+    <!-- GOOGLE ANALYTICS : -->
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-PZPZXWP5");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Meta tags gérés par i18n -->
+    <title data-i18n="meta.title">Arnaud Martiny | Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio de Arnaud Martiny — étudiant en Écriture Multimédia à l'ISFSC. Découvrez mes projets en web, design, Shopify et e-learning."
+      data-i18n-attr-content="meta.description"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="icon" href="assets/img/FAVICON.jpg" type="image/x-icon" />
+
+    <link rel="stylesheet" href="style.css" /> 
+  </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-PZPZXWP5"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Loader - page de chargement de la page ==> mon univers ! -->
+    <div class="loader">
+      <div class="loader-text">
+        <span data-i18n="loader.welcome">BIENVENUE DANS MON UNIVERS</span>
+      </div>
+    </div>
+
+    <!-- Curseur personnalisé -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <div class="nav-container">
+      <div class="logo" data-i18n="nav.logo">AM.</div>
+
+      <!-- Switcher de langue (au centre) -->
+      <div class="language-switcher">
+        <button id="lang-fr" class="active">FR</button>
+        <button id="lang-en">EN</button>
+      </div>
+
+      <!-- NOUVEAU : Le groupe de droite (liens + switcher de thème) -->
+      <div class="nav-right-group">
+        <!-- NOUVEAU : Bouton pour le thème -->
+        <button
+          id="theme-switcher"
+          class="theme-btn"
+          aria-label="Changer de thème"
+        >
+          <i class="fas fa-sun"></i>
+          <!-- Icône initiale (soleil pour passer en light) !!!! -->
+        </button>
+
+        <div class="nav-links">
+          <!--<a href="#accueil" id="home-link" data-i18n="nav.home_special">Accueil</a>-->
+          <a href="#apropos" data-i18n="nav.about">À propos</a>
+          <a href="#competences" data-i18n="nav.skills">Compétences</a>
+          <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+          <a href="#contact" data-i18n="nav.contact">Contact</a>
+        </div>
+      </div>
+
+      <button id="hamburger-btn" aria-label="Ouvrir le menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div id="mobile-menu">
+      <div class="mobile-menu-links">
+        <a href="#apropos" data-i18n="nav.about">À propos</a>
+        <a href="#competences" data-i18n="nav.skills">Compétences</a>
+        <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="mobile-menu-bottom">
+        <!-- On remet les switchers ici pour le mobile -->
+        <div class="language-switcher">
+          <button id="lang-fr-mobile" class="active">FR</button>
+          <button id="lang-en-mobile">EN</button>
+        </div>
+        <button
+          id="theme-switcher-mobile"
+          class="theme-btn"
+          aria-label="Changer de thème"
+        >
+          <i class="fas fa-sun"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Section d'accueil -->
+    <header id="accueil">
+      <div class="bg-shape shape1"></div>
+      <div class="bg-shape shape2"></div>
+
+      <div class="hero">
+        <h1 class="hero-title">
+          <span data-i18n="hero.title">ARNAUD MARTINY</span>
+        </h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">
+          Développeur Web & Créateur Digital
+        </p>
+        <a href="#contact" class="btn" data-i18n="hero.contactButton"
+          >Me contacter</a
+        >
+      </div>
+
+      <div class="scroll-down">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </header>
+
+    <!-- Section À propos -->
+    <section id="apropos" class="about-section">
+      <div class="about-grid">
+        <div class="about-image reveal">
+          <div class="about-image-placeholder">
+            <img
+              src="assets/img/cmoi.jpg"
+              alt="Portrait de moi"
+              data-i18n-attr-alt="about.imageAlt"
+            />
+          </div>
+        </div>
+        <div class="about-content reveal">
+          <h2 class="section-heading" data-i18n="about.title">
+            À PROPOS DE MOI
+          </h2>
+          <p class="about-text" data-i18n="about.paragraph1" data-i18n-html>
+            Passionné par le monde du digital, j'aime relever des défis et
+            accomplir différentes tâches lorsque je travaille devant un
+            ordinateur. À 19 ans, basé à Bruxelles, j'étudie la
+            communication/création digitale depuis 2023, avec un focus sur la
+            création de contenu numérique et l'utilisation des outils web en
+            tout genres.
+          </p>
+          <p class="about-text" data-i18n="about.paragraph2" data-i18n-html>
+            J'adore apprendre toujours plus de choses, avec une soif de
+            connaissances inépuisable. En dehors du développement web, j'explore
+            constamment de nouvelles technologies et enrichir mes connaissances
+            peu importe les domaines.
+          </p>
+          <p class="about-text" data-i18n="about.paragraph3" data-i18n-html>
+            Je suis aussi un fan de vélo, de nature, de voiture, de voyage,
+            j'adore vivre pleinement la vie !
+          </p>
+          <div class="skills-container" id="about-skills-tags">
+            <!-- Les skill tags seront générés par JS à partir de about.skillsTags -->
+            <div class="skill-tag">HTML</div>
+            <div class="skill-tag">CSS</div>
+            <div class="skill-tag">JavaScript</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Compteurs -->
+    <section class="counter-section">
+      <div class="counter-item reveal">
+        <div class="counter-number" data-count="19">0</div>
+        <div class="counter-text" data-i18n="counters.age">Ans</div>
+      </div>
+      <div class="counter-item reveal">
+        <div class="counter-number" data-count="100">0</div>
+        <div class="counter-text" data-i18n="counters.passion">Passion (%)</div>
+      </div>
+      <div class="counter-item reveal">
+        <div class="counter-number" data-count="7">0</div>
+        <div class="counter-text" data-i18n="counters.masteredTech">
+          Technologies Maîtrisées
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- NOUVELLE STRUCTURE HTML POUR LA SECTION COMPÉTENCES      -->
+    <!-- ======================================================== -->
+    <section id="competences" class="skills-section">
+      <!-- Le titre de la section -->
+      <h2 class="section-heading reveal" data-i18n="skillsSection.title">
+        MA GALAXIE DE COMPÉTENCES
+      </h2>
+
+      <!-- Le conteneur principal qui sert de "scène" -->
+      <div id="skills-scene-container" class="reveal">
+        <!-- Le canvas pour l'arrière-plan étoilé -->
+        <canvas id="starfield-canvas"></canvas>
+
+        <!-- Le conteneur pour le système solaire (soleil et orbites) -->
+        <div id="skills-solar-system">
+          <!-- Le soleil est placé ici comme point central. Le reste est généré par JS -->
+          <div id="skill-sun">
+            <div class="sun-flare"></div>
+            <div class="sun-core">AM.</div>
+          </div>
+
+          <!-- Les orbites et les planètes seront injectées dynamiquement par JavaScript ici -->
+        </div>
+      </div>
+
+      <br /><br /><br /><br /><br /><br />
+
+      <!-- L'infobox pour les descriptions est placée en dehors du système pour une gestion plus simple -->
+      <div id="skills-infobox"></div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!--          NOUVELLES SECTIONS LANGUES (V1: JSON)           -->
+    <!-- ======================================================== -->
+    <section id="language-section-json" class="language-section-v2 reveal">
+      <h3 class="skills-subheading" data-i18n="skillsSection.languagesTitle">
+        Langues
+      </h3>
+      <div class="code-block-container">
+        <div class="code-block">
+          <div class="code-block-header">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+            <span id="code-block-title" class="code-block-title"></span>
+          </div>
+          <pre
+            contenteditable="true"
+          ><code id="language-json-content"></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== 
+            NOUVELLES SECTIONS LANGUES (V2: ONDES)          
+     ======================================================== 
+    <section id="language-section-waves" class="language-section-v2 reveal">
+      <h3 class="skills-subheading" data-i18n="skillsSection.languagesTitle">
+        Langues
+      </h3>
+      <div class="waves-container">
+        Les vagues seront générées par JS ici 
+      </div>
+    </section>-->
+
+    <!-- ==================================================== -->
+    <!--          NOUVELLE SECTION PROJETS DÉTAILLÉS          -->
+    <!-- ==================================================== -->
+    <section id="portfolio" class="featured-projects-section">
+      <h2 class="section-heading reveal" data-i18n="featuredProjects.title">
+        MES RÉALISATIONS WEB
+      </h2>
+
+      <div class="featured-projects-grid" id="featured-projects-container">
+        <!-- Les projets seront générés dynamiquement par JavaScript ici -->
+      </div>
+    </section>
+
+    <!-- Section Expérience -->
+    <section id="experience" class="experience-section">
+      <h2 class="section-heading reveal" data-i18n="experienceSection.title">
+        EXPÉRIENCE & FORMATION
+      </h2>
+      <div class="timeline reveal" id="timeline-content">
+        <!-- Les items de la timeline seront générés par JS à partir de experienceSection.items -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Obtention du CESS</h3>
+            <span class="timeline-date">2023</span>
+            <p>Diplôme d'enseignement secondaire.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="contact-section">
+      <div class="bg-shape shape4"></div>
+      <h2 class="section-heading reveal" data-i18n="contactSection.title">
+        ME CONTACTER
+      </h2>
+
+      <div class="contact-container">
+        <div class="contact-info reveal">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <p data-i18n="contactSection.address">Bruxelles, Belgique</p>
+          </div>
+
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <p data-i18n="contactSection.phone">+32 0492 451 456</p>
+          </div>
+
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <p data-i18n="contactSection.email">arnaudmartiny0@gmail.com</p>
+          </div>
+
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Behance">
+              <i class="fab fa-behance"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form reveal">
+          <form>
+            <div class="form-group">
+              <input
+                type="text"
+                placeholder="Nom"
+                required
+                data-i18n-attr-placeholder="contactSection.form.namePlaceholder"
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="email"
+                placeholder="Email"
+                required
+                data-i18n-attr-placeholder="contactSection.form.emailPlaceholder"
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                placeholder="Sujet"
+                data-i18n-attr-placeholder="contactSection.form.subjectPlaceholder"
+              />
+            </div>
+
+            <div class="form-group">
+              <textarea
+                placeholder="Message"
+                required
+                data-i18n-attr-placeholder="contactSection.form.messagePlaceholder"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="btn"
+              id="submit-btn"
+              data-i18n="contactSection.form.submitButton"
+            >
+              Envoyer
+            </button>
+            <div
+              id="error-message"
+              class="error-message"
+              data-i18n="contactSection.form.errorMessage"
+              data-i18n-html
+            >
+              Le formulaire de contact est en travaux, mais vous pouvez me
+              contacter par mail ! N'hésitez pas :
+              <a href="mailto:arnaudmartiny0@gmail.com"
+                >arnaudmartiny0@gmail.com</a
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="logo" data-i18n="nav.logo">AM.</div>
+        <p data-i18n="footer.copyright">
+          © 2025 Arnaud Martiny. Tous droits réservés.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bouton retour en haut -->
+    <a href="#accueil" class="back-to-top" aria-label="Retour en haut">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="code.js" defer></script>
+
+    <!-- CLOUDFLARE ANALYTICS-->
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "a7f54faff13c4512b0dbbbc62d498028"}'
+    ></script>
+    <!-- End Cloudflare Web Analytics -->
+  </body>
+</html>

@@ -1,0 +1,2350 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&display=swap");
+
+:root {
+  --primary: #ffffff;
+  --secondary: #000000;
+  --accent: #333333;
+  --text: #f2f2f2;
+  /* On ajoute une transition douce pour le changement de thème */
+  --theme-transition: color 0.3s ease, background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Quand le body aura la classe "light-mode", ces variables s'appliqueront */
+body.light-mode {
+  --primary: #000000; /* Texte devient noir */
+  --secondary: #f2f2f2; /* Fond devient gris très clair */
+  --accent: #ffffff; /* Fond des sections devient blanc */
+  --text: #333333; /* Texte secondaire devient gris foncé */
+}
+
+body.light-mode .nav-container {
+  mix-blend-mode: normal; 
+}
+
+/* Correction de la bordure du footer */
+body.light-mode .footer {
+  border-top-color: rgba(
+    0,
+    0,
+    0,
+    0.1
+  ); /* Bordure noire transparente en mode clair */
+}
+
+.cursor {
+  /* ... */
+  mix-blend-mode: difference;
+}
+
+/* Et que cette règle est bien là */
+body.light-mode .cursor {
+  mix-blend-mode: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* Ajouté pour le smooth scroll natif si JS échoue */
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  background-color: var(--secondary);
+  color: var(--primary);
+  overflow-x: hidden;
+}
+
+/* AJOUTEZ CE BLOC DE CSS DANS VOTRE <style> */
+
+/* Conteneur pour les éléments de droite de la nav */
+.nav-right-group {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Style du bouton de thème */
+.theme-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 1.2rem; /* Taille de l'icône */
+  cursor: pointer;
+  padding: 0.5rem;
+  position: relative;
+  transition: transform 0.3s ease;
+  z-index: 102; /* Plus haut que la navbar (100) et le switcher de langue (101) */
+}
+
+.theme-btn:hover {
+  transform: scale(1.2) rotate(15deg);
+}
+
+/* Pour mobile, on cache le groupe de droite si les nav-links sont cachés */
+@media (max-width: 768px) {
+  .nav-right-group {
+    display: none;
+  }
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  /* La ligne de transition n'est plus utile, on la remplace par l'animation */
+  /* transition: opacity 0.5s ease-out; */
+  animation: fadeOutLoader 0.5s forwards 3.5s;
+}
+
+.loader-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+.loader-text span {
+  display: inline-block;
+  transform: translateY(100%);
+  animation: revealText 2s forwards;
+}
+
+@keyframes revealText {
+  to {
+    transform: translateY(0);
+  }
+}
+
+header {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* NOUVELLE ANIMATION POUR FAIRE DISPARAÎTRE LE LOADER */
+@keyframes fadeOutLoader {
+  to {
+    opacity: 0;
+    visibility: hidden; /* Pour qu'on ne puisse plus cliquer dessus */
+  }
+}
+
+/* AJOUTEZ CES RÈGLES DANS VOTRE CSS */
+
+body,
+.btn,
+.contact-form input,
+.contact-form textarea,
+.social-icon,
+.skill-tag,
+.filter-btn,
+.language-switcher button {
+  transition: var(--theme-transition);
+}
+
+/* S'assurer que le header et autres sections transitionnent bien */
+header,
+section {
+  transition: var(--theme-transition);
+}
+
+/* Styles pour les liens de navigation DANS le nav-container */
+.nav-container > .nav-links {
+  /* Sélecteur plus spécifique */
+  display: flex; /* Pour aligner les liens <a> à l'intérieur */
+  justify-content: flex-end; /* Aligne les liens à droite de leur espace */
+  gap: 2rem; /* Espace entre les liens <a> */
+  /* flex-basis: 0; /* Optionnel */
+}
+
+/* AJOUTEZ CE BLOC CORRECTIF POUR LE SWITCHER */
+
+.language-switcher {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Assurez-vous que la règle pour .nav-container est bien comme ceci */
+.nav-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  opacity: 0;
+  animation: fadeIn 1s forwards 3.5s;
+  transition: padding 0.3s ease, background-color 0.3s ease;
+}
+
+
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 1.5rem;
+    /* S'assurer que le justify-content: space-between; fonctionne toujours bien
+     quand .nav-links est display: none; */
+  }
+  .nav-links {
+    display: none;
+  }
+  .nav-container .logo {
+    margin-right: 0; /* Plus besoin de marge à droite si le switcher est au centre absolu */
+  }
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  transition: var(--transition);
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 1rem;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: var(--transition);
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: var(--transition);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 2rem;
+  z-index: 10;
+}
+
+.hero .btn {
+  opacity: 0;
+  animation: fadeIn 1s forwards 4.7s;
+}
+
+.hero-title {
+  font-size: 7vw;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  line-height: 1.1;
+}
+
+.hero-title span {
+  display: inline-block;
+  transform: translateY(100%);
+  animation: revealTitle 1s forwards 3.7s; /* <-- DÉLAI AJUSTÉ */
+}
+
+@keyframes revealTitle {
+  to {
+    transform: translateY(0);
+  }
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeIn 1s forwards 4.2s; /* <-- DÉLAI AJUSTÉ */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  opacity: 0;
+  animation: fadeIn 1s forwards 4.7s, bounce 2s infinite 4.7s; /* <-- DÉLAIS AJUSTÉS */
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-30px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-15px) translateX(-50%);
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--primary);
+  transition: var(--transition);
+  z-index: -1;
+}
+
+.btn:hover {
+  color: var(--secondary);
+}
+
+.btn:hover::before {
+  width: 100%;
+}
+
+.about-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 5%;
+  position: relative;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center; /* Mieux aligner verticalement */
+}
+
+.about-image {
+  position: relative;
+  overflow: hidden;
+  height: 70vh; /* ou une valeur fixe comme 500px */
+  max-height: 600px; /* Empêcher qu'elle ne devienne trop grande */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-image-placeholder {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  background-color: transparent; /* Ou var(--accent) pour un fond si l'image est transparente */
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.about-image-placeholder:hover {
+  transform: scale(1.02);
+}
+
+.about-image-placeholder img {
+  width: 100%; /* S'assurer que l'image remplit le conteneur */
+  height: 100%;
+  display: block;
+  object-fit: cover; /* 'cover' pour remplir, 'contain' si vous voulez voir toute l'image */
+  transition: transform 0.4s ease;
+}
+
+.about-image-placeholder::after {
+  content: "AM";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  transform: none;
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 6px 12px;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.section-heading::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary);
+}
+
+.about-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.skill-tag {
+  padding: 0.5rem 1.5rem;
+  background-color: transparent; /* On le rend transparent pour que la bordure soit la star */
+  border: 1px solid var(--primary); /* <<< AJOUTE CETTE LIGNE (bordure avec la couleur principale) */
+  opacity: 0.7; /* <<< AJOUTE CETTE LIGNE (on le rend un peu transparent pour ne pas qu'il soit trop agressif) */
+  border-radius: 30px;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.skill-tag:hover {
+  background-color: var(--primary);
+  color: var(--secondary);
+  transform: translateY(-5px);
+  opacity: 1; /* <<< AJOUTE CETTE LIGNE (devient 100% opaque au survol) */
+}
+
+.counter-section {
+  padding: 5rem 5%;
+  background-color: var(--accent);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+  text-align: center;
+}
+
+.counter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.counter-number {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.counter-text {
+  font-size: 1.1rem;
+}
+
+/* Curseur personnalisé */
+.cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 10000; /* Au-dessus de tout */
+  mix-blend-mode: difference;
+  transition: transform 0.1s ease-out, width 0.2s ease-out, height 0.2s ease-out; /* Ajouté width/height */
+}
+
+.cursor-follower {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--primary); /* La bordure prend la couleur principale */
+  opacity: 0.5; /* On applique l'opacité séparément */
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999; /* Juste en dessous du curseur principal */
+  transition: transform 0.2s ease-out, width 0.3s ease-out, height 0.3s ease-out,
+    border 0.3s ease-out, opacity 0.3s ease-out; /* Ajout d'opacity à la transition */
+}
+
+/* Animation pour les éléments au scroll */
+.reveal {
+  position: relative;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease; /* Séparé pour clarté */
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animation des éléments en arrière-plan */
+.bg-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(0, 0, 0, 0) 70%
+  ); /* Plus subtil */
+  z-index: 1;
+  animation: floatAnimation 25s infinite alternate ease-in-out;
+}
+
+.shape1 {
+  width: 40vw;
+  height: 40vw;
+  top: -15vh;
+  right: -10vw;
+}
+
+.shape2 {
+  width: 35vw;
+  height: 35vw;
+  bottom: -10vh;
+  left: -5vw;
+  animation-delay: 5s;
+}
+
+@keyframes floatAnimation {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(5%, 5%) scale(1.1);
+  }
+  100% {
+    transform: translate(-5%, -5%) scale(0.9);
+  }
+}
+
+/* Section Portfolio */
+.portfolio-section {
+  padding: 8rem 5%;
+  background-color: var(--secondary);
+}
+
+.portfolio-filter {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap; /* Pour le responsive */
+}
+
+.filter-btn {
+  padding: 0.5rem 1.5rem;
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  cursor: pointer;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.9rem;
+  border-radius: 20px; /* Plus doux */
+  transition: var(--transition);
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.portfolio-item {
+  position: relative;
+  overflow: hidden;
+  height: 280px; /* Un peu plus haut */
+  border-radius: 10px; /* Plus arrondi */
+  background-color: var(--accent); /* Fond pour les logos textes */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-image {
+  /* Conteneur pour l'image ou le texte-logo */
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex; /* Pour centrer le logo-texte */
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease-out; /* Transition plus douce */
+}
+
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.85
+  ); /* Plus sombre pour meilleur contraste texte */
+  display: flex;
+  flex-direction: column; /* Pour mieux placer le contenu */
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  padding: 1rem;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+.portfolio-item:hover .portfolio-image img {
+  transform: scale(1.1);
+}
+
+.portfolio-info {
+  text-align: center;
+  color: var(--primary); /* Assurer la couleur du texte */
+}
+
+.portfolio-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  transform: translateY(20px); /* Animation d'entrée */
+  opacity: 0;
+  transition: transform 0.4s ease-out 0.2s, opacity 0.4s ease-out 0.2s;
+}
+
+.portfolio-info p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  transform: translateY(20px); /* Animation d'entrée */
+  opacity: 0;
+  transition: transform 0.4s ease-out 0.3s, opacity 0.4s ease-out 0.3s;
+}
+
+.portfolio-item:hover .portfolio-info h3,
+.portfolio-item:hover .portfolio-info p {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.portfolio-link {
+  display: inline-flex; /* Pour aligner l'icône */
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: var(--secondary);
+  text-decoration: none;
+  transition: var(--transition);
+  transform: scale(0.8); /* Animation d'entrée */
+  opacity: 0;
+  transition: transform 0.4s ease-out 0.4s, opacity 0.4s ease-out 0.4s,
+    background-color 0.3s, color 0.3s;
+}
+
+.portfolio-item:hover .portfolio-link {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.portfolio-link:hover {
+  background-color: var(--secondary); /* Inversion au survol */
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  transform: scale(1.1) !important; /* Priorité sur le scale initial */
+}
+
+/* Section Compétences */
+.skills-section {
+  padding: 8rem 5%;
+  background-color: var(--accent);
+  position: relative;
+  overflow: hidden;
+}
+
+.shape3 {
+  /* Shape pour la section compétences */
+  width: 45vw;
+  height: 45vw;
+  top: 10vh;
+  right: -15vw;
+  animation-delay: 2s;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+
+.skill-progress {
+  /* Ancien : margin-bottom: 2rem; */
+  margin-bottom: 3.5rem; /* Augmenté pour plus d'espace */
+}
+
+.skills-advanced-container {
+  max-width: 700px;
+  margin: 0 auto 4rem;
+}
+
+.skill-progress-bar {
+  height: 12px; /* Un peu plus épais */
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.skill-progress-value {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #b3b3b3
+  ); /* Dégradé blanc/gris clair */
+  border-radius: 6px;
+  width: 0;
+  transition: width 2s cubic-bezier(0.25, 1, 0.5, 1); /* Transition plus longue et fluide */
+  position: relative; /* Pour positionner l'effet liquide */
+  overflow: hidden; /* Pour contenir l'effet */
+}
+
+/* L'effet "liquide" */
+.skill-progress-value::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 30px 30px; /* Taille des vagues */
+  animation: liquid-flow 2s infinite linear;
+  opacity: 0.5;
+}
+
+@keyframes liquid-flow {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 30px 0;
+  }
+}
+
+.skills-subheading {
+  /* Sous-titre pour Langues/Outils */
+  font-size: 1.8rem; /* Un peu plus grand */
+  margin-top: 4rem; /* Espace avant */
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ==================================================== */
+/*          STYLES POUR LA NOUVELLE SECTION PROJETS     */
+/* ==================================================== */
+
+.featured-projects-section {
+  padding: 8rem 5%;
+  background-color: var(--secondary); /* Fond noir classique */
+}
+
+.featured-projects-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem; /* Grand espace entre chaque projet pour les faire respirer */
+}
+
+.project-card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+/* On inverse l'ordre pour les projets pairs pour créer l'alternance */
+.project-card:nth-child(even) .project-image {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.project-card:nth-child(even) .project-content {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  text-align: right; /* Aligner le texte à droite pour l'alternance */
+}
+
+.project-image {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease;
+}
+
+.project-image:hover {
+  transform: scale(1.03) translateY(-5px);
+}
+
+.project-image img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center; /* S'assure que le haut du site est visible */
+}
+
+.project-content {
+  display: flex;
+  flex-direction: column;
+}
+/* Aligner les éléments à droite pour les projets pairs */
+.project-card:nth-child(even) .project-content {
+  align-items: flex-end;
+}
+
+.project-category {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--primary);
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.project-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.project-description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.project-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+/* Justifier à droite pour les projets pairs */
+.project-card:nth-child(even) .project-tech-list {
+  justify-content: flex-end;
+}
+
+.project-tech-item {
+  padding: 0.4rem 1.2rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Responsive pour tablettes et mobiles */
+@media (max-width: 992px) {
+  .project-card {
+    grid-template-columns: 1fr; /* Une seule colonne */
+    gap: 2rem;
+  }
+
+  .project-card:nth-child(even) .project-image,
+  .project-card:nth-child(even) .project-content {
+    grid-column: 1 / -1; /* Occupe toute la largeur */
+    text-align: left; /* Toujours aligné à gauche sur mobile */
+    align-items: flex-start; /* Toujours aligné à gauche sur mobile */
+  }
+  .project-card:nth-child(even) .project-tech-list {
+    justify-content: flex-start;
+  }
+}
+
+.language-container {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.language-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 120px; /* Pour un meilleur alignement */
+}
+
+.language-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.language-level {
+  display: flex;
+  gap: 5px;
+}
+
+.level-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s;
+}
+
+.level-dot.active {
+  background-color: var(--primary);
+}
+
+.language-text {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* Section Expérience */
+.experience-section {
+  padding: 8rem 5%;
+  background-color: var(--secondary);
+}
+
+.timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem 0;
+}
+
+.timeline::before {
+  /* Ligne verticale de la timeline */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px; /* Plus épaisse */
+  height: 100%;
+  background-color: var(--primary); /* Utilise la variable principale */
+  opacity: 0.15; /* On met l'opacité ici plutôt que dans la couleur */
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 4rem;
+}
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 20px; /* Align with arrow */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  z-index: 2;
+  box-shadow: 0 0 10px var(--primary); /* Lueur */
+}
+
+.timeline-content {
+  width: 45%;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px; /* Plus arrondi */
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Légère bordure */
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-left: calc(50% + 30px); /* Espace pour la ligne et le point */
+}
+.timeline-item:nth-child(even) .timeline-content {
+  margin-right: calc(50% + 30px); /* Espace pour la ligne et le point */
+}
+
+/* Flèches pour les bulles de la timeline */
+.timeline-item:nth-child(odd) .timeline-content::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: -15px; /* S'étend vers la ligne centrale */
+  border-width: 10px; /* Plus grand */
+  border-style: solid;
+  border-color: transparent var(--accent) transparent transparent; /* Utilise la variable accent */
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  right: -15px; /* S'étend vers la ligne centrale */
+  border-width: 10px; /* Plus grand */
+  border-style: solid;
+  border-color: transparent transparent transparent var(--accent); /* Utilise la variable accent */
+}
+
+.timeline-content h3 {
+  font-size: 1.4rem; /* Plus grand */
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+.timeline-content h3 a {
+  /* Style pour les liens dans les titres de la timeline */
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+  transition: text-decoration-color 0.3s;
+}
+.timeline-content h3 a:hover {
+  text-decoration-color: var(--primary);
+}
+
+.timeline-date {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+  font-style: italic;
+}
+.timeline-content p {
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* Section Contact */
+.contact-section {
+  padding: 8rem 5%;
+  background-color: var(--accent);
+  position: relative;
+  overflow: hidden;
+}
+
+.shape4 {
+  /* Shape pour la section contact */
+  width: 40vw;
+  height: 40vw;
+  bottom: -10vh;
+  left: -10vw;
+  animation-delay: 3s;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start; /* Aligner en haut */
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Plus d'espace */
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.contact-item i {
+  font-size: 1.8rem; /* Icônes plus grandes */
+  color: var(--primary);
+  width: 30px; /* Pour alignement */
+  text-align: center;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1.5rem; /* Plus d'espace */
+  margin-top: 2rem;
+}
+
+.social-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px; /* Plus grand */
+  height: 45px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 1.2rem; /* Taille de l'icône */
+  transition: var(--transition);
+}
+
+.social-icon:hover {
+  background-color: var(--primary);
+  color: var(--secondary);
+  transform: translateY(-5px) scale(1.1); /* Effet plus prononcé */
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.2); /* Plus sombre, moins transparent */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure plus visible */
+  color: var(--primary);
+  font-family: "Space Grotesk", sans-serif;
+  border-radius: 5px;
+  transition: var(--transition);
+  font-size: 1rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.contact-form .btn {
+  /* Styles spécifiques pour le bouton du formulaire si besoin */
+  border: 2px solid var(--primary); /* Assurer la bordure */
+  cursor: pointer;
+  margin-top: 1rem;
+}
+.contact-form .btn:hover {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+/* Footer */
+.footer {
+  padding: 3rem 5%; /* Plus de padding */
+  text-align: center;
+  background-color: var(--secondary); /* Le fond principal */
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* On va aussi corriger cette bordure */
+}
+
+.footer-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.footer .logo {
+  margin-bottom: 1rem;
+  font-size: 1.8rem; /* Logo plus grand dans le footer */
+}
+.footer p {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* Bouton retour en haut */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: var(--secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
+  opacity: 0;
+  visibility: hidden; /* Pour cacher complètement */
+  z-index: 999;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: translateY(-5px) scale(1.1);
+  background-color: var(--accent); /* Changement de couleur au survol */
+  color: var(--primary);
+}
+.back-to-top i {
+  font-size: 1.2rem;
+}
+
+/* Styles pour la modale */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Plus sombre pour le fond */
+  display: none; /* Caché par défaut */
+  justify-content: center;
+  align-items: center;
+  z-index: 100000; /* Au-dessus de tout */
+  padding: 1rem; /* Pour petits écrans */
+}
+
+.modal-content {
+  background-color: var(--accent);
+  padding: 2.5rem; /* Plus de padding */
+  border-radius: 15px;
+  max-width: 500px; /* Un peu plus large */
+  width: 90%;
+  color: var(--primary);
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Ombre plus prononcée */
+  text-align: left; /* Aligner le texte à gauche pour lisibilité */
+  max-height: 80vh; /* Empêcher qu'elle soit trop haute */
+  overflow-y: auto; /* Scroll si contenu trop long */
+}
+
+.modal-content h3 {
+  font-size: 1.8rem; /* Titre plus grand */
+  margin-bottom: 1.5rem;
+  text-align: center; /* Centrer le titre de la modale */
+}
+
+.modal-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.modal-content ul li {
+  margin-bottom: 1.5rem; /* Plus d'espace entre les items */
+  padding-bottom: 1rem; /* Espace avant la bordure */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Séparateur */
+}
+.modal-content ul li:last-child {
+  border-bottom: none; /* Pas de bordure pour le dernier */
+  margin-bottom: 0;
+}
+
+.modal-content strong {
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.modal-content a {
+  color: var(--primary); /* Couleur du lien */
+  text-decoration: underline;
+  font-weight: 500; /* Un peu plus gras */
+  transition: color 0.3s;
+}
+
+.modal-content a:hover {
+  color: #aaa; /* Couleur au survol */
+  text-decoration: none;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px; /* Ajusté */
+  right: 20px; /* Ajusté */
+  font-size: 2rem; /* Plus grand */
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--primary);
+  transition: transform 0.2s, color 0.2s;
+}
+.modal-close:hover {
+  transform: scale(1.2);
+  color: #ff6b6b; /* Couleur d'alerte au survol */
+}
+
+/* Logo AM pour portfolio item */
+.logo-portfolio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6rem;
+  width: 100%; /* S'assurer qu'il prend la place */
+  height: 100%;
+  background-color: transparent; /* Fond géré par .portfolio-item */
+  color: var(--primary); /* Couleur du texte */
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  user-select: none; /* Non sélectionnable */
+}
+
+/* Message d'erreur pour formulaire */
+.error-message {
+  display: none;
+  background-color: #222; /* Fond sombre */
+  color: #ffdddd; /* Texte rouge clair */
+  border: 1px solid #ff6b6b; /* Bordure rouge */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px; /* Moins de padding vertical */
+  margin: 15px auto 0; /* Marge en haut uniquement */
+  font-family: "Space Grotesk", sans-serif; /* Cohérence de police */
+  text-align: center;
+  max-width: 100%; /* S'adapte à la largeur du formulaire */
+  font-size: 0.95rem;
+}
+
+.error-message p {
+  /* Pas besoin, le texte est direct */
+  line-height: 1.6;
+  margin-bottom: 0; /* Le message est court */
+}
+
+.error-message a {
+  color: #87cefa; /* Bleu clair pour le lien */
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.error-message a:hover {
+  text-decoration: none;
+}
+
+/* Icone tap */
+.tap-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer; /* Indiquer que c'est cliquable */
+}
+
+.tap-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: tapIconFlash 4s infinite 1s; /* Délai avant démarrage */
+  pointer-events: none;
+}
+
+@keyframes tapIconFlash {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  30% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.language-switcher button {
+  background: rgba(51, 51, 51, 0.3);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.85rem;
+  border-radius: 3px;
+  transition: var(--theme-transition);
+}
+
+.language-switcher button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.language-switcher button.active {
+  background-color: var(--primary);
+  color: var(--secondary);
+  font-weight: bold;
+}
+
+/* --- AJOUTE CETTE NOUVELLE RÈGLE CI-DESSOUS --- */
+a {
+  color: var(
+    --primary
+  ); /* Tous les liens auront la couleur du texte principal */
+  text-decoration: underline; /* Tous les liens seront soulignés par défaut */
+  transition: var(
+    --theme-transition
+  ); /* On leur ajoute la transition de thème */
+}
+
+a:hover {
+  opacity: 0.8; /* Un effet de survol simple et efficace */
+  text-decoration: none; /* On peut enlever le soulignement au survol */
+}
+/* --- FIN DE LA NOUVELLE RÈGLE --- */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-image {
+    height: 50vh; /* Ajuster pour mobile */
+    margin-bottom: 2rem; /* Espace si l'image est au-dessus du texte */
+  }
+  .section-heading {
+    font-size: 2.5rem;
+  }
+  .hero-title {
+    font-size: 10vw; /* Un peu moins grand sur tablette */
+  }
+  .portfolio-grid {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(280px, 1fr)
+    ); /* Ajuster pour tablettes */
+  }
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .timeline::before {
+    left: 10px; /* Déplacer la ligne pour un layout simple colonne */
+    transform: translateX(0);
+  }
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    width: calc(
+      100% - 40px
+    ); /* Pleine largeur moins l'espace pour la ligne/point */
+    margin-left: 40px;
+    margin-right: 0;
+  }
+  .timeline-dot {
+    left: 10px; /* Aligner avec la nouvelle ligne */
+    transform: translateX(-50%); /* Centrer sur la ligne */
+  }
+  .timeline-item:nth-child(odd) .timeline-content::before,
+  .timeline-item:nth-child(even) .timeline-content::before {
+    left: -15px; /* Toujours pointer vers la gauche (vers la ligne) */
+    right: auto;
+    border-color: transparent rgba(255, 255, 255, 0.05) transparent transparent;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 1.5rem;
+  }
+  .nav-links {
+    display: none; /* Menu burger à implémenter si besoin */
+  }
+  .hero-title {
+    font-size: 13vw; /* Plus grand pour impact sur mobile */
+  }
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  .section-heading {
+    font-size: 2rem;
+  }
+  .counter-section {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  .portfolio-filter {
+    gap: 0.5rem; /* Moins d'espace entre les filtres */
+  }
+  .filter-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+  }
+  .portfolio-grid {
+    grid-template-columns: 1fr; /* Une colonne sur mobile */
+  }
+  .portfolio-item {
+    height: 250px; /* Hauteur fixe pour mobile */
+  }
+  .language-container {
+    gap: 2rem;
+  }
+  .language-item {
+    min-width: 100px;
+  }
+  .contact-container {
+    gap: 2rem;
+  }
+  .footer {
+    padding: 2rem 5%;
+  }
+  .language-switcher {
+    top: 1.8rem;
+    right: 1.5rem;
+  }
+  .nav-container .logo {
+    margin-right: 80px; /* Plus d'espace pour les boutons sur mobile */
+  }
+}
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 15vw;
+  }
+  .section-heading {
+    font-size: 1.8rem;
+  }
+  .counter-section {
+    grid-template-columns: 1fr 1fr; /* Deux compteurs par ligne max */
+    gap: 1.5rem;
+  }
+  .counter-number {
+    font-size: 2.5rem;
+  }
+  .counter-text {
+    font-size: 1rem;
+  }
+}
+
+/* ========================================= */
+/*   NOUVEAUX STYLES POUR SECTION COMPÉTENCES  */
+/* ========================================= */
+
+.skills-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 4rem auto 0;
+}
+
+.skills-column {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.skill-category-box {
+  background-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 1px solid color-mix(in srgb, var(--primary) 10%, transparent);
+  height: 100%; /* Pour que les boîtes de la même ligne aient la même hauteur */
+}
+
+/* On centre les sous-titres DANS les boîtes */
+.skill-category-box .skills-subheading {
+  text-align: left;
+  margin-top: 0;
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Grille pour les compétences avec icônes */
+.skill-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.skill-icon-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.1rem;
+}
+
+.skill-icon-item i {
+  font-size: 2rem;
+  color: var(--primary);
+  width: 35px; /* Pour l'alignement */
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.skill-icon-item:hover i {
+  transform: scale(1.2);
+}
+
+/* Liste pour les soft skills */
+.skill-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skill-list li {
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.skill-list li i {
+  color: var(--primary);
+  opacity: 0.8;
+}
+
+/* Responsive pour la nouvelle grille */
+@media (max-width: 992px) {
+  .skills-grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .skill-icon-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- 1. Style de la Section Principale --- */
+.skills-section {
+  position: relative;
+  overflow: hidden;
+  padding: 8rem 0;
+  /* CORRIGÉ: Utilise la variable --accent pour le fond, qui s'adapte au thème. */
+  background-color: var(--secondary);
+  transition: var(--theme-transition); /* Ajout de la transition */
+}
+
+/* On s'assure que les titres utilisent bien les couleurs du thème. */
+.skills-section .section-heading,
+.skills-section .skills-subheading {
+  /* CORRIGÉ: Utilise la couleur du texte principal du thème */
+  color: var(--primary);
+  text-align: center;
+  padding: 0 5%;
+}
+.skills-section .section-heading::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* --- 2. La Scène Globale --- */
+#skills-scene-container {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  min-height: 600px;
+  max-height: 750px; /* <- AJOUTEZ CECI pour éviter qu'elle soit trop grande sur les grands écrans */
+}
+#starfield-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+}
+#skills-solar-system {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 1px; height: 1px;
+  z-index: 10;
+}
+
+/* --- 3. Le Soleil "AM." --- */
+#skill-sun {
+  position: absolute;
+  width: 140px; height: 140px; 
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+.sun-core {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #ffd700 0%, #ff8c00 70%, #ff4500 100%);
+  box-shadow: 0 0 50px #ff8c00, 0 0 100px #ff4500, inset 0 0 20px rgba(255,255,255,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  /* CORRIGÉ: Le texte du soleil utilise la couleur de fond du site pour un bon contraste. */
+  color: var(--secondary);
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+  animation: sun-pulse 8s infinite ease-in-out;
+}
+.sun-flare {
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle, rgba(255, 165, 0, 0.4) 30%, transparent 70%);
+  border-radius: 50%;
+  animation: sun-flare-rotate 20s infinite linear;
+  opacity: 0.7;
+}
+@keyframes sun-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+@keyframes sun-flare-rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* --- 4. Orbites et Planètes --- */
+.orbit-path {
+  position: absolute;
+  top: 50%; left: 50%;
+  /* CORRIGÉ: La bordure de l'orbite utilise la couleur primaire du thème avec de la transparence. */
+  border: 1px dashed color-mix(in srgb, var(--primary) 20%, transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.skill-planet-container {
+  position: absolute;
+  top: 50%; left: 0;
+  width: 100px; height: 100px; 
+  transform: translate(-50%, -50%);
+  z-index: 25; /* <-- LA CORRECTION */
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.skill-planet {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #fff; /* Gardé en blanc pour la lisibilité sur les fonds colorés des planètes */
+  padding: 0.5rem;
+  text-shadow: 0 0 5px rgba(0,0,0,0.7);
+  border: 1px solid rgba(255, 255, 255, 0.4); /* Bordure blanche un peu plus visible */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  will-change: transform, box-shadow;
+  animation: counter-rotate var(--duration) linear infinite var(--direction);
+}
+@keyframes counter-rotate { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+
+.skill-planet-container:hover { animation-play-state: paused; }
+.skill-planet-container:hover .skill-planet {
+  animation-play-state: paused;
+  transform: scale(1.2);
+  box-shadow: 0 0 30px var(--planet-color);
+}
+
+/* Couleurs spécifiques des planètes (inchangées car design-dépendant) */
+#frontend { --planet-color: #61DAFB; background: radial-gradient(circle, #61DAFB, #007B9E); }
+#backend { --planet-color: #8993be; background: radial-gradient(circle, #8993be, #3B4368); }
+#design { --planet-color: #A259FF; background: radial-gradient(circle, #f24e1e, #A259FF); }
+#shopify { --planet-color: #95BF47; background: radial-gradient(circle, #95BF47, #5E8E3E); }
+#tools { --planet-color: #a7a7a7; background: radial-gradient(circle, #a7a7a7, #5A5A5A); }
+
+/* --- 5. Panneau d'Information --- */
+#skills-infobox {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 340px + 40px); /* 340px = rayon max (100+4*60), 40px = marge */
+  transform: translateY(-50%) scale(0.95); /* On ne translate plus sur X ! */
+  width: 100%;
+  max-width: 280px;
+  padding: 1.5rem;
+  background: color-mix(in srgb, var(--accent) 85%, transparent);
+  backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
+  border-radius: 12px;
+  color: var(--text);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  transform-origin: left center; /* <- AJOUTEZ CECI pour une animation de scale plus jolie */
+}
+
+#skills-infobox.visible {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+@media (max-width: 1200px) {
+  #skills-infobox { display: none; }
+}
+
+/* AJOUTEZ CES STYLES POUR LA NOUVELLE SECTION LANGUES (V3) */
+
+/* --- 6. SECTION LANGUES (CORRIGÉE POUR THÈMES) --- */
+.language-section {
+  padding-top: 4rem;
+  padding-bottom: 8rem;
+  /* CORRIGÉ: On s'assure que cette section utilise aussi le fond du thème. */
+  background-color: var(--accent);
+  transition: var(--theme-transition); /* Ajout de la transition */
+}
+
+.language-list-container {
+max-width: 800px;
+margin: 3rem auto 0;
+padding: 0 1rem;
+display: grid;
+gap: 2rem;
+}
+
+.language-item-v3 {
+display: grid;
+grid-template-columns: 140px 1fr;
+gap: 1.5rem;
+align-items: center;
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.language-section.reveal.active .language-item-v3 {
+opacity: 1;
+transform: translateY(0);
+}
+.language-section.reveal.active .language-item-v3:nth-child(2) { transition-delay: 0.2s; }
+
+.language-item-v3 .language-name {
+font-size: 1.1rem;
+font-weight: 600;
+/* CORRIGÉ: Utilise la couleur primaire du thème. */
+color: var(--primary);
+justify-self: start;
+}
+
+.language-progress-wrapper {
+display: flex;
+align-items: center;
+width: 100%;
+}
+
+.language-progress-bar-container {
+flex-grow: 1;
+height: 8px;
+/* CORRIGÉ: Le fond de la barre utilise une version transparente de la couleur primaire. */
+background-color: color-mix(in srgb, var(--primary) 10%, transparent);
+border-radius: 4px;
+overflow: hidden;
+}
+
+.language-progress-fill {
+width: var(--progress-width);
+height: 100%;
+border-radius: 4px;
+/* Le dégradé a été choisi pour bien fonctionner sur fond clair et sombre */
+background: linear-gradient(90deg, #8A2BE2, #5eead4);
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1) 0.5s;
+}
+
+.language-section.reveal.active .language-progress-fill {
+transform: scaleX(1);
+}
+
+.language-progress-wrapper .language-level {
+font-size: 0.95rem;
+font-style: italic;
+/* CORRIGÉ: Utilise la couleur de texte secondaire du thème. */
+color: var(--text);
+margin-left: 1.5rem;
+white-space: nowrap;
+}
+
+/* Style pour la navbar quand on a scrollé */
+.nav-container.scrolled {
+  background-color: rgba(10, 10, 10, 0.7); /* Fond noir très transparent */
+  -webkit-backdrop-filter: blur(10px); /* Flou pour l'effet verre (pour Safari) */
+  backdrop-filter: blur(10px); /* Flou pour l'effet verre */
+  padding-top: 1rem; /* On peut réduire un peu le padding pour un effet plus compact */
+  padding-bottom: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Légère ombre portée */
+}
+
+/* On s'assure que la transition est fluide */
+.nav-container {
+  /* ... vos styles existants ... */
+  transition: padding 0.3s ease, background-color 0.3s ease; /* Ajout d'une transition douce */
+}
+
+/* En mode clair, l'effet sera différent */
+body.light-mode .nav-container.scrolled {
+  background-color: rgba(255, 255, 255, 0.7); /* Fond blanc très transparent */
+}
+
+/* ================================================= */
+/*          NOUVEAUX STYLES SECTIONS LANGUES         */
+/* ================================================= */
+
+.language-section-v2 {
+  padding-top: 4rem;
+  padding-bottom: 8rem;
+  background-color: var(--accent);
+  transition: var(--theme-transition);
+}
+
+.language-section-v2 .skills-subheading {
+  text-align: center;
+  margin-bottom: 4rem;
+  font-size: 1.8rem;
+}
+
+/* --- Section 1: JSON Code Block --- */
+.code-block-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.code-block {
+  background-color: color-mix(in srgb, var(--secondary) 85%, black);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--primary) 10%, transparent);
+}
+
+.code-block-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1rem;
+  background-color: color-mix(in srgb, var(--secondary) 60%, black);
+}
+
+.code-block-header .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.dot.red { background-color: #ff5f56; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #27c93f; }
+
+.code-block pre {
+  margin: 0;
+  padding: 1.5rem 2rem;
+}
+
+.code-block code {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  white-space: pre-wrap; /* Pour le responsive */
+  color: var(--text);
+}
+
+/* Syntaxe Highlighting */
+.json-key { color: #82aaff; } /* Bleu pour les clés */
+.json-string { color: #c3e88d; } /* Vert pour les chaînes */
+.json-comment { color: #637777; font-style: italic; }
+.json-punctuation { color: var(--primary); opacity: 0.8; }
+.json-boolean { color: #f78c6c; } /* Orange/pêche pour les booléens */
+
+/* --- Section 2: Communication Waves --- */
+.waves-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  gap: 4rem;
+}
+
+.wave-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.wave-info {
+  text-align: right;
+}
+
+.wave-info .language-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+  display: block;
+}
+
+.wave-info .language-level {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text);
+  opacity: 0.8;
+}
+
+.wave-canvas {
+  width: 100%;
+  height: 60px;
+  display: block;
+  opacity: 0;
+  transform: scaleX(0.8);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform-origin: left;
+}
+
+.language-section-v2.reveal.active .wave-canvas {
+  opacity: 1;
+  transform: scaleX(1);
+}
+.language-section-v2.reveal.active .waves-container .wave-item:nth-child(2) .wave-canvas {
+  transition-delay: 0.2s;
+}
+
+@media(max-width: 600px) {
+  .wave-item {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: center;
+  }
+  .wave-info {
+    text-align: center;
+  }
+}
+
+.code-block pre[contenteditable="true"] {
+  cursor: text; /* Change le curseur en curseur de texte */
+}
+
+/* Style pour le curseur de frappe (caret) */
+.typing-caret {
+  display: inline-block;
+  width: 8px;
+  height: 1.2em; /* S'aligne avec la hauteur de la ligne */
+  background-color: var(--primary);
+  animation: blink 1s infinite;
+  margin-left: 2px;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+body.light-mode .json-string {
+  /* On remplace le lime par un vert foncé et lisible */
+  color: #0d873c; 
+}
+
+body.light-mode .json-key {
+  /* On remplace le bleu clair par un bleu foncé */
+  color: #005cc5;
+}
+
+body.light-mode .json-comment {
+  /* On remplace le gris-cyan clair par un gris plus foncé */
+  color: #5c6370;
+}
+
+/* DANS style.css */
+
+.code-block-title {
+  color: color-mix(in srgb, var(--primary) 60%, transparent);
+  font-size: 0.85rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ======================================================== */
+/*          MENU HAMBURGER & RESPONSIVITÉ GLOBALE           */
+/* ======================================================== */
+
+/* --- 1. Le bouton Hamburger --- */
+#hamburger-btn {
+  display: none; /* Caché sur grand écran */
+  width: 30px;
+  height: 25px;
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001; /* Au-dessus de tout */
+}
+
+#hamburger-btn span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: var(--primary);
+  border-radius: 3px;
+  left: 0;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, top 0.3s ease-in-out;
+}
+
+#hamburger-btn span:nth-child(1) { top: 0px; }
+#hamburger-btn span:nth-child(2) { top: 10px; }
+#hamburger-btn span:nth-child(3) { top: 20px; }
+
+/* Animation du bouton en 'X' quand le menu est ouvert */
+body.mobile-menu-open #hamburger-btn span:nth-child(1) {
+  top: 10px;
+  transform: rotate(135deg);
+}
+body.mobile-menu-open #hamburger-btn span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+body.mobile-menu-open #hamburger-btn span:nth-child(3) {
+  top: 10px;
+  transform: rotate(-135deg);
+}
+
+/* --- 2. Le Panneau du Menu Mobile --- */
+#mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--secondary);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  opacity: 0.98;
+}
+
+body.mobile-menu-open {
+  overflow: hidden; /* Empêche le scroll du site en arrière-plan */
+}
+
+body.mobile-menu-open #mobile-menu {
+  transform: translateX(0);
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.mobile-menu-links a {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Animation d'apparition des liens en cascade */
+body.mobile-menu-open .mobile-menu-links a {
+  opacity: 1;
+  transform: translateY(0);
+}
+body.mobile-menu-open .mobile-menu-links a:nth-child(1) { transition-delay: 0.2s; }
+body.mobile-menu-open .mobile-menu-links a:nth-child(2) { transition-delay: 0.3s; }
+body.mobile-menu-open .mobile-menu-links a:nth-child(3) { transition-delay: 0.4s; }
+body.mobile-menu-open .mobile-menu-links a:nth-child(4) { transition-delay: 0.5s; }
+
+.mobile-menu-bottom {
+  position: absolute;
+  bottom: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* --- 3. Media Queries pour la Responsivité --- */
+
+/* Pour les tablettes et écrans plus petits */
+@media (max-width: 992px) {
+  .section-heading { font-size: 2.5rem; }
+  .hero-title { font-size: 9vw; }
+  .project-title { font-size: 2rem; }
+
+  /* Passage en 1 colonne pour les grilles */
+  .about-grid, .contact-container, .skills-grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Ajustements spécifiques */
+  .about-image { margin-bottom: 3rem; height: auto; }
+  .timeline::before { left: 20px; }
+  .timeline-dot { left: 20px; }
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    width: calc(100% - 60px);
+    margin-left: 60px;
+    margin-right: 0;
+  }
+   .timeline-item .timeline-content::before {
+    left: -15px; right: auto;
+    border-color: transparent var(--accent) transparent transparent;
+  }
+  
+  /* Projets détaillés */
+  .project-card { grid-template-columns: 1fr; gap: 2rem; }
+  .project-card:nth-child(even) .project-image { grid-row: 1; }
+  .project-card:nth-child(even) .project-content { text-align: left; align-items: flex-start; }
+  .project-card:nth-child(even) .project-tech-list { justify-content: flex-start; }
+}
+
+
+/* Pour les mobiles */
+@media (max-width: 768px) {
+  /* Afficher le bouton hamburger et cacher la nav desktop */
+  #hamburger-btn { display: block; }
+  .nav-right-group, .nav-links { display: none; }
+  .language-switcher {
+      /* Le switcher principal est caché, on utilisera celui du menu mobile */
+      display: none;
+  }
+  .nav-container {
+      /* On redonne de l'espace au logo */
+      justify-content: space-between;
+  }
+
+  /* Ajustements typographiques */
+  .hero-title { font-size: 13vw; line-height: 1.1; }
+  .hero-subtitle { font-size: 1.2rem; }
+  .section-heading { font-size: 2rem; }
+  .project-title { font-size: 1.8rem; }
+  .about-text, .project-description { font-size: 1rem; line-height: 1.7; }
+
+  /* Ajustements de l'espacement */
+  .about-section, .skills-section, .featured-projects-section, .experience-section, .contact-section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  /* Compétences - Système Solaire */
+  #skills-scene-container {
+      height: 60vh;
+      min-height: 500px;
+  }
+  #skill-sun {
+      width: 100px; height: 100px;
+      font-size: 2rem;
+  }
+  .orbit-path { /* Réduire les orbites */
+      transform: translate(-50%, -50%) scale(0.8);
+  }
+  .skill-planet-container { /* Réduire la taille des planètes */
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  /* Timeline */
+  .timeline-content { padding: 1.5rem; }
+  
+  /* Footer */
+  .footer { padding: 2rem 5%; }
+}
+
+/* Pour les très petits écrans */
+@media (max-width: 480px) {
+  body { font-size: 14px; }
+  .hero-title { font-size: 15vw; }
+  .btn { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
+  .counter-section { grid-template-columns: 1fr 1fr; }
+  .project-links { flex-direction: column; gap: 0.5rem; }
+  .contact-item { font-size: 1rem; }
+}
+
