@@ -153,47 +153,56 @@
     ]
   },
 
-  "experienceSection": {
+    "evolutionPopup": {
+    "title": "Site en constante évolution",
+    "message": "Ce portfolio est un projet vivant ! De nouvelles fonctionnalités, sections et animations sont ajoutées régulièrement. <b>N'hésitez pas à revenir !</b>"
+  },
+
+    "experienceSection": {
     "title": "EXPÉRIENCE & FORMATION",
     "items": [
       {
-        "title": "Obtention du CESS - École secondaire Plurielle Maritime",
+        "title": "Obtention du CESS - École Plurielle Maritime",
         "date": "2023",
-        "description": "Diplôme d'enseignement secondaire supérieur."
+        "description": "Diplôme d'enseignement secondaire supérieur, marquant la fin de mon parcours pré-supérieur et le début de ma spécialisation dans le digital."
       },
       {
-        "title": "Études en<a href=\"https://isfsc.be/ecriture-multimedia/\" target=\"_blank\"> Écriture Multimédia à L'isfsc</a>",
+        "title": "Études en Écriture Multimédia à L'ISFSC",
         "date": "2023 - Présent",
-        "description": "Formation axée sur la création de contenu numérique en tout genres tels que des sites WEB, des affiches, des maquettes de sites, l'analyse WEB, des petits jeux, de la gestion de projets,..."
+        "link": "https://isfsc.be/ecriture-multimedia/",
+        "description": "Formation intensive axée sur la création de contenu numérique : développement web (front & back), design d'interface (UX/UI), gestion de projet, web-analyse et stratégies de communication digitale."
       },
       {
-        "title": "Gestion Boutique Shopify",
+        "title": "Gestion de Boutique Shopify",
         "date": "2023",
-        "description": "Gestion des commandes, du Front-End, la mise en ligne de produits, UX,..."
+        "description": "Gestion complète d'une boutique e-commerce : traitement des commandes, personnalisation du thème (Front-End), gestion de produits et optimisation de l'expérience utilisateur (UX)."
       },
       {
-        "title": "<a href=\"https://fastnfriends.emu.isfsc.be/\" target=\"_blank\">Création Site Web de Fast 'N Friends</a>",
+        "title": "Création du site Fast 'N Friends",
         "date": "2024",
-        "description": "Développement d'un site internet \"responsive\" en PHP avec comme CMS WordPress, pour un projet d'études."
+        "link": "https://fastnfriends.emu.isfsc.be/",
+        "description": "Conception et développement d'un site de covoiturage pour étudiants. Ce projet d'étude, réalisé en PHP avec WordPress, m'a permis de mettre en pratique la gestion de profils utilisateurs et la création d'une interface responsive."
       },
       {
-        "title": "<a href=\"https://elearning1.emu.isfsc.be/\" target=\"_blank\">Création du site d'E-learning</a>",
+        "title": "Création d'une plateforme E-learning",
         "date": "2025",
-        "description": "Création d'un site pour le cours de e-learning via WordPress <i>(comme CMS, encore !)</i> pour héberger une formation en ligne fictive."
+        "link": "https://elearning1.emu.isfsc.be/",
+        "description": "Développement d'un site de formation en ligne via WordPress. L'objectif était de structurer un parcours pédagogique complexe et de concevoir une interface utilisateur (UX/UI) intuitive et engageante pour l'apprenant."
       },
       {
         "title": "Stage chez Nowa Market",
-        "date": "2025 (Prévu)",
-        "description": "Stage en marketing digital et gestion de projet web. Participation à la stratégie de contenu, SEO, et gestion des campagnes publicitaires. Application pratique des compétences acquises en écriture multimédia dans un environnement professionnel dynamique."
+        "date": "2025",
+        "description": "Stage en développement web et marketing digital. Ma mission principale a été la conception (UX/UI sur Figma) et le développement de A à Z du site vitrine pour Nowa Logistics. Une première expérience professionnelle complète, alliant technique et stratégie."
       },
       {
-        "title": "Création de mon Portfolio",
+        "title": "Création de mon Portfolio Personnel",
         "date": "2025",
-        "description": "<b>Mon portfolio est un projet clé dans ma carrière.</b> <br><br>C'est le fruit de plusieurs mois de travail, conçu pour être à la fois un outil de présentation et un espace interactif mettant en avant mes compétences en développement web, design, et création de contenu. <br><br>Ce projet démontre non seulement mes capacités techniques mais aussi mon engagement à proposer un produit soigné et fonctionnel.",
-        "description2": "Ce portfolio a été réalisé avec des technologies modernes comme HTML, CSS, JavaScript et des outils de développement front-end. Il a pour objectif de refléter mon approche créative tout en étant entièrement responsive et optimisé pour une expérience utilisateur fluide."
+        "description": "Conception et développement de ce portfolio. Ce projet, codé en HTML, CSS et JavaScript vanilla, est une vitrine de mes compétences en développement front-end, design interactif et intégration d'un système de traduction (i18n)."
       }
     ]
   },
+
+
   "contactSection": {
     "title": "ME CONTACTER",
     "address": "Bruxelles, Belgique",
@@ -218,7 +227,7 @@
       {
         "category": "Portfolio Personnel",
         "title": "Arnaud Martiny - Portfolio",
-        "imageSrc": "assets/img/project-portfolio.png",
+        "imageSrc": "assets/img/preview-portfolio.png",
         "imageAlt": "Aperçu du projet Portfolio",
         "description": "Le site sur lequel vous naviguez ! Un portfolio moderne conçu pour présenter mes projets et compétences, avec des animations CSS/JS custom et une structure entièrement responsive. Le projet méta par excellence, un vrai bac à sable pour expérimenter.",
         "tech": ["HTML", "CSS", "JavaScript", "GSAP", "i18n"],
@@ -238,7 +247,7 @@
       {
         "category": "Projet Étudiant",
         "title": "Fast 'N Friends",
-        "imageSrc": "assets/img/project-fnf.png",
+        "imageSrc": "assets/img/preview-FNF.png",
         "imageAlt": "Aperçu du projet Fast N Friends",
         "description": "Un site de covoiturage étudiant développé en PHP avec WordPress comme CMS. Ce projet a été une excellente opportunité d'apprendre sur le tas la gestion de profils utilisateurs, la responsivité et les bases de données.",
         "tech": ["PHP", "WordPress", "CSS", "MySQL"],

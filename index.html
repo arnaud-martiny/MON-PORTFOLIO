@@ -72,15 +72,27 @@
 
       <!-- NOUVEAU : Le groupe de droite (liens + switcher de thème) -->
       <div class="nav-right-group">
-        <!-- NOUVEAU : Bouton pour le thème -->
-        <button
-          id="theme-switcher"
-          class="theme-btn"
-          aria-label="Changer de thème"
-        >
-          <i class="fas fa-sun"></i>
-          <!-- Icône initiale (soleil pour passer en light) !!!! -->
-        </button>
+          <!-- NOUVEAU : Liens sociaux -->
+          <div class="nav-socials">
+              <a href="https://github.com/arnaud-martiny" target="_blank" rel="noopener noreferrer" aria-label="Mon GitHub">
+                  <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" rel="noopener noreferrer" aria-label="Mon LinkedIn">
+                  <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="mailto:arnaudmartiny0@gmail.com" aria-label="M'envoyer un email">
+                  <i class="fas fa-envelope"></i>
+              </a>
+          </div>
+
+          <!-- NOUVEAU : Bouton pour le thème -->
+          <button
+              id="theme-switcher"
+              class="theme-btn"
+              aria-label="Changer de thème"
+          >
+              <i class="fas fa-sun"></i>
+          </button>
 
         <div class="nav-links">
           <!--<a href="#accueil" id="home-link" data-i18n="nav.home_special">Accueil</a>-->
@@ -99,18 +111,37 @@
     </div>
 
     <div id="mobile-menu">
-      <div class="mobile-menu-links">
-        <a href="#apropos" data-i18n="nav.about">À propos</a>
-        <a href="#competences" data-i18n="nav.skills">Compétences</a>
-        <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
-        <a href="#contact" data-i18n="nav.contact">Contact</a>
-      </div>
-      <div class="mobile-menu-bottom">
-        <!-- On remet les switchers ici pour le mobile -->
+  <!-- Liens principaux du menu, centrés verticalement -->
+  <div class="mobile-menu-links">
+    <a href="#apropos" data-i18n="nav.about">À propos</a>
+    <a href="#competences" data-i18n="nav.skills">Compétences</a>
+    <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+    <a href="#contact" data-i18n="nav.contact">Contact</a>
+  </div>
+
+  <!-- Conteneur du bas avec tous les contrôles -->
+  <div class="mobile-menu-bottom">
+
+    <!-- Liens sociaux -->
+    <div class="nav-socials">
+        <a href="https://github.com/arnaud-martiny" target="_blank" rel="noopener noreferrer" aria-label="Mon GitHub">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" rel="noopener noreferrer" aria-label="Mon LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="mailto:arnaudmartiny0@gmail.com" aria-label="M'envoyer un email">
+            <i class="fas fa-envelope"></i>
+        </a>
+    </div>
+
+    <!-- Groupe pour les switchers de langue et de thème -->
+    <div class="mobile-controls-group">
         <div class="language-switcher">
           <button id="lang-fr-mobile" class="active">FR</button>
           <button id="lang-en-mobile">EN</button>
         </div>
+        
         <button
           id="theme-switcher-mobile"
           class="theme-btn"
@@ -118,8 +149,10 @@
         >
           <i class="fas fa-sun"></i>
         </button>
-      </div>
     </div>
+    
+  </div>
+</div>
 
     <!-- Section d'accueil -->
     <header id="accueil">
@@ -149,7 +182,7 @@
         <div class="about-image reveal">
           <div class="about-image-placeholder">
             <img
-              src="assets/img/cmoi.jpg"
+              src="assets/img/myself.jpg"
               alt="Portrait de moi"
               data-i18n-attr-alt="about.imageAlt"
             />
@@ -327,17 +360,11 @@
           </div>
 
           <div class="social-icons">
-            <a href="#" class="social-icon" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/arnaud-martiny/" class="social-icon" aria-label="LinkedIn">
               <i class="fab fa-linkedin-in"></i>
             </a>
-            <a href="#" class="social-icon" aria-label="GitHub">
+            <a href="https://github.com/arnaud-martiny" class="social-icon" aria-label="GitHub">
               <i class="fab fa-github"></i>
-            </a>
-            <a href="#" class="social-icon" aria-label="Behance">
-              <i class="fab fa-behance"></i>
-            </a>
-            <a href="#" class="social-icon" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
             </a>
           </div>
         </div>
@@ -417,6 +444,17 @@
     <a href="#accueil" class="back-to-top" aria-label="Retour en haut">
       <i class="fas fa-arrow-up"></i>
     </a>
+
+    <!-- Pop-up d'évolution -->
+    <div id="evolution-popup-overlay" class="evolution-popup-overlay">
+      <div id="evolution-popup" class="evolution-popup">
+        <button id="evolution-popup-close" class="evolution-popup-close">×</button>
+        <h4 data-i18n="evolutionPopup.title">Site en Évolution</h4>
+        <p data-i18n="evolutionPopup.message" data-i18n-html>
+          Ce portfolio est un projet vivant ! De nouvelles fonctionnalités et animations sont ajoutées régulièrement. Revenez bientôt !
+        </p>
+      </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script src="code.js" defer></script>

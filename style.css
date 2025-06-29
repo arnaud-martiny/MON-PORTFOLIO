@@ -2348,3 +2348,263 @@ body.mobile-menu-open .mobile-menu-links a:nth-child(4) { transition-delay: 0.5s
   .contact-item { font-size: 1rem; }
 }
 
+/* ======================================================== */
+/*          POP-UP D'ÉVOLUTION DU SITE                      */
+/* ======================================================== */
+.evolution-popup-overlay {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  /* Le fond est transparent, mais il empêche de cliquer derrière */
+  background-color: rgba(0, 0, 0, 0); 
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  z-index: 10001; /* Au-dessus de tout, même du curseur */
+  pointer-events: none; /* Ne bloque pas la souris par défaut */
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.evolution-popup-overlay.visible {
+  opacity: 1;
+  pointer-events: all; /* Devient cliquable quand visible */
+}
+
+.evolution-popup {
+  background-color: var(--accent);
+  color: var(--primary);
+  border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem;
+  max-width: 320px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  position: relative;
+  transform: translateY(30px);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.evolution-popup-overlay.visible .evolution-popup {
+  transform: translateY(0);
+}
+
+.evolution-popup h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  color: var(--primary);
+}
+
+.evolution-popup p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--text);
+  transition: color 0.3s ease;
+}
+
+.evolution-popup p b {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.evolution-popup-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.8rem;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--primary);
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.evolution-popup-close:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Responsive pour les mobiles */
+@media (max-width: 480px) {
+  .evolution-popup {
+    max-width: none;
+    width: calc(100% - 2rem);
+    margin: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* ======================================================== */
+/*          POP-UP D'ÉVOLUTION DU SITE (V2)                 */
+/* ======================================================== */
+
+/* Keyframe pour l'animation de flottement constant */
+@keyframes float-subtle {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+/* Keyframe pour l'animation d'explosion à la sortie */
+@keyframes explode-out {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px) scale(1.3) rotate(15deg);
+    opacity: 0;
+  }
+}
+
+.evolution-popup-overlay {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2); /* Fond légèrement grisé pour sentir la présence */
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  z-index: 10001;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.evolution-popup-overlay.visible {
+  opacity: 1;
+  pointer-events: all;
+  cursor: pointer; /* Le curseur indique qu'on peut cliquer sur l'overlay */
+}
+
+.evolution-popup {
+  background-color: var(--accent);
+  color: var(--primary);
+  border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem;
+  max-width: 320px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  position: relative;
+  /* On retire la transition de transform, elle sera gérée par l'animation */
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  cursor: default; /* Le curseur normal sur le pop-up lui-même */
+  animation: float-subtle 6s ease-in-out infinite; /* << ANIMATION CONSTANTE ICI */
+}
+
+/* Classe ajoutée par JS pour l'explosion */
+.evolution-popup.exploding {
+  animation: explode-out 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+.evolution-popup h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  color: var(--primary);
+}
+
+.evolution-popup p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--text);
+  transition: color 0.3s ease;
+}
+
+.evolution-popup p b {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.evolution-popup-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.8rem;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--primary);
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.evolution-popup-close:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+@media (max-width: 480px) {
+  .evolution-popup {
+    max-width: none;
+    width: calc(100% - 2rem);
+    margin: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* ======================================================== */
+/*          ICÔNES SOCIALES DANS LA NAVBAR                  */
+/* ======================================================== */
+.nav-socials {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-socials a {
+  color: var(--primary);
+  font-size: 1.2rem;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.nav-socials a:hover {
+  opacity: 1;
+  transform: scale(1.2) translateY(-2px);
+}
+
+/* Positionnement dans la nav desktop */
+.nav-right-group {
+    gap: 1.5rem; /* Ajuster l'espacement global */
+}
+
+/* Sur mobile, on les veut bien visibles */
+.mobile-menu-bottom .nav-socials {
+    order: -1; /* Les met en premier */
+    gap: 2rem; /* Plus d'espace sur mobile */
+    font-size: 1.5rem; /* Icônes plus grosses */
+}
+
+/* Style unifié pour TOUS les titres de la timeline */
+.timeline-content h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+/* Style pour les liens DANS les titres */
+.timeline-content h3 a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.5); /* Soulignement subtil */
+  transition: text-decoration-color 0.3s;
+}
+
+.timeline-content h3 a:hover {
+  text-decoration-color: var(--primary); /* Soulignement plein au survol */
+}

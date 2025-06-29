@@ -1,5 +1,5 @@
 // =========================================================================
-//                  SCRIPT.JS - FICHIER COMPLET
+//                  SCRIPT.JS - FICHIER COMPLET (CORRIGÉ)
 // =========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -99,40 +99,35 @@ document.addEventListener("DOMContentLoaded", () => {
         el.setAttribute("placeholder", translation);
     });
 
-    // --- NOUVEAU : PRÉPARATION DU BLOC JSON POUR L'ANIMATION DE FRAPPE ---
+    // --- PRÉPARATION DU BLOC JSON POUR L'ANIMATION DE FRAPPE ---
     const jsonContentEl = document.getElementById("language-json-content");
     if (
       jsonContentEl &&
       langData.skillsSection &&
       langData.skillsSection.languages
     ) {
-      // On vide le contenu pour l'animation
       jsonContentEl.innerHTML = "";
-      // On passe les données via des data-attributes pour que la fonction d'animation les récupère
       jsonContentEl.dataset.languages = JSON.stringify(
         langData.skillsSection.languages
       );
 
-      // AJOUTEZ CE BLOC JUSTE ICI
       const codeBlockTitle = document.getElementById("code-block-title");
       if (codeBlockTitle) {
         codeBlockTitle.textContent = "language.json";
       }
     }
 
-    // --- NOUVEAU : GÉNÉRATION DES VAGUES ---
+    // --- GÉNÉRATION DES VAGUES ---
     const wavesContainer = document.querySelector(".waves-container");
     if (
       wavesContainer &&
       langData.skillsSection &&
       langData.skillsSection.languages
     ) {
-      wavesContainer.innerHTML = ""; // Vider le conteneur
+      wavesContainer.innerHTML = "";
       langData.skillsSection.languages.forEach((lang) => {
         const waveItem = document.createElement("div");
         waveItem.className = "wave-item";
-
-        // Paramètres : Natif = onde plus ample, plus lente. Courant = un peu moins ample, plus rapide.
         const isNative = lang.activeDots === 5;
         const amplitude = isNative ? 20 : 15;
         const frequency = isNative ? 0.02 : 0.03;
@@ -149,21 +144,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    //NOUVEAU POUR LE TAG DES COMPETENCES :
+    // --- TAGS DE COMPÉTENCES ---
     const aboutSkillsContainer = document.getElementById("about-skills-tags");
     if (aboutSkillsContainer && langData.about && langData.about.skillsTags) {
-      // On vide les tags HTML existants pour les remplacer par ceux du JSON
       aboutSkillsContainer.innerHTML = "";
-
-      // On parcourt chaque compétence dans le fichier de langue
       langData.about.skillsTags.forEach((skill) => {
-        // On crée un nouvel élément <div>
         const skillTagDiv = document.createElement("div");
-        // On lui donne la classe CSS "skill-tag" pour le style
         skillTagDiv.className = "skill-tag";
-        // On met le nom de la compétence comme texte
         skillTagDiv.textContent = skill;
-        // On ajoute ce nouveau tag au conteneur
         aboutSkillsContainer.appendChild(skillTagDiv);
       });
     }
@@ -173,7 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (navContainer) {
       window.addEventListener("scroll", () => {
         if (window.scrollY > 50) {
-          // Si on a scrollé de plus de 50px
           navContainer.classList.add("scrolled");
         } else {
           navContainer.classList.remove("scrolled");
@@ -181,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // --- LOGIQUE "SYSTÈME SOLAIRE PULSANT" (CORRIGÉE) ---
+    // --- LOGIQUE "SYSTÈME SOLAIRE PULSANT" ---
     const sceneContainer = document.getElementById("skills-scene-container");
     const solarSystem = document.getElementById("skills-solar-system");
     const infobox = document.getElementById("skills-infobox");
@@ -195,20 +182,16 @@ document.addEventListener("DOMContentLoaded", () => {
       langData.skillsSection &&
       langData.skillsSection.planets
     ) {
-      // Vide complètement le système solaire pour le reconstruire
       solarSystem.innerHTML = `
       <div id="skill-sun">
           <div class="sun-flare"></div>
           <div class="sun-core">AM.</div>
       </div>
-  `;
-
-      // 1. GESTION DU CANVAS D'ÉTOILES
+    `;
       const ctx = canvas.getContext("2d");
       canvas.width = sceneContainer.offsetWidth;
       canvas.height = sceneContainer.offsetHeight;
 
-      // Évite de recréer l'animation si elle tourne déjà
       if (!canvas.animationId) {
         let stars = [];
         for (let i = 0; i < 200; i++) {
@@ -221,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         }
         function drawStars() {
-          if (!document.contains(canvas)) return; // Arrête si le canvas n'est plus là
+          if (!document.contains(canvas)) return;
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           stars.forEach((star) => {
             ctx.beginPath();
@@ -234,44 +217,34 @@ document.addEventListener("DOMContentLoaded", () => {
           canvas.animationId = requestAnimationFrame(drawStars);
         }
         drawStars();
-      } // <-- L'ACCOLADE MANQUANTE EST AJOUTÉE ICI, FERMANT CORRECTEMENT LE if.
+      }
 
-      // 2. CRÉATION DES PLANÈTES ET ORBITES (LOGIQUE FINALE)
       const skillPlanetsData = langData.skillsSection.planets;
       skillPlanetsData.forEach((planetData, i) => {
-        const orbitRadius = 100 + i * 60; // Orbites beaucoup plus compactes
+        const orbitRadius = 100 + i * 60;
         const duration = 25 + i * 15;
         const direction = i % 2 === 0 ? "normal" : "reverse";
-
         const orbitPath = document.createElement("div");
         orbitPath.className = "orbit-path";
         orbitPath.style.width = `${orbitRadius * 2}px`;
         orbitPath.style.height = `${orbitRadius * 2}px`;
-
         const planetContainer = document.createElement("div");
         planetContainer.className = "skill-planet-container";
-
         const skillPlanet = document.createElement("div");
         skillPlanet.id = planetData.id;
         skillPlanet.className = "skill-planet";
         skillPlanet.textContent = planetData.name;
-        // On passe la durée et la direction au CSS via des variables
         skillPlanet.style.setProperty("--duration", `${duration}s`);
         skillPlanet.style.setProperty("--direction", direction);
-
         planetContainer.appendChild(skillPlanet);
         orbitPath.appendChild(planetContainer);
         solarSystem.appendChild(orbitPath);
-
-        // Animation de l'orbite avec GSAP
         gsap.to(orbitPath, {
           rotation: direction === "normal" ? 360 : -360,
           duration: duration,
           ease: "none",
           repeat: -1,
         });
-
-        // Gestion de l'infobox au survol du conteneur de la planète
         planetContainer.addEventListener("mouseenter", () => {
           infobox.innerHTML = `<h4>${planetData.name}</h4><p>${planetData.description}</p>`;
           infobox.classList.add("visible");
@@ -281,7 +254,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
     }
-
+    
+    // ===== BLOC TIMELINE CORRIGÉ =====
+    // On retire le code en double et on garde seulement la version propre.
     const timelineContainer = document.getElementById("timeline-content");
     if (
       timelineContainer &&
@@ -292,13 +267,22 @@ document.addEventListener("DOMContentLoaded", () => {
       langData.experienceSection.items.forEach((item) => {
         const timelineItemDiv = document.createElement("div");
         timelineItemDiv.className = "timeline-item reveal";
-        let titleHtml = item.title.includes("<a")
-          ? item.title
-          : `<h3>${item.title}</h3>`;
+
+        let titleHtml;
+        // On vérifie si l'élément a un lien dans le JSON
+        if (item.link) {
+          // Si oui, on crée un titre avec une balise <a>
+          titleHtml = `<h3><a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a></h3>`;
+        } else {
+          // Sinon, on crée un titre simple
+          titleHtml = `<h3>${item.title}</h3>`;
+        }
+
         let descriptionHtml = `<p>${item.description}</p>`;
         if (item.description2) {
           descriptionHtml += `<br><p>${item.description2}</p>`;
         }
+        
         timelineItemDiv.innerHTML = `
           <div class="timeline-dot"></div>
           <div class="timeline-content" data-i18n-html>
@@ -310,7 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // --- NOUVEAU BLOC POUR GÉNÉRER LES PROJETS DÉTAILLÉS ---
+    // --- GÉNÉRATION DES PROJETS DÉTAILLÉS ---
     const projectsContainer = document.getElementById(
       "featured-projects-container"
     );
@@ -319,7 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
       langData.featuredProjects &&
       langData.featuredProjects.items
     ) {
-      projectsContainer.innerHTML = ""; // Vide le conteneur
+      projectsContainer.innerHTML = "";
       langData.featuredProjects.items.forEach((project) => {
         const projectCard = document.createElement("div");
         projectCard.className = "project-card reveal";
@@ -456,15 +440,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const skillsSection = document.querySelector(".skills-section");
   const counterSection = document.querySelector(".counter-section");
 
-  // =======================================================================
-  //                  DÉBUT DES CORRECTIONS IMPORTANTES
-  // =======================================================================
-
-  // AJOUT DE LA FONCTION `backspace` QUI MANQUAIT
-  // Cette fonction simule la suppression de caractères un par un.
+  // AJOUT DE LA FONCTION `backspace`
   async function backspace(count) {
     const codeEl = document.getElementById("language-json-content");
-    const backspaceSpeed = 40; // Vitesse de suppression
+    const backspaceSpeed = 40;
     const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     for (let i = 0; i < count; i++) {
@@ -472,34 +451,21 @@ document.addEventListener("DOMContentLoaded", () => {
         /<span class="typing-caret"><\/span>$/,
         ""
       );
-
-      // Logique simplifiée pour retirer le dernier caractère visible du HTML
-      // Trouve la dernière balise ouvrante '<'
       const lastTagOpen = currentHtml.lastIndexOf("<");
-      // Trouve la dernière balise fermante '>'
       const lastTagClose = currentHtml.lastIndexOf(">");
-
       let textPart;
       let tagPart = "";
-
-      // Sépare le texte de la dernière balise
       if (lastTagOpen > lastTagClose) {
-        // Coupure au milieu d'une balise
         textPart = currentHtml;
       } else {
         tagPart = currentHtml.substring(lastTagOpen);
         textPart = currentHtml.substring(0, lastTagOpen);
       }
-
-      // Supprime le dernier caractère du texte
       if (textPart) {
         textPart = textPart.slice(0, -1);
       }
-
-      // Reconstruit le HTML
       codeEl.innerHTML =
         textPart + tagPart + '<span class="typing-caret"></span>';
-
       await pause(backspaceSpeed);
     }
   }
@@ -512,12 +478,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const lang1 = languages[0];
     const lang2 = languages[1];
 
-    // --- VITESSES AJUSTÉES ---
-    const baseTypingSpeed = 15;  // Vitesse de frappe normale (plus le chiffre est bas, plus c'est rapide)
-    const mistakeSpeed = 25;     // Vitesse de frappe pour l'erreur
-    const backspaceSpeed = 20;   // Vitesse de suppression (très rapide)
-    const pauseDuration = 250;   // Pause avant de corriger l'erreur (plus courte)
-
+    const baseTypingSpeed = 15;
+    const mistakeSpeed = 25;
+    const backspaceSpeed = 20;
+    const pauseDuration = 250;
 
     const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     const addCaret = () => `<span class="typing-caret"></span>`;
@@ -544,22 +508,17 @@ document.addEventListener("DOMContentLoaded", () => {
       let builtString = "";
       const openTag = `<span class="${className}">"`;
       const closeTag = '"</span>';
-
-      // On tape le texte lettre par lettre à l'intérieur de la balise
       for (const char of text) {
         const randomSpeed = speed + (Math.random() - 0.5) * 40;
         builtString += char;
         updateContent(currentContent + openTag + builtString + closeTag);
         await pause(randomSpeed);
       }
-      // S'assure que le contenu final est correct
       codeEl.innerHTML = currentContent + openTag + text + closeTag;
       updateContent(codeEl.innerHTML);
     }
 
-    // --- SÉQUENCE D'ANIMATION COMPLÈTE ---
     updateContent("");
-
     const punc = (char) => `<span class="json-punctuation">${char}</span>`;
     const key = (text) => `<span class="json-key">"${text}"</span>`;
     const comment = (text) => `<span class="json-comment">${text}</span>`;
@@ -570,10 +529,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const newLine = (indent = 1) => "\n" + "  ".repeat(indent);
 
     await type(openBrace + newLine());
-    await type(key("languages") + colon + " " + punc("[") + newLine(2)); // Utilisation de crochets pour un array JSON valide
+    await type(key("languages") + colon + " " + punc("[") + newLine(2));
     await type(openBrace + newLine(3));
-
-    // Langue 1
     await type(
       key("name") +
         colon +
@@ -585,7 +542,6 @@ document.addEventListener("DOMContentLoaded", () => {
     await type(key("level") + colon + " ");
     await typeColoredText(lang1.levelMistake, "json-string", mistakeSpeed);
     await pause(pauseDuration);
-    // La fonction backspace va supprimer le mot + les 2 guillemets
     await backspace(lang1.levelMistake.length + 2);
     await typeColoredText(lang1.levelText, "json-string");
     await type(comma + newLine(3));
@@ -597,8 +553,6 @@ document.addEventListener("DOMContentLoaded", () => {
         newLine(2)
     );
     await type(closeBrace + comma);
-
-    // Langue 2
     await type(newLine(2) + openBrace + newLine(3));
     await type(
       key("name") +
@@ -622,12 +576,9 @@ document.addEventListener("DOMContentLoaded", () => {
         newLine(2)
     );
     await type(closeBrace);
-
-    // Fin du JSON
     await type(newLine(1) + punc("]"));
     await type(newLine(0) + closeBrace);
-
-    removeCaret(); // On retire le curseur à la fin
+    removeCaret();
   }
 
   function startWaveAnimations() {
@@ -641,32 +592,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const amplitude = parseFloat(canvas.dataset.amplitude);
       const frequency = parseFloat(canvas.dataset.frequency);
       const speed = parseFloat(canvas.dataset.speed);
-
       const ctx = canvas.getContext("2d");
       const dpr = window.devicePixelRatio || 1;
       canvas.width = canvas.offsetWidth * dpr;
       canvas.height = canvas.offsetHeight * dpr;
       ctx.scale(dpr, dpr);
-
       const waveColor = "#8A2BE2";
       const waveColorEnd = "#5eead4";
-
       let time = 0;
-
       function animateWave() {
         if (!document.body.contains(canvas)) return;
-
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
         const gradient = ctx.createLinearGradient(0, 0, canvas.offsetWidth, 0);
         gradient.addColorStop(0, waveColor);
         gradient.addColorStop(1, waveColorEnd);
-
         ctx.strokeStyle = gradient;
         ctx.lineWidth = 2.5;
         ctx.shadowColor = "rgba(138, 43, 226, 0.5)";
         ctx.shadowBlur = 10;
-
         ctx.beginPath();
         for (let x = 0; x < canvas.offsetWidth; x++) {
           const y =
@@ -675,7 +618,6 @@ document.addEventListener("DOMContentLoaded", () => {
           ctx.lineTo(x, y);
         }
         ctx.stroke();
-
         time += speed;
         requestAnimationFrame(animateWave);
       }
@@ -771,19 +713,17 @@ document.addEventListener("DOMContentLoaded", () => {
       errorMessage.style.display = "block";
     });
   }
-  // --- NOUVEAU : GESTION DU MENU HAMBURGER ---
+  // --- GESTION DU MENU HAMBURGER ---
   const hamburgerBtn = document.getElementById("hamburger-btn");
   const mobileMenu = document.getElementById("mobile-menu");
   const mobileMenuLinks = mobileMenu.querySelectorAll("a");
   const bodyEl = document.body;
 
   if (hamburgerBtn && mobileMenu) {
-    // Ouvrir/Fermer avec le bouton
     hamburgerBtn.addEventListener("click", () => {
       bodyEl.classList.toggle("mobile-menu-open");
     });
 
-    // Fermer en cliquant sur un lien
     mobileMenuLinks.forEach((link) => {
       link.addEventListener("click", () => {
         bodyEl.classList.remove("mobile-menu-open");
@@ -791,25 +731,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- NOUVEAU : SYNCHRONISATION DES BOUTONS DE THÈME ET LANGUE ---
-  // On doit lier les boutons du menu mobile aux fonctions existantes
+  // --- SYNCHRONISATION DES BOUTONS DE THÈME ET LANGUE ---
   const mobileThemeSwitcher = document.getElementById("theme-switcher-mobile");
   const mobileLangFrBtn = document.getElementById("lang-fr-mobile");
   const mobileLangEnBtn = document.getElementById("lang-en-mobile");
 
   if (mobileThemeSwitcher) {
-    // L'icône du menu mobile
     const mobileThemeIcon = mobileThemeSwitcher.querySelector("i");
-
-    // On met à jour l'icône mobile au chargement
     if (localStorage.getItem("theme") === "light") {
       mobileThemeIcon.classList.replace("fa-sun", "fa-moon");
     }
-
-    // On lie le clic du bouton mobile à celui du bouton principal
     mobileThemeSwitcher.addEventListener("click", () => {
-      themeSwitcher.click(); // Simule un clic sur le bouton original
-      // Et on met à jour son icône
+      themeSwitcher.click();
       if (bodyEl.classList.contains("light-mode")) {
         mobileThemeIcon.classList.replace("fa-sun", "fa-moon");
       } else {
@@ -819,11 +752,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (mobileLangFrBtn && mobileLangEnBtn) {
-    // Met à jour les boutons mobiles au chargement
     mobileLangFrBtn.classList.toggle("active", currentLang === "fr");
     mobileLangEnBtn.classList.toggle("active", currentLang === "en");
-
-    // On lie le clic des boutons de langue
     mobileLangFrBtn.addEventListener("click", () => {
       setLanguage("fr");
       mobileLangFrBtn.classList.add("active");
@@ -833,6 +763,35 @@ document.addEventListener("DOMContentLoaded", () => {
       setLanguage("en");
       mobileLangEnBtn.classList.add("active");
       mobileLangFrBtn.classList.remove("active");
+    });
+  }
+
+  // --- GESTION DU POP-UP D'ÉVOLUTION ---
+  const evolutionPopupOverlay = document.getElementById("evolution-popup-overlay");
+  const evolutionPopup = document.getElementById("evolution-popup");
+  const evolutionPopupCloseBtn = document.getElementById("evolution-popup-close");
+
+  if (evolutionPopupOverlay && evolutionPopup && evolutionPopupCloseBtn) {
+    const closePopup = () => {
+      evolutionPopup.classList.add('exploding');
+      evolutionPopup.addEventListener('animationend', () => {
+        evolutionPopupOverlay.classList.remove('visible');
+        evolutionPopup.classList.remove('exploding');
+      }, { once: true });
+    };
+
+    if (!sessionStorage.getItem('evolutionPopupShown')) {
+      setTimeout(() => {
+        evolutionPopupOverlay.classList.add('visible');
+        sessionStorage.setItem('evolutionPopupShown', 'true');
+      }, 4000);
+    }
+
+    evolutionPopupCloseBtn.addEventListener('click', closePopup);
+    evolutionPopupOverlay.addEventListener('click', closePopup);
+
+    evolutionPopup.addEventListener('click', (e) => {
+      e.stopPropagation();
     });
   }
 });
