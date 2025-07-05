@@ -45,68 +45,6 @@
     "passion": "Passion (%)",
     "masteredTech": "Technologies Maîtrisées"
   },
-  "webProjectsModal": {
-    "title": "Mes Projets Web",
-
-    "project1Title": "Portfolio Personnel",
-    "project1Desc": "Le site sur lequel vous naviguez ! Un portfolio moderne conçu pour présenter mes projets et compétences, avec des animations CSS custom et une structure entièrement responsive. <i>(Le projet méta par excellence !)</i>",
-    "project1Link": "Explorer le code source",
-
-    "project2Title": "Site Vitrine Nowa Logistics",
-    "project2Desc": "Site vitrine réalisé durant mon premier stage chez <strong>Nowa Market</strong> pour leur nouvelle activité de logistique durable.<br>Conçu et développé de A à Z (HTML, CSS, JS), ce projet inclut 5 pages, une charte graphique sur mesure, un formulaire de contact et une interface entièrement responsive. J'ai géré l'ensemble du processus, du design UX/UI sur Figma à l'intégration technique. Une superbe expérience au service d'un projet à impact positif ! 🌱<br><em>(Mise en ligne prochainement)</em>",
-    "project2Link": "Bientôt disponible",
-
-    "project3Title": "Fast 'N Friends",
-    "project3Desc": "Site de covoiturage étudiant développé en PHP avec comme CMS WordPress.<br>Interface responsive, profil utilisateur. Tout a été appris sur le tas ! <i>(on le voit sur certaines pages ;-)</i>",
-    "project3Link": "Voir le projet",
-
-    "project4Title": "Site E-learning",
-    "project4Desc": "Un projet de cours qui consiste à créer un contenant pour une formation via WordPress <i>(en guise de CMS)</i>.<br>L'objectif était de structurer un parcours pédagogique et de le rendre accessible et agréable pour l'utilisateur.",
-    "project4Link": "Voir le projet"
-  },
-  "portfolioSection": {
-    "title": "MES PROJETS",
-    "filterAll": "Tous",
-    "filterWeb": "Web",
-    "filterDesign": "Design",
-    "filterShopify": "Shopify",
-    "items": [
-      {
-        "category": "web",
-        "imageSrc": "assets/img/FNF-logo.svg",
-        "imageAlt": "Projet Fast N Friends",
-        "title": "Fast N Friends",
-        "description": "Site responsive en PHP/WordPress",
-        "link": "https://fastnfriends.emu.isfsc.be/"
-      },
-      {
-        "category": "shopify",
-        "imageSrc": "assets/img/SHOPIFY-logo.svg",
-        "imageAlt": "Gestion Boutique Shopify",
-        "title": "Gestion Boutique E-commerce",
-        "description": "Gestion complète d'une boutique Shopify : Gestion des commandes, du Front-End, la mise en ligne de produits, UX,...",
-        "link": "#",
-        "isInfo": true
-      },
-      {
-        "category": "web",
-        "imageSrc": "assets/img/learning-logo.svg",
-        "imageAlt": "Projet E-learning",
-        "title": "E-learning",
-        "description": "Site de formation avec WordPress en tant que CMS",
-        "link": "https://elearning1.emu.isfsc.be/"
-      },
-      {
-        "category": "web",
-        "imageText": "AM.",
-        "title": "Portfolio Personnel",
-        "description": "Développement front-end avec animations",
-        "link": "#",
-        "isInfo": true
-      }
-    ]
-  },
-
   "skillsSection": {
     "title": "MA GALAXIE DE COMPÉTENCES",
     "planets": [
@@ -152,13 +90,11 @@
       }
     ]
   },
-
-    "evolutionPopup": {
+  "evolutionPopup": {
     "title": "Site en constante évolution",
-    "message": "Ce portfolio est un projet vivant ! De nouvelles fonctionnalités, sections et animations sont ajoutées régulièrement. <b>N'hésitez pas à revenir !</b>"
+    "message": "Ce portfolio est un projet vivant ! De nouvelles fonctionnalités et animations sont ajoutées régulièrement. Dernière mise à jour le {{date}}. Revenez bientôt !"
   },
-
-    "experienceSection": {
+  "experienceSection": {
     "title": "EXPÉRIENCE & FORMATION",
     "items": [
       {
@@ -201,8 +137,6 @@
       }
     ]
   },
-
-
   "contactSection": {
     "title": "ME CONTACTER",
     "address": "Bruxelles, Belgique",
@@ -220,11 +154,12 @@
   "footer": {
     "copyright": "© 2025 Arnaud Martiny. Tous droits réservés."
   },
-
   "featuredProjects": {
     "title": "Mes Réalisations Web",
+    "nowaTooltip": "Site en construction, disponible dans quelques semaines !",
     "items": [
       {
+        "id": "portfolio",
         "category": "Portfolio Personnel",
         "title": "Arnaud Martiny - Portfolio",
         "imageSrc": "assets/img/preview-portfolio.png",
@@ -232,12 +167,13 @@
         "description": "Le site sur lequel vous naviguez ! Un portfolio moderne conçu pour présenter mes projets et compétences, avec des animations CSS/JS custom et une structure entièrement responsive. Le projet méta par excellence, un vrai bac à sable pour expérimenter.",
         "tech": ["HTML", "CSS", "JavaScript", "GSAP", "i18n"],
         "liveLink": "https://arnaud-martiny-portfolio.pages.dev/",
-        "codeLink": "#"
+        "codeLink": "https://github.com/arnaud-martiny/MON-PORTFOLIO"
       },
       {
+        "id": "nowa-logistics",
         "category": "Site Vitrine Professionnel",
         "title": "Nowa Logistics",
-        "imageSrc": "assets/img/project-nowa.png",
+        "imageSrc": "assets/img/preview-nowa-logistics.png",
         "imageAlt": "Aperçu du projet Nowa Logistics",
         "description": "Réalisé durant mon stage chez Nowa Market, ce site vitrine pour leur activité de logistique durable a été développé de A à Z. Mon rôle couvrait le design UX/UI sur Figma, le développement front-end et l'intégration d'un formulaire de contact fonctionnel.",
         "tech": ["HTML", "CSS", "JavaScript", "Figma"],
@@ -245,6 +181,7 @@
         "codeLink": "#"
       },
       {
+        "id": "fast-n-friends",
         "category": "Projet Étudiant",
         "title": "Fast 'N Friends",
         "imageSrc": "assets/img/preview-FNF.png",
@@ -252,7 +189,7 @@
         "description": "Un site de covoiturage étudiant développé en PHP avec WordPress comme CMS. Ce projet a été une excellente opportunité d'apprendre sur le tas la gestion de profils utilisateurs, la responsivité et les bases de données.",
         "tech": ["PHP", "WordPress", "CSS", "MySQL"],
         "liveLink": "https://fastnfriends.emu.isfsc.be/home/",
-        "codeLink": "#"
+        "codeLink": "https://github.com/arnaud-martiny/Fast-N-Friends"
       }
     ]
   }

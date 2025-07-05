@@ -981,7 +981,8 @@ section {
   height: 15px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.2);
-  transition: background-color 0.3s;
+  /* Ligne corrigée ci-dessous */
+  transition: background-color 0.3s; 
 }
 
 .level-dot.active {
@@ -2607,4 +2608,23 @@ body.mobile-menu-open .mobile-menu-links a:nth-child(4) { transition-delay: 0.5s
 
 .timeline-content h3 a:hover {
   text-decoration-color: var(--primary); /* Soulignement plein au survol */
+}
+
+/* ======================================================== */
+/*          NOUVEAU : INFO-BULLE NOWA LOGISTICS             */
+/* ======================================================== */
+#nowa-tooltip {
+  position: fixed;
+  display: none;
+  background-color: #c53030; /* Rouge foncé pour le fond */
+  color: #fff; /* Texte blanc */
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: 'Space Grotesk', sans-serif;
+  z-index: 10002; /* Au-dessus de tout, même du pop-up */
+  pointer-events: none; /* Pour que la souris ne la cible pas */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transform: translate(-50%, -120%); /* Positionner au-dessus du curseur par défaut, mais JS ajustera */
+  white-space: nowrap; /* Empêche le retour à la ligne */
 }

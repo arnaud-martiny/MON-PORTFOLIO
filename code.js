@@ -6,6 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let jsonAnimated = false; // Pour l'animation JSON
   let wavesAnimated = false; // Pour les vagues
 
+  // NOUVEAU : Création dynamique de l'info-bulle pour Nowa Logistics
+  const nowaTooltip = document.createElement('div');
+  nowaTooltip.id = 'nowa-tooltip';
+  document.body.appendChild(nowaTooltip);
+
   const themeSwitcher = document.getElementById("theme-switcher");
   const body = document.body;
 
@@ -256,7 +261,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     // ===== BLOC TIMELINE CORRIGÉ =====
-    // On retire le code en double et on garde seulement la version propre.
     const timelineContainer = document.getElementById("timeline-content");
     if (
       timelineContainer &&
@@ -269,12 +273,9 @@ document.addEventListener("DOMContentLoaded", () => {
         timelineItemDiv.className = "timeline-item reveal";
 
         let titleHtml;
-        // On vérifie si l'élément a un lien dans le JSON
         if (item.link) {
-          // Si oui, on crée un titre avec une balise <a>
           titleHtml = `<h3><a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a></h3>`;
         } else {
-          // Sinon, on crée un titre simple
           titleHtml = `<h3>${item.title}</h3>`;
         }
 
@@ -307,11 +308,19 @@ document.addEventListener("DOMContentLoaded", () => {
       langData.featuredProjects.items.forEach((project) => {
         const projectCard = document.createElement("div");
         projectCard.className = "project-card reveal";
+        
+        // NOUVEAU : Ajout d'un ID unique si le projet en a un dans le JSON
+        if (project.id) {
+          projectCard.id = project.id;
+        }
 
         let techHtml = "";
         project.tech.forEach((tech) => {
           techHtml += `<div class="project-tech-item">${tech}</div>`;
         });
+
+        // NOUVEAU : Ajout d'un ID au bouton "Voir le site" pour le ciblage
+        const liveLinkBtnId = project.id ? `id="live-link-${project.id}"` : '';
 
         const contentHtml = `
                 <div class="project-content">
@@ -322,7 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="project-links">
                         <a href="${
                           project.liveLink
-                        }" class="btn" target="_blank" ${
+                        }" class="btn" target="_blank" ${liveLinkBtnId} ${
           project.liveLink === "#"
             ? 'style="pointer-events: none; opacity: 0.5;"'
             : ""
@@ -347,6 +356,34 @@ document.addEventListener("DOMContentLoaded", () => {
         projectCard.innerHTML = imageHtml + contentHtml;
         projectsContainer.appendChild(projectCard);
       });
+    }
+
+    // --- NOUVEAU : GESTION DE L'INFO-BULLE POUR NOWA LOGISTICS ---
+    const nowaLiveLinkBtn = document.getElementById('live-link-nowa-logistics');
+    if (nowaLiveLinkBtn) {
+        const tooltipText = getNestedTranslation(langData, "featuredProjects.nowaTooltip");
+        nowaLiveLinkBtn.addEventListener('mouseenter', () => {
+            nowaTooltip.textContent = tooltipText;
+            nowaTooltip.style.display = 'block';
+        });
+        document.addEventListener('mousemove', (e) => {
+             if (nowaTooltip.style.display === 'block') {
+                nowaTooltip.style.left = `${e.clientX + 15}px`;
+                nowaTooltip.style.top = `${e.clientY + 15}px`;
+             }
+        });
+        nowaLiveLinkBtn.addEventListener('mouseleave', () => {
+            nowaTooltip.style.display = 'none';
+        });
+    }
+
+    // --- NOUVEAU : GESTION DE LA DATE DANS LE POP-UP D'ÉVOLUTION ---
+    const evolutionPopupMessage = document.querySelector('#evolution-popup p[data-i18n="evolutionPopup.message"]');
+    const evolutionPopupEl = document.getElementById('evolution-popup');
+    if (evolutionPopupMessage && evolutionPopupEl && evolutionPopupEl.dataset.lastUpdated) {
+        const lastUpdatedDate = evolutionPopupEl.dataset.lastUpdated;
+        // Le texte est déjà défini par la logique i18n, on remplace juste le placeholder
+        evolutionPopupMessage.innerHTML = evolutionPopupMessage.innerHTML.replace('{{date}}', `<b>${lastUpdatedDate}</b>`);
     }
 
     updateLangButtons();
