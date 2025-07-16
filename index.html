@@ -72,6 +72,16 @@
 
       <!-- NOUVEAU : Le groupe de droite (liens + switcher de thème) -->
       <div class="nav-right-group">
+              <!-- NOUVEAU BOUTON CV (placé avant les icônes sociales) -->
+                  <!-- Dans la div .nav-right-group -->
+                  <a href="assets/CV/CV-Arnaud-Martiny-FR.pdf"
+                    id="nav-cv-link"
+                    target="_blank" 
+                    class="nav-cv-btn" 
+                    data-i18n="nav.cvLink">
+                    <i class="fas fa-file-lines"></i>
+                    <span>Mon CV</span>
+                  </a>
           <!-- NOUVEAU : Liens sociaux -->
           <div class="nav-socials">
               <a href="https://github.com/arnaud-martiny" target="_blank" rel="noopener noreferrer" aria-label="Mon GitHub">
@@ -166,9 +176,7 @@
         <p class="hero-subtitle" data-i18n="hero.subtitle">
           Développeur Web & Créateur Digital
         </p>
-        <a href="#contact" class="btn" data-i18n="hero.contactButton"
-          >Me contacter</a
-        >
+        <a href="#contact" class="btn btn-hero" data-i18n="hero.contactButton">Contactez-moi</a>
       </div>
 
       <div class="scroll-down">
@@ -315,100 +323,73 @@
       </div>
     </section>
 
-    <!-- Section Contact -->
-    <section id="contact" class="contact-section">
-      <div class="bg-shape shape4"></div>
-      <h2 class="section-heading reveal" data-i18n="contactSection.title">
-        ME CONTACTER
-      </h2>
+    <!-- ==================================================== -->
+<!--    SECTION CONTACT (FINAL - CORRIGÉE POUR WEB3FORMS) -->
+<!-- ==================================================== -->
+<section id="contact" class="contact-section">
+  <div class="bg-shape shape4"></div>
+  <h2 class="section-heading reveal" data-i18n="contactSection.title">
+    ME CONTACTER
+  </h2>
 
-      <div class="contact-container">
-        <div class="contact-info reveal">
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <p data-i18n="contactSection.address">Bruxelles, Belgique</p>
-          </div>
+  <div class="contact-container">
+    <!-- Colonne de gauche (déjà fonctionnelle) -->
+    <div class="contact-info reveal">
+      <div class="contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <p data-i18n="contactSection.address">Bruxelles, Belgique</p>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-phone"></i>
+        <a href="tel:+32492451456" data-i18n="contactSection.phone">+32 0492 451 456</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:arnaudmartiny0@gmail.com" data-i18n="contactSection.email">arnaudmartiny0@gmail.com</a>
+      </div>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/arnaud-martiny/" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/arnaud-martiny" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
 
-          <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <p data-i18n="contactSection.phone">+32 0492 451 456</p>
-          </div>
-
-          <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <p data-i18n="contactSection.email">arnaudmartiny0@gmail.com</p>
-          </div>
-
-          <div class="social-icons">
-            <a href="https://www.linkedin.com/in/arnaud-martiny/" class="social-icon" aria-label="LinkedIn">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://github.com/arnaud-martiny" class="social-icon" aria-label="GitHub">
-              <i class="fab fa-github"></i>
-            </a>
-          </div>
-        </div>
-
+        <!-- REMPLACEZ TOUTE CETTE DIV PAR CELLE-CI -->
         <div class="contact-form reveal">
-          <form>
-            <div class="form-group">
-              <input
-                type="text"
-                placeholder="Nom"
-                required
-                data-i18n-attr-placeholder="contactSection.form.namePlaceholder"
-              />
-            </div>
+          
+          <!-- Ajout d'un id="contact-form" à la balise form -->
+          <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
 
-            <div class="form-group">
-              <input
-                type="email"
-                placeholder="Email"
-                required
-                data-i18n-attr-placeholder="contactSection.form.emailPlaceholder"
-              />
-            </div>
+            <!-- Votre clé d'accès reste ici, c'est parfait -->
+            <input type="hidden" name="access_key" value="40d5c484-203a-4285-ba13-33c05514dfe3">
 
+            <!-- Les champs du formulaire (pas de changement ici) -->
             <div class="form-group">
-              <input
-                type="text"
-                placeholder="Sujet"
-                data-i18n-attr-placeholder="contactSection.form.subjectPlaceholder"
-              />
+              <input type="text" name="name" required placeholder="Nom" data-i18n-attr-placeholder="contactSection.form.namePlaceholder">
             </div>
-
             <div class="form-group">
-              <textarea
-                placeholder="Message"
-                required
-                data-i18n-attr-placeholder="contactSection.form.messagePlaceholder"
-              ></textarea>
+              <input type="email" name="email" required placeholder="Email" data-i18n-attr-placeholder="contactSection.form.emailPlaceholder">
             </div>
+            <div class="form-group">
+              <input type="text" name="subject" placeholder="Sujet" data-i18n-attr-placeholder="contactSection.form.subjectPlaceholder">
+            </div>
+            <div class="form-group">
+              <textarea name="message" required placeholder="Message" data-i18n-attr-placeholder="contactSection.form.messagePlaceholder"></textarea>
+            </div>
+            
+            <!-- Le Captcha (pas de changement) -->
+            <div class="h-captcha" data-captcha="true"></div>
 
-            <button
-              type="submit"
-              class="btn"
-              id="submit-btn"
-              data-i18n="contactSection.form.submitButton"
-            >
+            <button type="submit" class="btn" data-i18n="contactSection.form.submitButton">
               Envoyer
             </button>
-            <div
-              id="error-message"
-              class="error-message"
-              data-i18n="contactSection.form.errorMessage"
-              data-i18n-html
-            >
-              Le formulaire de contact est en travaux, mais vous pouvez me
-              contacter par mail ! N'hésitez pas :
-              <a href="mailto:arnaudmartiny0@gmail.com"
-                >arnaudmartiny0@gmail.com</a
-              >
-            </div>
+            
+            <!-- Le paragraphe pour afficher le résultat, avec un nouvel id -->
+            <p class="form-result" id="form-result-message"></p>
+
           </form>
         </div>
-      </div>
-    </section>
+  </div>
+</section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -474,6 +455,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script src="code.js" defer></script>
+
+    <!-- ✅ AJOUTEZ LE SCRIPT WEB3FORMS ICI -->
+    <script src="https://web3forms.com/client/script.js" async defer></script>
 
     <!-- CLOUDFLARE ANALYTICS-->
     <script

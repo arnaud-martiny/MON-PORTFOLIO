@@ -8,14 +8,17 @@
   /* On ajoute une transition douce pour le changement de thème */
   --theme-transition: color 0.3s ease, background-color 0.3s ease,
     border-color 0.3s ease;
+
+      --color-accent-green: #39ff14; /* Un vert "terminal" bien visible */
+
 }
 
 /* Quand le body aura la classe "light-mode", ces variables s'appliqueront */
 body.light-mode {
-  --primary: #000000; /* Texte devient noir */
-  --secondary: #f2f2f2; /* Fond devient gris très clair */
-  --accent: #ffffff; /* Fond des sections devient blanc */
-  --text: #333333; /* Texte secondaire devient gris foncé */
+  --primary: #000000;   /* Texte devient noir */
+  --secondary: #ffffff; /* Fond général devient BLANC PUR */
+  --accent: #f8f8f8;    /* Fond des sections devient un GRIS TRÈS SUBTIL */
+  --text: #333333;      /* Texte secondaire devient gris foncé */
 }
 
 body.light-mode .nav-container {
@@ -324,39 +327,41 @@ section {
   }
 }
 
+/* --- BOUTON DE BASE (Conteneur commun) --- */
 .btn {
   display: inline-block;
-  padding: 1rem 2rem;
-  background-color: transparent;
-  border: 2px solid var(--primary);
-  color: var(--primary);
-  font-size: 1rem;
-  font-weight: 500;
+  padding: 0.8rem 1.8rem;
+  font-size: 0.95rem;
+  font-weight: 600;
   text-decoration: none;
-  transition: var(--transition);
   position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: var(--primary);
-  transition: var(--transition);
-  z-index: -1;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  /* On utilise une bordure transparente pour que tous les boutons aient la même taille */
+  border: 2px solid transparent; 
 }
 
 .btn:hover {
+  transform: scale(1.05) translateY(-2px);
+}
+
+/* --- BOUTON PRIMAIRE (ex: "Voir le site") --- */
+/* Il hérite de .btn, on ajuste juste les couleurs */
+.btn {
+  background-color: var(--primary);
   color: var(--secondary);
 }
 
-.btn:hover::before {
-  width: 100%;
+/* --- NOUVEAU : BOUTON SECONDAIRE --- */
+.btn.btn-outline {
+  background-color: transparent;
+  color: var(--primary);
+  border-color: var(--primary); /* La bordure blanche est visible */
+}
+
+.btn.btn-outline:hover {
+  background-color: var(--primary); /* Se remplit au survol */
+  color: var(--secondary);
 }
 
 .about-section {
@@ -940,15 +945,18 @@ section {
     gap: 2rem;
   }
 
-  .project-card:nth-child(even) .project-image,
-  .project-card:nth-child(even) .project-content {
-    grid-column: 1 / -1; /* Occupe toute la largeur */
-    text-align: left; /* Toujours aligné à gauche sur mobile */
-    align-items: flex-start; /* Toujours aligné à gauche sur mobile */
-  }
-  .project-card:nth-child(even) .project-tech-list {
-    justify-content: flex-start;
-  }
+  /* Règle pour l'image du projet pair (CORRIGÉE) */
+.project-card:nth-child(even) .project-image {
+  grid-column: 2 / 3;
+  /* La ligne "grid-row: 1 / 2;" a été SUPPRIMÉE */
+}
+
+/* Règle pour le contenu du projet pair (CORRIGÉE) */
+.project-card:nth-child(even) .project-content {
+  grid-column: 1 / 2;
+  text-align: right;
+  /* La ligne "grid-row: 1 / 2;" a été SUPPRIMÉE */
+}
 }
 
 .language-container {
@@ -1469,21 +1477,7 @@ section {
   font-weight: bold;
 }
 
-/* --- AJOUTE CETTE NOUVELLE RÈGLE CI-DESSOUS --- */
-a {
-  color: var(
-    --primary
-  ); /* Tous les liens auront la couleur du texte principal */
-  text-decoration: underline; /* Tous les liens seront soulignés par défaut */
-  transition: var(
-    --theme-transition
-  ); /* On leur ajoute la transition de thème */
-}
 
-a:hover {
-  opacity: 0.8; /* Un effet de survol simple et efficace */
-  text-decoration: none; /* On peut enlever le soulignement au survol */
-}
 /* --- FIN DE LA NOUVELLE RÈGLE --- */
 
 html {
@@ -2570,13 +2564,12 @@ body.mobile-menu-open .mobile-menu-links a:nth-child(4) { transition-delay: 0.5s
   color: var(--primary);
   font-size: 1.2rem;
   text-decoration: none;
-  opacity: 0.8;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s ease; /* On ne garde que la transition sur la transformation */
 }
 
+/* On ajuste l'effet de survol qui est maintenant plus simple et propre */
 .nav-socials a:hover {
-  opacity: 1;
-  transform: scale(1.2) translateY(-2px);
+  transform: scale(1.2) translateY(-2px); /* L'effet de zoom est conservé et suffisant */
 }
 
 /* Positionnement dans la nav desktop */
@@ -2633,18 +2626,7 @@ body.mobile-menu-open .mobile-menu-links a:nth-child(4) { transition-delay: 0.5s
 /* ======================================================== */
 /*          NOUVEAU : BOUTON CASE STUDY & ANIMATION         */
 /* ======================================================== */
-.project-links .btn.btn-case-study {
-  border-color: #00ff00; /* Vert "hacker" */
-  color: #00ff00;
-  position: relative;
-  overflow: visible; /* Important pour que le glow dépasse */
-}
 
-.project-links .btn.btn-case-study:hover {
-  background-color: #00ff00;
-  color: #000;
-  box-shadow: 0 0 15px #00ff00, 0 0 25px #00ff00;
-}
 
 /* Animation de "glitch" et "glow" pour attirer l'attention */
 @keyframes flicker-glow {
@@ -2660,6 +2642,7 @@ body.mobile-menu-open .mobile-menu-links a:nth-child(4) { transition-delay: 0.5s
 
 .btn-case-study {
   animation: flicker-glow 2.5s infinite ease-in-out;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 /* ======================================================== */
@@ -2805,4 +2788,140 @@ body.mobile-menu-open .mobile-menu-links a:nth-child(4) { transition-delay: 0.5s
 
 .case-study-popup-window button:active {
     border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+}
+
+.btn.btn-case-study {
+  background-color: transparent;
+  color: var(--color-accent-green);
+  border-color: var(--color-accent-green); /* Bordure verte visible */
+  animation: flicker-glow 2.5s infinite ease-in-out;
+}
+
+.btn.btn-case-study:hover {
+  background-color: var(--color-accent-green); /* Se remplit de vert */
+  color: var(--secondary);
+  box-shadow: 0 0 15px var(--color-accent-green);
+}
+
+/* --- STYLE POUR LE BOUTON HERO (plus grand) --- */
+.btn-hero {
+  padding: 1.2rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Règle de base pour tous les liens */
+a {
+  color: var(--primary);
+  text-decoration: none; /* On enlève le soulignement par défaut */
+  transition: opacity 0.3s ease;
+}
+
+/* On applique l'opacité au survol à tous les liens SAUF CEUX QUI SONT DES BOUTONS */
+a:not(.btn):hover {
+  opacity: 0.7; 
+}
+
+
+/* On s'assure que la keyframe utilise bien notre nouvelle variable pour la cohérence */
+@keyframes flicker-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--color-accent-green), 0 0 10px var(--color-accent-green);
+    text-shadow: 0 0 2px var(--color-accent-green);
+  }
+  50% {
+    box-shadow: 0 0 10px var(--color-accent-green), 0 0 20px var(--color-accent-green);
+    text-shadow: 0 0 5px var(--color-accent-green);
+  }
+}
+
+/* Style pour le nouveau tooltip du case study */
+#case-study-tooltip {
+  position: fixed;
+  display: none;
+  background-color: #000000; /* Un bleu "tech" amical */
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: 'Space Grotesk', sans-serif;
+  z-index: 10002;
+  pointer-events: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+}
+
+/* ======================================================== */
+/*              NOUVEAU : BOUTON CV NAVBAR                  */
+/* ======================================================== */
+.nav-cv-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+
+  /* Force l'apparence par défaut du bouton en mode sombre */
+  background-color: var(--primary);  /* Fond blanc */
+  color: var(--secondary);           /* Texte noir */
+  border: 1px solid var(--primary);  /* Bordure blanche pour se fondre dans le background */
+}
+
+/* Nouvel effet de survol pour un feedback clair */
+.nav-cv-btn:hover {
+  background-color: var(--secondary); /* Le fond redevient noir au survol */
+  color: var(--primary);            /* Le texte redevient blanc */
+  border: 1px solid var(--primary); /* La bordure blanche devient visible */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+.nav-cv-btn i {
+  font-size: 1rem;
+}
+
+/* Cacher le texte sur mobile pour ne garder que l'icône, si désiré */
+@media (max-width: 992px) {
+  .nav-cv-btn span {
+    display: none;
+  }
+  .nav-cv-btn {
+    padding: 0.5rem 0.7rem; /* Rendre plus carré */
+  }
+}
+
+/* AJOUTEZ CECI DANS VOTRE FICHIER STYLE.CSS */
+
+.form-result {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  display: none; /* Caché par défaut */
+}
+
+.form-result.visible {
+  opacity: 1;
+  transform: translateY(0);
+  display: block; /* Devient visible */
+}
+
+.form-result.success {
+  background-color: rgba(57, 255, 20, 0.15); /* Fond vert transparent */
+  color: #39ff14; /* Texte vert "terminal" */
+  border: 1px solid #39ff14;
+}
+
+.form-result.error {
+  background-color: rgba(255, 99, 71, 0.15); /* Fond rouge transparent */
+  color: #ff6347; /* Texte rouge tomate */
+  border: 1px solid #ff6347;
 }

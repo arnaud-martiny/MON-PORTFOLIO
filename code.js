@@ -11,6 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
   nowaTooltip.id = 'nowa-tooltip';
   document.body.appendChild(nowaTooltip);
 
+   // NOUVEAU : Création dynamique de l'info-bulle pour le Case Study
+  const caseStudyTooltip = document.createElement('div');
+  caseStudyTooltip.id = 'case-study-tooltip';
+  document.body.appendChild(caseStudyTooltip);
+
   const themeSwitcher = document.getElementById("theme-switcher");
   const body = document.body;
 
@@ -104,6 +109,77 @@ document.addEventListener("DOMContentLoaded", () => {
         el.setAttribute("placeholder", translation);
     });
 
+    // --- GESTION DU FORMULAIRE DE CONTACT AVEC AJAX (SANS REDIRECTION) ---
+const contactForm = document.getElementById('contact-form');
+const resultMessage = document.getElementById('form-result-message');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault(); // Empêche l'envoi classique du formulaire
+
+    const formData = new FormData(contactForm);
+    const object = {};
+    formData.forEach((value, key) => {
+      object[key] = value;
+    });
+    const json = JSON.stringify(object);
+
+    resultMessage.innerHTML = "Envoi en cours...";
+    resultMessage.classList.add('visible');
+    resultMessage.classList.remove('success', 'error');
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: json
+    })
+    .then(async (response) => {
+      let jsonResponse = await response.json();
+      if (response.status == 200) {
+        resultMessage.innerHTML = "Message envoyé avec succès !";
+        resultMessage.classList.add('success');
+      } else {
+        console.log(response);
+        resultMessage.innerHTML = jsonResponse.message || "Une erreur est survenue.";
+        resultMessage.classList.add('error');
+      }
+    })
+    .catch(error => {
+      console.log(error);
+      resultMessage.innerHTML = "Oups ! Il y a eu un problème.";
+      resultMessage.classList.add('error');
+    })
+    .then(function () {
+      contactForm.reset(); // Vide les champs du formulaire
+      // Fait disparaître le message après 5 secondes
+      setTimeout(() => {
+        resultMessage.classList.remove('visible');
+      }, 5000);
+    });
+  });
+}
+   
+    // ==========================================================
+    //    NOUVEAU : MISE À JOUR DYNAMIQUE DU LIEN DU CV
+    // ==========================================================
+    const cvLink = document.getElementById('nav-cv-link');
+    if (cvLink) {
+        // Définissez ici les noms de vos fichiers CV
+        const cvFileNameFR = 'CV-Arnaud-Martiny-FR.pdf';
+        const cvFileNameEN = 'CV-Arnaud-Martiny-EN.pdf';
+
+        // Mettez à jour le lien en fonction de la langue
+        const filePath = lang === 'fr' 
+            ? `assets/CV/${cvFileNameFR}` // <-- ON A AJOUTÉ /CV/ ICI
+            : `assets/CV/${cvFileNameEN}`; // <-- ET ICI AUSSI
+            
+        cvLink.setAttribute('href', filePath);
+    }
+
+    
     // --- PRÉPARATION DU BLOC JSON POUR L'ANIMATION DE FRAPPE ---
     const jsonContentEl = document.getElementById("language-json-content");
     if (
@@ -337,13 +413,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }>Voir le site</a>
                         <a href="${
                           project.codeLink
-                        }" class="btn" target="_blank" ${
+                        }" class="btn btn-outline" target="_blank" ${ // <-- LA MODIFICATION EST ICI
           project.codeLink === "#"
             ? 'style="pointer-events: none; opacity: 0.5;"'
             : ""
         }>Voir le code</a>
                         <button class="btn btn-case-study" data-project-id="${project.id}">
-                            ${caseStudyButtonText}
+                            <span>${caseStudyButtonText}</span>
                         </button>
                     </div>
                 </div>`;
@@ -733,7 +809,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  document.querySelectorAll('a[href^="#"]:not(#nav-cv-link)').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
       const targetId = this.getAttribute("href");
@@ -744,15 +820,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+  
 
-  const submitBtn = document.getElementById("submit-btn");
-  const errorMessage = document.getElementById("error-message");
-  if (submitBtn && errorMessage) {
-    submitBtn.addEventListener("click", function (event) {
-      event.preventDefault();
-      errorMessage.style.display = "block";
-    });
-  }
   // --- GESTION DU MENU HAMBURGER ---
   const hamburgerBtn = document.getElementById("hamburger-btn");
   const mobileMenu = document.getElementById("mobile-menu");
@@ -989,6 +1058,38 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     document.addEventListener('mouseup', () => {
         isDragging = false;
+    });
+  }
+
+  // --- NOUVEAU : GESTION DE L'INFO-BULLE POUR LE BOUTON CASE STUDY ---
+  const caseStudyTooltipEl = document.getElementById('case-study-tooltip');
+
+  if (caseStudyTooltipEl) {
+    let currentCaseStudyBtn = null;
+
+    document.addEventListener('mouseover', (e) => {
+      const btn = e.target.closest('.btn-case-study');
+      if (btn) {
+        currentCaseStudyBtn = btn;
+        const tooltipText = getNestedTranslation(translations[currentLang], "featuredProjects.caseStudyTooltip");
+        caseStudyTooltipEl.textContent = tooltipText || "Vous n'allez pas regretter le voyage ;-)";
+        caseStudyTooltipEl.style.display = 'block';
+      }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (caseStudyTooltipEl.style.display === 'block') {
+        caseStudyTooltipEl.style.left = `${e.clientX + 20}px`;
+        caseStudyTooltipEl.style.top = `${e.clientY - 30}px`;
+      }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      const btn = e.target.closest('.btn-case-study');
+      if (btn) {
+        caseStudyTooltipEl.style.display = 'none';
+        currentCaseStudyBtn = null;
+      }
     });
   }
 });

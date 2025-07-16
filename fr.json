@@ -13,12 +13,13 @@
     "about": "À propos",
     "skills": "Compétences",
     "portfolio": "Portfolio",
-    "contact": "Contact"
+    "contact": "Contact",
+    "cvLink": "Mon CV"
   },
   "hero": {
     "title": "ARNAUD MARTINY",
     "subtitle": "Développeur Full-Stack & Créatif Digital",
-    "contactButton": "Me contacter"
+    "contactButton": "Contactez-moi"
   },
   "about": {
     "title": "À PROPOS DE MOI",
@@ -125,10 +126,10 @@
         "link": "https://elearning1.emu.isfsc.be/",
         "description": "Développement d'un site de formation en ligne via WordPress. L'objectif était de structurer un parcours pédagogique complexe et de concevoir une interface utilisateur (UX/UI) intuitive et engageante pour l'apprenant."
       },
-      {
-        "title": "Stage chez Nowa Market",
+            {
+        "title": "Internship at Nowa Market",
         "date": "2025",
-        "description": "Stage en développement web et marketing digital. Ma mission principale a été la conception (UX/UI sur Figma) et le développement de A à Z du site vitrine pour Nowa Logistics. Une première expérience professionnelle complète, alliant technique et stratégie."
+        "description": "Expérience professionnelle complète en tant qu'Assistant Chef de Projets Digitaux. Ma mission principale a été la conception de A à Z (UX/UI sur Figma, développement front-end) du site vitrine pour la nouvelle entité Nowa Logistics. J'ai aussi contribué à des projets stratégiques : analyse de business plan, création de pitch decks pour investisseurs, et amélioration de l'UX/traduction de l'ERP interne."
       },
       {
         "title": "Création de mon Portfolio Personnel",
@@ -158,6 +159,7 @@
     "title": "Mes Réalisations Web",
     "nowaTooltip": "Site en construction, disponible dans quelques semaines !",
     "caseStudyButton": "Voir le Case Study",
+    "caseStudyTooltip": "Vous n'allez pas regretter le voyage ;-)",
     "items": [
       {
         "id": "portfolio",
@@ -167,16 +169,16 @@
         "imageAlt": "Aperçu du projet Portfolio",
         "description": "Le site sur lequel vous naviguez ! Un portfolio moderne conçu pour présenter mes projets et compétences, avec des animations CSS/JS custom et une structure entièrement responsive. Le projet méta par excellence, un vrai bac à sable pour expérimenter.",
         "tech": ["HTML", "CSS", "JavaScript", "GSAP", "i18n"],
-        "liveLink": "https://arnaud-martiny-portfolio.pages.dev/",
+        "liveLink": "https://www.arnaud-martiny.be/",
         "codeLink": "https://github.com/arnaud-martiny/MON-PORTFOLIO",
         "caseStudy": {
           "title": "C:\\Projects\\Portfolio_Meta.exe",
           "briefTitle": "▸ Le Brief Initial (la_mission.txt)",
-          "brief": "L'objectif était de créer un portfolio personnel qui soit plus qu'un simple CV. Il devait être une démonstration technique de mes compétences en front-end, en design interactif et en développement vanilla JS, tout en étant maintenable et évolutif.",
+          "brief": "L'objectif était de concevoir un portfolio qui soit bien plus qu'un CV en ligne. Il devait agir comme une véritable démonstration de mes compétences en développement front-end, en design d'interaction et en animation. Le défi était de créer une expérience immersive et mémorable, codée entièrement en \"vanilla\" (sans frameworks majeurs comme React ou Vue) pour prouver une maîtrise fondamentale des technologies web.",
           "roleTitle": "▸ Mon Rôle & Approche (strategie.doc)",
-          "role": "En tant que développeur unique, j'ai tout géré : design (UX/UI), développement front-end (HTML/CSS/JS), animations (GSAP), implémentation de l'internationalisation (i18n) et optimisation des performances.",
+          "role": "En tant que développeur unique sur ce projet \"méta\", j'ai endossé tous les rôles : architecte de l'information, designer UX/UI pour concevoir chaque section, et développeur front-end pour écrire chaque ligne de code. L'approche était \"mobile-first\" pour garantir une responsivité parfaite. Un soin particulier a été apporté à l'optimisation des performances et à la création d'un système de traduction (i18n) robuste pour une portée internationale.",
           "toolsTitle": "▸ La Boîte à Outils (./tools)",
-          "tools": "<strong>Langages :</strong> HTML5, CSS3, JavaScript (ES6+)\n<strong>Librairies :</strong> GSAP\n<strong>Outils :</strong> Git, GitHub, Figma (pour le design initial)"
+          "tools": "<strong>Langages :</strong> HTML5, CSS3, JavaScript (ES6+)\n<strong>Animation :</strong> GSAP (GreenSock Animation Platform) pour toutes les interactions complexes et les transitions fluides.\n<strong>Design :</strong> Figma pour le prototypage et la conception des maquettes.\n<strong>Internationalisation (i18n) :</strong> Système sur-mesure basé sur la lecture de fichiers JSON pour un site entièrement bilingue.\n<strong>Outils :</strong> Git & GitHub pour le versioning."
         }
       },
       {
@@ -209,14 +211,14 @@
         "tech": ["PHP", "WordPress", "CSS", "MySQL"],
         "liveLink": "https://fastnfriends.emu.isfsc.be/home/",
         "codeLink": "https://github.com/arnaud-martiny/Fast-N-Friends",
-        "caseStudy": {
+       "caseStudy": {
           "title": "C:\\Projects\\FastNFriends_Platform.exe",
           "briefTitle": "▸ Le Brief Initial (la_mission.txt)",
-          "brief": "Le projet académique consistait à créer une plateforme web fonctionnelle pour un service de covoiturage entre étudiants. Les contraintes incluaient la gestion de comptes utilisateurs, la publication d'annonces et une base de données relationnelle.",
+          "brief": "Le défi de ce projet académique, réalisé en binôme, était de construire une plateforme web 100% fonctionnelle de covoiturage pour étudiants. Le cahier des charges imposait une gestion complète des utilisateurs (inscription, connexion), un système de publication d'annonces de trajets et un moteur de recherche performant, le tout reposant sur une base de données relationnelle conçue pour le projet.",
           "roleTitle": "▸ Mon Rôle & Approche (strategie.doc)",
-          "role": "J'ai développé le site en utilisant PHP et WordPress comme base pour accélérer le développement du back-end (gestion des utilisateurs). J'ai conçu la logique de la base de données MySQL et développé le front-end pour l'affichage des trajets et des profils.",
+          "role": "En tant que co-développeur, j'ai adopté une approche 'full-stack'. Mes responsabilités couvraient l'intégralité du projet : rédaction du cahier des charges, gestion de projet, maquettage et design de l'interface sur Figma. Sur le plan technique, j'ai développé le thème WordPress de A à Z, sans template pré-fait. Cela incluait le développement front-end pour une expérience utilisateur intuitive et la programmation back-end en PHP/SQL pour automatiser tous les modules critiques : profils, sessions, publication et recherche de trajets.",
           "toolsTitle": "▸ La Boîte à Outils (./tools)",
-          "tools": "<strong>Langages :</strong> PHP, SQL\n<strong>CMS :</strong> WordPress\n<strong>Base de données :</strong> MySQL"
+          "tools": "<strong>Langages :</strong> PHP, SQL, CSS3, HTML5\n<strong>CMS :</strong> WordPress (Thème 100% sur-mesure)\n<strong>Base de données :</strong> MySQL\n<strong>Design & Prototypage :</strong> Figma\n<strong>Gestion de Projet :</strong> Rédaction de cahier des charges, collaboration en binôme."
         }
       }
     ]

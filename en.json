@@ -13,7 +13,8 @@
     "about": "About",
     "skills": "Skills",
     "portfolio": "Portfolio",
-    "contact": "Contact"
+    "contact": "Contact",
+    "cvLink": "My CV"
   },
   "hero": {
     "title": "ARNAUD MARTINY",
@@ -125,10 +126,10 @@
         "link": "https://elearning1.emu.isfsc.be/",
         "description": "Development of an online training site using WordPress. The main goal was to structure a complex learning path and design an intuitive and engaging user interface (UX/UI) for the learner."
       },
-      {
+            {
         "title": "Internship at Nowa Market",
         "date": "2025",
-        "description": "Internship in web development and digital marketing. My main mission was the end-to-end design (UX/UI in Figma) and development of the showcase website for Nowa Logistics. A comprehensive first professional experience, blending technical skills and strategy."
+        "description": "A comprehensive professional experience as a Digital Project Manager Assistant. My main mission was the end-to-end design (UX/UI in Figma, front-end development) of the showcase website for the new entity, Nowa Logistics. I also contributed to strategic projects, including business plan analysis, creating investor pitch decks, and improving the UX and translation of the internal ERP."
       },
       {
         "title": "Creation of my Personal Portfolio",
@@ -158,6 +159,7 @@
     "title": "My Web Creations",
     "nowaTooltip": "Site under construction, available in a few weeks!",
     "caseStudyButton": "View Case Study",
+    "caseStudyTooltip": "You won't regret the trip ;-)",
     "items": [
       {
         "id": "portfolio",
@@ -167,17 +169,17 @@
         "imageAlt": "Preview of the Portfolio project",
         "description": "The very site you are currently browsing! A modern portfolio designed to showcase my projects and skills, featuring custom CSS/JS animations and a fully responsive layout. The ultimate meta-project, and a true sandbox for experimentation.",
         "tech": ["HTML", "CSS", "JavaScript", "GSAP", "i18n"],
-        "liveLink": "https://arnaud-martiny-portfolio.pages.dev/",
+        "liveLink": "https://www.arnaud-martiny.be/",
         "codeLink": "https://github.com/arnaud-martiny/MON-PORTFOLIO",
         "caseStudy": {
-          "title": "C:\\Projects\\Portfolio_Meta.exe",
-          "briefTitle": "▸ The Initial Brief (mission.txt)",
-          "brief": "The goal was to create a personal portfolio that was more than just a resume. It had to be a technical demonstration of my skills in front-end, interactive design, and vanilla JS development, while being maintainable and scalable.",
-          "roleTitle": "▸ My Role & Approach (strategy.doc)",
-          "role": "As the sole developer, I handled everything: design (UX/UI), front-end development (HTML/CSS/JS), animations (GSAP), implementation of internationalization (i18n), and performance optimization.",
-          "toolsTitle": "▸ The Toolbox (./tools)",
-          "tools": "<strong>Languages:</strong> HTML5, CSS3, JavaScript (ES6+)\n<strong>Libraries:</strong> GSAP\n<strong>Tools:</strong> Git, GitHub, Figma (for initial design)"
-        }
+        "title": "C:\\Projects\\Portfolio_Meta.exe",
+        "briefTitle": "▸ The Initial Brief (mission.txt)",
+        "brief": "The objective was to design a portfolio that would be much more than just an online resume. It had to act as a true demonstration of my skills in front-end development, interaction design, and animation. The challenge was to create an immersive and memorable experience, coded entirely in \"vanilla\" (without major frameworks like React or Vue) to prove a fundamental mastery of web technologies.",
+        "roleTitle": "▸ My Role & Approach (strategy.doc)",
+        "role": "As the sole developer on this \"meta\" project, I took on all the roles: information architect, UX/UI designer to conceive each section, and front-end developer to write every line of code. The approach was \"mobile-first\" to ensure perfect responsiveness. Special care was given to performance optimization and creating a robust internationalization (i18n) system for a global reach.",
+        "toolsTitle": "▸ The Toolbox (./tools)",
+        "tools": "<strong>Languages:</strong> HTML5, CSS3, JavaScript (ES6+)\n<strong>Animation:</strong> GSAP (GreenSock Animation Platform) for all complex interactions and smooth transitions.\n<strong>Design:</strong> Figma for prototyping and mockup design.\n<strong>Internationalization (i18n):</strong> Custom-built system based on reading JSON files for a fully bilingual site.\n<strong>Tools:</strong> Git & GitHub for versioning."
+      }
       },
       {
         "id": "nowa-logistics",
@@ -209,14 +211,14 @@
         "tech": ["PHP", "WordPress", "CSS", "MySQL"],
         "liveLink": "https://fastnfriends.emu.isfsc.be/home/",
         "codeLink": "https://github.com/arnaud-martiny/Fast-N-Friends",
-        "caseStudy": {
+                "caseStudy": {
           "title": "C:\\Projects\\FastNFriends_Platform.exe",
           "briefTitle": "▸ The Initial Brief (mission.txt)",
-          "brief": "The academic project was to create a functional web platform for a student carpooling service. Requirements included user account management, ad posting, and a relational database.",
+          "brief": "The challenge for this academic project, carried out as a two-person team, was to build a 100% functional web platform for student carpooling. The specifications required complete user management (registration, login), a system for posting trip ads, and an efficient search engine, all based on a custom-designed relational database.",
           "roleTitle": "▸ My Role & Approach (strategy.doc)",
-          "role": "I developed the site using PHP and WordPress as a base to speed up back-end development (user management). I designed the MySQL database logic and developed the front-end for displaying trips and profiles.",
+          "role": "As a co-developer, I took a 'full-stack' approach. My responsibilities covered the entire project lifecycle: writing the specifications, project management, and designing the UI/UX in Figma. On the technical side, I developed the WordPress theme from scratch, with no pre-made templates. This included front-end development for an intuitive user experience and back-end programming in PHP/SQL to automate all critical modules: profiles, sessions, trip posting, and search.",
           "toolsTitle": "▸ The Toolbox (./tools)",
-          "tools": "<strong>Languages:</strong> PHP, SQL\n<strong>CMS:</strong> WordPress\n<strong>Database:</strong> MySQL"
+          "tools": "<strong>Languages:</strong> PHP, SQL, CSS3, HTML5\n<strong>CMS:</strong> WordPress (100% Custom Theme)\n<strong>Database:</strong> MySQL\n<strong>Design & Prototyping:</strong> Figma\n<strong>Project Management:</strong> Specification writing, team collaboration."
         }
       }
     ]
