@@ -938,27 +938,6 @@ section {
   gap: 1rem;
 }
 
-/* Responsive pour tablettes et mobiles */
-@media (max-width: 992px) {
-  .project-card {
-    grid-template-columns: 1fr; /* Une seule colonne */
-    gap: 2rem;
-  }
-
-  /* Règle pour l'image du projet pair (CORRIGÉE) */
-.project-card:nth-child(even) .project-image {
-  grid-column: 2 / 3;
-  /* La ligne "grid-row: 1 / 2;" a été SUPPRIMÉE */
-}
-
-/* Règle pour le contenu du projet pair (CORRIGÉE) */
-.project-card:nth-child(even) .project-content {
-  grid-column: 1 / 2;
-  text-align: right;
-  /* La ligne "grid-row: 1 / 2;" a été SUPPRIMÉE */
-}
-}
-
 .language-container {
   display: flex;
   justify-content: center;
@@ -1486,50 +1465,74 @@ html {
 
 /* Responsive Design */
 @media (max-width: 992px) {
-  .about-grid {
+  .about-grid, .contact-container, .skills-grid-container {
     grid-template-columns: 1fr;
   }
   .about-image {
-    height: 50vh; /* Ajuster pour mobile */
-    margin-bottom: 2rem; /* Espace si l'image est au-dessus du texte */
+    height: 50vh;
+    margin-bottom: 2rem;
   }
   .section-heading {
     font-size: 2.5rem;
   }
   .hero-title {
-    font-size: 10vw; /* Un peu moins grand sur tablette */
+    font-size: 10vw;
   }
   .portfolio-grid {
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(280px, 1fr)
-    ); /* Ajuster pour tablettes */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
   .contact-container {
-    grid-template-columns: 1fr;
     gap: 3rem;
   }
+  
   .timeline::before {
-    left: 10px; /* Déplacer la ligne pour un layout simple colonne */
+    left: 10px;
     transform: translateX(0);
   }
   .timeline-item:nth-child(odd) .timeline-content,
   .timeline-item:nth-child(even) .timeline-content {
-    width: calc(
-      100% - 40px
-    ); /* Pleine largeur moins l'espace pour la ligne/point */
+    width: calc(100% - 40px);
     margin-left: 40px;
     margin-right: 0;
   }
   .timeline-dot {
-    left: 10px; /* Aligner avec la nouvelle ligne */
-    transform: translateX(-50%); /* Centrer sur la ligne */
+    left: 10px;
+    transform: translateX(-50%);
   }
   .timeline-item:nth-child(odd) .timeline-content::before,
   .timeline-item:nth-child(even) .timeline-content::before {
-    left: -15px; /* Toujours pointer vers la gauche (vers la ligne) */
+    left: -15px;
     right: auto;
     border-color: transparent rgba(255, 255, 255, 0.05) transparent transparent;
+  }
+
+  /* --- CORRECTION POUR LES PROJETS --- */
+  .project-card {
+    /* On passe à une seule colonne pour les tablettes */
+    grid-template-columns: 1fr; 
+    gap: 2rem;
+  }
+
+  /* On annule l'inversion pour les projets pairs sur tablette */
+  .project-card:nth-child(even) .project-image,
+  .project-card:nth-child(even) .project-content {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  /* On aligne le contenu à gauche pour les projets pairs */
+  .project-card:nth-child(even) .project-content {
+    text-align: left;
+    align-items: flex-start;
+  }
+  .project-card:nth-child(even) .project-tech-list {
+    justify-content: flex-start;
+  }
+   .nav-cv-btn span {
+    display: none;
+  }
+  .nav-cv-btn {
+    padding: 0.5rem 0.7rem;
   }
 }
 
@@ -1583,6 +1586,32 @@ html {
   }
   .nav-container .logo {
     margin-right: 80px; /* Plus d'espace pour les boutons sur mobile */
+  }
+
+  /* NOUVELLE CORRECTION : Forcer l'affichage en colonne pour les cartes de projet */
+  .project-card {
+    display: flex;          /* On passe de Grid à Flexbox */
+    flex-direction: column; /* On empile les éléments verticalement */
+  }
+
+  /* On s'assure que l'ordre est correct pour tous les projets */
+  .project-card .project-image {
+    order: 1; /* L'image sera toujours le premier élément */
+  }
+
+  .project-card .project-content {
+    order: 2; /* Le contenu textuel sera toujours le deuxième élément */
+  }
+
+  /* NOUVELLE CORRECTION POUR LES BOUTONS DE PROJET */
+  .project-links {
+    flex-direction: column; /* Empile les boutons verticalement */
+    align-items: stretch;   /* Fait en sorte que les boutons prennent toute la largeur */
+    gap: 1rem;              /* Espace vertical entre les boutons */
+  }
+
+  .project-links .btn {
+    text-align: center; /* Centre le texte dans les boutons */
   }
 }
 @media (max-width: 480px) {
@@ -2275,11 +2304,28 @@ body.mobile-menu-open .mobile-menu-links a:nth-child(4) { transition-delay: 0.5s
     border-color: transparent var(--accent) transparent transparent;
   }
   
-  /* Projets détaillés */
-  .project-card { grid-template-columns: 1fr; gap: 2rem; }
-  .project-card:nth-child(even) .project-image { grid-row: 1; }
-  .project-card:nth-child(even) .project-content { text-align: left; align-items: flex-start; }
-  .project-card:nth-child(even) .project-tech-list { justify-content: flex-start; }
+ /* Correction pour la grille des projets sur tablettes et mobiles */
+  .project-card {
+    grid-template-columns: 1fr; /* Passage à une seule colonne */
+    gap: 2rem;
+  }
+
+  /* On annule l'inversion pour les projets pairs (comme Nowa Logistics) */
+  .project-card:nth-child(even) .project-image,
+  .project-card:nth-child(even) .project-content {
+    grid-column: auto; /* On réinitialise la position sur la colonne */
+    grid-row: auto;    /* On laisse la ligne se placer naturellement */
+  }
+
+  /* On s'assure que le contenu des projets pairs est aligné à gauche */
+  .project-card:nth-child(even) .project-content {
+    text-align: left;
+    align-items: flex-start;
+  }
+  
+  .project-card:nth-child(even) .project-tech-list {
+    justify-content: flex-start;
+  }
 }
 
 
@@ -2339,7 +2385,6 @@ body.mobile-menu-open .mobile-menu-links a:nth-child(4) { transition-delay: 0.5s
   .hero-title { font-size: 15vw; }
   .btn { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
   .counter-section { grid-template-columns: 1fr 1fr; }
-  .project-links { flex-direction: column; gap: 0.5rem; }
   .contact-item { font-size: 1rem; }
 }
 
