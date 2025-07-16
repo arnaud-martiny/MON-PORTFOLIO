@@ -2628,3 +2628,181 @@ body.mobile-menu-open .mobile-menu-links a:nth-child(4) { transition-delay: 0.5s
   transform: translate(-50%, -120%); /* Positionner au-dessus du curseur par défaut, mais JS ajustera */
   white-space: nowrap; /* Empêche le retour à la ligne */
 }
+
+
+/* ======================================================== */
+/*          NOUVEAU : BOUTON CASE STUDY & ANIMATION         */
+/* ======================================================== */
+.project-links .btn.btn-case-study {
+  border-color: #00ff00; /* Vert "hacker" */
+  color: #00ff00;
+  position: relative;
+  overflow: visible; /* Important pour que le glow dépasse */
+}
+
+.project-links .btn.btn-case-study:hover {
+  background-color: #00ff00;
+  color: #000;
+  box-shadow: 0 0 15px #00ff00, 0 0 25px #00ff00;
+}
+
+/* Animation de "glitch" et "glow" pour attirer l'attention */
+@keyframes flicker-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+    text-shadow: 0 0 2px #00ff00;
+  }
+  50% {
+    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+  }
+}
+
+.btn-case-study {
+  animation: flicker-glow 2.5s infinite ease-in-out;
+}
+
+/* ======================================================== */
+/*          NOUVEAU : STYLES MODALE CASE STUDY              */
+/* ======================================================== */
+:root {
+    --win-bg: #C0C0C0;
+    --win-title-bar-blue: #000080;
+    --border-light: #FFFFFF;
+    --border-dark: #404040;
+    --font-terminal: 'VT323', 'Courier New', monospace;
+}
+
+#case-study-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #008080; /* Fond "teal" de Windows */
+    z-index: 10000;
+    display: none;
+    font-family: 'Tahoma', 'Verdana', 'MS Sans Serif', sans-serif;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#boot-sequence, #binary-rain-canvas {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 10001;
+}
+
+#boot-sequence {
+    background: #000; color: #00FF00; font-family: var(--font-terminal);
+    font-size: 1.5em; padding: 20px; box-sizing: border-box; overflow: hidden;
+    z-index: 10002;
+}
+
+#boot-sequence .boot-line {
+    opacity: 0;
+    animation: fadeIn 0.1s forwards;
+    white-space: pre;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.case-study-window, .case-study-popup-window {
+    position: absolute; background: var(--win-bg);
+    border: 2px solid;
+    border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+    font-size: 13px;
+}
+
+.case-study-window {
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 90%; max-width: 700px; min-height: 450px;
+    z-index: 10003;
+    display: none;
+    flex-direction: column;
+}
+
+.case-study-title-bar {
+    background: var(--win-title-bar-blue);
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    cursor: move;
+    font-weight: bold;
+}
+
+.title-bar-controls button {
+    background: var(--win-bg);
+    border: 1px solid;
+    border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+    width: 20px; height: 20px;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    padding: 0;
+    margin-left: 2px;
+}
+
+.case-study-window-body {
+    padding: 10px; margin: 0 4px 4px 4px;
+    border: 2px solid;
+    border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+    flex-grow: 1;
+    color: #000;
+    overflow-y: auto;
+}
+
+#case-study-content h4 {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 15px 0 5px 0;
+    color: #000;
+}
+
+#case-study-content p, #case-study-content strong, #case-study-content li {
+    font-size: 1.05em;
+    line-height: 1.6;
+    color: #000;
+}
+
+.case-study-popup-window {
+    top: 60%; left: 65%;
+    transform: translate(-50%, -50%) rotate(-3deg);
+    width: 320px;
+    z-index: 10004;
+    padding: 2px;
+    display: none;
+}
+
+.case-study-popup-window .popup-body {
+    background: var(--win-bg);
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    color: #000;
+}
+
+.case-study-popup-window .popup-icon {
+    width: 32px; height: 32px;
+    flex-shrink: 0;
+}
+
+.case-study-popup-window .popup-footer {
+    text-align: center;
+    padding: 10px 0;
+    display:flex;
+    justify-content:center;
+    gap: 10px;
+}
+
+.case-study-popup-window button {
+    background: var(--win-bg);
+    border: 2px solid;
+    border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+    padding: 5px 25px;
+    cursor: pointer;
+    color: #000;
+}
+
+.case-study-popup-window button:active {
+    border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+}

@@ -157,6 +157,7 @@
   "featuredProjects": {
     "title": "Mes Réalisations Web",
     "nowaTooltip": "Site en construction, disponible dans quelques semaines !",
+    "caseStudyButton": "Voir le Case Study",
     "items": [
       {
         "id": "portfolio",
@@ -167,7 +168,16 @@
         "description": "Le site sur lequel vous naviguez ! Un portfolio moderne conçu pour présenter mes projets et compétences, avec des animations CSS/JS custom et une structure entièrement responsive. Le projet méta par excellence, un vrai bac à sable pour expérimenter.",
         "tech": ["HTML", "CSS", "JavaScript", "GSAP", "i18n"],
         "liveLink": "https://arnaud-martiny-portfolio.pages.dev/",
-        "codeLink": "https://github.com/arnaud-martiny/MON-PORTFOLIO"
+        "codeLink": "https://github.com/arnaud-martiny/MON-PORTFOLIO",
+        "caseStudy": {
+          "title": "C:\\Projects\\Portfolio_Meta.exe",
+          "briefTitle": "▸ Le Brief Initial (la_mission.txt)",
+          "brief": "L'objectif était de créer un portfolio personnel qui soit plus qu'un simple CV. Il devait être une démonstration technique de mes compétences en front-end, en design interactif et en développement vanilla JS, tout en étant maintenable et évolutif.",
+          "roleTitle": "▸ Mon Rôle & Approche (strategie.doc)",
+          "role": "En tant que développeur unique, j'ai tout géré : design (UX/UI), développement front-end (HTML/CSS/JS), animations (GSAP), implémentation de l'internationalisation (i18n) et optimisation des performances.",
+          "toolsTitle": "▸ La Boîte à Outils (./tools)",
+          "tools": "<strong>Langages :</strong> HTML5, CSS3, JavaScript (ES6+)\n<strong>Librairies :</strong> GSAP\n<strong>Outils :</strong> Git, GitHub, Figma (pour le design initial)"
+        }
       },
       {
         "id": "nowa-logistics",
@@ -178,7 +188,16 @@
         "description": "Réalisé durant mon stage chez Nowa Market, ce site vitrine pour leur activité de logistique durable a été développé de A à Z. Mon rôle couvrait le design UX/UI sur Figma, le développement front-end et l'intégration d'un formulaire de contact fonctionnel.",
         "tech": ["HTML", "CSS", "JavaScript", "Figma"],
         "liveLink": "#",
-        "codeLink": "#"
+        "codeLink": "#",
+        "caseStudy": {
+          "title": "C:\\Projects\\Nowa_Logistics_Showcase.exe",
+          "briefTitle": "▸ Le Brief Initial (la_mission.txt)",
+          "brief": "Nowa Market avait besoin d'un site vitrine professionnel et moderne pour sa nouvelle branche 'Nowa Logistics'. Le site devait présenter clairement le service, ses avantages écologiques et permettre une prise de contact facile.",
+          "roleTitle": "▸ Mon Rôle & Approche (strategie.doc)",
+          "role": "J'ai mené le projet de la conception à la mise en ligne. Cela incluait les maquettes et prototypes sur Figma, le développement front-end en HTML/CSS/JS pur pour une performance maximale, et l'intégration d'un formulaire PHP fonctionnel.",
+          "toolsTitle": "▸ La Boîte à Outils (./tools)",
+          "tools": "<strong>Design :</strong> Figma\n<strong>Développement :</strong> HTML5, CSS3, JavaScript\n<strong>Backend :</strong> PHP (pour le formulaire)"
+        }
       },
       {
         "id": "fast-n-friends",
@@ -189,7 +208,16 @@
         "description": "Un site de covoiturage étudiant développé en PHP avec WordPress comme CMS. Ce projet a été une excellente opportunité d'apprendre sur le tas la gestion de profils utilisateurs, la responsivité et les bases de données.",
         "tech": ["PHP", "WordPress", "CSS", "MySQL"],
         "liveLink": "https://fastnfriends.emu.isfsc.be/home/",
-        "codeLink": "https://github.com/arnaud-martiny/Fast-N-Friends"
+        "codeLink": "https://github.com/arnaud-martiny/Fast-N-Friends",
+        "caseStudy": {
+          "title": "C:\\Projects\\FastNFriends_Platform.exe",
+          "briefTitle": "▸ Le Brief Initial (la_mission.txt)",
+          "brief": "Le projet académique consistait à créer une plateforme web fonctionnelle pour un service de covoiturage entre étudiants. Les contraintes incluaient la gestion de comptes utilisateurs, la publication d'annonces et une base de données relationnelle.",
+          "roleTitle": "▸ Mon Rôle & Approche (strategie.doc)",
+          "role": "J'ai développé le site en utilisant PHP et WordPress comme base pour accélérer le développement du back-end (gestion des utilisateurs). J'ai conçu la logique de la base de données MySQL et développé le front-end pour l'affichage des trajets et des profils.",
+          "toolsTitle": "▸ La Boîte à Outils (./tools)",
+          "tools": "<strong>Langages :</strong> PHP, SQL\n<strong>CMS :</strong> WordPress\n<strong>Base de données :</strong> MySQL"
+        }
       }
     ]
   }

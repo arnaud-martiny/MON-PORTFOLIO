@@ -90,12 +90,10 @@
       }
     ]
   },
-
   "evolutionPopup": {
     "title": "Constantly Evolving Site",
     "message": "This portfolio is a live project! New features and animations are added regularly. Last update on {{date}}. Check back soon!"
   },
-
   "experienceSection": {
     "title": "EXPERIENCE & EDUCATION",
     "items": [
@@ -139,7 +137,6 @@
       }
     ]
   },
-
   "contactSection": {
     "title": "CONTACT ME",
     "address": "Brussels, Belgium",
@@ -157,10 +154,10 @@
   "footer": {
     "copyright": "© 2025 Arnaud Martiny. All rights reserved."
   },
-
   "featuredProjects": {
     "title": "My Web Creations",
     "nowaTooltip": "Site under construction, available in a few weeks!",
+    "caseStudyButton": "View Case Study",
     "items": [
       {
         "id": "portfolio",
@@ -171,7 +168,16 @@
         "description": "The very site you are currently browsing! A modern portfolio designed to showcase my projects and skills, featuring custom CSS/JS animations and a fully responsive layout. The ultimate meta-project, and a true sandbox for experimentation.",
         "tech": ["HTML", "CSS", "JavaScript", "GSAP", "i18n"],
         "liveLink": "https://arnaud-martiny-portfolio.pages.dev/",
-        "codeLink": "https://github.com/arnaud-martiny/MON-PORTFOLIO"
+        "codeLink": "https://github.com/arnaud-martiny/MON-PORTFOLIO",
+        "caseStudy": {
+          "title": "C:\\Projects\\Portfolio_Meta.exe",
+          "briefTitle": "▸ The Initial Brief (mission.txt)",
+          "brief": "The goal was to create a personal portfolio that was more than just a resume. It had to be a technical demonstration of my skills in front-end, interactive design, and vanilla JS development, while being maintainable and scalable.",
+          "roleTitle": "▸ My Role & Approach (strategy.doc)",
+          "role": "As the sole developer, I handled everything: design (UX/UI), front-end development (HTML/CSS/JS), animations (GSAP), implementation of internationalization (i18n), and performance optimization.",
+          "toolsTitle": "▸ The Toolbox (./tools)",
+          "tools": "<strong>Languages:</strong> HTML5, CSS3, JavaScript (ES6+)\n<strong>Libraries:</strong> GSAP\n<strong>Tools:</strong> Git, GitHub, Figma (for initial design)"
+        }
       },
       {
         "id": "nowa-logistics",
@@ -182,7 +188,16 @@
         "description": "Built during my internship at Nowa Market, this showcase site for their sustainable logistics business was developed from scratch. My role covered UX/UI design in Figma, front-end development, and the integration of a functional contact form.",
         "tech": ["HTML", "CSS", "JavaScript", "Figma"],
         "liveLink": "#",
-        "codeLink": "#"
+        "codeLink": "#",
+        "caseStudy": {
+          "title": "C:\\Projects\\Nowa_Logistics_Showcase.exe",
+          "briefTitle": "▸ The Initial Brief (mission.txt)",
+          "brief": "Nowa Market needed a professional and modern showcase website for its new branch 'Nowa Logistics'. The site had to clearly present the service, its ecological advantages, and allow for easy contact.",
+          "roleTitle": "▸ My Role & Approach (strategy.doc)",
+          "role": "I led the project from conception to launch. This included mockups and prototypes on Figma, pure HTML/CSS/JS front-end development for maximum performance, and the integration of a functional PHP form.",
+          "toolsTitle": "▸ The Toolbox (./tools)",
+          "tools": "<strong>Design:</strong> Figma\n<strong>Development:</strong> HTML5, CSS3, JavaScript\n<strong>Backend:</strong> PHP (for the form)"
+        }
       },
       {
         "id": "fast-n-friends",
@@ -193,7 +208,16 @@
         "description": "A student carpooling website developed in PHP with WordPress as its CMS. This project was an excellent opportunity to learn user profile management, responsiveness, and database fundamentals on the fly.",
         "tech": ["PHP", "WordPress", "CSS", "MySQL"],
         "liveLink": "https://fastnfriends.emu.isfsc.be/home/",
-        "codeLink": "https://github.com/arnaud-martiny/Fast-N-Friends"
+        "codeLink": "https://github.com/arnaud-martiny/Fast-N-Friends",
+        "caseStudy": {
+          "title": "C:\\Projects\\FastNFriends_Platform.exe",
+          "briefTitle": "▸ The Initial Brief (mission.txt)",
+          "brief": "The academic project was to create a functional web platform for a student carpooling service. Requirements included user account management, ad posting, and a relational database.",
+          "roleTitle": "▸ My Role & Approach (strategy.doc)",
+          "role": "I developed the site using PHP and WordPress as a base to speed up back-end development (user management). I designed the MySQL database logic and developed the front-end for displaying trips and profiles.",
+          "toolsTitle": "▸ The Toolbox (./tools)",
+          "tools": "<strong>Languages:</strong> PHP, SQL\n<strong>CMS:</strong> WordPress\n<strong>Database:</strong> MySQL"
+        }
       }
     ]
   }

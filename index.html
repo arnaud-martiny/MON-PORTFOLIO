@@ -437,6 +437,41 @@
       </div>
     </div>
 
+    <!-- ======================================================== -->
+    <!--          NOUVEAU : MODALE CASE STUDY INTERACTIVE         -->
+    <!-- ======================================================== -->
+    <div id="case-study-overlay">
+        <canvas id="binary-rain-canvas"></canvas>
+        <div id="boot-sequence"></div>
+
+        <div id="case-study-window" class="case-study-window">
+            <div class="case-study-title-bar" id="window-title-bar">
+                <span id="case-study-window-title">C:\Projects\CaseStudy_Loader.exe</span>
+                <div class="title-bar-controls">
+                    <button class="case-study-close-btn">X</button>
+                </div>
+            </div>
+            <div class="case-study-window-body">
+                <div id="case-study-content">
+                    <!-- Le contenu sera injecté par JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <div id="contact-popup" class="case-study-popup-window">
+             <div class="case-study-title-bar"><span>Message de l'auteur</span></div>
+             <div class="popup-body">
+                <img class="popup-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFYSURBVFhH7ZDNAcJAEEVD9zQ3cBs3cAN3EARdQSdyBSdxBEfgFRkI2aRkbB9kYB+E/2Yv2WTHEbsCQGgAgb6A+Hlu6qT8N3oBfCNu2kS8R+sFFN6iP4/H6wU8f/eF2bC8na7XnQPY1+3i572N4TbpYtJ3/bA928t/K60b2fBAbICfX59k41bMhW2on0Xb2Vb2u/xM3s40p3bWz6PN/K1jB/nZ2c/2P55jL+D1/Hj3cBdGcf5mJ/fT+f75/f4x912MvzTGI7+8/cJfQf4d/Xk8Hv8l92yKiv0/B+hPABGgTzRnMzC/gI5+KgG6TMAVqgO+TEBH7QvEBlsD1E+ALdSvALJSb8CAb9A7578A3YqAYR2gO/A2gAN6Qx+fIZ9shgB5p0YCqQna/hA70V+Kz/C/AEEArsENnIuYAAAAAElFTkSuQmCC" alt="Information Icon"/>
+                <p>J'espère que cette petite expérience vous a plu !<br><br>Si vous cherchez un développeur créatif pour donner vie à une idée, parlons-en.</p>
+             </div>
+             <div class="popup-footer">
+                <button id="contact-link-btn">Me Contacter</button>
+                <button id="close-popup-btn">Fermer</button>
+             </div>
+        </div>
+    </div>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script src="code.js" defer></script>
 

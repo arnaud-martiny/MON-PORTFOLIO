@@ -295,7 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // --- GÉNÉRATION DES PROJETS DÉTAILLÉS ---
+    // --- GÉNÉRATION DES PROJETS DÉTAILLÉS (AVEC BOUTON CASE STUDY) ---
     const projectsContainer = document.getElementById(
       "featured-projects-container"
     );
@@ -309,7 +309,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const projectCard = document.createElement("div");
         projectCard.className = "project-card reveal";
         
-        // NOUVEAU : Ajout d'un ID unique si le projet en a un dans le JSON
         if (project.id) {
           projectCard.id = project.id;
         }
@@ -319,8 +318,8 @@ document.addEventListener("DOMContentLoaded", () => {
           techHtml += `<div class="project-tech-item">${tech}</div>`;
         });
 
-        // NOUVEAU : Ajout d'un ID au bouton "Voir le site" pour le ciblage
         const liveLinkBtnId = project.id ? `id="live-link-${project.id}"` : '';
+        const caseStudyButtonText = getNestedTranslation(langData, "featuredProjects.caseStudyButton") || "View Case Study";
 
         const contentHtml = `
                 <div class="project-content">
@@ -343,6 +342,9 @@ document.addEventListener("DOMContentLoaded", () => {
             ? 'style="pointer-events: none; opacity: 0.5;"'
             : ""
         }>Voir le code</a>
+                        <button class="btn btn-case-study" data-project-id="${project.id}">
+                            ${caseStudyButtonText}
+                        </button>
                     </div>
                 </div>`;
 
@@ -357,6 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
         projectsContainer.appendChild(projectCard);
       });
     }
+
 
     // --- NOUVEAU : GESTION DE L'INFO-BULLE POUR NOWA LOGISTICS ---
     const nowaLiveLinkBtn = document.getElementById('live-link-nowa-logistics');
@@ -825,10 +828,167 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     evolutionPopupCloseBtn.addEventListener('click', closePopup);
-    evolutionPopupOverlay.addEventListener('click', closePopup);
+    evolutionPopupOverlay.addEventListener('click', (e) => {
+        if (e.target === evolutionPopupOverlay) {
+            closePopup();
+        }
+    });
 
     evolutionPopup.addEventListener('click', (e) => {
       e.stopPropagation();
+    });
+  }
+
+  // --- NOUVEAU : LOGIQUE DE LA MODALE CASE STUDY ---
+  const caseStudyOverlay = document.getElementById('case-study-overlay');
+  if (caseStudyOverlay) {
+    const bootSequenceEl = document.getElementById('boot-sequence');
+    const binaryRainCanvas = document.getElementById('binary-rain-canvas');
+    const caseStudyWindowEl = document.getElementById('case-study-window');
+    const windowTitleBar = document.getElementById('window-title-bar');
+    const caseStudyWindowTitle = document.getElementById('case-study-window-title');
+    const caseStudyContentEl = document.getElementById('case-study-content');
+    const contactPopup = document.getElementById('contact-popup');
+    const closePopupBtn = document.getElementById('close-popup-btn');
+    const contactLinkBtn = document.getElementById('contact-link-btn');
+
+    let popupTimerId;
+    let rainIntervalId;
+
+    const setupRain = () => {
+        if (rainIntervalId) clearInterval(rainIntervalId);
+        const ctx = binaryRainCanvas.getContext('2d');
+        binaryRainCanvas.width = window.innerWidth;
+        binaryRainCanvas.height = window.innerHeight;
+        const characters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン01';
+        const fontSize = 16;
+        const columns = binaryRainCanvas.width / fontSize;
+        const rainDrops = Array.from({ length: Math.floor(columns) }).map(() => 1);
+        
+        const drawRain = () => {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, binaryRainCanvas.width, binaryRainCanvas.height);
+            ctx.fillStyle = '#0F0';
+            ctx.font = `${fontSize}px monospace`;
+            rainDrops.forEach((y, i) => {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, y * fontSize);
+                if (y * fontSize > binaryRainCanvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            });
+        };
+        rainIntervalId = setInterval(drawRain, 40);
+    };
+
+    const runBootSequence = () => {
+        const bootLines = ['AM_BIOS v4.2.1...', 'Initializing Kernel...', 'Memory Test: OK', 'Loading OS...', 'Authenticating user: A.Martiny...', 'LAUNCHING APPLICATION...'];
+        bootSequenceEl.innerHTML = '';
+        let delay = 0;
+        bootLines.forEach(line => {
+            setTimeout(() => {
+                const p = document.createElement('p');
+                p.className = 'boot-line';
+                p.textContent = line;
+                bootSequenceEl.appendChild(p);
+            }, delay);
+            delay += (Math.random() * 200 + 100);
+        });
+        return delay + 1000;
+    };
+
+    const launchCaseStudy = (projectId) => {
+        const langData = translations[currentLang];
+        const projectData = langData.featuredProjects.items.find(p => p.id === projectId);
+
+        if (!projectData || !projectData.caseStudy) {
+            console.error("No case study data for project:", projectId);
+            return;
+        }
+
+        const cs = projectData.caseStudy;
+        
+        caseStudyWindowTitle.textContent = cs.title;
+        caseStudyContentEl.innerHTML = `
+            <h4>${cs.briefTitle}</h4>
+            <p>${cs.brief}</p>
+            <h4>${cs.roleTitle}</h4>
+            <p>${cs.role}</p>
+            <h4>${cs.toolsTitle}</h4>
+            <p>${cs.tools.replace(/\n/g, '<br>')}</p>
+        `;
+
+        caseStudyOverlay.style.display = 'block';
+        bootSequenceEl.style.display = 'block';
+        caseStudyWindowEl.style.display = 'none';
+        contactPopup.style.display = 'none';
+        document.body.style.overflow = 'hidden';
+        
+        setupRain();
+        const bootDuration = runBootSequence();
+
+        setTimeout(() => {
+            bootSequenceEl.style.display = 'none';
+            caseStudyWindowEl.style.display = 'flex';
+            popupTimerId = setTimeout(() => {
+                contactPopup.style.display = 'block';
+            }, 8000);
+        }, bootDuration);
+    };
+
+    const closeCaseStudy = () => {
+        caseStudyOverlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        clearInterval(rainIntervalId);
+        clearTimeout(popupTimerId);
+    };
+
+    document.addEventListener('click', (event) => {
+        const caseStudyBtn = event.target.closest('.btn-case-study');
+        if (caseStudyBtn) {
+            const projectId = caseStudyBtn.dataset.projectId;
+            launchCaseStudy(projectId);
+        }
+    });
+
+    document.querySelectorAll('.case-study-close-btn').forEach(btn => {
+        btn.addEventListener('click', closeCaseStudy);
+    });
+
+    closePopupBtn.addEventListener('click', () => {
+        contactPopup.style.display = 'none';
+    });
+
+    contactLinkBtn.addEventListener('click', () => {
+        closeCaseStudy();
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && caseStudyOverlay.style.display === 'block') {
+            closeCaseStudy();
+        }
+    });
+
+    let isDragging = false, offsetX, offsetY;
+    windowTitleBar.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        offsetX = e.clientX - caseStudyWindowEl.offsetLeft;
+        offsetY = e.clientY - caseStudyWindowEl.offsetTop;
+        e.preventDefault();
+    });
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            caseStudyWindowEl.style.left = `${e.clientX - offsetX}px`;
+            caseStudyWindowEl.style.top = `${e.clientY - offsetY}px`;
+        }
+    });
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
     });
   }
 });
