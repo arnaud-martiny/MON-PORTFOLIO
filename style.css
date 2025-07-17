@@ -5,42 +5,30 @@
   --secondary: #000000;
   --accent: #333333;
   --text: #f2f2f2;
-  /* On ajoute une transition douce pour le changement de thème */
   --theme-transition: color 0.3s ease, background-color 0.3s ease,
     border-color 0.3s ease;
-
-      --color-accent-green: #39ff14; /* Un vert "terminal" bien visible */
-
+  --color-accent-green: #39ff14;
 }
 
-/* Quand le body aura la classe "light-mode", ces variables s'appliqueront */
 body.light-mode {
-  --primary: #000000;   /* Texte devient noir */
-  --secondary: #ffffff; /* Fond général devient BLANC PUR */
-  --accent: #f8f8f8;    /* Fond des sections devient un GRIS TRÈS SUBTIL */
-  --text: #333333;      /* Texte secondaire devient gris foncé */
+  --primary: #000000;
+  --secondary: #ffffff;
+  --accent: #f8f8f8;
+  --text: #333333;
 }
 
 body.light-mode .nav-container {
-  mix-blend-mode: normal; 
+  mix-blend-mode: normal;
 }
 
-/* Correction de la bordure du footer */
 body.light-mode .footer {
-  border-top-color: rgba(
-    0,
-    0,
-    0,
-    0.1
-  ); /* Bordure noire transparente en mode clair */
+  border-top-color: rgba(0, 0, 0, 0.1);
 }
 
 .cursor {
-  /* ... */
   mix-blend-mode: difference;
 }
 
-/* Et que cette règle est bien là */
 body.light-mode .cursor {
   mix-blend-mode: normal;
 }
@@ -52,7 +40,7 @@ body.light-mode .cursor {
 }
 
 html {
-  scroll-behavior: smooth; /* Ajouté pour le smooth scroll natif si JS échoue */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -62,37 +50,26 @@ body {
   overflow-x: hidden;
 }
 
-/* AJOUTEZ CE BLOC DE CSS DANS VOTRE <style> */
-
-/* Conteneur pour les éléments de droite de la nav */
 .nav-right-group {
   display: flex;
   align-items: center;
   gap: 2rem;
 }
 
-/* Style du bouton de thème */
 .theme-btn {
   background: none;
   border: none;
   color: var(--primary);
-  font-size: 1.2rem; /* Taille de l'icône */
+  font-size: 1.2rem;
   cursor: pointer;
   padding: 0.5rem;
   position: relative;
   transition: transform 0.3s ease;
-  z-index: 102; /* Plus haut que la navbar (100) et le switcher de langue (101) */
+  z-index: 102;
 }
 
 .theme-btn:hover {
   transform: scale(1.2) rotate(15deg);
-}
-
-/* Pour mobile, on cache le groupe de droite si les nav-links sont cachés */
-@media (max-width: 768px) {
-  .nav-right-group {
-    display: none;
-  }
 }
 
 .loader {
@@ -106,8 +83,6 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  /* La ligne de transition n'est plus utile, on la remplace par l'animation */
-  /* transition: opacity 0.5s ease-out; */
   animation: fadeOutLoader 0.5s forwards 3.5s;
 }
 
@@ -139,15 +114,12 @@ header {
   overflow: hidden;
 }
 
-/* NOUVELLE ANIMATION POUR FAIRE DISPARAÎTRE LE LOADER */
 @keyframes fadeOutLoader {
   to {
     opacity: 0;
-    visibility: hidden; /* Pour qu'on ne puisse plus cliquer dessus */
+    visibility: hidden;
   }
 }
-
-/* AJOUTEZ CES RÈGLES DANS VOTRE CSS */
 
 body,
 .btn,
@@ -160,29 +132,22 @@ body,
   transition: var(--theme-transition);
 }
 
-/* S'assurer que le header et autres sections transitionnent bien */
 header,
 section {
   transition: var(--theme-transition);
 }
 
-/* Styles pour les liens de navigation DANS le nav-container */
 .nav-container > .nav-links {
-  /* Sélecteur plus spécifique */
-  display: flex; /* Pour aligner les liens <a> à l'intérieur */
-  justify-content: flex-end; /* Aligne les liens à droite de leur espace */
-  gap: 2rem; /* Espace entre les liens <a> */
-  /* flex-basis: 0; /* Optionnel */
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
 }
-
-/* AJOUTEZ CE BLOC CORRECTIF POUR LE SWITCHER */
 
 .language-switcher {
   display: flex;
   gap: 0.5rem;
 }
 
-/* Assurez-vous que la règle pour .nav-container est bien comme ceci */
 .nav-container {
   position: fixed;
   top: 0;
@@ -195,21 +160,6 @@ section {
   opacity: 0;
   animation: fadeIn 1s forwards 3.5s;
   transition: padding 0.3s ease, background-color 0.3s ease;
-}
-
-
-@media (max-width: 768px) {
-  .nav-container {
-    padding: 1.5rem;
-    /* S'assurer que le justify-content: space-between; fonctionne toujours bien
-     quand .nav-links est display: none; */
-  }
-  .nav-links {
-    display: none;
-  }
-  .nav-container .logo {
-    margin-right: 0; /* Plus besoin de marge à droite si le switcher est au centre absolu */
-  }
 }
 
 .logo {
@@ -278,7 +228,7 @@ section {
 .hero-title span {
   display: inline-block;
   transform: translateY(100%);
-  animation: revealTitle 1s forwards 3.7s; /* <-- DÉLAI AJUSTÉ */
+  animation: revealTitle 1s forwards 3.7s;
 }
 
 @keyframes revealTitle {
@@ -292,7 +242,7 @@ section {
   font-weight: 400;
   margin-bottom: 2rem;
   opacity: 0;
-  animation: fadeIn 1s forwards 4.2s; /* <-- DÉLAI AJUSTÉ */
+  animation: fadeIn 1s forwards 4.2s;
 }
 
 @keyframes fadeIn {
@@ -308,7 +258,7 @@ section {
   transform: translateX(-50%);
   font-size: 1.2rem;
   opacity: 0;
-  animation: fadeIn 1s forwards 4.7s, bounce 2s infinite 4.7s; /* <-- DÉLAIS AJUSTÉS */
+  animation: fadeIn 1s forwards 4.7s, bounce 2s infinite 4.7s;
 }
 
 @keyframes bounce {
@@ -327,7 +277,6 @@ section {
   }
 }
 
-/* --- BOUTON DE BASE (Conteneur commun) --- */
 .btn {
   display: inline-block;
   padding: 0.8rem 1.8rem;
@@ -337,30 +286,23 @@ section {
   position: relative;
   transition: all 0.3s ease;
   border-radius: 8px;
-  /* On utilise une bordure transparente pour que tous les boutons aient la même taille */
-  border: 2px solid transparent; 
+  border: 2px solid transparent;
+  background-color: var(--primary);
+  color: var(--secondary);
 }
 
 .btn:hover {
   transform: scale(1.05) translateY(-2px);
 }
 
-/* --- BOUTON PRIMAIRE (ex: "Voir le site") --- */
-/* Il hérite de .btn, on ajuste juste les couleurs */
-.btn {
-  background-color: var(--primary);
-  color: var(--secondary);
-}
-
-/* --- NOUVEAU : BOUTON SECONDAIRE --- */
 .btn.btn-outline {
   background-color: transparent;
   color: var(--primary);
-  border-color: var(--primary); /* La bordure blanche est visible */
+  border-color: var(--primary);
 }
 
 .btn.btn-outline:hover {
-  background-color: var(--primary); /* Se remplit au survol */
+  background-color: var(--primary);
   color: var(--secondary);
 }
 
@@ -376,14 +318,14 @@ section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-  align-items: center; /* Mieux aligner verticalement */
+  align-items: center;
 }
 
 .about-image {
   position: relative;
   overflow: hidden;
-  height: 70vh; /* ou une valeur fixe comme 500px */
-  max-height: 600px; /* Empêcher qu'elle ne devienne trop grande */
+  height: 70vh;
+  max-height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -395,7 +337,7 @@ section {
   position: relative;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  background-color: transparent; /* Ou var(--accent) pour un fond si l'image est transparente */
+  background-color: transparent;
   overflow: hidden;
   transition: transform 0.3s ease;
 }
@@ -405,10 +347,10 @@ section {
 }
 
 .about-image-placeholder img {
-  width: 100%; /* S'assurer que l'image remplit le conteneur */
+  width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover; /* 'cover' pour remplir, 'contain' si vous voulez voir toute l'image */
+  object-fit: cover;
   transition: transform 0.4s ease;
 }
 
@@ -465,9 +407,9 @@ section {
 
 .skill-tag {
   padding: 0.5rem 1.5rem;
-  background-color: transparent; /* On le rend transparent pour que la bordure soit la star */
-  border: 1px solid var(--primary); /* <<< AJOUTE CETTE LIGNE (bordure avec la couleur principale) */
-  opacity: 0.7; /* <<< AJOUTE CETTE LIGNE (on le rend un peu transparent pour ne pas qu'il soit trop agressif) */
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  opacity: 0.7;
   border-radius: 30px;
   font-size: 0.9rem;
   transition: var(--transition);
@@ -477,7 +419,7 @@ section {
   background-color: var(--primary);
   color: var(--secondary);
   transform: translateY(-5px);
-  opacity: 1; /* <<< AJOUTE CETTE LIGNE (devient 100% opaque au survol) */
+  opacity: 1;
 }
 
 .counter-section {
@@ -505,7 +447,6 @@ section {
   font-size: 1.1rem;
 }
 
-/* Curseur personnalisé */
 .cursor {
   position: fixed;
   width: 20px;
@@ -514,31 +455,30 @@ section {
   background-color: var(--primary);
   pointer-events: none;
   transform: translate(-50%, -50%);
-  z-index: 10000; /* Au-dessus de tout */
+  z-index: 10000;
   mix-blend-mode: difference;
-  transition: transform 0.1s ease-out, width 0.2s ease-out, height 0.2s ease-out; /* Ajouté width/height */
+  transition: transform 0.1s ease-out, width 0.2s ease-out, height 0.2s ease-out;
 }
 
 .cursor-follower {
   position: fixed;
   width: 40px;
   height: 40px;
-  border: 1px solid var(--primary); /* La bordure prend la couleur principale */
-  opacity: 0.5; /* On applique l'opacité séparément */
+  border: 1px solid var(--primary);
+  opacity: 0.5;
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  z-index: 9999; /* Juste en dessous du curseur principal */
+  z-index: 9999;
   transition: transform 0.2s ease-out, width 0.3s ease-out, height 0.3s ease-out,
-    border 0.3s ease-out, opacity 0.3s ease-out; /* Ajout d'opacity à la transition */
+    border 0.3s ease-out, opacity 0.3s ease-out;
 }
 
-/* Animation pour les éléments au scroll */
 .reveal {
   position: relative;
   opacity: 0;
   transform: translateY(50px);
-  transition: opacity 1s ease, transform 1s ease; /* Séparé pour clarté */
+  transition: opacity 1s ease, transform 1s ease;
 }
 
 .reveal.active {
@@ -546,7 +486,6 @@ section {
   transform: translateY(0);
 }
 
-/* Animation des éléments en arrière-plan */
 .bg-shape {
   position: absolute;
   border-radius: 50%;
@@ -554,7 +493,7 @@ section {
     circle,
     rgba(255, 255, 255, 0.05) 0%,
     rgba(0, 0, 0, 0) 70%
-  ); /* Plus subtil */
+  );
   z-index: 1;
   animation: floatAnimation 25s infinite alternate ease-in-out;
 }
@@ -586,273 +525,24 @@ section {
   }
 }
 
-/* Section Portfolio */
-.portfolio-section {
-  padding: 8rem 5%;
-  background-color: var(--secondary);
-}
-
-.portfolio-filter {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 3rem;
-  flex-wrap: wrap; /* Pour le responsive */
-}
-
-.filter-btn {
-  padding: 0.5rem 1.5rem;
-  background-color: transparent;
-  border: 1px solid var(--primary);
-  color: var(--primary);
-  cursor: pointer;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 0.9rem;
-  border-radius: 20px; /* Plus doux */
-  transition: var(--transition);
-}
-
-.filter-btn.active,
-.filter-btn:hover {
-  background-color: var(--primary);
-  color: var(--secondary);
-}
-
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.portfolio-item {
-  position: relative;
-  overflow: hidden;
-  height: 280px; /* Un peu plus haut */
-  border-radius: 10px; /* Plus arrondi */
-  background-color: var(--accent); /* Fond pour les logos textes */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.portfolio-image {
-  /* Conteneur pour l'image ou le texte-logo */
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  display: flex; /* Pour centrer le logo-texte */
-  align-items: center;
-  justify-content: center;
-}
-
-.portfolio-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease-out; /* Transition plus douce */
-}
-
-.portfolio-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.85
-  ); /* Plus sombre pour meilleur contraste texte */
-  display: flex;
-  flex-direction: column; /* Pour mieux placer le contenu */
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.4s ease-out;
-  padding: 1rem;
-}
-
-.portfolio-item:hover .portfolio-overlay {
-  opacity: 1;
-}
-
-.portfolio-item:hover .portfolio-image img {
-  transform: scale(1.1);
-}
-
-.portfolio-info {
-  text-align: center;
-  color: var(--primary); /* Assurer la couleur du texte */
-}
-
-.portfolio-info h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  transform: translateY(20px); /* Animation d'entrée */
-  opacity: 0;
-  transition: transform 0.4s ease-out 0.2s, opacity 0.4s ease-out 0.2s;
-}
-
-.portfolio-info p {
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-  transform: translateY(20px); /* Animation d'entrée */
-  opacity: 0;
-  transition: transform 0.4s ease-out 0.3s, opacity 0.4s ease-out 0.3s;
-}
-
-.portfolio-item:hover .portfolio-info h3,
-.portfolio-item:hover .portfolio-info p {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.portfolio-link {
-  display: inline-flex; /* Pour aligner l'icône */
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: var(--primary);
-  color: var(--secondary);
-  text-decoration: none;
-  transition: var(--transition);
-  transform: scale(0.8); /* Animation d'entrée */
-  opacity: 0;
-  transition: transform 0.4s ease-out 0.4s, opacity 0.4s ease-out 0.4s,
-    background-color 0.3s, color 0.3s;
-}
-
-.portfolio-item:hover .portfolio-link {
-  transform: scale(1);
-  opacity: 1;
-}
-
-.portfolio-link:hover {
-  background-color: var(--secondary); /* Inversion au survol */
-  color: var(--primary);
-  border: 1px solid var(--primary);
-  transform: scale(1.1) !important; /* Priorité sur le scale initial */
-}
-
-/* Section Compétences */
-.skills-section {
-  padding: 8rem 5%;
-  background-color: var(--accent);
-  position: relative;
-  overflow: hidden;
-}
-
-.shape3 {
-  /* Shape pour la section compétences */
-  width: 45vw;
-  height: 45vw;
-  top: 10vh;
-  right: -15vw;
-  animation-delay: 2s;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.03) 0%,
-    rgba(0, 0, 0, 0) 70%
-  );
-}
-
-.skill-progress {
-  /* Ancien : margin-bottom: 2rem; */
-  margin-bottom: 3.5rem; /* Augmenté pour plus d'espace */
-}
-
-.skills-advanced-container {
-  max-width: 700px;
-  margin: 0 auto 4rem;
-}
-
-.skill-progress-bar {
-  height: 12px; /* Un peu plus épais */
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.skill-progress-value {
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    #ffffff,
-    #b3b3b3
-  ); /* Dégradé blanc/gris clair */
-  border-radius: 6px;
-  width: 0;
-  transition: width 2s cubic-bezier(0.25, 1, 0.5, 1); /* Transition plus longue et fluide */
-  position: relative; /* Pour positionner l'effet liquide */
-  overflow: hidden; /* Pour contenir l'effet */
-}
-
-/* L'effet "liquide" */
-.skill-progress-value::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.2) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0.2) 75%,
-    transparent 75%,
-    transparent
-  );
-  background-size: 30px 30px; /* Taille des vagues */
-  animation: liquid-flow 2s infinite linear;
-  opacity: 0.5;
-}
-
-@keyframes liquid-flow {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 30px 0;
-  }
-}
-
-.skills-subheading {
-  /* Sous-titre pour Langues/Outils */
-  font-size: 1.8rem; /* Un peu plus grand */
-  margin-top: 4rem; /* Espace avant */
-  margin-bottom: 2rem;
-  text-align: center;
-  font-weight: 600;
-}
-
-/* ==================================================== */
-/*          STYLES POUR LA NOUVELLE SECTION PROJETS     */
-/* ==================================================== */
-
 .featured-projects-section {
   padding: 8rem 5%;
-  background-color: var(--secondary); /* Fond noir classique */
+  background-color: var(--secondary);
 }
 
 .featured-projects-grid {
   display: flex;
   flex-direction: column;
-  gap: 8rem; /* Grand espace entre chaque projet pour les faire respirer */
+  gap: 8rem;
 }
 
 .project-card {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: center;
 }
 
-/* On inverse l'ordre pour les projets pairs pour créer l'alternance */
 .project-card:nth-child(even) .project-image {
   grid-column: 2 / 3;
   grid-row: 1 / 2;
@@ -861,7 +551,7 @@ section {
 .project-card:nth-child(even) .project-content {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
-  text-align: right; /* Aligner le texte à droite pour l'alternance */
+  text-align: right;
 }
 
 .project-image {
@@ -881,14 +571,14 @@ section {
   display: block;
   aspect-ratio: 16 / 10;
   object-fit: cover;
-  object-position: top center; /* S'assure que le haut du site est visible */
+  object-position: top center;
 }
 
 .project-content {
   display: flex;
   flex-direction: column;
 }
-/* Aligner les éléments à droite pour les projets pairs */
+
 .project-card:nth-child(even) .project-content {
   align-items: flex-end;
 }
@@ -921,7 +611,7 @@ section {
   gap: 0.75rem;
   margin-bottom: 2rem;
 }
-/* Justifier à droite pour les projets pairs */
+
 .project-card:nth-child(even) .project-tech-list {
   justify-content: flex-end;
 }
@@ -935,53 +625,10 @@ section {
 
 .project-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
-.language-container {
-  display: flex;
-  justify-content: center;
-  gap: 4rem;
-  flex-wrap: wrap;
-}
-
-.language-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  min-width: 120px; /* Pour un meilleur alignement */
-}
-
-.language-name {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.language-level {
-  display: flex;
-  gap: 5px;
-}
-
-.level-dot {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.2);
-  /* Ligne corrigée ci-dessous */
-  transition: background-color 0.3s; 
-}
-
-.level-dot.active {
-  background-color: var(--primary);
-}
-
-.language-text {
-  font-size: 0.9rem;
-  opacity: 0.7;
-}
-
-/* Section Expérience */
 .experience-section {
   padding: 8rem 5%;
   background-color: var(--secondary);
@@ -995,16 +642,15 @@ section {
 }
 
 .timeline::before {
-  /* Ligne verticale de la timeline */
   content: "";
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 3px; /* Plus épaisse */
+  width: 3px;
   height: 100%;
-  background-color: var(--primary); /* Utilise la variable principale */
-  opacity: 0.15; /* On met l'opacité ici plutôt que dans la couleur */
+  background-color: var(--primary);
+  opacity: 0.15;
 }
 
 .timeline-item {
@@ -1017,7 +663,7 @@ section {
 
 .timeline-dot {
   position: absolute;
-  top: 20px; /* Align with arrow */
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   width: 20px;
@@ -1025,53 +671,48 @@ section {
   border-radius: 50%;
   background-color: var(--primary);
   z-index: 2;
-  box-shadow: 0 0 10px var(--primary); /* Lueur */
+  box-shadow: 0 0 10px var(--primary);
 }
 
 .timeline-content {
   width: 45%;
   padding: 2rem;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 8px; /* Plus arrondi */
+  background-color: var(--accent);
+  border-radius: 8px;
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Légère bordure */
+  border: 1px solid color-mix(in srgb, var(--primary) 10%, transparent);
 }
 
 .timeline-item:nth-child(odd) .timeline-content {
-  margin-left: calc(50% + 30px); /* Espace pour la ligne et le point */
+  margin-left: calc(50% + 30px);
 }
 .timeline-item:nth-child(even) .timeline-content {
-  margin-right: calc(50% + 30px); /* Espace pour la ligne et le point */
+  margin-right: calc(50% + 30px);
+  margin-left: 0;
 }
 
-/* Flèches pour les bulles de la timeline */
+.timeline-item .timeline-content::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  border-width: 10px;
+  border-style: solid;
+}
 .timeline-item:nth-child(odd) .timeline-content::before {
-  content: "";
-  position: absolute;
-  top: 20px;
-  left: -15px; /* S'étend vers la ligne centrale */
-  border-width: 10px; /* Plus grand */
-  border-style: solid;
-  border-color: transparent var(--accent) transparent transparent; /* Utilise la variable accent */
+  left: -20px;
+  border-color: transparent var(--accent) transparent transparent;
 }
-
 .timeline-item:nth-child(even) .timeline-content::before {
-  content: "";
-  position: absolute;
-  top: 20px;
-  right: -15px; /* S'étend vers la ligne centrale */
-  border-width: 10px; /* Plus grand */
-  border-style: solid;
-  border-color: transparent transparent transparent var(--accent); /* Utilise la variable accent */
+  right: -20px;
+  border-color: transparent transparent transparent var(--accent);
 }
 
 .timeline-content h3 {
-  font-size: 1.4rem; /* Plus grand */
+  font-size: 1.4rem;
   margin-bottom: 0.5rem;
   color: var(--primary);
 }
 .timeline-content h3 a {
-  /* Style pour les liens dans les titres de la timeline */
   color: var(--primary);
   text-decoration: underline;
   text-decoration-color: rgba(255, 255, 255, 0.5);
@@ -1093,7 +734,6 @@ section {
   font-size: 1rem;
 }
 
-/* Section Contact */
 .contact-section {
   padding: 8rem 5%;
   background-color: var(--accent);
@@ -1102,7 +742,6 @@ section {
 }
 
 .shape4 {
-  /* Shape pour la section contact */
   width: 40vw;
   height: 40vw;
   bottom: -10vh;
@@ -1117,31 +756,31 @@ section {
 
 .contact-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.2fr;
   gap: 4rem;
   max-width: 1200px;
   margin: 0 auto;
-  align-items: flex-start; /* Aligner en haut */
+  align-items: flex-start;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* Plus d'espace */
+  gap: 1.5rem;
   margin-bottom: 2rem;
   font-size: 1.1rem;
 }
 
 .contact-item i {
-  font-size: 1.8rem; /* Icônes plus grandes */
+  font-size: 1.8rem;
   color: var(--primary);
-  width: 30px; /* Pour alignement */
+  width: 30px;
   text-align: center;
 }
 
 .social-icons {
   display: flex;
-  gap: 1.5rem; /* Plus d'espace */
+  gap: 1.5rem;
   margin-top: 2rem;
 }
 
@@ -1149,20 +788,20 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 45px; /* Plus grand */
+  width: 45px;
   height: 45px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: color-mix(in srgb, var(--primary) 10%, transparent);
   color: var(--primary);
   text-decoration: none;
-  font-size: 1.2rem; /* Taille de l'icône */
+  font-size: 1.2rem;
   transition: var(--transition);
 }
 
 .social-icon:hover {
   background-color: var(--primary);
   color: var(--secondary);
-  transform: translateY(-5px) scale(1.1); /* Effet plus prononcé */
+  transform: translateY(-5px) scale(1.1);
 }
 
 .form-group {
@@ -1173,8 +812,8 @@ section {
 .contact-form textarea {
   width: 100%;
   padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.2); /* Plus sombre, moins transparent */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure plus visible */
+  background-color: color-mix(in srgb, var(--secondary) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
   color: var(--primary);
   font-family: "Space Grotesk", sans-serif;
   border-radius: 5px;
@@ -1182,11 +821,17 @@ section {
   font-size: 1rem;
 }
 
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: color-mix(in srgb, var(--primary) 60%, transparent);
+  opacity: 1;
+}
+
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
   border-color: var(--primary);
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: color-mix(in srgb, var(--secondary) 90%, transparent);
 }
 
 .contact-form textarea {
@@ -1195,22 +840,16 @@ section {
 }
 
 .contact-form .btn {
-  /* Styles spécifiques pour le bouton du formulaire si besoin */
-  border: 2px solid var(--primary); /* Assurer la bordure */
+  width: 100%;
   cursor: pointer;
   margin-top: 1rem;
 }
-.contact-form .btn:hover {
-  background-color: var(--primary);
-  color: var(--secondary);
-}
 
-/* Footer */
 .footer {
-  padding: 3rem 5%; /* Plus de padding */
+  padding: 3rem 5%;
   text-align: center;
-  background-color: var(--secondary); /* Le fond principal */
-  border-top: 1px solid rgba(255, 255, 255, 0.1); /* On va aussi corriger cette bordure */
+  background-color: var(--secondary);
+  border-top: 1px solid color-mix(in srgb, var(--primary) 10%, transparent);
 }
 
 .footer-content {
@@ -1220,14 +859,13 @@ section {
 
 .footer .logo {
   margin-bottom: 1rem;
-  font-size: 1.8rem; /* Logo plus grand dans le footer */
+  font-size: 1.8rem;
 }
 .footer p {
   font-size: 0.9rem;
   opacity: 0.7;
 }
 
-/* Bouton retour en haut */
 .back-to-top {
   position: fixed;
   bottom: 2rem;
@@ -1243,7 +881,7 @@ section {
   text-decoration: none;
   transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
   opacity: 0;
-  visibility: hidden; /* Pour cacher complètement */
+  visibility: hidden;
   z-index: 999;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
@@ -1255,492 +893,44 @@ section {
 
 .back-to-top:hover {
   transform: translateY(-5px) scale(1.1);
-  background-color: var(--accent); /* Changement de couleur au survol */
-  color: var(--primary);
 }
 .back-to-top i {
   font-size: 1.2rem;
 }
 
-/* Styles pour la modale */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8); /* Plus sombre pour le fond */
-  display: none; /* Caché par défaut */
-  justify-content: center;
-  align-items: center;
-  z-index: 100000; /* Au-dessus de tout */
-  padding: 1rem; /* Pour petits écrans */
-}
-
-.modal-content {
-  background-color: var(--accent);
-  padding: 2.5rem; /* Plus de padding */
-  border-radius: 15px;
-  max-width: 500px; /* Un peu plus large */
-  width: 90%;
-  color: var(--primary);
-  position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Ombre plus prononcée */
-  text-align: left; /* Aligner le texte à gauche pour lisibilité */
-  max-height: 80vh; /* Empêcher qu'elle soit trop haute */
-  overflow-y: auto; /* Scroll si contenu trop long */
-}
-
-.modal-content h3 {
-  font-size: 1.8rem; /* Titre plus grand */
-  margin-bottom: 1.5rem;
-  text-align: center; /* Centrer le titre de la modale */
-}
-
-.modal-content ul {
-  list-style: none;
-  padding: 0;
-}
-
-.modal-content ul li {
-  margin-bottom: 1.5rem; /* Plus d'espace entre les items */
-  padding-bottom: 1rem; /* Espace avant la bordure */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Séparateur */
-}
-.modal-content ul li:last-child {
-  border-bottom: none; /* Pas de bordure pour le dernier */
-  margin-bottom: 0;
-}
-
-.modal-content strong {
-  font-size: 1.1rem;
-  display: block;
-  margin-bottom: 0.3rem;
-}
-
-.modal-content a {
-  color: var(--primary); /* Couleur du lien */
-  text-decoration: underline;
-  font-weight: 500; /* Un peu plus gras */
-  transition: color 0.3s;
-}
-
-.modal-content a:hover {
-  color: #aaa; /* Couleur au survol */
-  text-decoration: none;
-}
-
-.modal-close {
-  position: absolute;
-  top: 15px; /* Ajusté */
-  right: 20px; /* Ajusté */
-  font-size: 2rem; /* Plus grand */
-  font-weight: bold;
-  cursor: pointer;
-  color: var(--primary);
-  transition: transform 0.2s, color 0.2s;
-}
-.modal-close:hover {
-  transform: scale(1.2);
-  color: #ff6b6b; /* Couleur d'alerte au survol */
-}
-
-/* Logo AM pour portfolio item */
-.logo-portfolio {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 6rem;
-  width: 100%; /* S'assurer qu'il prend la place */
-  height: 100%;
-  background-color: transparent; /* Fond géré par .portfolio-item */
-  color: var(--primary); /* Couleur du texte */
-  font-weight: bold;
-  text-transform: uppercase;
-  text-align: center;
-  user-select: none; /* Non sélectionnable */
-}
-
-/* Message d'erreur pour formulaire */
-.error-message {
-  display: none;
-  background-color: #222; /* Fond sombre */
-  color: #ffdddd; /* Texte rouge clair */
-  border: 1px solid #ff6b6b; /* Bordure rouge */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 20px; /* Moins de padding vertical */
-  margin: 15px auto 0; /* Marge en haut uniquement */
-  font-family: "Space Grotesk", sans-serif; /* Cohérence de police */
-  text-align: center;
-  max-width: 100%; /* S'adapte à la largeur du formulaire */
-  font-size: 0.95rem;
-}
-
-.error-message p {
-  /* Pas besoin, le texte est direct */
-  line-height: 1.6;
-  margin-bottom: 0; /* Le message est court */
-}
-
-.error-message a {
-  color: #87cefa; /* Bleu clair pour le lien */
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.error-message a:hover {
-  text-decoration: none;
-}
-
-/* Icone tap */
-.tap-container {
-  position: relative;
-  display: inline-block;
-  cursor: pointer; /* Indiquer que c'est cliquable */
-}
-
-.tap-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 28px;
-  height: 28px;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  animation: tapIconFlash 4s infinite 1s; /* Délai avant démarrage */
-  pointer-events: none;
-}
-
-@keyframes tapIconFlash {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-  10% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  20% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.1);
-  }
-  30% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 .language-switcher button {
-  background: rgba(51, 51, 51, 0.3);
-  border: 1px solid var(--primary);
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 40%, transparent);
   color: var(--primary);
   padding: 0.4rem 0.8rem;
   cursor: pointer;
   font-family: "Space Grotesk", sans-serif;
   font-size: 0.85rem;
-  border-radius: 3px;
+  border-radius: 5px;
   transition: var(--theme-transition);
 }
 
 .language-switcher button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: color-mix(in srgb, var(--primary) 20%, transparent);
+  border-color: var(--primary);
 }
 
 .language-switcher button.active {
   background-color: var(--primary);
   color: var(--secondary);
   font-weight: bold;
+  border-color: var(--primary);
 }
 
-
-/* --- FIN DE LA NOUVELLE RÈGLE --- */
-
-html {
-  scroll-behavior: smooth;
-}
-
-/* Responsive Design */
-@media (max-width: 992px) {
-  .about-grid, .contact-container, .skills-grid-container {
-    grid-template-columns: 1fr;
-  }
-  .about-image {
-    height: 50vh;
-    margin-bottom: 2rem;
-  }
-  .section-heading {
-    font-size: 2.5rem;
-  }
-  .hero-title {
-    font-size: 10vw;
-  }
-  .portfolio-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  }
-  .contact-container {
-    gap: 3rem;
-  }
-  
-  .timeline::before {
-    left: 10px;
-    transform: translateX(0);
-  }
-  .timeline-item:nth-child(odd) .timeline-content,
-  .timeline-item:nth-child(even) .timeline-content {
-    width: calc(100% - 40px);
-    margin-left: 40px;
-    margin-right: 0;
-  }
-  .timeline-dot {
-    left: 10px;
-    transform: translateX(-50%);
-  }
-  .timeline-item:nth-child(odd) .timeline-content::before,
-  .timeline-item:nth-child(even) .timeline-content::before {
-    left: -15px;
-    right: auto;
-    border-color: transparent rgba(255, 255, 255, 0.05) transparent transparent;
-  }
-
-  /* --- CORRECTION POUR LES PROJETS --- */
-  .project-card {
-    /* On passe à une seule colonne pour les tablettes */
-    grid-template-columns: 1fr; 
-    gap: 2rem;
-  }
-
-  /* On annule l'inversion pour les projets pairs sur tablette */
-  .project-card:nth-child(even) .project-image,
-  .project-card:nth-child(even) .project-content {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  /* On aligne le contenu à gauche pour les projets pairs */
-  .project-card:nth-child(even) .project-content {
-    text-align: left;
-    align-items: flex-start;
-  }
-  .project-card:nth-child(even) .project-tech-list {
-    justify-content: flex-start;
-  }
-   .nav-cv-btn span {
-    display: none;
-  }
-  .nav-cv-btn {
-    padding: 0.5rem 0.7rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-container {
-    padding: 1.5rem;
-  }
-  .nav-links {
-    display: none; /* Menu burger à implémenter si besoin */
-  }
-  .hero-title {
-    font-size: 13vw; /* Plus grand pour impact sur mobile */
-  }
-  .hero-subtitle {
-    font-size: 1.2rem;
-  }
-  .section-heading {
-    font-size: 2rem;
-  }
-  .counter-section {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
-  .portfolio-filter {
-    gap: 0.5rem; /* Moins d'espace entre les filtres */
-  }
-  .filter-btn {
-    padding: 0.4rem 1rem;
-    font-size: 0.8rem;
-  }
-  .portfolio-grid {
-    grid-template-columns: 1fr; /* Une colonne sur mobile */
-  }
-  .portfolio-item {
-    height: 250px; /* Hauteur fixe pour mobile */
-  }
-  .language-container {
-    gap: 2rem;
-  }
-  .language-item {
-    min-width: 100px;
-  }
-  .contact-container {
-    gap: 2rem;
-  }
-  .footer {
-    padding: 2rem 5%;
-  }
-  .language-switcher {
-    top: 1.8rem;
-    right: 1.5rem;
-  }
-  .nav-container .logo {
-    margin-right: 80px; /* Plus d'espace pour les boutons sur mobile */
-  }
-
-  /* NOUVELLE CORRECTION : Forcer l'affichage en colonne pour les cartes de projet */
-  .project-card {
-    display: flex;          /* On passe de Grid à Flexbox */
-    flex-direction: column; /* On empile les éléments verticalement */
-  }
-
-  /* On s'assure que l'ordre est correct pour tous les projets */
-  .project-card .project-image {
-    order: 1; /* L'image sera toujours le premier élément */
-  }
-
-  .project-card .project-content {
-    order: 2; /* Le contenu textuel sera toujours le deuxième élément */
-  }
-
-  /* NOUVELLE CORRECTION POUR LES BOUTONS DE PROJET */
-  .project-links {
-    flex-direction: column; /* Empile les boutons verticalement */
-    align-items: stretch;   /* Fait en sorte que les boutons prennent toute la largeur */
-    gap: 1rem;              /* Espace vertical entre les boutons */
-  }
-
-  .project-links .btn {
-    text-align: center; /* Centre le texte dans les boutons */
-  }
-}
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 15vw;
-  }
-  .section-heading {
-    font-size: 1.8rem;
-  }
-  .counter-section {
-    grid-template-columns: 1fr 1fr; /* Deux compteurs par ligne max */
-    gap: 1.5rem;
-  }
-  .counter-number {
-    font-size: 2.5rem;
-  }
-  .counter-text {
-    font-size: 1rem;
-  }
-}
-
-/* ========================================= */
-/*   NOUVEAUX STYLES POUR SECTION COMPÉTENCES  */
-/* ========================================= */
-
-.skills-grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  max-width: 1200px;
-  margin: 4rem auto 0;
-}
-
-.skills-column {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-}
-
-.skill-category-box {
-  background-color: color-mix(in srgb, var(--accent) 50%, transparent);
-  padding: 2rem;
-  border-radius: 15px;
-  border: 1px solid color-mix(in srgb, var(--primary) 10%, transparent);
-  height: 100%; /* Pour que les boîtes de la même ligne aient la même hauteur */
-}
-
-/* On centre les sous-titres DANS les boîtes */
-.skill-category-box .skills-subheading {
-  text-align: left;
-  margin-top: 0;
-  font-size: 1.5rem;
-  margin-bottom: 2.5rem;
-}
-
-/* Grille pour les compétences avec icônes */
-.skill-icon-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-}
-
-.skill-icon-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  font-size: 1.1rem;
-}
-
-.skill-icon-item i {
-  font-size: 2rem;
-  color: var(--primary);
-  width: 35px; /* Pour l'alignement */
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.skill-icon-item:hover i {
-  transform: scale(1.2);
-}
-
-/* Liste pour les soft skills */
-.skill-list {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.skill-list li {
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.skill-list li i {
-  color: var(--primary);
-  opacity: 0.8;
-}
-
-/* Responsive pour la nouvelle grille */
-@media (max-width: 992px) {
-  .skills-grid-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .skill-icon-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* --- 1. Style de la Section Principale --- */
 .skills-section {
   position: relative;
   overflow: hidden;
   padding: 8rem 0;
-  /* CORRIGÉ: Utilise la variable --accent pour le fond, qui s'adapte au thème. */
   background-color: var(--secondary);
-  transition: var(--theme-transition); /* Ajout de la transition */
+  transition: var(--theme-transition);
 }
 
-/* On s'assure que les titres utilisent bien les couleurs du thème. */
-.skills-section .section-heading,
-.skills-section .skills-subheading {
-  /* CORRIGÉ: Utilise la couleur du texte principal du thème */
+.skills-section .section-heading {
   color: var(--primary);
   text-align: center;
   padding: 0 5%;
@@ -1750,13 +940,12 @@ html {
   transform: translateX(-50%);
 }
 
-/* --- 2. La Scène Globale --- */
 #skills-scene-container {
   position: relative;
   width: 100%;
   height: 80vh;
   min-height: 600px;
-  max-height: 750px; /* <- AJOUTEZ CECI pour éviter qu'elle soit trop grande sur les grands écrans */
+  max-height: 750px;
 }
 #starfield-canvas {
   position: absolute;
@@ -1771,10 +960,9 @@ html {
   z-index: 10;
 }
 
-/* --- 3. Le Soleil "AM." --- */
 #skill-sun {
   position: absolute;
-  width: 140px; height: 140px; 
+  width: 140px; height: 140px;
   transform: translate(-50%, -50%);
   z-index: 10;
 }
@@ -1788,7 +976,6 @@ html {
   align-items: center;
   font-size: 2.5rem;
   font-weight: 700;
-  /* CORRIGÉ: Le texte du soleil utilise la couleur de fond du site pour un bon contraste. */
   color: var(--secondary);
   text-shadow: 0 0 10px rgba(0,0,0,0.5);
   animation: sun-pulse 8s infinite ease-in-out;
@@ -1805,11 +992,9 @@ html {
 @keyframes sun-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
 @keyframes sun-flare-rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-/* --- 4. Orbites et Planètes --- */
 .orbit-path {
   position: absolute;
   top: 50%; left: 50%;
-  /* CORRIGÉ: La bordure de l'orbite utilise la couleur primaire du thème avec de la transparence. */
   border: 1px dashed color-mix(in srgb, var(--primary) 20%, transparent);
   border-radius: 50%;
   transform: translate(-50%, -50%);
@@ -1820,9 +1005,9 @@ html {
 .skill-planet-container {
   position: absolute;
   top: 50%; left: 0;
-  width: 100px; height: 100px; 
+  width: 100px; height: 100px;
   transform: translate(-50%, -50%);
-  z-index: 25; /* <-- LA CORRECTION */
+  z-index: 25;
   cursor: pointer;
   pointer-events: all;
 }
@@ -1836,10 +1021,10 @@ html {
   text-align: center;
   font-weight: 600;
   font-size: 0.9rem;
-  color: #fff; /* Gardé en blanc pour la lisibilité sur les fonds colorés des planètes */
+  color: #fff;
   padding: 0.5rem;
   text-shadow: 0 0 5px rgba(0,0,0,0.7);
-  border: 1px solid rgba(255, 255, 255, 0.4); /* Bordure blanche un peu plus visible */
+  border: 1px solid rgba(255, 255, 255, 0.4);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   will-change: transform, box-shadow;
   animation: counter-rotate var(--duration) linear infinite var(--direction);
@@ -1853,19 +1038,17 @@ html {
   box-shadow: 0 0 30px var(--planet-color);
 }
 
-/* Couleurs spécifiques des planètes (inchangées car design-dépendant) */
 #frontend { --planet-color: #61DAFB; background: radial-gradient(circle, #61DAFB, #007B9E); }
 #backend { --planet-color: #8993be; background: radial-gradient(circle, #8993be, #3B4368); }
 #design { --planet-color: #A259FF; background: radial-gradient(circle, #f24e1e, #A259FF); }
 #shopify { --planet-color: #95BF47; background: radial-gradient(circle, #95BF47, #5E8E3E); }
 #tools { --planet-color: #a7a7a7; background: radial-gradient(circle, #a7a7a7, #5A5A5A); }
 
-/* --- 5. Panneau d'Information --- */
 #skills-infobox {
   position: absolute;
   top: 50%;
-  left: calc(50% + 340px + 40px); /* 340px = rayon max (100+4*60), 40px = marge */
-  transform: translateY(-50%) scale(0.95); /* On ne translate plus sur X ! */
+  left: calc(50% + 340px + 40px);
+  transform: translateY(-50%) scale(0.95);
   width: 100%;
   max-width: 280px;
   padding: 1.5rem;
@@ -1878,124 +1061,13 @@ html {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-  transform-origin: left center; /* <- AJOUTEZ CECI pour une animation de scale plus jolie */
+  transform-origin: left center;
 }
 
 #skills-infobox.visible {
   opacity: 1;
   transform: translateY(-50%) scale(1);
 }
-
-@media (max-width: 1200px) {
-  #skills-infobox { display: none; }
-}
-
-/* AJOUTEZ CES STYLES POUR LA NOUVELLE SECTION LANGUES (V3) */
-
-/* --- 6. SECTION LANGUES (CORRIGÉE POUR THÈMES) --- */
-.language-section {
-  padding-top: 4rem;
-  padding-bottom: 8rem;
-  /* CORRIGÉ: On s'assure que cette section utilise aussi le fond du thème. */
-  background-color: var(--accent);
-  transition: var(--theme-transition); /* Ajout de la transition */
-}
-
-.language-list-container {
-max-width: 800px;
-margin: 3rem auto 0;
-padding: 0 1rem;
-display: grid;
-gap: 2rem;
-}
-
-.language-item-v3 {
-display: grid;
-grid-template-columns: 140px 1fr;
-gap: 1.5rem;
-align-items: center;
-opacity: 0;
-transform: translateY(20px);
-transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.language-section.reveal.active .language-item-v3 {
-opacity: 1;
-transform: translateY(0);
-}
-.language-section.reveal.active .language-item-v3:nth-child(2) { transition-delay: 0.2s; }
-
-.language-item-v3 .language-name {
-font-size: 1.1rem;
-font-weight: 600;
-/* CORRIGÉ: Utilise la couleur primaire du thème. */
-color: var(--primary);
-justify-self: start;
-}
-
-.language-progress-wrapper {
-display: flex;
-align-items: center;
-width: 100%;
-}
-
-.language-progress-bar-container {
-flex-grow: 1;
-height: 8px;
-/* CORRIGÉ: Le fond de la barre utilise une version transparente de la couleur primaire. */
-background-color: color-mix(in srgb, var(--primary) 10%, transparent);
-border-radius: 4px;
-overflow: hidden;
-}
-
-.language-progress-fill {
-width: var(--progress-width);
-height: 100%;
-border-radius: 4px;
-/* Le dégradé a été choisi pour bien fonctionner sur fond clair et sombre */
-background: linear-gradient(90deg, #8A2BE2, #5eead4);
-transform: scaleX(0);
-transform-origin: left;
-transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1) 0.5s;
-}
-
-.language-section.reveal.active .language-progress-fill {
-transform: scaleX(1);
-}
-
-.language-progress-wrapper .language-level {
-font-size: 0.95rem;
-font-style: italic;
-/* CORRIGÉ: Utilise la couleur de texte secondaire du thème. */
-color: var(--text);
-margin-left: 1.5rem;
-white-space: nowrap;
-}
-
-/* Style pour la navbar quand on a scrollé */
-.nav-container.scrolled {
-  background-color: rgba(10, 10, 10, 0.7); /* Fond noir très transparent */
-  -webkit-backdrop-filter: blur(10px); /* Flou pour l'effet verre (pour Safari) */
-  backdrop-filter: blur(10px); /* Flou pour l'effet verre */
-  padding-top: 1rem; /* On peut réduire un peu le padding pour un effet plus compact */
-  padding-bottom: 1rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Légère ombre portée */
-}
-
-/* On s'assure que la transition est fluide */
-.nav-container {
-  /* ... vos styles existants ... */
-  transition: padding 0.3s ease, background-color 0.3s ease; /* Ajout d'une transition douce */
-}
-
-/* En mode clair, l'effet sera différent */
-body.light-mode .nav-container.scrolled {
-  background-color: rgba(255, 255, 255, 0.7); /* Fond blanc très transparent */
-}
-
-/* ================================================= */
-/*          NOUVEAUX STYLES SECTIONS LANGUES         */
-/* ================================================= */
 
 .language-section-v2 {
   padding-top: 4rem;
@@ -2010,7 +1082,6 @@ body.light-mode .nav-container.scrolled {
   font-size: 1.8rem;
 }
 
-/* --- Section 1: JSON Code Block --- */
 .code-block-container {
   max-width: 700px;
   margin: 0 auto;
@@ -2031,136 +1102,43 @@ body.light-mode .nav-container.scrolled {
   gap: 0.5rem;
   padding: 0.8rem 1rem;
   background-color: color-mix(in srgb, var(--secondary) 60%, black);
+  position: relative;
 }
 
-.code-block-header .dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
+.code-block-header .dot { width: 12px; height: 12px; border-radius: 50%; }
 .dot.red { background-color: #ff5f56; }
 .dot.yellow { background-color: #ffbd2e; }
 .dot.green { background-color: #27c93f; }
 
-.code-block pre {
-  margin: 0;
-  padding: 1.5rem 2rem;
-}
-
+.code-block pre { margin: 0; padding: 1.5rem 2rem; }
 .code-block code {
   font-family: 'Space Mono', monospace;
   font-size: 0.95rem;
   line-height: 1.8;
-  white-space: pre-wrap; /* Pour le responsive */
+  white-space: pre-wrap;
   color: var(--text);
 }
-
-/* Syntaxe Highlighting */
-.json-key { color: #82aaff; } /* Bleu pour les clés */
-.json-string { color: #c3e88d; } /* Vert pour les chaînes */
+.json-key { color: #82aaff; }
+.json-string { color: #c3e88d; }
 .json-comment { color: #637777; font-style: italic; }
 .json-punctuation { color: var(--primary); opacity: 0.8; }
-.json-boolean { color: #f78c6c; } /* Orange/pêche pour les booléens */
+.json-boolean { color: #f78c6c; }
 
-/* --- Section 2: Communication Waves --- */
-.waves-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: grid;
-  gap: 4rem;
-}
-
-.wave-item {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.wave-info {
-  text-align: right;
-}
-
-.wave-info .language-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--primary);
-  display: block;
-}
-
-.wave-info .language-level {
-  font-size: 0.95rem;
-  font-style: italic;
-  color: var(--text);
-  opacity: 0.8;
-}
-
-.wave-canvas {
-  width: 100%;
-  height: 60px;
-  display: block;
-  opacity: 0;
-  transform: scaleX(0.8);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  transform-origin: left;
-}
-
-.language-section-v2.reveal.active .wave-canvas {
-  opacity: 1;
-  transform: scaleX(1);
-}
-.language-section-v2.reveal.active .waves-container .wave-item:nth-child(2) .wave-canvas {
-  transition-delay: 0.2s;
-}
-
-@media(max-width: 600px) {
-  .wave-item {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    text-align: center;
-  }
-  .wave-info {
-    text-align: center;
-  }
-}
-
-.code-block pre[contenteditable="true"] {
-  cursor: text; /* Change le curseur en curseur de texte */
-}
-
-/* Style pour le curseur de frappe (caret) */
+.code-block pre[contenteditable="true"] { cursor: text; }
 .typing-caret {
   display: inline-block;
   width: 8px;
-  height: 1.2em; /* S'aligne avec la hauteur de la ligne */
+  height: 1.2em;
   background-color: var(--primary);
   animation: blink 1s infinite;
   margin-left: 2px;
   vertical-align: middle;
 }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-body.light-mode .json-string {
-  /* On remplace le lime par un vert foncé et lisible */
-  color: #0d873c; 
-}
-
-body.light-mode .json-key {
-  /* On remplace le bleu clair par un bleu foncé */
-  color: #005cc5;
-}
-
-body.light-mode .json-comment {
-  /* On remplace le gris-cyan clair par un gris plus foncé */
-  color: #5c6370;
-}
-
-/* DANS style.css */
+body.light-mode .json-string { color: #0d873c; }
+body.light-mode .json-key { color: #005cc5; }
+body.light-mode .json-comment { color: #5c6370; }
 
 .code-block-title {
   color: color-mix(in srgb, var(--primary) 60%, transparent);
@@ -2170,803 +1148,522 @@ body.light-mode .json-comment {
   transform: translateX(-50%);
 }
 
-/* ======================================================== */
-/*          MENU HAMBURGER & RESPONSIVITÉ GLOBALE           */
-/* ======================================================== */
-
-/* --- 1. Le bouton Hamburger --- */
 #hamburger-btn {
-  display: none; /* Caché sur grand écran */
+  display: none;
   width: 30px;
   height: 25px;
   position: relative;
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 1001; /* Au-dessus de tout */
+  z-index: 1001;
 }
-
 #hamburger-btn span {
-  display: block;
-  position: absolute;
-  height: 3px;
-  width: 100%;
-  background: var(--primary);
-  border-radius: 3px;
-  left: 0;
+  display: block; position: absolute; height: 3px; width: 100%;
+  background: var(--primary); border-radius: 3px; left: 0;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, top 0.3s ease-in-out;
 }
-
 #hamburger-btn span:nth-child(1) { top: 0px; }
 #hamburger-btn span:nth-child(2) { top: 10px; }
 #hamburger-btn span:nth-child(3) { top: 20px; }
 
-/* Animation du bouton en 'X' quand le menu est ouvert */
-body.mobile-menu-open #hamburger-btn span:nth-child(1) {
-  top: 10px;
-  transform: rotate(135deg);
-}
-body.mobile-menu-open #hamburger-btn span:nth-child(2) {
-  opacity: 0;
-  transform: translateX(-20px);
-}
-body.mobile-menu-open #hamburger-btn span:nth-child(3) {
-  top: 10px;
-  transform: rotate(-135deg);
-}
+body.mobile-menu-open #hamburger-btn span:nth-child(1) { top: 10px; transform: rotate(135deg); }
+body.mobile-menu-open #hamburger-btn span:nth-child(2) { opacity: 0; transform: translateX(-20px); }
+body.mobile-menu-open #hamburger-btn span:nth-child(3) { top: 10px; transform: rotate(-135deg); }
 
-/* --- 2. Le Panneau du Menu Mobile --- */
 #mobile-menu {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed; top: 0; right: 0; width: 100%; height: 100%;
   background-color: var(--secondary);
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   transform: translateX(100%);
   transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-  opacity: 0.98;
+  padding: 8rem 2rem 3rem;
 }
 
-body.mobile-menu-open {
-  overflow: hidden; /* Empêche le scroll du site en arrière-plan */
-}
-
-body.mobile-menu-open #mobile-menu {
-  transform: translateX(0);
-}
+body.mobile-menu-open { overflow: hidden; }
+body.mobile-menu-open #mobile-menu { transform: translateX(0); }
 
 .mobile-menu-links {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+  display: flex; flex-direction: column; align-items: center; gap: 2rem;
 }
-
 .mobile-menu-links a {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--primary);
-  text-decoration: none;
-  opacity: 0;
-  transform: translateY(20px);
+  font-size: 2rem; font-weight: 600; color: var(--primary); text-decoration: none;
+  opacity: 0; transform: translateY(20px);
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
-
-/* Animation d'apparition des liens en cascade */
-body.mobile-menu-open .mobile-menu-links a {
-  opacity: 1;
-  transform: translateY(0);
-}
+body.mobile-menu-open .mobile-menu-links a { opacity: 1; transform: translateY(0); }
 body.mobile-menu-open .mobile-menu-links a:nth-child(1) { transition-delay: 0.2s; }
 body.mobile-menu-open .mobile-menu-links a:nth-child(2) { transition-delay: 0.3s; }
 body.mobile-menu-open .mobile-menu-links a:nth-child(3) { transition-delay: 0.4s; }
 body.mobile-menu-open .mobile-menu-links a:nth-child(4) { transition-delay: 0.5s; }
 
 .mobile-menu-bottom {
-  position: absolute;
-  bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  width: 100%;
+}
+.mobile-menu-bottom .nav-socials {
+  display: flex;
+  gap: 2rem;
+  font-size: 1.5rem;
+}
+.mobile-controls-group {
   display: flex;
   align-items: center;
   gap: 2rem;
 }
 
-/* --- 3. Media Queries pour la Responsivité --- */
-
-/* Pour les tablettes et écrans plus petits */
-@media (max-width: 992px) {
-  .section-heading { font-size: 2.5rem; }
-  .hero-title { font-size: 9vw; }
-  .project-title { font-size: 2rem; }
-
-  /* Passage en 1 colonne pour les grilles */
-  .about-grid, .contact-container, .skills-grid-container {
-    grid-template-columns: 1fr;
-  }
-
-  /* Ajustements spécifiques */
-  .about-image { margin-bottom: 3rem; height: auto; }
-  .timeline::before { left: 20px; }
-  .timeline-dot { left: 20px; }
-  .timeline-item:nth-child(odd) .timeline-content,
-  .timeline-item:nth-child(even) .timeline-content {
-    width: calc(100% - 60px);
-    margin-left: 60px;
-    margin-right: 0;
-  }
-   .timeline-item .timeline-content::before {
-    left: -15px; right: auto;
-    border-color: transparent var(--accent) transparent transparent;
-  }
-  
- /* Correction pour la grille des projets sur tablettes et mobiles */
-  .project-card {
-    grid-template-columns: 1fr; /* Passage à une seule colonne */
-    gap: 2rem;
-  }
-
-  /* On annule l'inversion pour les projets pairs (comme Nowa Logistics) */
-  .project-card:nth-child(even) .project-image,
-  .project-card:nth-child(even) .project-content {
-    grid-column: auto; /* On réinitialise la position sur la colonne */
-    grid-row: auto;    /* On laisse la ligne se placer naturellement */
-  }
-
-  /* On s'assure que le contenu des projets pairs est aligné à gauche */
-  .project-card:nth-child(even) .project-content {
-    text-align: left;
-    align-items: flex-start;
-  }
-  
-  .project-card:nth-child(even) .project-tech-list {
-    justify-content: flex-start;
-  }
-}
-
-
-/* Pour les mobiles */
-@media (max-width: 768px) {
-  /* Afficher le bouton hamburger et cacher la nav desktop */
-  #hamburger-btn { display: block; }
-  .nav-right-group, .nav-links { display: none; }
-  .language-switcher {
-      /* Le switcher principal est caché, on utilisera celui du menu mobile */
-      display: none;
-  }
-  .nav-container {
-      /* On redonne de l'espace au logo */
-      justify-content: space-between;
-  }
-
-  /* Ajustements typographiques */
-  .hero-title { font-size: 13vw; line-height: 1.1; }
-  .hero-subtitle { font-size: 1.2rem; }
-  .section-heading { font-size: 2rem; }
-  .project-title { font-size: 1.8rem; }
-  .about-text, .project-description { font-size: 1rem; line-height: 1.7; }
-
-  /* Ajustements de l'espacement */
-  .about-section, .skills-section, .featured-projects-section, .experience-section, .contact-section {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-
-  /* Compétences - Système Solaire */
-  #skills-scene-container {
-      height: 60vh;
-      min-height: 500px;
-  }
-  #skill-sun {
-      width: 100px; height: 100px;
-      font-size: 2rem;
-  }
-  .orbit-path { /* Réduire les orbites */
-      transform: translate(-50%, -50%) scale(0.8);
-  }
-  .skill-planet-container { /* Réduire la taille des planètes */
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-
-  /* Timeline */
-  .timeline-content { padding: 1.5rem; }
-  
-  /* Footer */
-  .footer { padding: 2rem 5%; }
-}
-
-/* Pour les très petits écrans */
-@media (max-width: 480px) {
-  body { font-size: 14px; }
-  .hero-title { font-size: 15vw; }
-  .btn { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
-  .counter-section { grid-template-columns: 1fr 1fr; }
-  .contact-item { font-size: 1rem; }
-}
-
-/* ======================================================== */
-/*          POP-UP D'ÉVOLUTION DU SITE                      */
-/* ======================================================== */
-.evolution-popup-overlay {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  /* Le fond est transparent, mais il empêche de cliquer derrière */
-  background-color: rgba(0, 0, 0, 0); 
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  z-index: 10001; /* Au-dessus de tout, même du curseur */
-  pointer-events: none; /* Ne bloque pas la souris par défaut */
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.evolution-popup-overlay.visible {
-  opacity: 1;
-  pointer-events: all; /* Devient cliquable quand visible */
-}
-
-.evolution-popup {
-  background-color: var(--accent);
-  color: var(--primary);
-  border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 2rem;
-  max-width: 320px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  position: relative;
-  transform: translateY(30px);
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-.evolution-popup-overlay.visible .evolution-popup {
-  transform: translateY(0);
-}
-
-.evolution-popup h4 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-top: 0;
-  margin-bottom: 0.8rem;
-  color: var(--primary);
-}
-
-.evolution-popup p {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin: 0;
-  color: var(--text);
-  transition: color 0.3s ease;
-}
-
-.evolution-popup p b {
-  color: var(--primary);
-  font-weight: 600;
-}
-
-.evolution-popup-close {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.8rem;
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  color: var(--primary);
-  opacity: 0.5;
-  cursor: pointer;
-  transition: opacity 0.3s, transform 0.3s;
-}
-
-.evolution-popup-close:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-/* Responsive pour les mobiles */
-@media (max-width: 480px) {
-  .evolution-popup {
-    max-width: none;
-    width: calc(100% - 2rem);
-    margin: 1rem;
-    margin-bottom: 2rem;
-  }
-}
-
-/* ======================================================== */
-/*          POP-UP D'ÉVOLUTION DU SITE (V2)                 */
-/* ======================================================== */
-
-/* Keyframe pour l'animation de flottement constant */
-@keyframes float-subtle {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0); }
-}
-
-/* Keyframe pour l'animation d'explosion à la sortie */
-@keyframes explode-out {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-20px) scale(1.3) rotate(15deg);
-    opacity: 0;
-  }
+.nav-container.scrolled {
+  background-color: color-mix(in srgb, var(--secondary) 70%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .evolution-popup-overlay {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.2); /* Fond légèrement grisé pour sentir la présence */
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  position: fixed; bottom: 0; right: 0; width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex; justify-content: flex-end; align-items: flex-end;
   z-index: 10001;
-  pointer-events: none;
-  opacity: 0;
+  pointer-events: none; opacity: 0;
   transition: opacity 0.4s ease;
 }
-
-.evolution-popup-overlay.visible {
-  opacity: 1;
-  pointer-events: all;
-  cursor: pointer; /* Le curseur indique qu'on peut cliquer sur l'overlay */
-}
-
+.evolution-popup-overlay.visible { opacity: 1; pointer-events: all; cursor: pointer; }
 .evolution-popup {
-  background-color: var(--accent);
-  color: var(--primary);
+  background-color: var(--accent); color: var(--primary);
   border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 2rem;
-  max-width: 320px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  position: relative;
-  /* On retire la transition de transform, elle sera gérée par l'animation */
+  border-radius: 12px; padding: 1.5rem; margin: 2rem; max-width: 320px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); position: relative;
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-  cursor: default; /* Le curseur normal sur le pop-up lui-même */
-  animation: float-subtle 6s ease-in-out infinite; /* << ANIMATION CONSTANTE ICI */
+  cursor: default;
+  animation: float-subtle 6s ease-in-out infinite;
 }
-
-/* Classe ajoutée par JS pour l'explosion */
-.evolution-popup.exploding {
-  animation: explode-out 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-}
-
-.evolution-popup h4 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-top: 0;
-  margin-bottom: 0.8rem;
-  color: var(--primary);
-}
-
-.evolution-popup p {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin: 0;
-  color: var(--text);
-  transition: color 0.3s ease;
-}
-
-.evolution-popup p b {
-  color: var(--primary);
-  font-weight: 600;
-}
-
+@keyframes float-subtle { 0% { transform: translateY(0); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0); } }
+.evolution-popup.exploding { animation: explode-out 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; }
+@keyframes explode-out { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-20px) scale(1.3) rotate(15deg); opacity: 0; } }
+.evolution-popup h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; margin-bottom: 0.8rem; }
+.evolution-popup p { font-size: 0.95rem; line-height: 1.6; margin: 0; }
+.evolution-popup p b { color: var(--primary); font-weight: 600; }
 .evolution-popup-close {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.8rem;
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  color: var(--primary);
-  opacity: 0.5;
-  cursor: pointer;
+  position: absolute; top: 0.5rem; right: 0.8rem; background: none; border: none;
+  font-size: 1.8rem; color: var(--primary); opacity: 0.5; cursor: pointer;
   transition: opacity 0.3s, transform 0.3s;
 }
+.evolution-popup-close:hover { opacity: 1; transform: scale(1.1); }
 
-.evolution-popup-close:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
+.nav-socials { display: flex; align-items: center; gap: 1.5rem; }
+.nav-socials a { color: var(--primary); font-size: 1.2rem; transition: transform 0.3s ease, color 0.3s; }
+.nav-socials a:hover { transform: scale(1.2) translateY(-2px); }
 
-@media (max-width: 480px) {
-  .evolution-popup {
-    max-width: none;
-    width: calc(100% - 2rem);
-    margin: 1rem;
-    margin-bottom: 2rem;
-  }
-}
-
-/* ======================================================== */
-/*          ICÔNES SOCIALES DANS LA NAVBAR                  */
-/* ======================================================== */
-.nav-socials {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.nav-socials a {
-  color: var(--primary);
-  font-size: 1.2rem;
-  text-decoration: none;
-  transition: transform 0.3s ease; /* On ne garde que la transition sur la transformation */
-}
-
-/* On ajuste l'effet de survol qui est maintenant plus simple et propre */
-.nav-socials a:hover {
-  transform: scale(1.2) translateY(-2px); /* L'effet de zoom est conservé et suffisant */
-}
-
-/* Positionnement dans la nav desktop */
-.nav-right-group {
-    gap: 1.5rem; /* Ajuster l'espacement global */
-}
-
-/* Sur mobile, on les veut bien visibles */
-.mobile-menu-bottom .nav-socials {
-    order: -1; /* Les met en premier */
-    gap: 2rem; /* Plus d'espace sur mobile */
-    font-size: 1.5rem; /* Icônes plus grosses */
-}
-
-/* Style unifié pour TOUS les titres de la timeline */
-.timeline-content h3 {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
-  color: var(--primary);
-}
-
-/* Style pour les liens DANS les titres */
-.timeline-content h3 a {
-  color: var(--primary);
-  text-decoration: underline;
-  text-decoration-color: rgba(255, 255, 255, 0.5); /* Soulignement subtil */
-  transition: text-decoration-color 0.3s;
-}
-
-.timeline-content h3 a:hover {
-  text-decoration-color: var(--primary); /* Soulignement plein au survol */
-}
-
-/* ======================================================== */
-/*          NOUVEAU : INFO-BULLE NOWA LOGISTICS             */
-/* ======================================================== */
-#nowa-tooltip {
-  position: fixed;
-  display: none;
-  background-color: #c53030; /* Rouge foncé pour le fond */
-  color: #fff; /* Texte blanc */
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-family: 'Space Grotesk', sans-serif;
-  z-index: 10002; /* Au-dessus de tout, même du pop-up */
-  pointer-events: none; /* Pour que la souris ne la cible pas */
+#nowa-tooltip, #case-study-tooltip {
+  position: fixed; display: none; background-color: #c53030; color: #fff;
+  padding: 0.6rem 1rem; border-radius: 8px; font-size: 0.9rem;
+  z-index: 10002; pointer-events: none;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transform: translate(-50%, -120%); /* Positionner au-dessus du curseur par défaut, mais JS ajustera */
-  white-space: nowrap; /* Empêche le retour à la ligne */
+  white-space: nowrap;
 }
-
-
-/* ======================================================== */
-/*          NOUVEAU : BOUTON CASE STUDY & ANIMATION         */
-/* ======================================================== */
-
-
-/* Animation de "glitch" et "glow" pour attirer l'attention */
-@keyframes flicker-glow {
-  0%, 100% {
-    box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
-    text-shadow: 0 0 2px #00ff00;
-  }
-  50% {
-    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
-    text-shadow: 0 0 5px #00ff00;
-  }
-}
-
-.btn-case-study {
-  animation: flicker-glow 2.5s infinite ease-in-out;
-  font-family: 'Space Grotesk', sans-serif;
-}
-
-/* ======================================================== */
-/*          NOUVEAU : STYLES MODALE CASE STUDY              */
-/* ======================================================== */
-:root {
-    --win-bg: #C0C0C0;
-    --win-title-bar-blue: #000080;
-    --border-light: #FFFFFF;
-    --border-dark: #404040;
-    --font-terminal: 'VT323', 'Courier New', monospace;
-}
-
+#case-study-tooltip { background-color: #000; }
+:root { --win-bg: #C0C0C0; --win-title-bar-blue: #000080; --border-light: #FFFFFF; --border-dark: #404040; --font-terminal: 'VT323', 'Courier New', monospace; }
 #case-study-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #008080; /* Fond "teal" de Windows */
-    z-index: 10000;
-    display: none;
-    font-family: 'Tahoma', 'Verdana', 'MS Sans Serif', sans-serif;
-    -webkit-font-smoothing: none;
-    -moz-osx-font-smoothing: grayscale;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: #008080; z-index: 10000; display: none;
+  font-family: 'Tahoma', 'Verdana', 'MS Sans Serif', sans-serif;
+  -webkit-font-smoothing: none; -moz-osx-font-smoothing: grayscale;
 }
-
-#boot-sequence, #binary-rain-canvas {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 10001;
-}
-
+#boot-sequence, #binary-rain-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10001; }
 #boot-sequence {
-    background: #000; color: #00FF00; font-family: var(--font-terminal);
-    font-size: 1.5em; padding: 20px; box-sizing: border-box; overflow: hidden;
-    z-index: 10002;
+  background: #000; color: #00FF00; font-family: var(--font-terminal);
+  font-size: 1.5em; padding: 20px; box-sizing: border-box; overflow: hidden; z-index: 10002;
 }
-
-#boot-sequence .boot-line {
-    opacity: 0;
-    animation: fadeIn 0.1s forwards;
-    white-space: pre;
-}
-
+#boot-sequence .boot-line { opacity: 0; animation: fadeIn 0.1s forwards; white-space: pre; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 .case-study-window, .case-study-popup-window {
-    position: absolute; background: var(--win-bg);
-    border: 2px solid;
-    border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
-    font-size: 13px;
+  position: absolute; background: var(--win-bg); border: 2px solid;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.5); font-size: 13px;
 }
-
 .case-study-window {
-    top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 90%; max-width: 700px; min-height: 450px;
-    z-index: 10003;
-    display: none;
-    flex-direction: column;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 90%; max-width: 700px; min-height: 450px;
+  z-index: 10003; display: none; flex-direction: column;
 }
-
 .case-study-title-bar {
-    background: var(--win-title-bar-blue);
-    padding: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    font-size: 14px;
-    cursor: move;
-    font-weight: bold;
+  background: var(--win-title-bar-blue); padding: 5px;
+  display: flex; justify-content: space-between; align-items: center;
+  color: white; font-size: 14px; cursor: move; font-weight: bold;
 }
-
 .title-bar-controls button {
-    background: var(--win-bg);
-    border: 1px solid;
-    border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
-    width: 20px; height: 20px;
-    font-family: "Courier New", monospace;
-    font-weight: bold;
-    padding: 0;
-    margin-left: 2px;
+  background: var(--win-bg); border: 1px solid;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  width: 20px; height: 20px; font-family: "Courier New", monospace;
+  font-weight: bold; padding: 0; margin-left: 2px;
 }
-
 .case-study-window-body {
-    padding: 10px; margin: 0 4px 4px 4px;
-    border: 2px solid;
-    border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
-    flex-grow: 1;
-    color: #000;
-    overflow-y: auto;
+  padding: 10px; margin: 0 4px 4px 4px; border: 2px solid;
+  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+  flex-grow: 1; color: #000; overflow-y: auto;
 }
-
-#case-study-content h4 {
-    font-size: 1.1em;
-    font-weight: bold;
-    margin: 15px 0 5px 0;
-    color: #000;
-}
-
-#case-study-content p, #case-study-content strong, #case-study-content li {
-    font-size: 1.05em;
-    line-height: 1.6;
-    color: #000;
-}
-
+#case-study-content h4 { font-size: 1.1em; font-weight: bold; margin: 15px 0 5px 0; color: #000; }
+#case-study-content p, #case-study-content strong, #case-study-content li { font-size: 1.05em; line-height: 1.6; color: #000; }
 .case-study-popup-window {
-    top: 60%; left: 65%;
-    transform: translate(-50%, -50%) rotate(-3deg);
-    width: 320px;
-    z-index: 10004;
-    padding: 2px;
-    display: none;
+  top: 60%; left: 65%; transform: translate(-50%, -50%) rotate(-3deg);
+  width: 320px; z-index: 10004; padding: 2px; display: none;
 }
-
 .case-study-popup-window .popup-body {
-    background: var(--win-bg);
-    padding: 20px;
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    color: #000;
+  background: var(--win-bg); padding: 20px; display: flex;
+  align-items: flex-start; gap: 15px; color: #000;
 }
-
-.case-study-popup-window .popup-icon {
-    width: 32px; height: 32px;
-    flex-shrink: 0;
-}
-
-.case-study-popup-window .popup-footer {
-    text-align: center;
-    padding: 10px 0;
-    display:flex;
-    justify-content:center;
-    gap: 10px;
-}
-
+.case-study-popup-window .popup-icon { width: 32px; height: 32px; flex-shrink: 0; }
+.case-study-popup-window .popup-footer { text-align: center; padding: 10px 0; display:flex; justify-content:center; gap: 10px; }
 .case-study-popup-window button {
-    background: var(--win-bg);
-    border: 2px solid;
-    border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
-    padding: 5px 25px;
-    cursor: pointer;
-    color: #000;
+  background: var(--win-bg); border: 2px solid;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  padding: 5px 25px; cursor: pointer; color: #000;
 }
-
-.case-study-popup-window button:active {
-    border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
-}
+.case-study-popup-window button:active { border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark); }
 
 .btn.btn-case-study {
   background-color: transparent;
   color: var(--color-accent-green);
-  border-color: var(--color-accent-green); /* Bordure verte visible */
+  border-color: var(--color-accent-green);
   animation: flicker-glow 2.5s infinite ease-in-out;
 }
-
 .btn.btn-case-study:hover {
-  background-color: var(--color-accent-green); /* Se remplit de vert */
+  background-color: var(--color-accent-green);
   color: var(--secondary);
   box-shadow: 0 0 15px var(--color-accent-green);
 }
+.btn-hero { padding: 1.2rem 2.5rem; font-size: 1.1rem; font-weight: 700; }
+a { color: var(--primary); text-decoration: none; transition: opacity 0.3s ease; }
+a:not(.btn):not(.social-icon):hover { opacity: 0.7; }
 
-/* --- STYLE POUR LE BOUTON HERO (plus grand) --- */
-.btn-hero {
-  padding: 1.2rem 2.5rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
-/* Règle de base pour tous les liens */
-a {
-  color: var(--primary);
-  text-decoration: none; /* On enlève le soulignement par défaut */
-  transition: opacity 0.3s ease;
-}
-
-/* On applique l'opacité au survol à tous les liens SAUF CEUX QUI SONT DES BOUTONS */
-a:not(.btn):hover {
-  opacity: 0.7; 
-}
-
-
-/* On s'assure que la keyframe utilise bien notre nouvelle variable pour la cohérence */
 @keyframes flicker-glow {
-  0%, 100% {
-    box-shadow: 0 0 5px var(--color-accent-green), 0 0 10px var(--color-accent-green);
-    text-shadow: 0 0 2px var(--color-accent-green);
-  }
-  50% {
-    box-shadow: 0 0 10px var(--color-accent-green), 0 0 20px var(--color-accent-green);
-    text-shadow: 0 0 5px var(--color-accent-green);
-  }
+  0%, 100% { box-shadow: 0 0 5px var(--color-accent-green), 0 0 10px var(--color-accent-green); text-shadow: 0 0 2px var(--color-accent-green); }
+  50% { box-shadow: 0 0 10px var(--color-accent-green), 0 0 20px var(--color-accent-green); text-shadow: 0 0 5px var(--color-accent-green); }
 }
 
-/* Style pour le nouveau tooltip du case study */
-#case-study-tooltip {
-  position: fixed;
-  display: none;
-  background-color: #000000; /* Un bleu "tech" amical */
-  color: #fff;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-family: 'Space Grotesk', sans-serif;
-  z-index: 10002;
-  pointer-events: none;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  white-space: nowrap;
-}
-
-/* ======================================================== */
-/*              NOUVEAU : BOUTON CV NAVBAR                  */
-/* ======================================================== */
 .nav-cv-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 1rem; border-radius: 5px;
+  font-size: 0.9rem; font-weight: 500;
   transition: all 0.3s ease;
-
-  /* Force l'apparence par défaut du bouton en mode sombre */
-  background-color: var(--primary);  /* Fond blanc */
-  color: var(--secondary);           /* Texte noir */
-  border: 1px solid var(--primary);  /* Bordure blanche pour se fondre dans le background */
+  background-color: var(--primary); color: var(--secondary);
+  border: 1px solid var(--primary);
 }
-
-/* Nouvel effet de survol pour un feedback clair */
 .nav-cv-btn:hover {
-  background-color: var(--secondary); /* Le fond redevient noir au survol */
-  color: var(--primary);            /* Le texte redevient blanc */
-  border: 1px solid var(--primary); /* La bordure blanche devient visible */
+  background-color: var(--secondary); color: var(--primary);
+  border: 1px solid var(--primary);
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
 }
-
-.nav-cv-btn i {
-  font-size: 1rem;
-}
-
-/* Cacher le texte sur mobile pour ne garder que l'icône, si désiré */
-@media (max-width: 992px) {
-  .nav-cv-btn span {
-    display: none;
-  }
-  .nav-cv-btn {
-    padding: 0.5rem 0.7rem; /* Rendre plus carré */
-  }
-}
-
-/* AJOUTEZ CECI DANS VOTRE FICHIER STYLE.CSS */
+.nav-cv-btn i { font-size: 1rem; }
 
 .form-result {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
-  font-weight: 500;
-  opacity: 0;
+  margin-top: 1.5rem; padding: 1rem; border-radius: 8px;
+  text-align: center; font-weight: 500; opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.4s ease, transform 0.4s ease;
-  display: none; /* Caché par défaut */
+  display: none;
+}
+.form-result.visible { opacity: 1; transform: translateY(0); display: block; }
+.form-result.success { background-color: rgba(57, 255, 20, 0.15); color: #39ff14; border: 1px solid #39ff14; }
+.form-result.error { background-color: rgba(255, 99, 71, 0.15); color: #ff6347; border: 1px solid #ff6347; }
+
+
+/****************************************************************/
+/*                                                              */
+/*          >>> SECTION RESPONSIVE ENTIÈREMENT RÉÉCRITE <<<     */
+/*          (Copiez à partir d'ici pour remplacer l'ancienne)   */
+/*                                                              */
+/****************************************************************/
+
+/* =================================================================== */
+/*  1. Breakpoint pour Laptops & Grandes Tablettes (~1200px et moins)  */
+/* =================================================================== */
+@media (max-width: 1200px) {
+  #skills-infobox {
+    display: none; /* On cache l'infobox qui risque de déborder */
+  }
 }
 
-.form-result.visible {
-  opacity: 1;
-  transform: translateY(0);
-  display: block; /* Devient visible */
+/* ======================================================= */
+/*  2. Breakpoint pour Tablettes (~992px et moins)         */
+/* ======================================================= */
+@media (max-width: 992px) {
+  /* --- AJUSTEMENTS GÉNÉRAUX --- */
+  .section-heading {
+    font-size: 2.5rem;
+  }
+  .about-text, .project-description {
+    font-size: 1.05rem;
+  }
+  .project-title {
+    font-size: 2rem;
+  }
+
+  /* --- NAVIGATION --- */
+  .nav-cv-btn span {
+    display: none; /* On cache le texte du bouton CV, icône seule */
+  }
+  .nav-cv-btn {
+    padding: 0.6rem 0.8rem; /* On le rend plus carré */
+  }
+  .nav-right-group {
+    gap: 1.5rem;
+  }
+
+  /* --- SECTION "À PROPOS" --- */
+  .about-grid {
+    grid-template-columns: 1fr; /* Passage à une seule colonne */
+    gap: 3rem;
+  }
+  .about-image {
+    height: auto;
+    max-height: 50vh;
+  }
+  
+  /* --- PROJETS "FEATURED" (CORRIGÉ) --- */
+  .project-card {
+    display: flex;
+    flex-direction: column; 
+    gap: 2rem;
+  }
+  .project-card .project-content {
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+  .project-card .project-tech-list {
+      justify-content: flex-start !important;
+  }
+  .project-card .project-image { order: 1; }
+  .project-card .project-content { order: 2; }
+  
+  /* --- NOUVEAU : CORRECTION POUR LES BOUTONS SUR TABLETTE --- */
+  .project-links {
+    flex-direction: column; /* On empile les boutons verticalement */
+    align-items: stretch; /* Les boutons prennent toute la largeur */
+  }
+  .project-links .btn {
+    text-align: center; /* On centre le texte des boutons */
+  }
+  /* --- FIN DE LA CORRECTION --- */
+
+
+  /* --- TIMELINE --- */
+  .timeline::before {
+    left: 15px; /* On déplace la ligne sur la gauche */
+    transform: translateX(0);
+  }
+  .timeline-dot {
+    left: 15px;
+    transform: translateX(-50%);
+  }
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    width: calc(100% - 60px); /* Les bulles prennent toute la largeur restante */
+    margin-left: 60px;
+    margin-right: 0;
+  }
+  /* On s'assure que toutes les flèches pointent vers la gauche */
+  .timeline-item .timeline-content::before {
+    left: -20px;
+    right: auto;
+    border-color: transparent var(--accent) transparent transparent;
+  }
+
+  /* --- CONTACT --- */
+  .contact-container {
+    grid-template-columns: 1fr; /* Passage à une seule colonne */
+    gap: 3rem;
+  }
+  .contact-info {
+    text-align: center; /* Centrer les infos de contact */
+  }
+  .contact-item {
+    justify-content: center;
+  }
+  .social-icons {
+    justify-content: center;
+  }
 }
 
-.form-result.success {
-  background-color: rgba(57, 255, 20, 0.15); /* Fond vert transparent */
-  color: #39ff14; /* Texte vert "terminal" */
-  border: 1px solid #39ff14;
+
+/* ======================================================= */
+/*  3. Breakpoint pour Mobiles (~768px et moins)           */
+/* ======================================================= */
+@media (max-width: 768px) {
+  /* --- AJUSTEMENTS GÉNÉRAUX --- */
+  body {
+    font-size: 15px; /* On augmente légèrement la taille de base pour la lisibilité */
+  }
+  .about-section, .featured-projects-section, .experience-section, .contact-section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  .section-heading {
+    font-size: 2rem;
+  }
+
+  /* --- NAVIGATION & MENU MOBILE --- */
+  .nav-right-group,
+  .nav-container > .nav-links,
+  .language-switcher {
+    display: none; /* On cache toute la nav desktop */
+  }
+  #hamburger-btn {
+    display: block; /* On affiche le bouton hamburger */
+  }
+  .nav-container {
+    padding: 1rem 1.5rem; /* Padding plus petit pour la nav mobile */
+  }
+  body.light-mode .nav-container.scrolled,
+  .nav-container.scrolled {
+      background-color: transparent; /* On enlève le fond au scroll sur mobile */
+      backdrop-filter: none;
+      box-shadow: none;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+  }
+
+  /* --- HERO HEADER --- */
+  .hero-title {
+    font-size: 12vw;
+    line-height: 1.1;
+  }
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  .btn-hero {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+
+  /* --- COMPÉTENCES (SYSTÈME SOLAIRE) --- */
+  #skills-scene-container {
+    height: 65vh; /* On réduit la hauteur */
+    min-height: 550px;
+    transform: scale(0.9); /* On réduit la taille globale de la scène */
+  }
+
+  /* --- PROJETS --- */
+  .featured-projects-grid {
+    gap: 5rem;
+  }
+  .project-title {
+    font-size: 1.8rem;
+  }
+  /* La logique des boutons a été déplacée dans le breakpoint 992px, donc elle s'applique déjà ici */
+  
+  /* --- COMPTEURS --- */
+  .counter-section {
+    grid-template-columns: 1fr 1fr; /* 2 compteurs par ligne */
+    gap: 2rem;
+  }
+  .counter-number {
+    font-size: 2.5rem;
+  }
+
+  /* --- TIMELINE --- */
+  .timeline-content {
+    padding: 1.5rem;
+  }
+
+  /* --- FOOTER --- */
+  .footer {
+    padding: 2.5rem 5%;
+  }
+
+  /* --- POPUP ÉVOLUTION --- */
+  .evolution-popup {
+    max-width: calc(100% - 2rem);
+    margin: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* NOUVELLE RÈGLE POUR LA GRILLE DES BOUTONS */
+  .project-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Crée une grille à 2 colonnes égales */
+    gap: 1rem;
+  }
+
+  /* On fait en sorte que le bouton "Case Study" prenne toute la largeur de la grille */
+  .project-links .btn-case-study {
+    grid-column: 1 / -1; /* Le bouton s'étend de la première à la dernière colonne */
+    text-align: center;
+  }
 }
 
-.form-result.error {
-  background-color: rgba(255, 99, 71, 0.15); /* Fond rouge transparent */
-  color: #ff6347; /* Texte rouge tomate */
-  border: 1px solid #ff6347;
+
+/* ======================================================= */
+/*  4. Breakpoint pour Petits Mobiles (~480px et moins)    */
+/* ======================================================= */
+@media (max-width: 480px) {
+  /* --- AJUSTEMENTS GÉNÉRAUX --- */
+  .btn {
+    padding: 0.9rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* --- HERO HEADER --- */
+  .hero-title {
+    font-size: 14vw;
+  }
+
+  /* --- COMPÉTENCES (SYSTÈME SOLAIRE) --- */
+  #skills-scene-container {
+    transform: scale(0.75); /* On réduit encore un peu pour les petits écrans */
+    height: 60vh;
+    min-height: 500px;
+  }
+  
+  /* --- PROJETS --- */
+  .featured-projects-section, .experience-section {
+      padding-left: 3%;
+      padding-right: 3%;
+  }
+
+  /* --- BLOC JSON --- */
+  .code-block code {
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+  .code-block pre {
+    padding: 1.2rem 1rem;
+  }
+
+  /* --- CONTACT --- */
+  .contact-section {
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+  .contact-item {
+    font-size: 1rem;
+    gap: 1rem;
+  }
+  .contact-item i {
+    font-size: 1.5rem;
+  }
+}
+
+/* ======================================================= */
+/*  5. Préférences de l'utilisateur                       */
+/* ======================================================= */
+@media (prefers-reduced-motion: reduce) {
+  /* On désactive les animations pour les utilisateurs qui le demandent */
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
