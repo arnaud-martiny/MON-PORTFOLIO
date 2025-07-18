@@ -997,16 +997,20 @@ if (contactForm) {
 
         const cs = projectData.caseStudy;
         
+        // On remplit la fenêtre avec les BONNES informations
         caseStudyWindowTitle.textContent = cs.title;
         caseStudyContentEl.innerHTML = `
             <h4>${cs.briefTitle}</h4>
             <p>${cs.brief}</p>
             <h4>${cs.roleTitle}</h4>
             <p>${cs.role}</p>
-            <h4>${cs.toolsTitle}</h4>
-            <p>${cs.tools.replace(/\n/g, '<br>')}</p>
+            <h4>${cs.techTitle}</h4>
+            <p>${projectData.tech.join(' | ')}</p>
+            <h4>${cs.resultsTitle}</h4>
+            <p>${cs.results}</p>
         `;
 
+        // Le reste de la fonction qui gère l'affichage est déjà correct
         caseStudyOverlay.style.display = 'block';
         bootSequenceEl.style.display = 'block';
         caseStudyWindowEl.style.display = 'none';
