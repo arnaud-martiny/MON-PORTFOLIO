@@ -1667,3 +1667,251 @@ a:not(.btn):not(.social-icon):hover { opacity: 0.7; }
     scroll-behavior: auto !important;
   }
 }
+
+/* ======================================================= */
+/*    STYLES CORRIGÉS POUR LA SECTION RÉTRO METHODOLOGIE    */
+/* ======================================================= */
+
+.retro-methodology-section {
+  padding: 0; /* Pas besoin de padding, GSAP s'en occupe */
+  background-color: var(--secondary);
+  font-family: "Tahoma", "MS Sans Serif", sans-serif;
+  font-smooth: never;
+  -webkit-font-smoothing: none;
+  overflow: hidden; /* Important pour éviter les débordements */
+}
+
+.retro-container {
+  position: relative;
+  /* La hauteur est maintenant plus petite que l'écran pour permettre le scroll "interne" */
+  height: 80vh;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  /* Centrage vertical dans la section épinglée */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.retro-window {
+  position: absolute; /* Permet aux fenêtres de se superposer */
+  width: 95%;
+  max-width: 480px; /* Taille maximale pour les fenêtres */
+  background-color: #C0C0C0;
+  border: 2px solid;
+  border-color: #FFFFFF #404040 #404040 #FFFFFF;
+  box-shadow: 2px 2px 0px #000;
+  padding: 2px;
+  display: none;
+  opacity: 0;
+}
+
+.retro-title-bar {
+  background: linear-gradient(to right, #000080, #1084d0);
+  color: white;
+  padding: 3px 5px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.retro-title-buttons span {
+  background: #C0C0C0;
+  border: 1px solid;
+  border-color: #fff #404040 #404040 #fff;
+  padding: 0 4px;
+  color: black;
+  margin-left: 2px;
+  font-size: 10px;
+  box-shadow: 1px 1px 0 #000;
+}
+
+.retro-window-body {
+  padding: 20px;
+  text-align: center;
+  color: #000; /* Assure que le texte est noir */
+}
+
+.search-bar-retro {
+  background: white;
+  border: 2px inset #C0C0C0;
+  padding: 5px;
+  position: relative;
+  margin: 15px 0;
+}
+
+#retro-search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: white; /* Fond blanc explicite */
+  color: black;
+}
+
+#typing-caret {
+  color: black;
+  animation: blink-caret 1s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.search-buttons-retro {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.retro-button, .search-buttons-retro button {
+  background: #C0C0C0;
+  border: 2px outset #C0C0C0;
+  padding: 5px 15px;
+  box-shadow: 1px 1px 1px #000;
+  color: #000;
+  cursor: pointer;
+}
+
+.search-buttons-retro button:active {
+  border-style: inset;
+}
+
+/* Styles pour la fenêtre de résultats */
+.results-body {
+  text-align: left;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.search-result {
+  margin-bottom: 15px;
+}
+
+.search-result a {
+  color: #0000FF;
+  text-decoration: underline;
+  font-size: 16px;
+}
+
+.search-result p {
+  color: #000;
+  margin: 2px 0;
+  font-size: 13px;
+}
+
+.search-result span {
+  color: #008000;
+  font-size: 12px;
+}
+
+/* Styles pour la fenêtre de téléchargement */
+#download-box-window {
+  width: 95%;
+  max-width: 400px;
+}
+
+.download-body {
+  padding: 15px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.download-progress-bar {
+  border: 2px inset #C0C0C0;
+  padding: 2px;
+  background-color: #fff;
+  margin: 10px 0;
+}
+
+#download-progress-fill {
+  width: 0%;
+  height: 20px;
+  background: #000080;
+}
+
+.download-details-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-size: 12px;
+}
+
+.download-footer {
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* Styles pour la fenêtre finale */
+.final-report {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.final-report p {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* ======================================================= */
+/*    STYLES RESPONSIVE ADDITIONNELS POUR LES ÉLÉMENTS COMPLEXES   */
+/* ======================================================= */
+
+/* --- Améliorations pour la modale Case Study sur mobile --- */
+@media (max-width: 768px) {
+  .case-study-window {
+    /* Occupe plus de place sur mobile pour une meilleure lisibilité */
+    width: 95%;
+    min-height: 400px;
+    font-size: 12px; /* On ajuste la taille de la police de base */
+  }
+
+  .case-study-window-body {
+    padding: 8px; /* Padding réduit pour maximiser l'espace */
+  }
+
+  /* On s'assure que le popup de contact ne soit pas trop grand */
+  .case-study-popup-window {
+    width: 90%;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+  }
+
+  .popup-body {
+      padding: 15px;
+      gap: 10px;
+  }
+}
+
+/* --- Styles responsifs pour la section Rétro (pour usage futur) --- */
+@media (max-width: 768px) {
+  .retro-container {
+    height: 90vh; /* On donne un peu plus d'espace vertical sur mobile */
+  }
+
+  .retro-window {
+      max-width: 90%; /* Fenêtre plus large sur mobile */
+  }
+
+  /* Ajustement de la taille de l'image du logo Google */
+  .retro-window-body img {
+      max-width: 150px !important;
+  }
+  
+  /* Ajustement de la taille de la police dans les fenêtres */
+  .search-result a { font-size: 14px; }
+  .search-result p { font-size: 12px; }
+  .search-result span { font-size: 11px; }
+
+  .download-body, .final-report p {
+      font-size: 13px;
+  }
+}

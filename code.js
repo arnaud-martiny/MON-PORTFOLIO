@@ -456,6 +456,12 @@ if (contactForm) {
         });
     }
 
+    // =======================================================
+    //   APPEL À LA FONCTION D'ANIMATION RÉTRO (CORRIGÉ)
+    // =======================================================
+    // On appelle la fonction pour la première fois avec les données de la langue actuelle.
+    initializeRetroAnimation(langData);
+
     // --- NOUVEAU : GESTION DE LA DATE DANS LE POP-UP D'ÉVOLUTION ---
     const evolutionPopupMessage = document.querySelector('#evolution-popup p[data-i18n="evolutionPopup.message"]');
     const evolutionPopupEl = document.getElementById('evolution-popup');
@@ -1072,7 +1078,7 @@ if (contactForm) {
       if (btn) {
         currentCaseStudyBtn = btn;
         const tooltipText = getNestedTranslation(translations[currentLang], "featuredProjects.caseStudyTooltip");
-        caseStudyTooltipEl.textContent = tooltipText || "Vous n'allez pas regretter le voyage ;-)";
+        caseStudyTooltipEl.textContent = tooltipText || "You won't regret the trip ;-)";
         caseStudyTooltipEl.style.display = 'block';
       }
     });
@@ -1092,4 +1098,90 @@ if (contactForm) {
       }
     });
   }
+
+  // =======================================================
+  //   ANIMATION DE LA SECTION RÉTRO METHODOLOGIE (VERSION CORRIGÉE ET ROBUSTE)
+  // =======================================================
+
+  // On enregistre les plugins une seule fois au début du script
+  gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+  // On garde une référence à notre animation pour pouvoir la détruire et la reconstruire
+  let retroTimeline; 
+
+  function initializeRetroAnimation(langData) {
+      // Si une animation précédente existe (ex: changement de langue), on la détruit proprement
+      if (retroTimeline) {
+          retroTimeline.kill();
+      }
+
+      const retroSection = document.getElementById('retro-methodology');
+      if (!retroSection || !langData.retroMethodologySection) {
+          console.error("Section Rétro ou données de traduction manquantes.");
+          return; // On arrête si la section ou les données n'existent pas
+      }
+
+      const searchWindow = document.getElementById('google-search-window');
+      const resultsWindow = document.getElementById('search-results-window');
+      const downloadWindow = document.getElementById('download-box-window');
+      const finalWindow = document.getElementById('final-report-window');
+
+      // On s'assure que tout est à son état initial
+      gsap.set([searchWindow, resultsWindow, downloadWindow, finalWindow], { display: 'none', opacity: 0 });
+      gsap.set('#typing-caret', { display: 'inline' });
+      gsap.set('#retro-search-input', { text: "" });
+
+      // On crée la timeline d'animation
+      retroTimeline = gsap.timeline({
+          scrollTrigger: {
+              trigger: retroSection,
+              start: "top top",
+              end: "+=6000", // Augmenté pour donner plus de temps
+              pin: true,
+              scrub: 1.5,
+          }
+      });
+
+      // Séquence d'animation
+      retroTimeline.to(searchWindow, { display: 'block', opacity: 1, duration: 0.5 })
+        .to('#retro-search-input', {
+            duration: 2,
+            text: {
+                value: langData.retroMethodologySection.searchQuery,
+            },
+            ease: "none"
+        })
+        .set('#typing-caret', { display: 'none' })
+        .to('#retro-search-btn', { scale: 0.95, duration: 0.1, repeat: 1, yoyo: true })
+        .to(searchWindow, { opacity: 0, display: 'none', duration: 0.5, delay: 0.5 })
+        .call(() => { 
+            const resultsData = langData.retroMethodologySection.results;
+            const resultsContainer = resultsWindow.querySelector('.retro-window-body');
+            resultsContainer.innerHTML = resultsData.map(r => `
+              <div class="search-result">
+                  <a href="#">${r.title}</a>
+                  <p>${r.description}</p>
+                  <span>${r.url}</span>
+              </div>
+            `).join('');
+        })
+        .to(resultsWindow, { display: 'block', opacity: 1, duration: 0.5 });
+        
+      // Boucle pour les téléchargements
+      const downloadsData = langData.retroMethodologySection.downloads;
+      downloadsData.forEach((download, index) => {
+          retroTimeline.to(downloadWindow, { display: 'block', opacity: 1, duration: 0.5, delay: 1 })
+            .call(() => {
+                document.getElementById('download-filename').textContent = download.filename;
+                document.getElementById('time-left').textContent = download.time;
+                gsap.set('#download-progress-fill', { width: '0%' });
+            })
+            .to('#download-progress-fill', { width: '100%', duration: 2, ease: "power1.inOut" })
+            .to(downloadWindow, { opacity: 0, display: 'none', duration: 0.5 });
+      });
+
+      retroTimeline.to(resultsWindow, { opacity: 0, display: 'none', duration: 0.5 })
+        .to(finalWindow, { display: 'block', opacity: 1, duration: 1 });
+  }
+
 });

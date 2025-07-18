@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Arnaud Martiny | Portfolio",
-    "description": "Portfolio of Arnaud Martiny — Multimedia Writing student at ISFSC. Discover my projects in web, design, Shopify, and e-learning."
+    "title": "Arnaud Martiny | Full-Stack Web Developer – Portfolio & Custom Development",
+    "description": "Passionate Full-Stack Developer based in Brussels. I turn your ideas into modern web applications, from UX/UI design in Figma to full development. Explore my projects and let's talk!"
   },
   "loader": {
     "welcome": "WELCOME TO MY UNIVERSE"
@@ -21,11 +21,11 @@
     "subtitle": "Full-Stack Developer & Digital Creative",
     "contactButton": "Contact Me"
   },
-  "about": {
+    "about": {
     "title": "ABOUT ME",
-    "paragraph1": "Passionate about technology, I love to explore every facet of a digital project.",
-    "paragraph2": "From creating a PHP website to developing the front-end of a showcase site and conducting UX/UI analysis, I have developed a strong versatility.",
-    "paragraph3": "This technical curiosity reflects my personality: eager for challenges, open to new experiences, and always ready to build—whether it's code or my next trip.",
+    "paragraph1": "For me, a website is much more than a showcase. It's the digital meeting point between an idea and its audience. My passion is to build this connection: to design web experiences that are not only beautiful but also logical, efficient, and intuitive.",
+    "paragraph2": "My Full-Stack approach allows me to manage this vision from A to Z. On the <strong>Back-End</strong>, I architect robust server logic and databases (PHP, MySQL) that form the application's backbone. On the <strong>Front-End</strong>, I sculpt every interaction to create a fluid and engaging user experience (UX/UI), where technology becomes invisible.",
+    "paragraph3": "This dual expertise is my greatest strength: it ensures total consistency between technology and design. Eager for challenges and meticulous, I approach every project—whether creating a custom platform or optimizing a Shopify store—with the same commitment: to deliver a reliable, effective digital product that you will be proud of.",
     "imageAlt": "Portrait of me to illustrate the About section",
     "skillsTags": [
       "Full-Stack Dev",
@@ -91,6 +91,37 @@
       }
     ]
   },
+  "retroMethodologySection": {
+  "searchQuery": "How to guarantee a web project's success?",
+  "results": [
+    {
+      "title": "Project_Strategy.pdf",
+      "description": "Complete analysis of needs, objectives, and targets. The foundation of any successful project.",
+      "url": "C:\\AM\\Method\\Step1_Strategy.doc"
+    },
+    {
+      "title": "UXUI_Mockups.zip",
+      "description": "Collection of interactive Figma prototypes and optimized user journeys.",
+      "url": "C:\\AM\\Method\\Step2_Design.psd"
+    },
+    {
+      "title": "FullStack_Development.exe",
+      "description": "Executable containing Back-End (PHP/SQL) and Front-End (JS/CSS) logic.",
+      "url": "C:\\AM\\Method\\Step3_Dev.bin"
+    },
+    {
+      "title": "Server_Launch.log",
+      "description": "Deployment report, performance tests, and follow-up plan.",
+      "url": "C:\\AM\\Method\\Step4_Launch.txt"
+    }
+  ],
+  "downloads": [
+    { "filename": "Strategy.zip", "time": "1,245 years" },
+    { "filename": "Design.zip", "time": "3,891 years" },
+    { "filename": "Final_Code.zip", "time": "8,112 years" },
+    { "filename": "Launch.zip", "time": "42 seconds" }
+  ]
+},
   "evolutionPopup": {
     "title": "Constantly Evolving Site",
     "message": "This portfolio is a live project! New features and animations are added regularly. Last update on {{date}}. Check back soon!"
@@ -155,72 +186,72 @@
   "footer": {
     "copyright": "© 2025 Arnaud Martiny. All rights reserved."
   },
-  "featuredProjects": {
-    "title": "My Web Creations",
-    "nowaTooltip": "Site under construction, available in a few weeks!",
-    "caseStudyButton": "View Case Study",
-    "caseStudyTooltip": "You won't regret the trip ;-)",
-    "items": [
-      {
-        "id": "portfolio",
-        "category": "Personal Portfolio",
-        "title": "Arnaud Martiny - Portfolio",
-        "imageSrc": "assets/img/preview-portfolio.png",
-        "imageAlt": "Preview of the Portfolio project",
-        "description": "The very site you are currently browsing! A modern portfolio designed to showcase my projects and skills, featuring custom CSS/JS animations and a fully responsive layout. The ultimate meta-project, and a true sandbox for experimentation.",
-        "tech": ["HTML", "CSS", "JavaScript", "GSAP", "i18n"],
-        "liveLink": "https://www.arnaud-martiny.be/",
-        "codeLink": "https://github.com/arnaud-martiny/MON-PORTFOLIO",
-        "caseStudy": {
+"featuredProjects": {
+  "title": "My Web Creations",
+  "nowaTooltip": "Site under construction, available in a few weeks!",
+  "caseStudyButton": "View Case Study",
+  "caseStudyTooltip": "You won't regret the trip ;-)",
+  "items": [
+    {
+      "id": "portfolio",
+      "category": "Personal Portfolio",
+      "title": "Arnaud Martiny - Portfolio",
+      "imageSrc": "assets/img/preview-portfolio.png",
+      "imageAlt": "Preview of the Portfolio project",
+      "description": "The very site you are currently browsing! A modern portfolio designed to showcase my projects and skills, featuring custom CSS/JS animations and a fully responsive layout. The ultimate meta-project, and a true sandbox for experimentation.",
+      "tech": ["HTML", "CSS", "JavaScript", "GSAP", "i18n"],
+      "liveLink": "https://www.arnaud-martiny.be/",
+      "codeLink": "https://github.com/arnaud-martiny/MON-PORTFOLIO",
+      "caseStudy": {
         "title": "C:\\Projects\\Portfolio_Meta.exe",
-        "briefTitle": "▸ The Initial Brief (mission.txt)",
-        "brief": "The objective was to design a portfolio that would be much more than just an online resume. It had to act as a true demonstration of my skills in front-end development, interaction design, and animation. The challenge was to create an immersive and memorable experience, coded entirely in \"vanilla\" (without major frameworks like React or Vue) to prove a fundamental mastery of web technologies.",
-        "roleTitle": "▸ My Role & Approach (strategy.doc)",
-        "role": "As the sole developer on this \"meta\" project, I took on all the roles: information architect, UX/UI designer to conceive each section, and front-end developer to write every line of code. The approach was \"mobile-first\" to ensure perfect responsiveness. Special care was given to performance optimization and creating a robust internationalization (i18n) system for a global reach.",
-        "toolsTitle": "▸ The Toolbox (./tools)",
-        "tools": "<strong>Languages:</strong> HTML5, CSS3, JavaScript (ES6+)\n<strong>Animation:</strong> GSAP (GreenSock Animation Platform) for all complex interactions and smooth transitions.\n<strong>Design:</strong> Figma for prototyping and mockup design.\n<strong>Internationalization (i18n):</strong> Custom-built system based on reading JSON files for a fully bilingual site.\n<strong>Tools:</strong> Git & GitHub for versioning."
+        "briefTitle": "▸ The Challenge (mission.txt)",
+        "brief": "How to create a portfolio that is more than a resume, but a true demonstration of skills? The goal was to build an immersive experience coded in 'vanilla' (without major frameworks) to prove a fundamental mastery of web technologies, interaction design, and performance optimization.",
+        "roleTitle": "▸ My Solution (strategy.doc)",
+        "role": "As the sole developer, I orchestrated everything: UX/UI design in Figma, front-end development in HTML/CSS/JS, and integration of complex animations with GSAP. The 'mobile-first' approach ensured perfect responsiveness, and I implemented a custom-built internationalization (i18n) system for global reach.",
+        "resultsTitle": "▸ Results & Learnings (changelog.log)",
+        "results": "The result is a high-performance, interactive website that is fully manageable via JSON files. This project allowed me to solidify my skills in front-end architecture, DOM optimization, and creating a memorable user experience from scratch."
       }
-      },
-      {
-        "id": "nowa-logistics",
-        "category": "Professional Showcase Website",
-        "title": "Nowa Logistics",
-        "imageSrc": "assets/img/preview-nowa-logistics.png",
-        "imageAlt": "Preview of the Nowa Logistics project",
-        "description": "Built during my internship at Nowa Market, this showcase site for their sustainable logistics business was developed from scratch. My role covered UX/UI design in Figma, front-end development, and the integration of a functional contact form.",
-        "tech": ["HTML", "CSS", "JavaScript", "Figma"],
-        "liveLink": "#",
-        "codeLink": "#",
-        "caseStudy": {
-          "title": "C:\\Projects\\Nowa_Logistics_Showcase.exe",
-          "briefTitle": "▸ The Initial Brief (mission.txt)",
-          "brief": "Nowa Market needed a professional and modern showcase website for its new branch 'Nowa Logistics'. The site had to clearly present the service, its ecological advantages, and allow for easy contact.",
-          "roleTitle": "▸ My Role & Approach (strategy.doc)",
-          "role": "I led the project from conception to launch. This included mockups and prototypes on Figma, pure HTML/CSS/JS front-end development for maximum performance, and the integration of a functional PHP form.",
-          "toolsTitle": "▸ The Toolbox (./tools)",
-          "tools": "<strong>Design:</strong> Figma\n<strong>Development:</strong> HTML5, CSS3, JavaScript\n<strong>Backend:</strong> PHP (for the form)"
-        }
-      },
-      {
-        "id": "fast-n-friends",
-        "category": "Student Project",
-        "title": "Fast 'N Friends",
-        "imageSrc": "assets/img/preview-FNF.png",
-        "imageAlt": "Preview of the Fast N Friends project",
-        "description": "A student carpooling website developed in PHP with WordPress as its CMS. This project was an excellent opportunity to learn user profile management, responsiveness, and database fundamentals on the fly.",
-        "tech": ["PHP", "WordPress", "CSS", "MySQL"],
-        "liveLink": "https://fastnfriends.emu.isfsc.be/home/",
-        "codeLink": "https://github.com/arnaud-martiny/Fast-N-Friends",
-                "caseStudy": {
-          "title": "C:\\Projects\\FastNFriends_Platform.exe",
-          "briefTitle": "▸ The Initial Brief (mission.txt)",
-          "brief": "The challenge for this academic project, carried out as a two-person team, was to build a 100% functional web platform for student carpooling. The specifications required complete user management (registration, login), a system for posting trip ads, and an efficient search engine, all based on a custom-designed relational database.",
-          "roleTitle": "▸ My Role & Approach (strategy.doc)",
-          "role": "As a co-developer, I took a 'full-stack' approach. My responsibilities covered the entire project lifecycle: writing the specifications, project management, and designing the UI/UX in Figma. On the technical side, I developed the WordPress theme from scratch, with no pre-made templates. This included front-end development for an intuitive user experience and back-end programming in PHP/SQL to automate all critical modules: profiles, sessions, trip posting, and search.",
-          "toolsTitle": "▸ The Toolbox (./tools)",
-          "tools": "<strong>Languages:</strong> PHP, SQL, CSS3, HTML5\n<strong>CMS:</strong> WordPress (100% Custom Theme)\n<strong>Database:</strong> MySQL\n<strong>Design & Prototyping:</strong> Figma\n<strong>Project Management:</strong> Specification writing, team collaboration."
-        }
+    },
+    {
+      "id": "nowa-logistics",
+      "category": "Professional Showcase Website",
+      "title": "Nowa Logistics",
+      "imageSrc": "assets/img/preview-nowa-logistics.png",
+      "imageAlt": "Preview of the Nowa Logistics project",
+      "description": "Built during my internship at Nowa Market, this showcase site for their sustainable logistics business was developed from scratch. My role covered UX/UI design in Figma, front-end development, and the integration of a functional contact form.",
+      "tech": ["HTML", "CSS", "JavaScript", "Figma"],
+      "liveLink": "#",
+      "codeLink": "#",
+      "caseStudy": {
+        "title": "C:\\Projects\\Nowa_Logistics_Showcase.exe",
+        "briefTitle": "▸ The Challenge (mission.txt)",
+        "brief": "The new entity 'Nowa Logistics' needed a professional showcase website to establish its credibility, present its sustainable logistics services, and generate qualified business leads. The challenge was to translate a business vision into an effective and modern digital tool.",
+        "roleTitle": "▸ My Solution (strategy.doc)",
+        "role": "I led this project from conception to delivery. After defining the site structure and user journey, I created mockups and prototypes in Figma. I then developed the site using pure HTML/CSS/JS for optimal performance and integrated a functional PHP contact form.",
+        "resultsTitle": "▸ Results & Learnings (changelog.log)",
+        "results": "The project resulted in a showcase site ready for launch, perfectly meeting the client's needs. This internship experience was crucial for learning how to manage a project in real-world conditions, collaborate with teams, and transform a business request into a finished product."
       }
-    ]
-  }
+    },
+    {
+      "id": "fast-n-friends",
+      "category": "Student Project",
+      "title": "Fast 'N Friends",
+      "imageSrc": "assets/img/preview-FNF.png",
+      "imageAlt": "Preview of the Fast N Friends project",
+      "description": "A student carpooling website developed in PHP with WordPress as its CMS. This project was an excellent opportunity to learn user profile management, responsiveness, and database fundamentals on the fly.",
+      "tech": ["PHP", "WordPress", "CSS", "MySQL"],
+      "liveLink": "https://fastnfriends.emu.isfsc.be/home/",
+      "codeLink": "https://github.com/arnaud-martiny/Fast-N-Friends",
+      "caseStudy": {
+        "title": "C:\\Projects\\FastNFriends_Platform.exe",
+        "briefTitle": "▸ The Challenge (mission.txt)",
+        "brief": "As part of this fictional academic project, the challenge was to build a 100% functional carpooling platform as a two-person team. The specifications required complete user management, an ad posting system, and a search engine, all based on a relational database.",
+        "roleTitle": "▸ My Solution (strategy.doc)",
+        "role": "My primary role focused on the database architecture (MySQL) and developing a large part of the back-end logic in PHP. I programmed the critical modules: profiles, sessions, trip posting, and search. I also contributed to the development of the custom WordPress theme to integrate these features.",
+        "resultsTitle": "▸ Results & Learnings (changelog.log)",
+        "results": "This project was a technical and collaborative success. It allowed me to practice advanced PHP/SQL skills, understand the challenges of collaboration via Git, and grasp the complexity of creating a dynamic web application from end to end."
+      }
+    }
+  ]
+}
 }

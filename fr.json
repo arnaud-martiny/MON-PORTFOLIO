@@ -1,8 +1,7 @@
 {
   "meta": {
-    "title": "Arnaud Martiny | Portfolio",
-    "description": "Portfolio de Arnaud Martiny — étudiant en Écriture Multimédia à l'ISFSC. Découvrez mes projets en web, design, Shopify et e-learning."
-  },
+    "title": "Arnaud Martiny | Développeur web Full-Stack – Portfolio & Créations sur mesure",
+    "description": "Développeur Full-Stack passionné basé à Bruxelles. Je transforme vos idées en applications web modernes, du design UX/UI sur Figma au développement. Découvrez mes projets et parlons-en !"  },
   "loader": {
     "welcome": "BIENVENUE DANS MON UNIVERS"
   },
@@ -23,9 +22,9 @@
   },
   "about": {
     "title": "À PROPOS DE MOI",
-    "paragraph1": "Passionné de technologie, j'aime explorer toutes les facettes d'un projet digital.",
-    "paragraph2": "De la création d'un site en PHP au développement front-end d'un site vitrine, en passant par l'analyse UX/UI, j'ai développé une grande polyvalence.",
-    "paragraph3": "Cette curiosité technique est le reflet de ma personnalité : avide de défis, ouvert aux nouvelles expériences et toujours prêt à construire, que ce soit du code ou mon prochain voyage.",
+    "paragraph1": "Pour moi, un site web est bien plus qu'une vitrine. C'est le point de rencontre digital entre une idée et son public. Ma passion est de construire cette rencontre : concevoir des expériences web qui sont non seulement belles, mais aussi logiques, performantes et intuitives.",
+    "paragraph2": "Mon approche Full-Stack me permet de piloter cette vision de A à Z. Côté <strong>Back-End</strong>, j'architecte des logiques serveur et des bases de données solides (PHP, MySQL) qui forment la colonne vertébrale de l'application. Côté <strong>Front-End</strong>, je sculpte chaque interaction pour créer une expérience utilisateur (UX/UI) fluide et engageante, où la technologie se fait oublier.",
+    "paragraph3": "Cette double compétence est ma plus grande force : elle garantit une cohérence totale entre la technique et le design. Avide de défis et méticuleux, j'aborde chaque projet – qu'il s'agisse de créer une plateforme sur mesure ou d'optimiser une boutique Shopify – avec le même engagement : livrer un produit digital fiable, efficace et dont vous serez fier.",
     "imageAlt": "Portrait de moi pour illustrer la section -À propos-",
     "skillsTags": [
       "Full-Stack Dev",
@@ -91,6 +90,37 @@
       }
     ]
   },
+ "retroMethodologySection": {
+  "searchQuery": "Comment garantir le succès d'un projet web ?",
+  "results": [
+    {
+      "title": "Strategie_Projet.pdf",
+      "description": "Analyse complète des besoins, objectifs et cibles. La fondation de tout projet réussi.",
+      "url": "C:\\AM\\Method\\Step1_Strategy.doc"
+    },
+    {
+      "title": "Maquettes_UXUI.zip",
+      "description": "Collection de prototypes interactifs Figma et de parcours utilisateurs optimisés.",
+      "url": "C:\\AM\\Method\\Step2_Design.psd"
+    },
+    {
+      "title": "Developpement_FullStack.exe",
+      "description": "Exécutable contenant la logique Back-End (PHP/SQL) et Front-End (JS/CSS).",
+      "url": "C:\\AM\\Method\\Step3_Dev.bin"
+    },
+    {
+      "title": "Lancement_Serveur.log",
+      "description": "Rapport de déploiement, tests de performance et plan de suivi.",
+      "url": "C:\\AM\\Method\\Step4_Launch.txt"
+    }
+  ],
+  "downloads": [
+    { "filename": "Strategie.zip", "time": "1,245 ans" },
+    { "filename": "Design.zip", "time": "3,891 ans" },
+    { "filename": "Code_Final.zip", "time": "8,112 ans" },
+    { "filename": "Lancement.zip", "time": "42 secondes" }
+  ]
+},
   "evolutionPopup": {
     "title": "Site en constante évolution",
     "message": "Ce portfolio est un projet vivant ! De nouvelles fonctionnalités et animations sont ajoutées régulièrement. Dernière mise à jour le {{date}}. Revenez bientôt !"
@@ -156,71 +186,71 @@
     "copyright": "© 2025 Arnaud Martiny. Tous droits réservés."
   },
   "featuredProjects": {
-    "title": "Mes Réalisations Web",
-    "nowaTooltip": "Site en construction, disponible dans quelques semaines !",
-    "caseStudyButton": "Voir le Case Study",
-    "caseStudyTooltip": "Vous n'allez pas regretter le voyage ;-)",
-    "items": [
-      {
-        "id": "portfolio",
-        "category": "Portfolio Personnel",
-        "title": "Arnaud Martiny - Portfolio",
-        "imageSrc": "assets/img/preview-portfolio.png",
-        "imageAlt": "Aperçu du projet Portfolio",
-        "description": "Le site sur lequel vous naviguez ! Un portfolio moderne conçu pour présenter mes projets et compétences, avec des animations CSS/JS custom et une structure entièrement responsive. Le projet méta par excellence, un vrai bac à sable pour expérimenter.",
-        "tech": ["HTML", "CSS", "JavaScript", "GSAP", "i18n"],
-        "liveLink": "https://www.arnaud-martiny.be/",
-        "codeLink": "https://github.com/arnaud-martiny/MON-PORTFOLIO",
-        "caseStudy": {
-          "title": "C:\\Projects\\Portfolio_Meta.exe",
-          "briefTitle": "▸ Le Brief Initial (la_mission.txt)",
-          "brief": "L'objectif était de concevoir un portfolio qui soit bien plus qu'un CV en ligne. Il devait agir comme une véritable démonstration de mes compétences en développement front-end, en design d'interaction et en animation. Le défi était de créer une expérience immersive et mémorable, codée entièrement en \"vanilla\" (sans frameworks majeurs comme React ou Vue) pour prouver une maîtrise fondamentale des technologies web.",
-          "roleTitle": "▸ Mon Rôle & Approche (strategie.doc)",
-          "role": "En tant que développeur unique sur ce projet \"méta\", j'ai endossé tous les rôles : architecte de l'information, designer UX/UI pour concevoir chaque section, et développeur front-end pour écrire chaque ligne de code. L'approche était \"mobile-first\" pour garantir une responsivité parfaite. Un soin particulier a été apporté à l'optimisation des performances et à la création d'un système de traduction (i18n) robuste pour une portée internationale.",
-          "toolsTitle": "▸ La Boîte à Outils (./tools)",
-          "tools": "<strong>Langages :</strong> HTML5, CSS3, JavaScript (ES6+)\n<strong>Animation :</strong> GSAP (GreenSock Animation Platform) pour toutes les interactions complexes et les transitions fluides.\n<strong>Design :</strong> Figma pour le prototypage et la conception des maquettes.\n<strong>Internationalisation (i18n) :</strong> Système sur-mesure basé sur la lecture de fichiers JSON pour un site entièrement bilingue.\n<strong>Outils :</strong> Git & GitHub pour le versioning."
-        }
-      },
-      {
-        "id": "nowa-logistics",
-        "category": "Site Vitrine Professionnel",
-        "title": "Nowa Logistics",
-        "imageSrc": "assets/img/preview-nowa-logistics.png",
-        "imageAlt": "Aperçu du projet Nowa Logistics",
-        "description": "Réalisé durant mon stage chez Nowa Market, ce site vitrine pour leur activité de logistique durable a été développé de A à Z. Mon rôle couvrait le design UX/UI sur Figma, le développement front-end et l'intégration d'un formulaire de contact fonctionnel.",
-        "tech": ["HTML", "CSS", "JavaScript", "Figma"],
-        "liveLink": "#",
-        "codeLink": "#",
-        "caseStudy": {
-          "title": "C:\\Projects\\Nowa_Logistics_Showcase.exe",
-          "briefTitle": "▸ Le Brief Initial (la_mission.txt)",
-          "brief": "Nowa Market avait besoin d'un site vitrine professionnel et moderne pour sa nouvelle branche 'Nowa Logistics'. Le site devait présenter clairement le service, ses avantages écologiques et permettre une prise de contact facile.",
-          "roleTitle": "▸ Mon Rôle & Approche (strategie.doc)",
-          "role": "J'ai mené le projet de la conception à la mise en ligne. Cela incluait les maquettes et prototypes sur Figma, le développement front-end en HTML/CSS/JS pur pour une performance maximale, et l'intégration d'un formulaire PHP fonctionnel.",
-          "toolsTitle": "▸ La Boîte à Outils (./tools)",
-          "tools": "<strong>Design :</strong> Figma\n<strong>Développement :</strong> HTML5, CSS3, JavaScript\n<strong>Backend :</strong> PHP (pour le formulaire)"
-        }
-      },
-      {
-        "id": "fast-n-friends",
-        "category": "Projet Étudiant",
-        "title": "Fast 'N Friends",
-        "imageSrc": "assets/img/preview-FNF.png",
-        "imageAlt": "Aperçu du projet Fast N Friends",
-        "description": "Un site de covoiturage étudiant développé en PHP avec WordPress comme CMS. Ce projet a été une excellente opportunité d'apprendre sur le tas la gestion de profils utilisateurs, la responsivité et les bases de données.",
-        "tech": ["PHP", "WordPress", "CSS", "MySQL"],
-        "liveLink": "https://fastnfriends.emu.isfsc.be/home/",
-        "codeLink": "https://github.com/arnaud-martiny/Fast-N-Friends",
-       "caseStudy": {
-          "title": "C:\\Projects\\FastNFriends_Platform.exe",
-          "briefTitle": "▸ Le Brief Initial (la_mission.txt)",
-          "brief": "Le défi de ce projet académique, réalisé en binôme, était de construire une plateforme web 100% fonctionnelle de covoiturage pour étudiants. Le cahier des charges imposait une gestion complète des utilisateurs (inscription, connexion), un système de publication d'annonces de trajets et un moteur de recherche performant, le tout reposant sur une base de données relationnelle conçue pour le projet.",
-          "roleTitle": "▸ Mon Rôle & Approche (strategie.doc)",
-          "role": "En tant que co-développeur, j'ai adopté une approche 'full-stack'. Mes responsabilités couvraient l'intégralité du projet : rédaction du cahier des charges, gestion de projet, maquettage et design de l'interface sur Figma. Sur le plan technique, j'ai développé le thème WordPress de A à Z, sans template pré-fait. Cela incluait le développement front-end pour une expérience utilisateur intuitive et la programmation back-end en PHP/SQL pour automatiser tous les modules critiques : profils, sessions, publication et recherche de trajets.",
-          "toolsTitle": "▸ La Boîte à Outils (./tools)",
-          "tools": "<strong>Langages :</strong> PHP, SQL, CSS3, HTML5\n<strong>CMS :</strong> WordPress (Thème 100% sur-mesure)\n<strong>Base de données :</strong> MySQL\n<strong>Design & Prototypage :</strong> Figma\n<strong>Gestion de Projet :</strong> Rédaction de cahier des charges, collaboration en binôme."
-        }
+  "title": "Mes Réalisations Web",
+  "nowaTooltip": "Site en construction, disponible dans quelques semaines !",
+  "caseStudyButton": "Voir le Case Study",
+  "caseStudyTooltip": "Vous n'allez pas regretter le voyage ;-)",
+  "items": [
+    {
+      "id": "portfolio",
+      "category": "Portfolio Personnel",
+      "title": "Arnaud Martiny - Portfolio",
+      "imageSrc": "assets/img/preview-portfolio.png",
+      "imageAlt": "Aperçu du projet Portfolio",
+      "description": "Le site sur lequel vous naviguez ! Un portfolio moderne conçu pour présenter mes projets et compétences, avec des animations CSS/JS custom et une structure entièrement responsive. Le projet méta par excellence, un vrai bac à sable pour expérimenter.",
+      "tech": ["HTML", "CSS", "JavaScript", "GSAP", "i18n"],
+      "liveLink": "https://www.arnaud-martiny.be/",
+      "codeLink": "https://github.com/arnaud-martiny/MON-PORTFOLIO",
+      "caseStudy": {
+        "title": "C:\\Projects\\Portfolio_Meta.exe",
+        "briefTitle": "▸ Le Défi (la_mission.txt)",
+        "brief": "Comment créer un portfolio qui soit plus qu'un CV, mais une véritable démonstration de compétences ? L'objectif était de construire une expérience immersive codée en 'vanilla' (sans frameworks majeurs) pour prouver une maîtrise fondamentale des technologies web, du design d'interaction et de l'optimisation des performances.",
+        "roleTitle": "▸ Ma Solution (strategie.doc)",
+        "role": "En tant qu'unique développeur, j'ai tout orchestré : design UX/UI sur Figma, développement front-end en HTML/CSS/JS, et intégration d'animations complexes avec GSAP. L'approche 'mobile-first' a garanti une responsivité parfaite, et j'ai mis en place un système de traduction (i18n) sur-mesure pour une portée internationale.",
+        "resultsTitle": "▸ Résultats & Apprentissages (changelog.log)",
+        "results": "Le résultat est un site performant, interactif et entièrement administrable via des fichiers JSON. Ce projet m'a permis de solidifier mes compétences en architecture front-end, en optimisation du DOM et en création d'une expérience utilisateur mémorable à partir d'une page blanche."
       }
-    ]
-  }
+    },
+    {
+      "id": "nowa-logistics",
+      "category": "Site Vitrine Professionnel",
+      "title": "Nowa Logistics",
+      "imageSrc": "assets/img/preview-nowa-logistics.png",
+      "imageAlt": "Aperçu du projet Nowa Logistics",
+      "description": "Réalisé durant mon stage chez Nowa Market, ce site vitrine pour leur activité de logistique durable a été développé de A à Z. Mon rôle couvrait le design UX/UI sur Figma, le développement front-end et l'intégration d'un formulaire de contact fonctionnel.",
+      "tech": ["HTML", "CSS", "JavaScript", "Figma"],
+      "liveLink": "#",
+      "codeLink": "#",
+      "caseStudy": {
+        "title": "C:\\Projects\\Nowa_Logistics_Showcase.exe",
+        "briefTitle": "▸ Le Défi (la_mission.txt)",
+        "brief": "La nouvelle entité 'Nowa Logistics' avait besoin d'un site vitrine professionnel pour asseoir sa crédibilité, présenter son offre de logistique durable et générer des contacts commerciaux qualifiés. Le défi était de traduire une vision business en un outil digital efficace et moderne.",
+        "roleTitle": "▸ Ma Solution (strategie.doc)",
+        "role": "J'ai mené ce projet de la conception à la livraison. Après avoir défini l'arborescence et le parcours utilisateur, j'ai créé les maquettes et prototypes sur Figma. J'ai ensuite développé le site en HTML/CSS/JS pur pour une performance optimale et intégré un formulaire de contact PHP fonctionnel.",
+        "resultsTitle": "▸ Résultats & Apprentissages (changelog.log)",
+        "results": "Le projet a abouti à un site vitrine prêt à être mis en ligne, répondant parfaitement aux besoins du client. Cette expérience en stage a été cruciale pour apprendre à gérer un projet en conditions réelles, à collaborer avec des équipes et à transformer une demande commerciale en un produit fini."
+      }
+    },
+    {
+      "id": "fast-n-friends",
+      "category": "Projet Étudiant",
+      "title": "Fast 'N Friends",
+      "imageSrc": "assets/img/preview-FNF.png",
+      "imageAlt": "Aperçu du projet Fast N Friends",
+      "description": "Un site de covoiturage étudiant développé en PHP avec WordPress comme CMS. Ce projet a été une excellente opportunité d'apprendre sur le tas la gestion de profils utilisateurs, la responsivité et les bases de données.",
+      "tech": ["PHP", "WordPress", "CSS", "MySQL"],
+      "liveLink": "https://fastnfriends.emu.isfsc.be/home/",
+      "codeLink": "https://github.com/arnaud-martiny/Fast-N-Friends",
+     "caseStudy": {
+        "title": "C:\\Projects\\FastNFriends_Platform.exe",
+        "briefTitle": "▸ Le Défi (la_mission.txt)",
+        "brief": "Dans le cadre de ce projet académique fictif, le défi était de construire en binôme une plateforme de covoiturage 100% fonctionnelle. Le cahier des charges imposait une gestion complète des utilisateurs, un système de publication d'annonces et un moteur de recherche, le tout reposant sur une base de données relationnelle.",
+        "roleTitle": "▸ Ma Solution (strategie.doc)",
+        "role": "Mon rôle principal s'est concentré sur l'architecture de la base de données (MySQL) et le développement d'une grande partie de la logique back-end en PHP. J'ai programmé les modules critiques : profils, sessions, publication et recherche de trajets. J'ai également contribué au développement du thème WordPress sur-mesure pour intégrer ces fonctionnalités.",
+        "resultsTitle": "▸ Résultats & Apprentissages (changelog.log)",
+        "results": "Ce projet a été un succès technique et collaboratif. Il m'a permis de mettre en pratique des compétences avancées en PHP/SQL, de comprendre les enjeux de la collaboration via Git, et de saisir la complexité de la création d'une application web dynamique de bout en bout."
+      }
+    }
+  ]
+}
 }

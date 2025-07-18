@@ -1,9 +1,55 @@
 <!DOCTYPE html>
 <html lang="fr">
   <!-- La lang sera mise à jour par JS -->
-  <head>
-    <!-- GOOGLE ANALYTICS : -->
-    <!-- Google Tag Manager -->
+<head>
+    <!-- ============== META ESSENTIELLES ============== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO : Titre et Description statiques-->
+    <title>Arnaud Martiny | Développeur web Full-Stack – Portfolio & Créations sur mesure</title>
+    <meta
+      name="description"
+      content="Développeur Full-Stack passionné basé à Bruxelles. Je transforme vos idées en applications web modernes, du design UX/UI sur Figma au développement. Découvrez mes projets et parlons-en !"
+    />
+
+    <!-- SEO : URL Canonique -->
+    <link rel="canonical" href="https://www.arnaud-martiny.be/" />
+
+
+    <!-- ============== FAVICONS (Générés par RealFaviconGenerator) - C'est parfait ! ============== -->
+     <link rel="icon" href="assets/img/FAVICON/FAVICON.jpg" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/FAVICON/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/FAVICON/favicon-96x96.png" />
+    <link rel="icon" type="image/svg+xml" href="/assets/img/FAVICON/favicon.svg" />
+    <link rel="manifest" href="/assets/img/FAVICON/site.webmanifest" />
+    <link rel="shortcut icon" href="/assets/img/FAVICON/favicon.ico" />
+    <!-- Remarque : Le fichier .ico est inclus via "shortcut icon". Les autres tailles de PNG sont référencées dans le manifest. -->
+
+
+    <!-- ============== META POUR LE PARTAGE (OPEN GRAPH & TWITTER CARDS) ============== -->
+    <!-- Open Graph (pour Facebook, LinkedIn, etc.) -->
+    <meta property="og:title" content="Arnaud Martiny | Développeur web Full-Stack" />
+    <meta property="og:description" content="Je transforme vos idées en applications web modernes et performantes. Découvrez mon portfolio." />
+    <meta property="og:image" content="https://www.arnaud-martiny.be/assets/img/preview-portfolio.png" />
+    <meta property="og:url" content="https://www.arnaud-martiny.be/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Arnaud Martiny | Développeur web Full-Stack" />
+    <meta name="twitter:description" content="Je transforme vos idées en applications web modernes et performantes. Découvrez mon portfolio." />
+    <meta name="twitter:image" content="https://www.arnaud-martiny.be/assets/img/preview-portfolio.png" />
+
+
+    <!-- ============== STYLES ET SCRIPTS ============== -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" /> 
+
+    <!-- GOOGLE ANALYTICS : Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
@@ -17,26 +63,7 @@
       })(window, document, "script", "dataLayer", "GTM-PZPZXWP5");
     </script>
     <!-- End Google Tag Manager -->
-
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Meta tags gérés par i18n -->
-    <title data-i18n="meta.title">Arnaud Martiny | Portfolio</title>
-    <meta
-      name="description"
-      content="Portfolio de Arnaud Martiny — étudiant en Écriture Multimédia à l'ISFSC. Découvrez mes projets en web, design, Shopify et e-learning."
-      data-i18n-attr-content="meta.description"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="icon" href="assets/img/FAVICON.jpg" type="image/x-icon" />
-
-    <link rel="stylesheet" href="style.css" /> 
-  </head>
+</head>
 
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -278,6 +305,72 @@
       <div id="skills-infobox"></div>
     </section>
 
+<!-- ======================================================= -->
+    <!--          SECTION RÉTRO METHODOLOGIE (MISE EN COMMENTAIRE) -->
+    <!-- ======================================================= -->
+    <!--
+    <section id="retro-methodology" class="retro-methodology-section">
+        <div class="retro-container">
+            <div id="google-search-window" class="retro-window">
+                <div class="retro-title-bar">
+                    <span>Google - AM-Explorer</span>
+                    <div class="retro-title-buttons"><span>_</span><span>□</span><span>X</span></div>
+                </div>
+                <div class="retro-window-body">
+                    <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google Logo" style="max-width: 180px; margin-bottom: 20px;" />
+                    <div class="search-bar-retro">
+                        <input type="text" id="retro-search-input" readonly />
+                        <span id="typing-caret">|</span>
+                    </div>
+                    <div class="search-buttons-retro">
+                        <button id="retro-search-btn" data-i18n="retroMethodologySection.searchButton">Recherche Google</button>
+                        <button data-i18n="retroMethodologySection.luckyButton">J'ai de la chance</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="search-results-window" class="retro-window">
+                <div class="retro-title-bar">
+                    <span data-i18n="retroMethodologySection.resultsTitle">Résultats de la recherche - AM-Explorer</span>
+                    <div class="retro-title-buttons"><span>_</span><span>□</span><span>X</span></div>
+                </div>
+                <div class="retro-window-body results-body"></div>
+            </div>
+            
+            <div id="download-box-window" class="retro-window">
+                 <div class="retro-title-bar">
+                    <span id="download-title">Téléchargement en cours...</span>
+                 </div>
+                <div class="download-body">
+                    <p>Sauvegarde du fichier :<br><strong id="download-filename">filename.zip</strong></p>
+                    <div class="download-progress-bar">
+                        <div id="download-progress-fill"></div>
+                    </div>
+                    <div class="download-details-container">
+                        <span>Taille : 2,45 Mo</span>
+                        <span>Temps restant : <span id="time-left">calcul...</span></span>
+                    </div>
+                    <div class="download-footer">
+                        <button class="retro-button">Annuler</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="final-report-window" class="retro-window">
+                 <div class="retro-title-bar">
+                    <span>Rapport Final</span>
+                    <div class="retro-title-buttons"><span>_</span><span>□</span><span>X</span></div>
+                </div>
+                 <div class="retro-window-body final-report">
+                    <img src="assets/img/FAVICON/favicon-96x96.png" alt="Success icon" style="width: 64px; height: 64px;" />
+                    <p>Processus terminé avec succès.<br>Votre projet est prêt à être lancé.</p>
+                    <button class="retro-button">OK</button>
+                 </div>
+            </div>
+        </div>
+    </section>
+    -->
+
     <!-- ======================================================== -->
     <!--          NOUVELLES SECTIONS LANGUES (V1: JSON)           -->
     <!-- ======================================================== -->
@@ -454,6 +547,12 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+
+     <!-- ✅ AJOUTEZ CETTE LIGNE CI-DESSOUS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/TextPlugin.min.js"></script>
+
     <script src="code.js" defer></script>
 
     <!-- ✅ AJOUTEZ LE SCRIPT WEB3FORMS ICI -->

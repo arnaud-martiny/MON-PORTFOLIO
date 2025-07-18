@@ -1,15 +1,3 @@
 Note de ce que je voudrais mettre :
 
-Règler toute les animations
-
-Trouver des photos de mes projets
-
-Modale des compétences, devoir les alligner avec AM. 
-
-Pour le reste, couleur des barres de langues
-
-Contenu de tout le site et puis finish
-
-Finaliser le languages.json ==> fait ! 
-
-Pour les planètes, modifier le Z-INDEX
+- encore a voir
