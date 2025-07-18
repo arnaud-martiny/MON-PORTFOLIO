@@ -1500,10 +1500,13 @@ a:not(.btn):not(.social-icon):hover { opacity: 0.7; }
 /* ======================================================= */
 /*  3. Breakpoint pour Mobiles (~768px et moins)           */
 /* ======================================================= */
+/* ======================================================= */
+/*  3. Breakpoint pour Mobiles (~768px et moins) - VÉRIFIÉ  */
+/* ======================================================= */
 @media (max-width: 768px) {
   /* --- AJUSTEMENTS GÉNÉRAUX --- */
   body {
-    font-size: 15px; /* On augmente légèrement la taille de base pour la lisibilité */
+    font-size: 15px;
   }
   .about-section, .featured-projects-section, .experience-section, .contact-section {
     padding-top: 6rem;
@@ -1516,22 +1519,45 @@ a:not(.btn):not(.social-icon):hover { opacity: 0.7; }
   /* --- NAVIGATION & MENU MOBILE --- */
   .nav-right-group,
   .nav-container > .nav-links,
-  .language-switcher {
-    display: none; /* On cache toute la nav desktop */
+  .nav-container > .language-switcher {
+    display: none;
   }
-  #hamburger-btn {
-    display: block; /* On affiche le bouton hamburger */
-  }
+
   .nav-container {
-    padding: 1rem 1.5rem; /* Padding plus petit pour la nav mobile */
+    padding: 1rem 1.5rem;
   }
+  
+  /* --- STYLES DU BOUTON HAMBURGER --- */
+  #hamburger-btn {
+    display: block;
+    z-index: 1001; /* Doit être supérieur au z-index du menu (1000) */
+  }
+
+  /* ✅ LA CORRECTION DÉFINITIVE EST ICI */
+  body.mobile-menu-open #hamburger-btn {
+    position: fixed; /* Le bouton est positionné par rapport à l'écran */
+    top: 1rem;     /* Pour qu'il reste visible */
+    right: 1.5rem; /* Par-dessus le menu */
+  }
+  
   body.light-mode .nav-container.scrolled,
   .nav-container.scrolled {
-      background-color: transparent; /* On enlève le fond au scroll sur mobile */
+      background-color: transparent;
       backdrop-filter: none;
       box-shadow: none;
       padding-top: 1rem;
       padding-bottom: 1rem;
+  }
+
+  /* --- DISPOSITION DU BAS DU MENU MOBILE --- */
+  .mobile-menu-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 1rem;
+    gap: 1.5rem;
   }
 
   /* --- HERO HEADER --- */
@@ -1549,9 +1575,9 @@ a:not(.btn):not(.social-icon):hover { opacity: 0.7; }
 
   /* --- COMPÉTENCES (SYSTÈME SOLAIRE) --- */
   #skills-scene-container {
-    height: 65vh; /* On réduit la hauteur */
+    height: 65vh;
     min-height: 550px;
-    transform: scale(0.9); /* On réduit la taille globale de la scène */
+    transform: scale(0.9);
   }
 
   /* --- PROJETS --- */
@@ -1561,11 +1587,10 @@ a:not(.btn):not(.social-icon):hover { opacity: 0.7; }
   .project-title {
     font-size: 1.8rem;
   }
-  /* La logique des boutons a été déplacée dans le breakpoint 992px, donc elle s'applique déjà ici */
   
   /* --- COMPTEURS --- */
   .counter-section {
-    grid-template-columns: 1fr 1fr; /* 2 compteurs par ligne */
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
   }
   .counter-number {
@@ -1592,15 +1617,22 @@ a:not(.btn):not(.social-icon):hover { opacity: 0.7; }
   /* NOUVELLE RÈGLE POUR LA GRILLE DES BOUTONS */
   .project-links {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Crée une grille à 2 colonnes égales */
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
 
-  /* On fait en sorte que le bouton "Case Study" prenne toute la largeur de la grille */
   .project-links .btn-case-study {
-    grid-column: 1 / -1; /* Le bouton s'étend de la première à la dernière colonne */
+    grid-column: 1 / -1;
     text-align: center;
   }
+
+  /* Dans votre fichier style.css, à l'intérieur de @media (max-width: 768px) */
+
+body.mobile-menu-open #hamburger-btn {
+  position: fixed; /* Rend le bouton indépendant du défilement et le positionne par rapport à la fenêtre */
+  top: 1rem;     /* Le place en haut */
+  right: 1.5rem; /* Le place à droite */
+}
 }
 
 
@@ -1914,4 +1946,27 @@ a:not(.btn):not(.social-icon):hover { opacity: 0.7; }
   .download-body, .final-report p {
       font-size: 13px;
   }
+}
+
+/* ======================================================= */
+/*    STYLES POUR LE NOUVEAU BOUTON DE FERMETURE MOBILE    */
+/* ======================================================= */
+#mobile-menu-close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--primary); /* Utilise la couleur du texte du thème actuel */
+  font-size: 2.5rem; /* Rend le "X" bien visible */
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 1002; /* S'assure qu'il est au-dessus de tout le reste dans le menu */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+#mobile-menu-close-btn:hover {
+  transform: scale(1.1) rotate(90deg);
+  color: #ff6347; /* Un petit effet de couleur au survol */
 }

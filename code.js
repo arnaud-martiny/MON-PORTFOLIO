@@ -833,11 +833,22 @@ if (contactForm) {
   const mobileMenu = document.getElementById("mobile-menu");
   const mobileMenuLinks = mobileMenu.querySelectorAll("a");
   const bodyEl = document.body;
+  
+  // ===== AJOUTEZ LE CODE CI-DESSOUS =====
+  const mobileMenuCloseBtn = document.getElementById('mobile-menu-close-btn');
 
   if (hamburgerBtn && mobileMenu) {
     hamburgerBtn.addEventListener("click", () => {
       bodyEl.classList.toggle("mobile-menu-open");
     });
+
+    // On fait fonctionner le nouveau bouton "X"
+    if (mobileMenuCloseBtn) {
+      mobileMenuCloseBtn.addEventListener('click', () => {
+        bodyEl.classList.remove('mobile-menu-open');
+      });
+    }
+    // ===================================
 
     mobileMenuLinks.forEach((link) => {
       link.addEventListener("click", () => {
@@ -845,6 +856,8 @@ if (contactForm) {
       });
     });
   }
+
+
 
   // --- SYNCHRONISATION DES BOUTONS DE THÈME ET LANGUE ---
   const mobileThemeSwitcher = document.getElementById("theme-switcher-mobile");
