@@ -1970,3 +1970,23 @@ body.mobile-menu-open #hamburger-btn {
   transform: scale(1.1) rotate(90deg);
   color: #ff6347; /* Un petit effet de couleur au survol */
 }
+
+/* Ajoutez ce code à la fin de votre fichier style.css */
+.nav-wtf-btn {
+  background-color: #ff4500; /* Une couleur qui détonne un peu */
+  color: var(--secondary);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+}
+
+.nav-wtf-btn:hover {
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 0 20px rgba(255, 69, 0, 0.8);
+}

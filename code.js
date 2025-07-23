@@ -1202,3 +1202,49 @@ if (contactForm) {
   }
 
 });
+
+// Ajoutez ceci à la fin de votre fichier code.js, juste avant l'accolade fermante de DOMContentLoaded
+
+const wtfButton = document.getElementById('wtf-btn');
+
+if (wtfButton) {
+  
+  // Fonction pour obtenir une couleur aléatoire vraiment horrible
+  const getRandomHorribleColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
+  // Fonction qui applique le carnage visuel
+  const unleashVisualCarnage = () => {
+    // 1. On applique Comic Sans partout
+    document.body.style.fontFamily = 'Comic Sans MS, cursive, sans-serif';
+
+    // 2. On sélectionne une panoplie d'éléments à détruire
+    const elementsToRuin = document.querySelectorAll('body, header, section, .btn, h1, h2, h3, p, .logo, .skill-tag, .project-card, .timeline-content, footer, .about-image-placeholder, .nav-container');
+
+    // 3. On applique des couleurs de fond et de texte aléatoires et horribles
+    elementsToRuin.forEach(el => {
+      el.style.backgroundColor = getRandomHorribleColor();
+      el.style.color = getRandomHorribleColor();
+      // On s'assure que les bordures aussi sont horribles
+      el.style.borderColor = getRandomHorribleColor();
+    });
+
+    // 4. On transforme le bouton WTF en bouton "retour à la normale"
+    wtfButton.textContent = "AU SECOURS !";
+    wtfButton.style.backgroundColor = 'white';
+    wtfButton.style.color = 'black';
+    wtfButton.onclick = () => {
+      // La solution la plus simple et efficace pour tout annuler : recharger la page.
+      location.reload(); 
+    };
+  };
+
+  // On lie la fonction de carnage au premier clic du bouton
+  wtfButton.onclick = unleashVisualCarnage;
+}
