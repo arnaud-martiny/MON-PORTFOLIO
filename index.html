@@ -47,6 +47,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&family=VT323&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css" /> 
 
     <!-- GOOGLE ANALYTICS : Google Tag Manager -->
@@ -99,7 +102,7 @@
 
       <!-- NOUVEAU : Le groupe de droite (liens + switcher de thème) -->
       <div class="nav-right-group">
-            <button id="wtf-btn" class="nav-wtf-btn" aria-label="Rebelle va">Ne  pas cliquer</button>
+        <button id="wtf-btn" class="nav-wtf-btn" aria-label="Rebelle va" data-i18n="nav.wtfButton">Ne pas cliquer</button>
               <!-- NOUVEAU BOUTON CV (placé avant les icônes sociales) -->
                   <!-- Dans la div .nav-right-group -->
                   <a href="assets/CV/CV-Arnaud-Martiny-FR.pdf"
@@ -407,6 +410,65 @@
         <!-- Les projets seront générés dynamiquement par JavaScript ici -->
       </div>
     </section>
+
+    <!-- ======================================================== -->
+    <!--         NOUVELLE SECTION : TAROT DES COMPÉTENCES         -->
+    <!-- ======================================================== -->
+    <section id="tarot-skills-section" class="tarot-skills-section reveal">
+        <h2 class="section-heading" data-i18n="tarotSkillsSection.title">
+            MON JEU DE COMPÉTENCES
+        </h2>
+        <div class="tarot-container" id="tarot-container">
+            <!-- Les cartes de tarot seront injectées ici par JavaScript -->
+        </div>
+    </section>
+
+    <!-- NOUVELLE SECTION : MACHINE À SOUS RÉTRO
+    <section id="soft-skills-slot" class="soft-skills-slot-section reveal">
+       <h2 class="section-heading" data-i18n="softSkillsSlot.title">
+        LA COMBINAISON GAGNANTE
+      </h2>
+      <div class="slot-machine-container">
+        <div id="slot-machine-window" class="retro-window">
+          <div class="retro-title-bar">
+            <span>Soft_Skills_Combinator.exe</span>
+            <div class="retro-title-buttons"><span>_</span><span>□</span><span>X</span></div>
+          </div>
+          <div class="retro-window-body">
+            <div class="reels-container">
+              <div class="reel" id="reel1"></div>
+              <div class="reel" id="reel2"></div>
+              <div class="reel" id="reel3"></div>
+            </div>
+            <div id="slot-payout-display">
+              <p data-i18n="softSkillsSlot.initialText">Appuyez sur le levier pour découvrir une synergie de compétences !</p>
+            </div>
+          </div>
+        </div>
+        <div id="slot-lever">
+          <div class="lever-stick"></div>
+          <div class="lever-handle"></div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- SECTION TÉMOIGNAGES (CORRIGÉE ET FONCTIONNELLE) -->
+    <!--           
+    <section id="testimonials" class="testimonials-section reveal">
+        <h2 class="section-heading" data-i18n="decryptionTestimonials.title">
+            ILS M'ONT FAIT CONFIANCE
+        </h2>
+        <div id="testimonial-terminal" class="testimonial-terminal">
+            <div id="testimonial-sources-list" class="testimonial-sources-list">
+                  <p class="placeholder-prompt" data-i18n="decryptionTestimonials.user_prompt_hint">Choisissez une transmission...</p>
+            </div>
+            <div id="testimonial-display" class="testimonial-display">
+                <p class="placeholder" data-i18n="decryptionTestimonials.placeholder">[ ATTENTE DE COMMANDE... ]</p>
+            </div>
+        </div>
+    </section>
+    -->
+
 
     <!-- Section Expérience -->
     <section id="experience" class="experience-section">

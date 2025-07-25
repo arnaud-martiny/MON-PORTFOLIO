@@ -319,7 +319,9 @@ if (contactForm) {
         skillPlanet.style.setProperty("--direction", direction);
         planetContainer.appendChild(skillPlanet);
         orbitPath.appendChild(planetContainer);
-        solarSystem.appendChild(orbitPath);
+        
+        solarSystem.appendChild(orbitPath); // CETTE LIGNE A ÉTÉ AJOUTÉE
+
         gsap.to(orbitPath, {
           rotation: direction === "normal" ? 360 : -360,
           duration: duration,
@@ -436,7 +438,6 @@ if (contactForm) {
       });
     }
 
-
     // --- NOUVEAU : GESTION DE L'INFO-BULLE POUR NOWA LOGISTICS ---
     const nowaLiveLinkBtn = document.getElementById('live-link-nowa-logistics');
     if (nowaLiveLinkBtn) {
@@ -461,6 +462,16 @@ if (contactForm) {
     // =======================================================
     // On appelle la fonction pour la première fois avec les données de la langue actuelle.
     initializeRetroAnimation(langData);
+
+    // Correction de l'appel de fonction
+    initializeTestimonialsTerminal(langData);
+    
+    // =======================================================
+    //   APPEL AUX NOUVELLES FONCTIONS DE SOFT SKILLS
+    // =======================================================
+    initializeTarotDeck(langData);
+    initializeSlotMachine(langData);
+
 
     // --- NOUVEAU : GESTION DE LA DATE DANS LE POP-UP D'ÉVOLUTION ---
     const evolutionPopupMessage = document.querySelector('#evolution-popup p[data-i18n="evolutionPopup.message"]');
@@ -514,7 +525,7 @@ if (contactForm) {
       gsap.to(cursorFollower, { x: e.clientX, y: e.clientY, duration: 0.3 });
     });
 
-    const interactableElements = "a, button, input, textarea";
+    const interactableElements = "a, button, input, textarea, .skill-card, #slot-lever";
 
     document.addEventListener("mouseover", (e) => {
       const target = e.target.closest(interactableElements);
@@ -1134,7 +1145,7 @@ if (contactForm) {
 
       const retroSection = document.getElementById('retro-methodology');
       if (!retroSection || !langData.retroMethodologySection) {
-          console.error("Section Rétro ou données de traduction manquantes.");
+          //console.error("Section Rétro ou données de traduction manquantes.");
           return; // On arrête si la section ou les données n'existent pas
       }
 
@@ -1201,6 +1212,140 @@ if (contactForm) {
         .to(finalWindow, { display: 'block', opacity: 1, duration: 1 });
   }
 
+// =======================================================
+//   FONCTION TAROT MISE À JOUR (V3 - Hover + Clic)
+// =======================================================
+function initializeTarotDeck(langData) {
+    const container = document.getElementById('tarot-container');
+    if (!container || !langData.tarotSkillsSection || !langData.tarotSkillsSection.cards) {
+        return;
+    }
+
+    container.innerHTML = ''; // Vider le conteneur
+
+    const cardsData = langData.tarotSkillsSection.cards;
+
+    cardsData.forEach(cardInfo => {
+        const cardEl = document.createElement('div');
+        cardEl.className = 'tarot-card';
+
+        cardEl.innerHTML = `
+            <div class="tarot-card-inner">
+                <div class="tarot-card-front">
+                    <img src="${cardInfo.imageSrc}" alt="${cardInfo.skillTitle}">
+                </div>
+                <div class="tarot-card-back">
+                    <span class="card-number-back">${cardInfo.arcanaNumber}</span>
+                    <h4 class="card-skill-title">${cardInfo.skillTitle}</h4>
+                    <p class="card-skill-description">${cardInfo.skillDescription}</p>
+                </div>
+            </div>
+        `;
+        
+        // ✅ NOUVELLE LOGIQUE D'INTERACTION
+        // Le clic "verrouille" la carte en position retournée
+        cardEl.addEventListener('click', () => {
+            cardEl.classList.toggle('is-locked');
+            cardEl.classList.toggle('is-flipped');
+        });
+
+        // Le survol retourne la carte, seulement si elle n'est pas verrouillée
+        cardEl.addEventListener('mouseenter', () => {
+            if (!cardEl.classList.contains('is-locked')) {
+                cardEl.classList.add('is-flipped');
+            }
+        });
+
+        // La souris quitte, la carte se retourne, seulement si elle n'est pas verrouillée
+        cardEl.addEventListener('mouseleave', () => {
+            if (!cardEl.classList.contains('is-locked')) {
+                cardEl.classList.remove('is-flipped');
+            }
+        });
+
+        container.appendChild(cardEl);
+    });
+}
+
+// =======================================================
+//   NOUVELLE FONCTION : MACHINE À SOUS RÉTRO SOFT SKILLS
+// =======================================================
+function initializeSlotMachine(langData) {
+    const lever = document.getElementById('slot-lever');
+    const reels = [document.getElementById('reel1'), document.getElementById('reel2'), document.getElementById('reel3')];
+    const payoutDisplay = document.getElementById('slot-payout-display');
+
+    if (!lever || reels.some(r => !r) || !payoutDisplay || !langData.softSkillsSlot) {
+      return;
+    }
+    
+    const skills = langData.softSkillsSlot.skills;
+    let isSpinning = false;
+    
+    // Remplir les rouleaux
+    reels.forEach(reel => {
+      reel.innerHTML = ''; // Vider
+      const symbolContainer = document.createElement('div');
+      symbolContainer.className = 'reel-symbols';
+
+      // Créer une liste de symboles plus longue pour un effet de roulement
+      const repeatedSkills = [...skills, ...skills, ...skills];
+
+      repeatedSkills.forEach(skill => {
+        symbolContainer.innerHTML += `<div class="reel-symbol"><i class="fas ${skill.icon}"></i></div>`;
+      });
+      reel.appendChild(symbolContainer);
+    });
+
+    const spin = () => {
+      if (isSpinning) return;
+      isSpinning = true;
+
+      lever.classList.add('pulled');
+      payoutDisplay.innerHTML = `<p>...</p>`;
+
+      const results = [];
+
+      reels.forEach((reel, index) => {
+        const symbolContainer = reel.querySelector('.reel-symbols');
+        const symbolHeight = 100; 
+        const randomIndex = Math.floor(Math.random() * skills.length);
+        results.push(skills[randomIndex]);
+
+        // La position cible est calculée pour s'arrêter sur le bon symbole
+        // L'offset est `skills.length` car on a répété la liste pour un effet de boucle fluide
+        const targetPosition = -(randomIndex + skills.length) * symbolHeight;
+
+        // Réinitialiser la transition pour un nouveau spin
+        symbolContainer.style.transition = 'none';
+        symbolContainer.style.transform = `translateY(0)`;
+        
+        // Forcer le reflow du navigateur
+        symbolContainer.offsetHeight; 
+
+        // Appliquer la nouvelle transition et la position finale
+        symbolContainer.style.transition = `transform ${2.5 + index * 0.5}s cubic-bezier(0.25, 0.1, 0.25, 1)`;
+        symbolContainer.style.transform = `translateY(${targetPosition}px)`;
+      });
+
+      // Gérer la fin de l'animation
+      setTimeout(() => {
+        lever.classList.remove('pulled');
+        
+        let payoutText = langData.softSkillsSlot.payoutText;
+        payoutText = payoutText.replace('{0}', results[0].name)
+                               .replace('{1}', results[1].name)
+                               .replace('{2}', results[2].name);
+        
+        payoutDisplay.innerHTML = `<p>${payoutText}</p>`;
+        
+        isSpinning = false;
+      }, 3500); // 2500ms pour l'anim de base + 1000ms pour la plus longue
+    };
+
+    lever.addEventListener('click', spin);
+  }
+
 });
 
 // Ajoutez ceci à la fin de votre fichier code.js, juste avant l'accolade fermante de DOMContentLoaded
@@ -1247,4 +1392,119 @@ if (wtfButton) {
 
   // On lie la fonction de carnage au premier clic du bouton
   wtfButton.onclick = unleashVisualCarnage;
+}
+
+//=========================================================
+//    FONCTION TÉMOIGNAGES - TERMINAL (VERSION RÉPARÉE)
+//=========================================================
+function initializeTestimonialsTerminal(langData) {
+    const terminal = document.getElementById('testimonial-terminal');
+    const sourcesList = document.getElementById('testimonial-sources-list');
+    const display = document.getElementById('testimonial-display');
+
+    if (!terminal || !sourcesList || !display || !langData.decryptionTestimonials) {
+        return;
+    }
+
+    const testimonials = langData.decryptionTestimonials.items;
+    const placeholderHint = sourcesList.querySelector('.placeholder-prompt');
+    const placeholderDisplay = display.querySelector('.placeholder');
+    
+    // Vider la liste, mais garder le message d'invite s'il existe
+    sourcesList.innerHTML = '';
+    if (placeholderHint) {
+        sourcesList.appendChild(placeholderHint);
+        placeholderHint.style.display = 'block';
+    }
+    
+    // Réinitialiser l'affichage
+    display.innerHTML = '';
+    if (placeholderDisplay) {
+      display.appendChild(placeholderDisplay);
+      placeholderDisplay.style.display = 'block';
+    }
+
+
+    testimonials.forEach((item, index) => {
+        const menuItem = document.createElement('button');
+        menuItem.className = 'testimonial-source-item';
+        menuItem.innerHTML = `<strong>${item.name}</strong><span>${item.project}</span>`;
+        menuItem.dataset.index = index;
+        sourcesList.appendChild(menuItem);
+    });
+    
+    let isTyping = false;
+    let activeMenuItem = null;
+
+    sourcesList.addEventListener('click', (e) => {
+        const clickedItem = e.target.closest('.testimonial-source-item');
+        if (!clickedItem || isTyping) return;
+
+        if (placeholderHint) placeholderHint.style.display = 'none';
+
+        isTyping = true;
+        
+        if (activeMenuItem) {
+            activeMenuItem.classList.remove('active');
+        }
+        activeMenuItem = clickedItem;
+        activeMenuItem.classList.add('active');
+
+        const index = clickedItem.dataset.index;
+        const testimonialData = testimonials[index];
+        
+        runTestimonialSequence(testimonialData, langData, display)
+            .finally(() => {
+                isTyping = false;
+            });
+    });
+}
+
+async function runTestimonialSequence(testimonial, langData, display) {
+    const pause = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+    const caret = `<span id="testimonial-caret"></span>`;
+
+    async function type(element, text, speed = 25) {
+        // Supprime le caret existant avant de taper
+        const existingCaret = element.querySelector('#testimonial-caret');
+        if (existingCaret) existingCaret.remove();
+
+        let currentText = element.innerHTML;
+        for (const char of text) {
+            currentText += char;
+            element.innerHTML = currentText + caret;
+            await pause(speed + (Math.random() - 0.5) * 15);
+        }
+        // Supprime le caret à la fin de la frappe pour cette ligne
+        element.innerHTML = currentText;
+    }
+
+    const headerText = langData.decryptionTestimonials.transmission_header || "TRANSMISSION...";
+    display.innerHTML = `<h4 id="testimonial-transmission-header">${headerText}${caret}</h4>`;
+    await pause(800);
+
+    display.innerHTML = `
+        <div id="testimonial-meta">
+            <p id="meta-from">FROM: </p>
+            <p id="meta-project">PROJECT: </p>
+            <p id="meta-date">DATE: </p>
+        </div>
+        <p id="testimonial-quote"></p>
+    `;
+
+    const fromEl = document.getElementById('meta-from');
+    const projectEl = document.getElementById('meta-project');
+    const dateEl = document.getElementById('meta-date');
+    const quoteEl = document.getElementById('testimonial-quote');
+
+    await type(fromEl, testimonial.name);
+    await type(projectEl, testimonial.project);
+    await type(dateEl, testimonial.date);
+    
+    quoteEl.innerHTML = `> ${caret}`; // Initialise le devis avec le curseur
+    await type(quoteEl, testimonial.quote);
+
+    // Enlève le dernier curseur
+    const finalCaret = display.querySelector('#testimonial-caret');
+    if(finalCaret) finalCaret.remove();
 }

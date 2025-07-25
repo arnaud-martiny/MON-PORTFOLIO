@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&display=swap");
-
 :root {
   --primary: #ffffff;
   --secondary: #000000;
@@ -380,17 +378,29 @@ section {
   font-weight: 700;
   margin-bottom: 2rem;
   position: relative;
+  text-align: center;
 }
 
 .section-heading::after {
   content: "";
   position: absolute;
   bottom: -10px;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 60px;
   height: 4px;
   background-color: var(--primary);
 }
+
+/* LA CORRECTION EST ICI */
+.about-content .section-heading {
+  text-align: left;
+}
+.about-content .section-heading::after {
+  left: 0;
+  transform: translateX(0);
+}
+
 
 .about-text {
   font-size: 1.1rem;
@@ -928,16 +938,6 @@ section {
   padding: 8rem 0;
   background-color: var(--secondary);
   transition: var(--theme-transition);
-}
-
-.skills-section .section-heading {
-  color: var(--primary);
-  text-align: center;
-  padding: 0 5%;
-}
-.skills-section .section-heading::after {
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 #skills-scene-container {
@@ -1989,4 +1989,392 @@ body.mobile-menu-open #hamburger-btn {
 .nav-wtf-btn:hover {
   transform: scale(1.1) rotate(-5deg);
   box-shadow: 0 0 20px rgba(255, 69, 0, 0.8);
+}
+
+/* ======================================================= */
+/*      STYLES FINAUX : TAROT DES COMPÉTENCES (V4)         */
+/* ======================================================= */
+.tarot-skills-section {
+  padding: 8rem 5%;
+  background-color: var(--accent);
+  overflow: hidden;
+  position: relative;
+}
+
+.tarot-skills-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.07"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.tarot-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  perspective: 1500px;
+}
+
+.tarot-card {
+  background-color: transparent;
+  width: 220px;
+  height: 385px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.tarot-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform-style: preserve-3d;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+}
+
+/* Effet de lévitation au survol */
+.tarot-card:hover .tarot-card-inner {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+}
+
+.tarot-card.is-flipped .tarot-card-inner {
+  transform: rotateY(180deg);
+}
+.tarot-card.is-flipped:hover .tarot-card-inner {
+    transform: rotateY(180deg) translateY(-10px) scale(1.03);
+}
+
+.tarot-card-front,
+.tarot-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* La face avant EST l'image */
+.tarot-card-front {
+  background-color: #1a1a1a; /* Couleur de fond si l'image charge lentement */
+  /* ✅ ANNULATION : la bordure blanche a été supprimée */
+}
+.tarot-card-front img {
+    width: 100%;
+    height: 100%;
+    /* ✅ ANNULATION : 'contain' redevient 'cover' pour que l'image remplisse parfaitement la carte */
+    object-fit: cover;
+}
+
+/* Le dos de la carte, avec le texte */
+.tarot-card-back {
+  transform: rotateY(180deg);
+  background-color: #f3eadd;
+  color: #3a3a3a;
+  border: 1px solid rgba(58, 58, 58, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1.8rem;
+}
+
+.card-number-back {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+  position: absolute;
+  top: 1.5rem;
+}
+
+.card-skill-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+.card-skill-description {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+
+/* ======================================================= */
+/*        NOUVEAUX STYLES : SOFT SKILLS SLOT MACHINE       */
+/* ======================================================= */
+.soft-skills-slot-section {
+  padding: 8rem 5%;
+  background-color: var(--secondary);
+  font-family: "Tahoma", "MS Sans Serif", sans-serif;
+  font-smooth: never;
+  -webkit-font-smoothing: none;
+}
+
+.slot-machine-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+#slot-machine-window {
+  display: block;
+  opacity: 1;
+  position: relative;
+  max-width: 600px;
+}
+
+.reels-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: color-mix(in srgb, #000 20%, transparent);
+  border: 2px inset #C0C0C0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.reel {
+  width: 100px;
+  height: 100px;
+  background-color: var(--secondary);
+  border: 2px solid var(--primary);
+  overflow: hidden;
+  position: relative;
+}
+
+.reel-symbols {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: transform 2.5s cubic-bezier(0.6, 0, 0.2, 1);
+}
+
+.reel-symbol {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: var(--primary);
+}
+
+#slot-payout-display {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  min-height: 80px;
+  background-color: color-mix(in srgb, var(--secondary) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+  border-radius: 5px;
+  color: var(--primary);
+  text-align: center;
+  font-family: "Space Grotesk", sans-serif;
+  transition: all 0.3s;
+}
+#slot-payout-display p {
+  color: var(--primary);
+}
+#slot-payout-display strong {
+  color: var(--color-accent-green);
+  font-weight: 700;
+}
+
+
+#slot-lever {
+  width: 80px;
+  height: 200px;
+  position: relative;
+  cursor: pointer;
+}
+
+.lever-stick {
+  width: 10px;
+  height: 150px;
+  background: #888;
+  border: 2px solid;
+  border-color: #aaa #666 #666 #aaa;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px 5px 0 0;
+}
+
+.lever-handle {
+  width: 60px;
+  height: 60px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid #c00;
+  box-shadow: inset 0 -5px 10px rgba(0,0,0,0.5);
+  transition: transform 0.2s ease;
+}
+
+#slot-lever.pulled .lever-handle {
+  transform: translate(-50%, 140px);
+}
+
+/* ======================================================= */
+/*          STYLES : TÉMOIGNAGES TERMINAL (RÉPARÉ)         */
+/* ======================================================= */
+.testimonials-section {
+  padding: 8rem 5%;
+  background-color: var(--secondary);
+  overflow: hidden;
+}
+
+.testimonial-terminal {
+  max-width: 900px;
+  margin: 3rem auto 0;
+  background-color: #000000;
+  border: 1px solid color-mix(in srgb, var(--color-accent-green) 30%, transparent);
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(57, 255, 20, 0.15), inset 0 0 15px rgba(0,0,0,0.7);
+  display: flex;
+  min-height: 450px;
+  font-family: 'VT323', monospace;
+  color: var(--color-accent-green);
+  text-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+  position: relative;
+}
+
+.testimonial-terminal::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 3px, 5px 100%;
+  pointer-events: none;
+}
+
+.testimonial-sources-list {
+  width: 35%;
+  border-right: 1px solid color-mix(in srgb, var(--color-accent-green) 30%, transparent);
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.testimonial-source-item {
+  display: block;
+  background: none;
+  border: 1px solid transparent;
+  color: var(--color-accent-green);
+  text-align: left;
+  padding: 0.75rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.2rem;
+  width: 100%;
+  transition: background-color 0.2s, color 0.2s;
+  opacity: 0.7;
+}
+
+.testimonial-source-item:hover {
+  opacity: 1;
+  background-color: color-mix(in srgb, var(--color-accent-green) 10%, transparent);
+}
+
+.testimonial-source-item.active {
+  opacity: 1;
+  background-color: var(--color-accent-green);
+  color: #000000;
+  text-shadow: none;
+}
+
+.testimonial-source-item strong {
+  display: block;
+  pointer-events: none; /* Pour que le clic traverse jusqu'au bouton */
+}
+
+.testimonial-source-item span {
+  font-size: 1rem;
+  opacity: 0.8;
+  display: block;
+  pointer-events: none; /* Pareil ici */
+}
+
+.testimonial-display {
+  width: 65%;
+  padding: 2rem;
+  line-height: 1.6;
+  font-size: 1.3rem;
+  word-wrap: break-word;
+}
+
+.testimonial-display .placeholder, .testimonial-sources-list .placeholder-prompt {
+  opacity: 0.6;
+}
+
+#testimonial-transmission-header {
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+#testimonial-meta p {
+  margin: 0;
+  line-height: 1.4;
+}
+#testimonial-meta {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-accent-green) 20%, transparent);
+}
+
+#testimonial-quote {
+  white-space: pre-wrap;
+}
+
+#testimonial-caret {
+  display: inline-block;
+  background: var(--color-accent-green);
+  width: 0.7em;
+  height: 1.1em;
+  animation: blink 1s step-end infinite;
+  vertical-align: bottom;
+  box-shadow: 0 0 5px var(--color-accent-green);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .testimonial-terminal {
+    flex-direction: column;
+    min-height: 550px;
+  }
+  .testimonial-sources-list, .testimonial-display {
+    width: 100%;
+  }
+  .testimonial-sources-list {
+    border-right: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-accent-green) 30%, transparent);
+    max-height: 200px;
+  }
+  .testimonial-display {
+    font-size: 1.1rem;
+    padding: 1.5rem;
+  }
 }

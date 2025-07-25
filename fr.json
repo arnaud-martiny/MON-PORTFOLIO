@@ -1,7 +1,8 @@
 {
   "meta": {
     "title": "Arnaud Martiny | Développeur web Full-Stack – Portfolio & Créations sur mesure",
-    "description": "Développeur Full-Stack passionné basé à Bruxelles. Je transforme vos idées en applications web modernes, du design UX/UI sur Figma au développement. Découvrez mes projets et parlons-en !"  },
+    "description": "Développeur Full-Stack passionné basé à Bruxelles. Je transforme vos idées en applications web modernes, du design UX/UI sur Figma au développement. Découvrez mes projets et parlons-en !"
+  },
   "loader": {
     "welcome": "BIENVENUE DANS MON UNIVERS"
   },
@@ -13,7 +14,8 @@
     "skills": "Compétences",
     "portfolio": "Portfolio",
     "contact": "Contact",
-    "cvLink": "Mon CV"
+    "cvLink": "Mon CV",
+    "wtfButton": "Ne pas cliquer"
   },
   "hero": {
     "title": "ARNAUD MARTINY",
@@ -252,5 +254,91 @@
       }
     }
   ]
-}
+},
+"tarotSkillsSection": {
+    "title": "MES ATOUTS HUMAINS",
+    "cards": [
+      {
+        "arcanaName": "Le Bateleur",
+        "arcanaNumber": "I",
+        "skillTitle": "Créativité",
+        "skillDescription": "Transformer une vision abstraite en une interface concrète et engageante, en trouvant des solutions visuelles uniques.",
+        "imageSrc": "assets/img/tarot/magician.png"
+      },
+      {
+        "arcanaName": "Le Chariot",
+        "arcanaNumber": "VII",
+        "skillTitle": "Autonomie",
+        "skillDescription": "Prendre en charge des projets de A à Z, de la recherche de solutions à l'implémentation finale avec rigueur et proactivité.",
+        "imageSrc": "assets/img/tarot/chariot.png"
+      },
+      {
+        "arcanaName": "Tempérance",
+        "arcanaNumber": "XIV",
+        "skillTitle": "Communication",
+        "skillDescription": "Vulgariser des concepts techniques pour les non-initiés et collaborer efficacement avec toutes les parties prenantes d'un projet.",
+        "imageSrc": "assets/img/tarot/temperance.png"
+      },
+      {
+        "arcanaName": "La Justice",
+        "arcanaNumber": "VIII",
+        "skillTitle": "Résolution de problèmes",
+        "skillDescription": "Analyser, décomposer et solutionner les défis techniques ou fonctionnels avec méthode, calme et persévérance.",
+        "imageSrc": "assets/img/tarot/justice.png"
+      },
+      {
+        "arcanaName": "L'Amoureux",
+        "arcanaNumber": "VI",
+        "skillTitle": "Esprit d'équipe",
+        "skillDescription": "Contribuer activement au succès collectif en partageant mes connaissances et en soutenant mes collaborateurs.",
+        "imageSrc": "assets/img/tarot/lovers.png"
+      },
+      {
+        "arcanaName": "La Roue de Fortune",
+        "arcanaNumber": "X",
+        "skillTitle": "Adaptabilité",
+        "skillDescription": "Naviguer avec aisance entre différentes technologies, méthodes de travail et m'ajuster aux imprévus d'un projet.",
+        "imageSrc": "assets/img/tarot/wheel.png"
+      }
+    ]
+  },
+"decryptionTestimonials": {
+    "title": "ILS M'ONT FAIT CONFIANCE",
+    "placeholder": "[ ATTENTE DE COMMANDE... ]",
+    "transmission_header": "TRANSMISSION EN COURS...",
+    "user_prompt_hint": "Choisissez une transmission...",
+    "items": [
+      {
+        "name": "Équipe Nowa Market",
+        "project": "Site Vitrine Nowa Logistics",
+        "quote": "Arnaud a pris en charge la création de notre site vitrine de A à Z. Sa double compétence design et développement a été un atout majeur. Autonome, force de proposition et parfaitement à l'écoute. Le résultat dépasse nos attentes.",
+        "date": "2025-06-15"
+      },
+      {
+        "name": "Collaborateur",
+        "project": "Projet Fast 'N Friends",
+        "quote": "La collaboration avec Arnaud sur le projet Fast 'N Friends a été un succès. Son expertise en PHP et sur l'architecture de la base de données a été cruciale. Un excellent coéquipier, toujours prêt à trouver des solutions.",
+        "date": "2024-03-22"
+      },
+      {
+        "name": "Client Fictif",
+        "project": "Plateforme E-learning",
+        "quote": "Arnaud a excellé dans la conception de l'expérience utilisateur. Sa capacité à structurer un parcours pédagogique complexe de manière intuitive et engageante a été un véritable game-changer pour nous. Hautement recommandé !",
+        "date": "2025-01-10"
+      }
+    ]
+},
+  "softSkillsSlot": {
+    "title": "LA COMBINAISON GAGNANTE",
+    "initialText": "Actionnez le levier pour découvrir une synergie de compétences !",
+    "payoutText": "La combinaison de <strong>{0}</strong>, <strong>{1}</strong> et <strong>{2}</strong> me permet de transformer une idée brute en un projet fonctionnel, bien architecturé et communiqué avec clarté.",
+    "skills": [
+      { "name": "Créativité", "icon": "fa-lightbulb" },
+      { "name": "Autonomie", "icon": "fa-rocket" },
+      { "name": "Communication", "icon": "fa-comments" },
+      { "name": "Logique", "icon": "fa-puzzle-piece" },
+      { "name": "Collaboration", "icon": "fa-people-group" },
+      { "name": "Adaptabilité", "icon": "fa-cogs" }
+    ]
+  }
 }
