@@ -110,57 +110,57 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // --- GESTION DU FORMULAIRE DE CONTACT AVEC AJAX (SANS REDIRECTION) ---
-const contactForm = document.getElementById('contact-form');
-const resultMessage = document.getElementById('form-result-message');
+    const contactForm = document.getElementById('contact-form');
+    const resultMessage = document.getElementById('form-result-message');
 
-if (contactForm) {
-  contactForm.addEventListener('submit', function (e) {
-    e.preventDefault(); // Empêche l'envoi classique du formulaire
+    if (contactForm) {
+      contactForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // Empêche l'envoi classique du formulaire
 
-    const formData = new FormData(contactForm);
-    const object = {};
-    formData.forEach((value, key) => {
-      object[key] = value;
-    });
-    const json = JSON.stringify(object);
+        const formData = new FormData(contactForm);
+        const object = {};
+        formData.forEach((value, key) => {
+          object[key] = value;
+        });
+        const json = JSON.stringify(object);
 
-    resultMessage.innerHTML = "Envoi en cours...";
-    resultMessage.classList.add('visible');
-    resultMessage.classList.remove('success', 'error');
+        resultMessage.innerHTML = "Envoi en cours...";
+        resultMessage.classList.add('visible');
+        resultMessage.classList.remove('success', 'error');
 
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: json
-    })
-    .then(async (response) => {
-      let jsonResponse = await response.json();
-      if (response.status == 200) {
-        resultMessage.innerHTML = "Message envoyé avec succès !";
-        resultMessage.classList.add('success');
-      } else {
-        console.log(response);
-        resultMessage.innerHTML = jsonResponse.message || "Une erreur est survenue.";
-        resultMessage.classList.add('error');
-      }
-    })
-    .catch(error => {
-      console.log(error);
-      resultMessage.innerHTML = "Oups ! Il y a eu un problème.";
-      resultMessage.classList.add('error');
-    })
-    .then(function () {
-      contactForm.reset(); // Vide les champs du formulaire
-      // Fait disparaître le message après 5 secondes
-      setTimeout(() => {
-        resultMessage.classList.remove('visible');
-      }, 5000);
-    });
-  });
-}
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: json
+        })
+        .then(async (response) => {
+          let jsonResponse = await response.json();
+          if (response.status == 200) {
+            resultMessage.innerHTML = "Message envoyé avec succès !";
+            resultMessage.classList.add('success');
+          } else {
+            console.log(response);
+            resultMessage.innerHTML = jsonResponse.message || "Une erreur est survenue.";
+            resultMessage.classList.add('error');
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          resultMessage.innerHTML = "Oups ! Il y a eu un problème.";
+          resultMessage.classList.add('error');
+        })
+        .then(function () {
+          contactForm.reset(); // Vide les champs du formulaire
+          // Fait disparaître le message après 5 secondes
+          setTimeout(() => {
+            resultMessage.classList.remove('visible');
+          }, 5000);
+        });
+      });
+    }
    
     // ==========================================================
     //    NOUVEAU : MISE À JOUR DYNAMIQUE DU LIEN DU CV
@@ -173,8 +173,8 @@ if (contactForm) {
 
         // Mettez à jour le lien en fonction de la langue
         const filePath = lang === 'fr' 
-            ? `assets/CV/${cvFileNameFR}` // <-- ON A AJOUTÉ /CV/ ICI
-            : `assets/CV/${cvFileNameEN}`; // <-- ET ICI AUSSI
+            ? `assets/CV/${cvFileNameFR}`
+            : `assets/CV/${cvFileNameEN}`;
             
         cvLink.setAttribute('href', filePath);
     }
@@ -320,7 +320,7 @@ if (contactForm) {
         planetContainer.appendChild(skillPlanet);
         orbitPath.appendChild(planetContainer);
         
-        solarSystem.appendChild(orbitPath); // CETTE LIGNE A ÉTÉ AJOUTÉE
+        solarSystem.appendChild(orbitPath);
 
         gsap.to(orbitPath, {
           rotation: direction === "normal" ? 360 : -360,
@@ -374,9 +374,7 @@ if (contactForm) {
     }
 
     // --- GÉNÉRATION DES PROJETS DÉTAILLÉS (AVEC BOUTON CASE STUDY) ---
-    const projectsContainer = document.getElementById(
-      "featured-projects-container"
-    );
+    const projectsContainer = document.getElementById("featured-projects-container");
     if (
       projectsContainer &&
       langData.featuredProjects &&
@@ -398,6 +396,8 @@ if (contactForm) {
 
         const liveLinkBtnId = project.id ? `id="live-link-${project.id}"` : '';
         const caseStudyButtonText = getNestedTranslation(langData, "featuredProjects.caseStudyButton") || "View Case Study";
+        const liveLinkDisabledStyle = project.liveLink === "#" ? 'style="pointer-events: none; opacity: 0.5;"' : '';
+        const codeLinkDisabledStyle = project.codeLink === "#" ? 'style="pointer-events: none; opacity: 0.5;"' : '';
 
         const contentHtml = `
                 <div class="project-content">
@@ -406,20 +406,8 @@ if (contactForm) {
                     <p class="project-description">${project.description}</p>
                     <div class="project-tech-list">${techHtml}</div>
                     <div class="project-links">
-                        <a href="${
-                          project.liveLink
-                        }" class="btn" target="_blank" ${liveLinkBtnId} ${
-          project.liveLink === "#"
-            ? 'style="pointer-events: none; opacity: 0.5;"'
-            : ""
-        }>Voir le site</a>
-                        <a href="${
-                          project.codeLink
-                        }" class="btn btn-outline" target="_blank" ${ // <-- LA MODIFICATION EST ICI
-          project.codeLink === "#"
-            ? 'style="pointer-events: none; opacity: 0.5;"'
-            : ""
-        }>Voir le code</a>
+                        <a href="${project.liveLink}" class="btn" target="_blank" ${liveLinkBtnId} ${liveLinkDisabledStyle}>Voir le site</a>
+                        <a href="${project.codeLink}" class="btn btn-outline" target="_blank" ${codeLinkDisabledStyle}>Voir le code</a>
                         <button class="btn btn-case-study" data-project-id="${project.id}">
                             <span>${caseStudyButtonText}</span>
                         </button>
@@ -438,47 +426,43 @@ if (contactForm) {
       });
     }
 
-    // --- NOUVEAU : GESTION DE L'INFO-BULLE POUR NOWA LOGISTICS ---
+    // --- GESTION DES INFO-BULLES POUR LES PROJETS EN COURS ---
     const nowaLiveLinkBtn = document.getElementById('live-link-nowa-logistics');
-    if (nowaLiveLinkBtn) {
-        const tooltipText = getNestedTranslation(langData, "featuredProjects.nowaTooltip");
-        nowaLiveLinkBtn.addEventListener('mouseenter', () => {
-            nowaTooltip.textContent = tooltipText;
-            nowaTooltip.style.display = 'block';
-        });
-        document.addEventListener('mousemove', (e) => {
-             if (nowaTooltip.style.display === 'block') {
-                nowaTooltip.style.left = `${e.clientX + 15}px`;
-                nowaTooltip.style.top = `${e.clientY + 15}px`;
-             }
-        });
-        nowaLiveLinkBtn.addEventListener('mouseleave', () => {
-            nowaTooltip.style.display = 'none';
-        });
-    }
-
-    // =======================================================
-    //   APPEL À LA FONCTION D'ANIMATION RÉTRO (CORRIGÉ)
-    // =======================================================
-    // On appelle la fonction pour la première fois avec les données de la langue actuelle.
-    initializeRetroAnimation(langData);
-
-    // Correction de l'appel de fonction
-    initializeTestimonialsTerminal(langData);
+    const poetesLiveLinkBtn = document.getElementById('live-link-theatre-des-poetes');
     
-    // =======================================================
-    //   APPEL AUX NOUVELLES FONCTIONS DE SOFT SKILLS
-    // =======================================================
+    const setupTooltip = (button, tooltipKey) => {
+        if (button) {
+            const tooltipText = getNestedTranslation(langData, tooltipKey);
+            button.addEventListener('mouseenter', () => {
+                nowaTooltip.textContent = tooltipText;
+                nowaTooltip.style.display = 'block';
+            });
+            button.addEventListener('mouseleave', () => {
+                nowaTooltip.style.display = 'none';
+            });
+        }
+    };
+
+    setupTooltip(nowaLiveLinkBtn, "featuredProjects.nowaTooltip");
+    setupTooltip(poetesLiveLinkBtn, "featuredProjects.poetesTooltip");
+
+    document.addEventListener('mousemove', (e) => {
+         if (nowaTooltip.style.display === 'block') {
+            nowaTooltip.style.left = `${e.clientX + 15}px`;
+            nowaTooltip.style.top = `${e.clientY + 15}px`;
+         }
+    });
+
+    initializeRetroAnimation(langData);
+    initializeTestimonialsTerminal(langData);
     initializeTarotDeck(langData);
     initializeSlotMachine(langData);
 
-
-    // --- NOUVEAU : GESTION DE LA DATE DANS LE POP-UP D'ÉVOLUTION ---
+    // --- GESTION DE LA DATE DANS LE POP-UP D'ÉVOLUTION ---
     const evolutionPopupMessage = document.querySelector('#evolution-popup p[data-i18n="evolutionPopup.message"]');
     const evolutionPopupEl = document.getElementById('evolution-popup');
     if (evolutionPopupMessage && evolutionPopupEl && evolutionPopupEl.dataset.lastUpdated) {
         const lastUpdatedDate = evolutionPopupEl.dataset.lastUpdated;
-        // Le texte est déjà défini par la logique i18n, on remplace juste le placeholder
         evolutionPopupMessage.innerHTML = evolutionPopupMessage.innerHTML.replace('{{date}}', `<b>${lastUpdatedDate}</b>`);
     }
 
@@ -573,7 +557,6 @@ if (contactForm) {
   const skillsSection = document.querySelector(".skills-section");
   const counterSection = document.querySelector(".counter-section");
 
-  // AJOUT DE LA FONCTION `backspace`
   async function backspace(count) {
     const codeEl = document.getElementById("language-json-content");
     const backspaceSpeed = 40;
@@ -838,14 +821,12 @@ if (contactForm) {
     });
   });
   
-
   // --- GESTION DU MENU HAMBURGER ---
   const hamburgerBtn = document.getElementById("hamburger-btn");
   const mobileMenu = document.getElementById("mobile-menu");
   const mobileMenuLinks = mobileMenu.querySelectorAll("a");
   const bodyEl = document.body;
   
-  // ===== AJOUTEZ LE CODE CI-DESSOUS =====
   const mobileMenuCloseBtn = document.getElementById('mobile-menu-close-btn');
 
   if (hamburgerBtn && mobileMenu) {
@@ -853,13 +834,11 @@ if (contactForm) {
       bodyEl.classList.toggle("mobile-menu-open");
     });
 
-    // On fait fonctionner le nouveau bouton "X"
     if (mobileMenuCloseBtn) {
       mobileMenuCloseBtn.addEventListener('click', () => {
         bodyEl.classList.remove('mobile-menu-open');
       });
     }
-    // ===================================
 
     mobileMenuLinks.forEach((link) => {
       link.addEventListener("click", () => {
@@ -867,8 +846,6 @@ if (contactForm) {
       });
     });
   }
-
-
 
   // --- SYNCHRONISATION DES BOUTONS DE THÈME ET LANGUE ---
   const mobileThemeSwitcher = document.getElementById("theme-switcher-mobile");
@@ -905,13 +882,13 @@ if (contactForm) {
     });
   }
 
-  // --- GESTION DU POP-UP D'ÉVOLUTION ---
+  // --- GESTION DU POP-UP D'ÉVOLUTION (LOGIQUE RESTAURÉE) ---
   const evolutionPopupOverlay = document.getElementById("evolution-popup-overlay");
   const evolutionPopup = document.getElementById("evolution-popup");
   const evolutionPopupCloseBtn = document.getElementById("evolution-popup-close");
 
   if (evolutionPopupOverlay && evolutionPopup && evolutionPopupCloseBtn) {
-    const closePopup = () => {
+    const closeEvolutionPopup = () => {
       evolutionPopup.classList.add('exploding');
       evolutionPopup.addEventListener('animationend', () => {
         evolutionPopupOverlay.classList.remove('visible');
@@ -926,10 +903,10 @@ if (contactForm) {
       }, 4000);
     }
 
-    evolutionPopupCloseBtn.addEventListener('click', closePopup);
+    evolutionPopupCloseBtn.addEventListener('click', closeEvolutionPopup);
     evolutionPopupOverlay.addEventListener('click', (e) => {
         if (e.target === evolutionPopupOverlay) {
-            closePopup();
+            closeEvolutionPopup();
         }
     });
 
@@ -937,8 +914,61 @@ if (contactForm) {
       e.stopPropagation();
     });
   }
+  
+  // --- GESTION DU POP-UP DE MISE À JOUR DES PROJETS (NOUVELLE LOGIQUE) ---
+  const projectsUpdatePopupOverlay = document.getElementById("projects-update-popup-overlay");
+  if (projectsUpdatePopupOverlay) {
+    const projectsUpdatePopupCloseBtn = document.getElementById("projects-update-popup-close");
+    const projectsSectionTrigger = document.getElementById("portfolio");
 
-  // --- NOUVEAU : LOGIQUE DE LA MODALE CASE STUDY ---
+    const closeProjectsPopup = () => {
+      projectsUpdatePopupOverlay.classList.remove('visible');
+      // On sauvegarde le fait que l'utilisateur a fermé manuellement le pop-up pour cette session
+      sessionStorage.setItem('projectsUpdatePopupClosed', 'true');
+    };
+
+    if (projectsUpdatePopupCloseBtn) {
+      projectsUpdatePopupCloseBtn.addEventListener('click', closeProjectsPopup);
+    }
+    
+    // Fermer si on clique en dehors
+    projectsUpdatePopupOverlay.addEventListener('click', (e) => {
+        if (e.target === projectsUpdatePopupOverlay) {
+            closeProjectsPopup();
+        }
+    });
+    // Empêcher la fermeture si on clique dessus
+    document.getElementById('projects-update-popup').addEventListener('click', e => e.stopPropagation());
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      // On déclenche un peu avant et après pour un effet fluide
+      threshold: [0.1, 0.9] 
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // On vérifie si l'utilisateur ne l'a pas déjà fermé
+        const isClosedManually = sessionStorage.getItem('projectsUpdatePopupClosed');
+
+        if (entry.isIntersecting && !isClosedManually) {
+          // Si la section est visible, on affiche le pop-up
+          projectsUpdatePopupOverlay.classList.add('visible');
+        } else {
+          // Sinon, on le cache
+          projectsUpdatePopupOverlay.classList.remove('visible');
+        }
+      });
+    }, observerOptions);
+
+    if (projectsSectionTrigger) {
+      observer.observe(projectsSectionTrigger);
+    }
+  }
+
+
+  // --- LOGIQUE DE LA MODALE CASE STUDY ---
   const caseStudyOverlay = document.getElementById('case-study-overlay');
   if (caseStudyOverlay) {
     const bootSequenceEl = document.getElementById('boot-sequence');
@@ -1008,7 +1038,6 @@ if (contactForm) {
 
         const cs = projectData.caseStudy;
         
-        // On remplit la fenêtre avec les BONNES informations
         caseStudyWindowTitle.textContent = cs.title;
         caseStudyContentEl.innerHTML = `
             <h4>${cs.briefTitle}</h4>
@@ -1021,7 +1050,6 @@ if (contactForm) {
             <p>${cs.results}</p>
         `;
 
-        // Le reste de la fonction qui gère l'affichage est déjà correct
         caseStudyOverlay.style.display = 'block';
         bootSequenceEl.style.display = 'block';
         caseStudyWindowEl.style.display = 'none';
@@ -1095,7 +1123,7 @@ if (contactForm) {
     });
   }
 
-  // --- NOUVEAU : GESTION DE L'INFO-BULLE POUR LE BOUTON CASE STUDY ---
+  // --- GESTION DE L'INFO-BULLE POUR LE BOUTON CASE STUDY ---
   const caseStudyTooltipEl = document.getElementById('case-study-tooltip');
 
   if (caseStudyTooltipEl) {
@@ -1130,23 +1158,17 @@ if (contactForm) {
   // =======================================================
   //   ANIMATION DE LA SECTION RÉTRO METHODOLOGIE (VERSION CORRIGÉE ET ROBUSTE)
   // =======================================================
-
-  // On enregistre les plugins une seule fois au début du script
   gsap.registerPlugin(ScrollTrigger, TextPlugin);
-
-  // On garde une référence à notre animation pour pouvoir la détruire et la reconstruire
   let retroTimeline; 
 
   function initializeRetroAnimation(langData) {
-      // Si une animation précédente existe (ex: changement de langue), on la détruit proprement
       if (retroTimeline) {
           retroTimeline.kill();
       }
 
       const retroSection = document.getElementById('retro-methodology');
       if (!retroSection || !langData.retroMethodologySection) {
-          //console.error("Section Rétro ou données de traduction manquantes.");
-          return; // On arrête si la section ou les données n'existent pas
+          return;
       }
 
       const searchWindow = document.getElementById('google-search-window');
@@ -1154,23 +1176,20 @@ if (contactForm) {
       const downloadWindow = document.getElementById('download-box-window');
       const finalWindow = document.getElementById('final-report-window');
 
-      // On s'assure que tout est à son état initial
       gsap.set([searchWindow, resultsWindow, downloadWindow, finalWindow], { display: 'none', opacity: 0 });
       gsap.set('#typing-caret', { display: 'inline' });
       gsap.set('#retro-search-input', { text: "" });
 
-      // On crée la timeline d'animation
       retroTimeline = gsap.timeline({
           scrollTrigger: {
               trigger: retroSection,
               start: "top top",
-              end: "+=6000", // Augmenté pour donner plus de temps
+              end: "+=6000",
               pin: true,
               scrub: 1.5,
           }
       });
 
-      // Séquence d'animation
       retroTimeline.to(searchWindow, { display: 'block', opacity: 1, duration: 0.5 })
         .to('#retro-search-input', {
             duration: 2,
@@ -1195,7 +1214,6 @@ if (contactForm) {
         })
         .to(resultsWindow, { display: 'block', opacity: 1, duration: 0.5 });
         
-      // Boucle pour les téléchargements
       const downloadsData = langData.retroMethodologySection.downloads;
       downloadsData.forEach((download, index) => {
           retroTimeline.to(downloadWindow, { display: 'block', opacity: 1, duration: 0.5, delay: 1 })
@@ -1212,16 +1230,13 @@ if (contactForm) {
         .to(finalWindow, { display: 'block', opacity: 1, duration: 1 });
   }
 
-// =======================================================
-//   FONCTION TAROT MISE À JOUR (V3 - Hover + Clic)
-// =======================================================
 function initializeTarotDeck(langData) {
     const container = document.getElementById('tarot-container');
     if (!container || !langData.tarotSkillsSection || !langData.tarotSkillsSection.cards) {
         return;
     }
 
-    container.innerHTML = ''; // Vider le conteneur
+    container.innerHTML = ''; 
 
     const cardsData = langData.tarotSkillsSection.cards;
 
@@ -1242,21 +1257,17 @@ function initializeTarotDeck(langData) {
             </div>
         `;
         
-        // ✅ NOUVELLE LOGIQUE D'INTERACTION
-        // Le clic "verrouille" la carte en position retournée
         cardEl.addEventListener('click', () => {
             cardEl.classList.toggle('is-locked');
             cardEl.classList.toggle('is-flipped');
         });
 
-        // Le survol retourne la carte, seulement si elle n'est pas verrouillée
         cardEl.addEventListener('mouseenter', () => {
             if (!cardEl.classList.contains('is-locked')) {
                 cardEl.classList.add('is-flipped');
             }
         });
 
-        // La souris quitte, la carte se retourne, seulement si elle n'est pas verrouillée
         cardEl.addEventListener('mouseleave', () => {
             if (!cardEl.classList.contains('is-locked')) {
                 cardEl.classList.remove('is-flipped');
@@ -1267,9 +1278,6 @@ function initializeTarotDeck(langData) {
     });
 }
 
-// =======================================================
-//   NOUVELLE FONCTION : MACHINE À SOUS RÉTRO SOFT SKILLS
-// =======================================================
 function initializeSlotMachine(langData) {
     const lever = document.getElementById('slot-lever');
     const reels = [document.getElementById('reel1'), document.getElementById('reel2'), document.getElementById('reel3')];
@@ -1282,15 +1290,11 @@ function initializeSlotMachine(langData) {
     const skills = langData.softSkillsSlot.skills;
     let isSpinning = false;
     
-    // Remplir les rouleaux
     reels.forEach(reel => {
-      reel.innerHTML = ''; // Vider
+      reel.innerHTML = ''; 
       const symbolContainer = document.createElement('div');
       symbolContainer.className = 'reel-symbols';
-
-      // Créer une liste de symboles plus longue pour un effet de roulement
       const repeatedSkills = [...skills, ...skills, ...skills];
-
       repeatedSkills.forEach(skill => {
         symbolContainer.innerHTML += `<div class="reel-symbol"><i class="fas ${skill.icon}"></i></div>`;
       });
@@ -1303,7 +1307,6 @@ function initializeSlotMachine(langData) {
 
       lever.classList.add('pulled');
       payoutDisplay.innerHTML = `<p>...</p>`;
-
       const results = [];
 
       reels.forEach((reel, index) => {
@@ -1311,24 +1314,15 @@ function initializeSlotMachine(langData) {
         const symbolHeight = 100; 
         const randomIndex = Math.floor(Math.random() * skills.length);
         results.push(skills[randomIndex]);
-
-        // La position cible est calculée pour s'arrêter sur le bon symbole
-        // L'offset est `skills.length` car on a répété la liste pour un effet de boucle fluide
         const targetPosition = -(randomIndex + skills.length) * symbolHeight;
 
-        // Réinitialiser la transition pour un nouveau spin
         symbolContainer.style.transition = 'none';
         symbolContainer.style.transform = `translateY(0)`;
-        
-        // Forcer le reflow du navigateur
         symbolContainer.offsetHeight; 
-
-        // Appliquer la nouvelle transition et la position finale
         symbolContainer.style.transition = `transform ${2.5 + index * 0.5}s cubic-bezier(0.25, 0.1, 0.25, 1)`;
         symbolContainer.style.transform = `translateY(${targetPosition}px)`;
       });
 
-      // Gérer la fin de l'animation
       setTimeout(() => {
         lever.classList.remove('pulled');
         
@@ -1340,7 +1334,7 @@ function initializeSlotMachine(langData) {
         payoutDisplay.innerHTML = `<p>${payoutText}</p>`;
         
         isSpinning = false;
-      }, 3500); // 2500ms pour l'anim de base + 1000ms pour la plus longue
+      }, 3500);
     };
 
     lever.addEventListener('click', spin);
@@ -1348,13 +1342,10 @@ function initializeSlotMachine(langData) {
 
 });
 
-// Ajoutez ceci à la fin de votre fichier code.js, juste avant l'accolade fermante de DOMContentLoaded
-
 const wtfButton = document.getElementById('wtf-btn');
 
 if (wtfButton) {
   
-  // Fonction pour obtenir une couleur aléatoire vraiment horrible
   const getRandomHorribleColor = () => {
     const letters = '0123456789ABCDEF';
     let color = '#';
@@ -1364,39 +1355,26 @@ if (wtfButton) {
     return color;
   };
 
-  // Fonction qui applique le carnage visuel
   const unleashVisualCarnage = () => {
-    // 1. On applique Comic Sans partout
     document.body.style.fontFamily = 'Comic Sans MS, cursive, sans-serif';
-
-    // 2. On sélectionne une panoplie d'éléments à détruire
     const elementsToRuin = document.querySelectorAll('body, header, section, .btn, h1, h2, h3, p, .logo, .skill-tag, .project-card, .timeline-content, footer, .about-image-placeholder, .nav-container');
-
-    // 3. On applique des couleurs de fond et de texte aléatoires et horribles
     elementsToRuin.forEach(el => {
       el.style.backgroundColor = getRandomHorribleColor();
       el.style.color = getRandomHorribleColor();
-      // On s'assure que les bordures aussi sont horribles
       el.style.borderColor = getRandomHorribleColor();
     });
 
-    // 4. On transforme le bouton WTF en bouton "retour à la normale"
     wtfButton.textContent = "AU SECOURS !";
     wtfButton.style.backgroundColor = 'white';
     wtfButton.style.color = 'black';
     wtfButton.onclick = () => {
-      // La solution la plus simple et efficace pour tout annuler : recharger la page.
       location.reload(); 
     };
   };
 
-  // On lie la fonction de carnage au premier clic du bouton
   wtfButton.onclick = unleashVisualCarnage;
 }
 
-//=========================================================
-//    FONCTION TÉMOIGNAGES - TERMINAL (VERSION RÉPARÉE)
-//=========================================================
 function initializeTestimonialsTerminal(langData) {
     const terminal = document.getElementById('testimonial-terminal');
     const sourcesList = document.getElementById('testimonial-sources-list');
@@ -1410,20 +1388,17 @@ function initializeTestimonialsTerminal(langData) {
     const placeholderHint = sourcesList.querySelector('.placeholder-prompt');
     const placeholderDisplay = display.querySelector('.placeholder');
     
-    // Vider la liste, mais garder le message d'invite s'il existe
     sourcesList.innerHTML = '';
     if (placeholderHint) {
         sourcesList.appendChild(placeholderHint);
         placeholderHint.style.display = 'block';
     }
     
-    // Réinitialiser l'affichage
     display.innerHTML = '';
     if (placeholderDisplay) {
       display.appendChild(placeholderDisplay);
       placeholderDisplay.style.display = 'block';
     }
-
 
     testimonials.forEach((item, index) => {
         const menuItem = document.createElement('button');
@@ -1465,7 +1440,6 @@ async function runTestimonialSequence(testimonial, langData, display) {
     const caret = `<span id="testimonial-caret"></span>`;
 
     async function type(element, text, speed = 25) {
-        // Supprime le caret existant avant de taper
         const existingCaret = element.querySelector('#testimonial-caret');
         if (existingCaret) existingCaret.remove();
 
@@ -1475,7 +1449,6 @@ async function runTestimonialSequence(testimonial, langData, display) {
             element.innerHTML = currentText + caret;
             await pause(speed + (Math.random() - 0.5) * 15);
         }
-        // Supprime le caret à la fin de la frappe pour cette ligne
         element.innerHTML = currentText;
     }
 
@@ -1501,10 +1474,9 @@ async function runTestimonialSequence(testimonial, langData, display) {
     await type(projectEl, testimonial.project);
     await type(dateEl, testimonial.date);
     
-    quoteEl.innerHTML = `> ${caret}`; // Initialise le devis avec le curseur
+    quoteEl.innerHTML = `> ${caret}`; 
     await type(quoteEl, testimonial.quote);
 
-    // Enlève le dernier curseur
     const finalCaret = display.querySelector('#testimonial-caret');
     if(finalCaret) finalCaret.remove();
 }

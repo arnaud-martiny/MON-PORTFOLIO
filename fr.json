@@ -41,12 +41,11 @@
       "API & Intégrations"
     ]
   },
-  "counters": {
-    "age": "Ans",
-    "webProjects": "Projets Web",
-    "passion": "Passion (%)",
-    "masteredTech": "Technologies Maîtrisées"
-  },
+"counters": {
+  "projects": "Projets Réalisés",
+  "commits": "Commits sur GitHub",
+  "coffee": "Tasses de café"
+},
   "skillsSection": {
     "title": "MA GALAXIE DE COMPÉTENCES",
     "planets": [
@@ -127,6 +126,10 @@
     "title": "Site en constante évolution",
     "message": "Ce portfolio est un projet vivant ! De nouvelles fonctionnalités et animations sont ajoutées régulièrement. Dernière mise à jour le {{date}}. Revenez bientôt !"
   },
+  "projectsUpdatePopup": {
+    "title": "Mise à Jour des Projets",
+    "message": "Les sites pour <strong>Nowa Logistics</strong> et <strong>Le Théâtre des Poètes</strong> seront publiés dans moins d'un mois. Quelques modifications et finitions sont encore en cours. Merci pour votre patience !"
+  },
   "experienceSection": {
     "title": "EXPÉRIENCE & FORMATION",
     "items": [
@@ -187,9 +190,10 @@
   "footer": {
     "copyright": "© 2025 Arnaud Martiny. Tous droits réservés."
   },
-  "featuredProjects": {
+   "featuredProjects": {
   "title": "Mes Réalisations Web",
   "nowaTooltip": "Site en construction, disponible dans quelques semaines !",
+  "poetesTooltip": "Site en développement, lancement prévu prochainement !",
   "caseStudyButton": "Voir le Case Study",
   "caseStudyTooltip": "Vous n'allez pas regretter le voyage ;-)",
   "items": [
@@ -199,8 +203,8 @@
       "title": "Arnaud Martiny - Portfolio",
       "imageSrc": "assets/img/preview-portfolio.png",
       "imageAlt": "Aperçu du projet Portfolio",
-      "description": "Le site sur lequel vous naviguez ! Un portfolio moderne conçu pour présenter mes projets et compétences, avec des animations CSS/JS custom et une structure entièrement responsive. Le projet méta par excellence, un vrai bac à sable pour expérimenter.",
-      "tech": ["HTML", "CSS", "JavaScript", "GSAP", "i18n"],
+      "description": "<strong>Le défi :</strong> prouver ma maîtrise des technologies web fondamentales sans framework. <strong>Ma solution :</strong> j'ai conçu et développé cette plateforme de A à Z en HTML, CSS et JavaScript pur, en y intégrant des animations complexes avec GSAP et un système de traduction sur-mesure. <strong>Ce projet valide ma capacité à architecturer une application front-end robuste et optimisée.</strong>",
+      "tech": ["HTML5", "CSS3", "JavaScript (ES6+)", "GSAP", "i18n", "Figma"],
       "liveLink": "https://www.arnaud-martiny.be/",
       "codeLink": "https://github.com/arnaud-martiny/MON-PORTFOLIO",
       "caseStudy": {
@@ -215,12 +219,12 @@
     },
     {
       "id": "nowa-logistics",
-      "category": "Site Vitrine Professionnel",
+      "category": "Site Vitrine Professionnel (Stage)",
       "title": "Nowa Logistics",
       "imageSrc": "assets/img/preview-nowa-logistics.png",
       "imageAlt": "Aperçu du projet Nowa Logistics",
-      "description": "Réalisé durant mon stage chez Nowa Market, ce site vitrine pour leur activité de logistique durable a été développé de A à Z. Mon rôle couvrait le design UX/UI sur Figma, le développement front-end et l'intégration d'un formulaire de contact fonctionnel.",
-      "tech": ["HTML", "CSS", "JavaScript", "Figma"],
+      "description": "<strong>Le défi :</strong> créer l'identité digitale de la nouvelle entité logistique de Nowa Market. <strong>Ma solution :</strong> durant mon stage, j'ai pris en charge ce projet de la maquette UX/UI sur Figma jusqu'au développement front-end complet. <strong>Cette expérience a prouvé ma capacité à gérer un projet en autonomie dans un cadre professionnel et à livrer un produit fini répondant à un besoin business concret.</strong>",
+      "tech": ["Figma", "HTML5", "CSS3", "JavaScript", "Gestion de Projet"],
       "liveLink": "#",
       "codeLink": "#",
       "caseStudy": {
@@ -234,13 +238,33 @@
       }
     },
     {
+      "id": "theatre-des-poetes",
+      "category": "Site Vitrine pour ASBL",
+      "title": "Le Théâtre des Poètes",
+      "imageSrc": "assets/img/apercu_TDP.JPG",
+      "imageAlt": "Aperçu du projet Théâtre des Poètes",
+      "description": "<strong>Le défi :</strong> remplacer un site vieillissant, hacké et non-administrable pour une ASBL à budget limité. <strong>Ma solution :</strong> j'ai mené une refonte complète en me concentrant sur la sécurité, la modernité et surtout, la simplicité de gestion pour l'équipe du théâtre. <strong>Ce projet démontre ma capacité à créer des solutions durables et adaptées aux besoins de clients non-techniques.</strong>",
+      "tech": ["PHP", "MySQL", "JavaScript", "HTML/CSS", "Sécurité Web"],
+      "liveLink": "#",
+      "codeLink": "#",
+      "caseStudy": {
+        "title": "C:\\Projects\\Theatre_Poetes_Reboot.exe",
+        "briefTitle": "▸ Le Défi (la_mission.txt)",
+        "brief": "L'ASBL 'Le Théâtre des Poètes', disposant d'un budget limité, se retrouvait avec un site de 2015. Non seulement il était visuellement daté et incomplet, mais il était également truffé de bugs et, pire encore, avait été hacké. La mission était de repartir de zéro pour construire une présence en ligne fiable et sécurisée.",
+        "roleTitle": "▸ Ma Solution (strategie.doc)",
+        "role": "J'ai pris en charge la refonte de A à Z. La première étape a été de concevoir sur Figma une interface moderne et intuitive, qui reflète l'âme du théâtre. Ensuite, j'ai développé un site sécurisé avec une structure simple, permettant à l'équipe de l'ASBL de mettre à jour le programme et les actualités sans difficulté.",
+        "resultsTitle": "▸ Résultats & Apprentissages (changelog.log)",
+        "results": "Le site est en phase finale de développement. Il apportera au théâtre une vitrine professionnelle, sécurisée contre les menaces futures et parfaitement adaptée aux mobiles. Ce projet a été une excellente leçon sur l'importance de construire des solutions robustes et durables, même avec des contraintes budgétaires."
+      }
+    },
+    {
       "id": "fast-n-friends",
       "category": "Projet Étudiant",
       "title": "Fast 'N Friends",
       "imageSrc": "assets/img/preview-FNF.png",
       "imageAlt": "Aperçu du projet Fast N Friends",
-      "description": "Un site de covoiturage étudiant développé en PHP avec WordPress comme CMS. Ce projet a été une excellente opportunité d'apprendre sur le tas la gestion de profils utilisateurs, la responsivité et les bases de données.",
-      "tech": ["PHP", "WordPress", "CSS", "MySQL"],
+      "description": "<strong>Le défi :</strong> construire en binôme une plateforme de covoiturage 100% fonctionnelle. <strong>Mon rôle</strong> a été central sur le back-end : j'ai conçu la base de données MySQL et développé en PHP la logique de gestion des utilisateurs, des sessions et des annonces. <strong>Ce projet a été clé pour solidifier mes compétences en développement back-end et en travail d'équipe avec Git.</strong>",
+      "tech": ["PHP", "WordPress", "CSS", "MySQL", "Git & GitHub"],
       "liveLink": "https://fastnfriends.emu.isfsc.be/home/",
       "codeLink": "https://github.com/arnaud-martiny/Fast-N-Friends",
      "caseStudy": {

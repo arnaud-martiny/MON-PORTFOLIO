@@ -41,12 +41,11 @@
       "API & Integrations"
     ]
   },
-  "counters": {
-    "age": "Years Old",
-    "webProjects": "Web Projects",
-    "passion": "Passion (%)",
-    "masteredTech": "Mastered Technologies"
-  },
+"counters": {
+  "projects": "Projects Completed",
+  "commits": "Commits on GitHub",
+  "coffee": "Cups of Coffee"
+},
   "skillsSection": {
     "title": "MY GALAXY OF SKILLS",
     "planets": [
@@ -123,9 +122,9 @@
     { "filename": "Launch.zip", "time": "42 seconds" }
   ]
 },
-  "evolutionPopup": {
-    "title": "Constantly Evolving Site",
-    "message": "This portfolio is a live project! New features and animations are added regularly. Last update on {{date}}. Check back soon!"
+  "projectsUpdatePopup": {
+    "title": "Projects Update",
+    "message": "The websites for <strong>Nowa Logistics</strong> and <strong>Le Théâtre des Poètes</strong> will be published in less than a month. Some modifications and final touches are still underway. Thank you for your patience!"
   },
   "experienceSection": {
     "title": "EXPERIENCE & EDUCATION",
@@ -161,7 +160,7 @@
             {
         "title": "Internship at Nowa Market",
         "date": "2025",
-        "description": "A comprehensive professional experience as a Digital Project Manager Assistant. My main mission was the end-to-end design (UX/UI in Figma, front-end development) of the showcase website for the new entity, Nowa Logistics. I also contributed to strategic projects, including business plan analysis, creating investor pitch decks, and improving the UX and translation of the internal ERP."
+        "description": "A comprehensive professional experience as a Digital Project Manager Assistant. My main mission was the end-to-end design (UX/UI in Figma, front-end development) of the showcase website for the new entity, Nowa Logistics. I also contributed to a wide range of strategic projects, including business plan analysis, creating investor pitch decks, and improving the UX and translation of the internal ERP."
       },
       {
         "title": "Creation of my Personal Portfolio",
@@ -187,9 +186,10 @@
   "footer": {
     "copyright": "© 2025 Arnaud Martiny. All rights reserved."
   },
-"featuredProjects": {
+  "featuredProjects": {
   "title": "My Web Creations",
   "nowaTooltip": "Site under construction, available in a few weeks!",
+  "poetesTooltip": "Site under development, scheduled for launch soon!",
   "caseStudyButton": "View Case Study",
   "caseStudyTooltip": "You won't regret the trip ;-)",
   "items": [
@@ -199,8 +199,8 @@
       "title": "Arnaud Martiny - Portfolio",
       "imageSrc": "assets/img/preview-portfolio.png",
       "imageAlt": "Preview of the Portfolio project",
-      "description": "The very site you are currently browsing! A modern portfolio designed to showcase my projects and skills, featuring custom CSS/JS animations and a fully responsive layout. The ultimate meta-project, and a true sandbox for experimentation.",
-      "tech": ["HTML", "CSS", "JavaScript", "GSAP", "i18n"],
+      "description": "<strong>The challenge:</strong> to demonstrate my mastery of core web technologies without relying on frameworks. <strong>My solution:</strong> I designed and developed this platform from scratch using pure HTML, CSS, and JavaScript, integrating complex animations with GSAP and a custom translation system. <strong>This project showcases my ability to architect a robust and optimized front-end application.</strong>",
+      "tech": ["HTML5", "CSS3", "JavaScript (ES6+)", "GSAP", "i18n", "Figma"],
       "liveLink": "https://www.arnaud-martiny.be/",
       "codeLink": "https://github.com/arnaud-martiny/MON-PORTFOLIO",
       "caseStudy": {
@@ -215,12 +215,12 @@
     },
     {
       "id": "nowa-logistics",
-      "category": "Professional Showcase Website",
+      "category": "Professional Showcase Website (Internship)",
       "title": "Nowa Logistics",
       "imageSrc": "assets/img/preview-nowa-logistics.png",
       "imageAlt": "Preview of the Nowa Logistics project",
-      "description": "Built during my internship at Nowa Market, this showcase site for their sustainable logistics business was developed from scratch. My role covered UX/UI design in Figma, front-end development, and the integration of a functional contact form.",
-      "tech": ["HTML", "CSS", "JavaScript", "Figma"],
+      "description": "<strong>The challenge:</strong> to create the digital identity for Nowa Market's new logistics entity. <strong>My solution:</strong> during my internship, I took full ownership of this project, from the UX/UI mockups in Figma to the complete front-end development. <strong>This experience proved my ability to manage a project autonomously in a professional setting and deliver a finished product that meets a concrete business need.</strong>",
+      "tech": ["Figma", "HTML5", "CSS3", "JavaScript", "Project Management"],
       "liveLink": "#",
       "codeLink": "#",
       "caseStudy": {
@@ -234,16 +234,36 @@
       }
     },
     {
+      "id": "theatre-des-poetes",
+      "category": "Showcase Site for NPO",
+      "title": "Le Théâtre des Poètes",
+      "imageSrc": "assets/img/apercu_TDP.JPG",
+      "imageAlt": "Preview of the Théâtre des Poètes project",
+      "description": "<strong>The challenge:</strong> to replace an aging, hacked, and unmanageable site for a non-profit with a limited budget. <strong>My solution:</strong> I led a complete overhaul, focusing on security, a modern design, and above all, ease of management for the theater's team. <strong>This project demonstrates my ability to create sustainable and tailored solutions for the needs of non-technical clients.</strong>",
+      "tech": ["PHP", "MySQL", "JavaScript", "HTML/CSS", "Web Security"],
+      "liveLink": "#",
+      "codeLink": "#",
+      "caseStudy": {
+        "title": "C:\\Projects\\Theatre_Poetes_Reboot.exe",
+        "briefTitle": "▸ The Challenge (mission.txt)",
+        "brief": "The non-profit 'Le Théâtre des Poètes', operating on a limited budget, was stuck with a website from 2015. Not only was it visually dated and incomplete, but it was also riddled with bugs and, even worse, had been hacked. The mission was to start from scratch to build a reliable and secure online presence.",
+        "roleTitle": "▸ My Solution (strategy.doc)",
+        "role": "I took charge of the A-to-Z redesign. The first step was to design a modern and intuitive interface in Figma that reflects the theater's spirit. Then, I developed a secure site with a simple structure, allowing the NPO's team to easily update the program and news.",
+        "resultsTitle": "▸ Results & Learnings (changelog.log)",
+        "results": "The site is in its final development phase. It will provide the theater with a professional, secure showcase protected against future threats and perfectly mobile-friendly. This project was an excellent lesson in the importance of building robust and sustainable solutions, even with budget constraints."
+      }
+    },
+    {
       "id": "fast-n-friends",
       "category": "Student Project",
       "title": "Fast 'N Friends",
       "imageSrc": "assets/img/preview-FNF.png",
       "imageAlt": "Preview of the Fast N Friends project",
-      "description": "A student carpooling website developed in PHP with WordPress as its CMS. This project was an excellent opportunity to learn user profile management, responsiveness, and database fundamentals on the fly.",
-      "tech": ["PHP", "WordPress", "CSS", "MySQL"],
+      "description": "<strong>The challenge:</strong> as part of a two-person team, build a fully functional carpooling platform from the ground up. <strong>My role</strong> was central to the back-end: I designed the MySQL database and developed the core logic in PHP, handling user management, sessions, and ride postings. <strong>This project was key to strengthening my back-end development skills and my experience with team collaboration using Git.</strong>",
+      "tech": ["PHP", "WordPress", "CSS", "MySQL", "Git & GitHub"],
       "liveLink": "https://fastnfriends.emu.isfsc.be/home/",
       "codeLink": "https://github.com/arnaud-martiny/Fast-N-Friends",
-      "caseStudy": {
+     "caseStudy": {
         "title": "C:\\Projects\\FastNFriends_Platform.exe",
         "briefTitle": "▸ The Challenge (mission.txt)",
         "brief": "As part of this fictional academic project, the challenge was to build a 100% functional carpooling platform as a two-person team. The specifications required complete user management, an ad posting system, and a search engine, all based on a relational database.",
@@ -338,7 +358,7 @@
       { "name": "Communication", "icon": "fa-comments" },
       { "name": "Logic", "icon": "fa-puzzle-piece" },
       { "name": "Collaboration", "icon": "fa-people-group" },
-      { "name": "Adaptability", "icon": "fa-cogs" }
+      { "name": "Adaptabilité", "icon": "fa-cogs" }
     ]
   }
 }

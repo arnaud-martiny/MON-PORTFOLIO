@@ -2378,3 +2378,84 @@ body.mobile-menu-open #hamburger-btn {
     padding: 1.5rem;
   }
 }
+
+/* ======================================================= */
+/*    STYLES POUR LE NOUVEAU POP-UP DE MISE À JOUR (CORRIGÉ) */
+/* ======================================================= */
+.projects-update-popup-overlay {
+  position: fixed;
+  bottom: 0;
+  right: 0; /* Changé de 'left: 0' à 'right: 0' */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0); /* Fond transparent, on ne veut que la popup */
+  display: flex;
+  justify-content: flex-end;  /* Aligné à droite */
+  align-items: flex-end;    /* Aligné en bas */
+  z-index: 10001;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  /* On s'assure qu'il ne cache pas le bouton "retour en haut" */
+  padding: 2rem;
+}
+
+.projects-update-popup-overlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.projects-update-popup {
+  background-color: var(--accent);
+  color: var(--primary);
+  border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
+  border-radius: 12px;
+  padding: 1.8rem;
+  max-width: 320px; /* Taille similaire à l'autre popup */
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  position: relative;
+  text-align: left; /* Plus lisible pour ce format */
+  cursor: default;
+  /* Animation d'apparition */
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: float-subtle 6s ease-in-out infinite; /* Ajout de l'animation de flottement */
+}
+
+.projects-update-popup-overlay.visible .projects-update-popup {
+    transform: translateY(0);
+}
+
+.projects-update-popup h4 {
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.projects-update-popup p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0;
+}
+.projects-update-popup p strong {
+    color: var(--color-accent-green);
+}
+
+.projects-update-popup-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.8rem;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--primary);
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.projects-update-popup-close:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}

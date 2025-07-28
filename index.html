@@ -260,23 +260,26 @@
       </div>
     </section>
 
-    <!-- Section Compteurs -->
-    <section class="counter-section">
-      <div class="counter-item reveal">
-        <div class="counter-number" data-count="19">0</div>
-        <div class="counter-text" data-i18n="counters.age">Ans</div>
-      </div>
-      <div class="counter-item reveal">
-        <div class="counter-number" data-count="100">0</div>
-        <div class="counter-text" data-i18n="counters.passion">Passion (%)</div>
-      </div>
-      <div class="counter-item reveal">
-        <div class="counter-number" data-count="7">0</div>
-        <div class="counter-text" data-i18n="counters.masteredTech">
-          Technologies Maîtrisées
+      <!-- Section Compteurs -->
+      <section class="counter-section">
+        <!-- PREMIER COMPTEUR : PROJETS -->
+        <div class="counter-item reveal">
+          <div class="counter-number" data-count="5">0</div>
+          <div class="counter-text" data-i18n="counters.projects">Projets Réalisés</div>
         </div>
-      </div>
-    </section>
+
+        <!-- DEUXIÈME COMPTEUR : COMMITS -->
+        <div class="counter-item reveal">
+          <div class="counter-number" data-count="120">0</div>
+          <div class="counter-text" data-i18n="counters.commits">Commits sur GitHub</div>
+        </div>
+
+        <!-- TROISIÈME COMPTEUR : CAFÉ (LA TOUCHE D'HUMOUR) -->
+        <div class="counter-item reveal">
+          <div class="counter-number" data-count="999">0</div>
+          <div class="counter-text" data-i18n="counters.coffee">Tasses de café</div>
+        </div>
+      </section>
 
     <!-- ======================================================== -->
     <!-- NOUVELLE STRUCTURE HTML POUR LA SECTION COMPÉTENCES      -->
@@ -566,11 +569,22 @@
     <!-- Pop-up d'évolution -->
     <div id="evolution-popup-overlay" class="evolution-popup-overlay">
       <!-- NOUVEAU : Ajout de l'attribut data-last-updated. Modifiez cette date quand vous mettez à jour le site. -->
-      <div id="evolution-popup" class="evolution-popup" data-last-updated="23/07/2025">
+      <div id="evolution-popup" class="evolution-popup" data-last-updated="28/07/2025">
         <button id="evolution-popup-close" class="evolution-popup-close">×</button>
         <h4 data-i18n="evolutionPopup.title">Site en Évolution</h4>
         <p data-i18n="evolutionPopup.message" data-i18n-html>
           Ce portfolio est un projet vivant ! De nouvelles fonctionnalités sont ajoutées régulièrement. Revenez bientôt !
+        </p>
+      </div>
+    </div>
+
+    <!-- NOUVEAU : POP-UP POUR LA MISE À JOUR DES PROJETS -->
+    <div id="projects-update-popup-overlay" class="projects-update-popup-overlay">
+      <div id="projects-update-popup" class="projects-update-popup">
+        <button id="projects-update-popup-close" class="projects-update-popup-close">×</button>
+        <h4 data-i18n="projectsUpdatePopup.title">Mise à Jour des Projets</h4>
+        <p data-i18n="projectsUpdatePopup.message" data-i18n-html>
+          Message par défaut...
         </p>
       </div>
     </div>

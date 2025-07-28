@@ -1,3 +1,6 @@
 Note de ce que je voudrais mettre :
 
 - encore a voir
+
+
++ un dernier truc puis j'ai ma dose de code, y'a pas moyen de dire, pour la mix blend, spécifié pour chaque type de couleur, le type de couleur que cela doit etre car actuellement le vert c'est rose quand je passe avec le curseur, c'est problématique et moche, tu comprends ? Guide moi
