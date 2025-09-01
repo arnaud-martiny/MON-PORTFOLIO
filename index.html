@@ -51,13 +51,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&family=VT323&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css" /> 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N7NQ2HCC');</script>
-<!-- End Google Tag Manager -->
+
+            <!-- Google Tag Manager -->
+            <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-N7NQ2HCC');</script>
+            <!-- End Google Tag Manager -->
 </head>
 
   <body>
@@ -245,6 +246,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
     </section>
+
+
+          <!-- ======================================================== -->
+          <!--     NOUVELLE SECTION : GRILLE DE DONNÉES INTERACTIVE     -->
+          <!-- ======================================================== -->
+          <section id="experiences-pro" class="professional-experiences-section">
+            <h2 class="section-heading reveal" data-i18n="professionalExperiences.title">
+              COLLABORATIONS PROFESSIONNELLES
+            </h2>
+            <div class="experience-grid-container reveal" id="experience-grid-container">
+              <!-- Le contenu de la grille sera généré par JavaScript -->
+            </div>
+            <!-- NOUVELLE ZONE D'AFFICHAGE POUR LES DÉTAILS -->
+                  <div id="experience-details-display" class="experience-details-display reveal">
+                      <h4 id="details-company-name"></h4>
+                      <p id="details-role"></p>
+                      <p id="details-description"></p>
+                  </div>
+          </section>
 
       <!-- Section Compteurs -->
       <section class="counter-section">
@@ -619,6 +639,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Dans index.html, juste avant votre script code.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <!-- Dans index.html, juste après les autres scripts GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/SplitText.min.js"></script>
     <script src="code.js" defer></script>
 
     <script src="code.js" defer></script>

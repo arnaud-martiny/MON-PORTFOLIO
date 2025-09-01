@@ -41,6 +41,39 @@
       "API & Intégrations"
     ]
   },
+  "professionalExperiences": {
+  "title": "COLLABORATIONS PROFESSIONNELLES",
+  "items": [
+    {
+      "id": "nowa-market",
+      "companyName": "Nowa Market",
+      "logoSrc": "assets/logos/nowa-market-logo.webp",
+      "role": "Assistant Chef de Projets Digitaux (Stage)",
+      "description": "Expérience complète où j'ai conçu de A à Z le site vitrine pour Nowa Logistics (UX/UI sur Figma, développement front-end). J'ai aussi contribué à des projets stratégiques : analyse de business plan, création de pitch decks pour investisseurs, et amélioration de l'UX/traduction de l'ERP interne."
+    },
+    {
+      "id": "oxxoprint",
+      "companyName": "Oxxoprint",
+      "logoSrc": "assets/logos/logo-oxxoprint.png",
+      "role": "Consultant & Développeur IT",
+      "description": "Mission de conseil IT pour structurer et développer l'écosystème digital de l'entreprise. Mes responsabilités incluent l'analyse concurrentielle (benchmarks), la création et la gestion technique des boutiques en ligne ('print shops'), ainsi que l'intégration des catalogues produits."
+    },
+    {
+      "id": "chouia-maison",
+      "companyName": "Chouia Maison",
+      "logoSrc": "assets/logos/chouia-maison-logo.png",
+      "role": "Développeur WordPress & SEO",
+      "description": "Intervention sur la modernisation de la boutique WordPress (thème Flatsome). J'assure l'amélioration continue du SEO, l'assainissement du code, la création de nouvelles pages, l'intégration de produits et l'animation du blog pour dynamiser la présence en ligne."
+    },
+    {
+      "id": "theatre-poetes",
+      "companyName": "Le Théâtre des Poètes",
+      "logoSrc": "assets/logos/TheatrePoetes_LOGO.png",
+      "role": "Développeur Full-Stack",
+      "description": "Refonte complète du site de l'ASBL qui était vieillissant, hacké et non-administrable. Conception d'une interface moderne et développement d'une solution sécurisée et facile à gérer pour l'équipe du théâtre, en me basant sur les besoins d'un client non-technique à budget limité."
+    }
+  ]
+},
 "counters": {
   "projects": "Projets Réalisés",
   "commits": "Commits sur GitHub",

@@ -453,10 +453,14 @@ document.addEventListener("DOMContentLoaded", () => {
          }
     });
 
+    // On appelle toutes les fonctions qui initialisent les sections dynamiques
     initializeRetroAnimation(langData);
     initializeTestimonialsTerminal(langData);
     initializeTarotDeck(langData);
     initializeSlotMachine(langData);
+    
+    // ✅ LA CORRECTION EST ICI : on appelle la bonne fonction pour la grille d'expériences
+    initializeExperienceGrid(langData); 
 
     // --- GESTION DE LA DATE DANS LE POP-UP D'ÉVOLUTION ---
     const evolutionPopupMessage = document.querySelector('#evolution-popup p[data-i18n="evolutionPopup.message"]');
@@ -882,35 +886,43 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- GESTION DU POP-UP D'ÉVOLUTION (LOGIQUE RESTAURÉE) ---
+// --- GESTION DU POP-UP D'ÉVOLUTION ---
   const evolutionPopupOverlay = document.getElementById("evolution-popup-overlay");
   const evolutionPopup = document.getElementById("evolution-popup");
   const evolutionPopupCloseBtn = document.getElementById("evolution-popup-close");
 
   if (evolutionPopupOverlay && evolutionPopup && evolutionPopupCloseBtn) {
+    // Fonction pour fermer le pop-up avec l'animation
     const closeEvolutionPopup = () => {
       evolutionPopup.classList.add('exploding');
+      // On attend la fin de l'animation CSS pour cacher complètement l'overlay
       evolutionPopup.addEventListener('animationend', () => {
         evolutionPopupOverlay.classList.remove('visible');
         evolutionPopup.classList.remove('exploding');
-      }, { once: true });
+      }, { once: true }); // 'once: true' supprime l'écouteur après son exécution
     };
 
+    // On vérifie si le pop-up n'a pas déjà été montré dans cette session
     if (!sessionStorage.getItem('evolutionPopupShown')) {
+      // On attend 4 secondes avant de le montrer
       setTimeout(() => {
         evolutionPopupOverlay.classList.add('visible');
+        // On enregistre qu'il a été montré pour ne pas le réafficher
         sessionStorage.setItem('evolutionPopupShown', 'true');
       }, 4000);
     }
 
+    // Ajout des écouteurs d'événements
     evolutionPopupCloseBtn.addEventListener('click', closeEvolutionPopup);
     evolutionPopupOverlay.addEventListener('click', (e) => {
+        // Si on clique sur le fond (l'overlay) et non sur le pop-up lui-même
         if (e.target === evolutionPopupOverlay) {
             closeEvolutionPopup();
         }
     });
 
     evolutionPopup.addEventListener('click', (e) => {
+      // Empêche le pop-up de se fermer si on clique à l'intérieur
       e.stopPropagation();
     });
   }
@@ -1276,6 +1288,117 @@ function initializeTarotDeck(langData) {
 
         container.appendChild(cardEl);
     });
+}
+
+// DANS code.js, REMPLACE l'ancienne fonction "initializeProfessionalExperiences"
+
+// DANS code.js, REMPLACEZ l'ancienne fonction par celle-ci
+
+// DANS code.js, REMPLACEZ l'ancienne fonction par celle-ci
+
+function initializeExperienceGrid(langData) {
+  const container = document.getElementById('experience-grid-container');
+  const detailsDisplay = document.getElementById('experience-details-display');
+  const companyNameEl = document.getElementById('details-company-name');
+  const roleEl = document.getElementById('details-role');
+  const descriptionEl = document.getElementById('details-description');
+  
+  if (!container || !detailsDisplay || !langData.professionalExperiences || !langData.professionalExperiences.items) {
+    return;
+  }
+
+  container.innerHTML = '';
+  detailsDisplay.classList.add('hidden');
+
+  const experiences = langData.professionalExperiences.items;
+  const cards = [];
+  let hideTimeout;
+
+  experiences.forEach(exp => {
+    const card = document.createElement('div');
+    card.className = 'experience-card';
+    if (exp.id) {
+      card.id = exp.id;
+    }
+    card.innerHTML = `<img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo">`;
+    container.appendChild(card);
+    cards.push(card);
+
+    card.addEventListener('mouseenter', () => {
+      clearTimeout(hideTimeout);
+
+      // On prépare le texte mais on le laisse vide pour que l'animation le remplisse
+      companyNameEl.textContent = exp.companyName;
+      roleEl.textContent = exp.role;
+      descriptionEl.textContent = exp.description;
+      
+      cards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+
+      detailsDisplay.classList.remove('hidden');
+
+      // =============================================================
+      //      NOUVELLE ANIMATION MODERNE (REMPLACE L'ANCIENNE)
+      // =============================================================
+
+      // On s'assure qu'aucune animation précédente n'est en cours
+      gsap.killTweensOf([companyNameEl, roleEl, descriptionEl]);
+      
+      // On divise le texte en mots, puis chaque mot en lettres pour plus de contrôle
+      const splitTitle = new SplitText(companyNameEl, { type: "chars, words" });
+      const splitRole = new SplitText(roleEl, { type: "chars, words" });
+
+      // Animation 1 : Le titre (Nom de l'entreprise)
+      gsap.from(splitTitle.chars, {
+        duration: 0.8,
+        opacity: 0,
+        scaleY: 1.8, // Commence étiré verticalement
+        y: 40,
+        filter: 'blur(10px)', // Commence flou
+        transformOrigin: "top", // L'étirement se fait depuis le haut
+        ease: "expo.out",
+        stagger: {
+          amount: 0.5, // L'animation de toutes les lettres dure 0.5s au total
+          from: "start"
+        }
+      });
+      
+      // Animation 2 : Le sous-titre (Rôle)
+      gsap.from(splitRole.chars, {
+        duration: 0.6,
+        opacity: 0,
+        x: -30, // Glisse depuis la gauche
+        ease: "power2.out",
+        stagger: 0.04, // Chaque lettre a un léger décalage
+        delay: 0.2 // Commence après le titre
+      });
+
+      // Animation 3 : La description
+      gsap.from(descriptionEl, {
+        duration: 1.0,
+        opacity: 0,
+        y: 20, // Simple montée en fondu
+        ease: "power2.out",
+        delay: 0.4 // Commence après le sous-titre
+      });
+    });
+  });
+
+  container.addEventListener('mouseleave', () => {
+    hideTimeout = setTimeout(() => {
+      // Animation de disparition douce avant de cacher l'élément
+      gsap.to(detailsDisplay, {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+          detailsDisplay.classList.add('hidden');
+          // On remet l'opacité à 1 pour la prochaine animation
+          gsap.set(detailsDisplay, { opacity: 1 }); 
+        }
+      });
+      cards.forEach(c => c.classList.remove('active'));
+    }, 200);
+  });
 }
 
 function initializeSlotMachine(langData) {

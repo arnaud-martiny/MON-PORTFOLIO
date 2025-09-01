@@ -41,6 +41,39 @@
       "API & Integrations"
     ]
   },
+  "professionalExperiences": {
+  "title": "PROFESSIONAL COLLABORATIONS",
+  "items": [
+    {
+      "id": "nowa-market",
+      "companyName": "Nowa Market",
+      "logoSrc": "assets/logos/nowa-market-logo.webp",
+      "role": "Digital Project Manager Assistant (Internship)",
+      "description": "A comprehensive experience where I designed the Nowa Logistics showcase site from A to Z (UX/UI in Figma, front-end development). I also contributed to strategic projects: business plan analysis, creating investor pitch decks, and improving the internal ERP's UX/translation."
+    },
+    {
+      "id": "oxxoprint",
+      "companyName": "Oxxoprint",
+      "logoSrc": "assets/logos/logo-oxxoprint.png",
+      "role": "IT Consultant & Developer",
+      "description": "IT consulting mission to structure and develop the company's digital ecosystem. My responsibilities include competitive analysis (benchmarks), creating and technically managing online stores ('print shops'), and integrating product catalogs."
+    },
+    {
+      "id": "chouia-maison",
+      "companyName": "Chouia Maison",
+      "logoSrc": "assets/logos/chouia-maison-logo.png",
+      "role": "WordPress & SEO Developer",
+      "description": "Focused on modernizing the WordPress store (Flatsome theme). I handle continuous SEO improvements, code cleanup, creating new pages, product integration, and managing the blog to boost the online presence."
+    },
+    {
+      "id": "theatre-poetes",
+      "companyName": "Le Théâtre des Poètes",
+      "logoSrc": "assets/logos/TheatrePoetes_LOGO.png",
+      "role": "Full-Stack Developer",
+      "description": "Complete overhaul of the nonprofit's website, which was outdated, hacked, and unmanageable. I designed a modern interface and developed a secure, easy-to-manage solution for the theater team, tailored to a non-technical client with a limited budget."
+    }
+  ]
+},
 "counters": {
   "projects": "Projects Completed",
   "commits": "Commits on GitHub",
