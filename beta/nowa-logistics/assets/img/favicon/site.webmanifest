@@ -1,0 +1,48 @@
+{
+  "name": "Nowa Logistics - ERP Gestion Consignes",
+  "short_name": "Nowa ERP",
+  "description": "ERP belge innovant pour la traçabilité des contenants consignés et l'optimisation de la logistique circulaire.",
+  "lang": "fr-BE",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#325138",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any" 
+    },
+    {
+      "src": "web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable" 
+    },
+    {
+      "src": "web-app-manifest-512x512.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+
+  "shortcuts": [
+    {
+      "name": "Nos Tarifs",
+      "short_name": "Tarifs",
+      "description": "Découvrez nos offres tarifaires",
+      "url": "/pricing.html",
+      "icons": [{ "src": "favicon-96x96.png", "sizes": "96x96" }] 
+    },
+    {
+      "name": "Nous Contacter",
+      "short_name": "Contact",
+      "description": "Contactez l'équipe Nowa Logistics",
+      "url": "/contact-us.html",
+      "icons": [{ "src": "favicon-96x96.png", "sizes": "96x96" }]
+    }
+  ]
+}

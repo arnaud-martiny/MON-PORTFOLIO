@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nowa Logistics - ERP Belge pour la gestion de consignes</title>
+  <meta name="description" content="ERP belge innovant pour la traçabilité des contenants consignés. Automatisez vos retours et optimisez votre logistique circulaire.">
+  <meta name="keywords" content="ERP consigne, gestion contenants, logistique circulaire, solution belge, traçabilité QR code">
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.png">
+  <link rel="apple-touch-icon" href="assets/img/logo.png">
+  <link rel="manifest" href="assets/img/favicon/site.webmanifest">
+
+  <link rel="stylesheet" href="assets/css/style.css"> <link rel="stylesheet" href="assets/css/main.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" as="script">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js" as="script">
+  <link rel="preload" href="assets/js/main.min.js" as="script">
+  <link rel="preload" href="assets/js/script.js" as="script">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />  <link rel="preload" href="assets/img/bocaux-qr.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/img/bocaux-qr.webp" as="image" type="image/webp">
+
+  <meta property="og:title" content="Nowa Logistics - ERP Belge pour Gestion de Consignes">
+  <meta property="og:description" content="Solution innovante de traçabilité des contenants consignés avec QR code et crédit client instantané">
+  <meta property="og:image" content="https://example.com/assets/img/social-preview.jpg">
+  <meta property="og:url" content="https://example.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#325138">
+
+  <link rel="canonical" href="https://example.com">
+
+</head>
+
+
+  <body class="index-page">
+    <!-- ========== DÉBUT DU BLOC BANNIÈRE BÊTA (CORRIGÉ) ========== -->
+<style>
+  @keyframes scroll-text {
+    from { transform: translateX(0%); }
+    to { transform: translateX(-50%); }
+  }
+  .beta-banner {
+    background-color: #000;
+    color: #fff;
+    padding: 8px 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: sticky; /* Reste sticky */
+    top: 0;          /* Se colle tout en haut */
+    z-index: 1002;   /* Doit être au-dessus de la navbar principale */
+    border-bottom: 2px solid #333;
+    /* La hauteur de cette bannière est d'environ 32px */
+  }
+  .beta-banner-text {
+    display: inline-block;
+    animation: scroll-text 30s linear infinite;
+  }
+  .beta-banner-text span {
+    margin: 0 40px;
+  }
+</style>
+<div class="beta-banner">
+  <div class="beta-banner-text">
+    <span>VERSION BÊTA : Ce site est en cours de développement. Certaines fonctionnalités peuvent évoluer. Merci de votre compréhension.</span>
+    <span>VERSION BÊTA : Ce site est en cours de développement. Certaines fonctionnalités peuvent évoluer. Merci de votre compréhension.</span>
+  </div>
+</div>
+<!-- Les <br> ont été supprimés, le positionnement est géré en CSS -->
+<!-- ========== FIN DU BLOC BANNIÈRE BÊTA ========== -->
+     <!-- Navigation -->
+    <nav id="navbar" aria-label="Navigation principale">
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets/img/logo.png" alt="Nowa Logistics" />
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="pricing.html#fonctionnalites-incluses">Fonctionnalités</a>
+        <a href="pricing.html">Nos tarifs</a>
+        <a href="about-us.html">Qui sommes-nous ?</a>
+        <a href="contact-us.html">Nous contacter</a>
+      </div>
+      <button
+        class="mobile-menu-btn"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+      >
+        <i class="fas fa-bars" aria-hidden="true"></i>
+      </button>
+    </nav>
+
+    <!-- Barre de progression -->
+    <div class="scroll-progress">
+      <div class="progress-orange"></div>
+    </div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="floating-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+  </div>
+
+  <div class="container">
+    <div class="hero-content"> <!-- Classe animate-fadeInUp SUPPRIMÉE -->
+      <h1 id="">
+        Révolutionnez votre gestion de la <span>consigne</span> avec notre
+        ERP <span>innovant</span>
+      </h1>
+      <p>
+        Nowa Logistics automatise vos retours de consignes avec une
+        traçabilité QR code et un crédit client instantané. Découvrez une
+        solution belge conçue pour les professionnels engagés dans une
+        logistique durable.
+      </p>
+      <div class="hero-buttons">
+        <a href="contact-us.html" class="btn btn-secondary">Nous contacter</a>
+      </div>
+    </div>
+  </div>
+
+  <img
+    src="assets/img/bocaux-qr.webp"
+    alt="ERP Nowa Logistics"
+    class="hero-image" 
+  />
+</section>
+
+    <!-- Process Section -->
+<section class="section process-section"> <!-- PAS de gsap-section-fade-up ici -->
+  <div class="container">
+    <h2 class="section-title-2">Votre ERP en <span>3 étapes clés</span> :</h2>
+
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-icon">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <h3 class="step-title">Analyse et personnalisation</h3>
+        <p class="step-content">
+          Nous commençons par comprendre vos besoins spécifiques en matière
+          de gestion des consignes. Notre équipe analyse votre flux de
+          travail actuel et personnalise l'ERP Nowa Logistics pour qu'il
+          s'intègre parfaitement à votre activité.
+        </p>
+      </div>
+
+      <div class="step">
+        <div class="step-icon">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+        <h3 class="step-title">Déploiement et formation</h3>
+        <p class="step-content">
+          Nous déployons l'ERP Nowa Logistics et en assurons sa
+          compréhension par votre personnel. Nous vous accompagnons à chaque
+          étape pour garantir une transition en douceur et une prise en main
+          rapide de l'outil.
+        </p>
+      </div>
+
+      <div class="step">
+        <div class="step-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3 class="step-title">Optimisation et suivi</h3>
+        <p class="step-content">
+          Nous assurons avec notre service informatique les
+          performances de l'ERP et vous fournissons un support pour
+          optimiser votre gestion de l'ERP. Nous vous aidons à identifier
+          les axes d'amélioration.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Features Section -->
+<section class="section features-section"> <!-- Assurez-vous qu'il N'Y A PAS gsap-section-fade-up ici -->
+  <div class="container">
+    <!-- Assurez-vous que cette classe est présente pour l'animation du titre par la timeline -->
+    <h2 class="section-title-2 gsap-features-title">Ce qui fait notre <span>différence</span> :</h2>
+
+    <div class="features-container">
+      <div class="feature">
+        <div class="feature-content">
+          <h3 class="feature-title">
+            Maîtrise du cycle de vie de <span class="highlight-orange">vos consignes</span>
+          </h3>
+          <p class="feature-description">
+            Notre ERP, avec son système QR code moderne, vous offre un contrôle précis sur vos contenants, de leur envoi jusqu'à leur retour, simplifiant les crédits et la gestion des statuts
+          </p>
+          <div class="feature-benefits">
+            <div class="benefit">
+              <div class="benefit-icon"><i class="fas fa-qrcode"></i></div>
+              <div class="benefit-content"><h4>Identification QR code unique</h4><p>Chaque contenant est tracé individuellement via un QR code, assurant un suivi fiable lors des envois et réceptions</p></div>
+            </div>
+            <div class="benefit">
+              <div class="benefit-icon"><i class="fas fa-clipboard-list"></i></div>
+              <div class="benefit-content"><h4>Suivi des statuts en temps réel</h4><p>Visualisez instantanément l'état de vos contenants : en circulation, à l'entrepôt, ou signalé comme cassé</p></div>
+            </div>
+            <div class="benefit">
+              <div class="benefit-icon"><i class="fas fa-bell"></i></div>
+              <div class="benefit-content"><h4>Notifications de mouvement</h4><p>Soyez au courant des étapes clés : envoi, réception client et retour confirmé à l'entrepôt.</p></div> <!-- Correction "Mmuvement" -> "Mouvement" -->
+            </div>
+            <div class="benefit">
+              <div class="benefit-icon"><i class="fas fa-chart-bar"></i></div>
+              <div class="benefit-content"><h4>Indicateurs clés de votre parc</h4><p>Accédez aux chiffres essentiels : nombre de contenants en circulation, en stock à l'entrepôt, et nombre de cassés</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-visual">
+          <img src="assets/img/bocaux.webp" alt="Visualisation du cycle de vie des consignes et suivi des statuts dans l'ERP Nowa Logistics" class="feature-image"/>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-content">
+          <h3 class="feature-title">
+            Conçu pour <span class="highlight-orange">Vous</span>
+          </h3>
+          <p class="feature-description">
+            L'interface de Nowa Logistics est pensée pour une prise en main rapide et une utilisation quotidienne fluide, moins de complexité, plus de productivité pour vos équipes
+          </p>
+          <div class="feature-benefits">
+            <div class="benefit">
+              <div class="benefit-icon"><i class="far fa-lightbulb"></i></div>
+              <div class="benefit-content"><h4>Interface Intuitive</h4><p>Naviguez facilement et accédez rapidement aux informations dont vous avez besoin</p></div>
+            </div>
+            <div class="benefit">
+              <div class="benefit-icon"><i class="fas fa-tachometer-alt"></i></div>
+              <div class="benefit-content"><h4>Tableaux de Bord Clairs</h4><p>Visualisez vos données clés en un coup d'œil pour un pilotage efficace et réactif</p></div>
+            </div>
+            <div class="benefit">
+              <div class="benefit-icon"><i class="fas fa-user-friends"></i></div>
+              <div class="benefit-content"><h4>Formation & Support</h4><p>Notre équipe vous accompagne pour une adoption rapide et une utilisation optimale de l'outil</p></div>
+            </div>
+            <div class="benefit">
+              <div class="benefit-icon"><i class="fas fa-mobile-alt"></i></div>
+              <div class="benefit-content"><h4>Accès Multi-Appareils</h4><p>Gérez vos consignes où que vous soyez, sur ordinateur, tablette ou mobile</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-visual">
+          <img src="assets/img/laptop-nowa.webp" alt="Interface utilisateur claire et intuitive de l'ERP Nowa Logistics" class="feature-image"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <!-- Partners Section - Version WAW -->
+        <section
+        class="section partners-section gsap-section-fade-up"
+        
+      >
+        <div class="brands-banner">
+          <div class="brands-container">
+            <h2 class="brands-title"><b>Nos partenaires de confiance</b></h2>
+            <div class="logo-slider">
+              <img src="assets/img/partners/partner (1).png" alt="partner (1)" />
+              <img src="assets/img/partners/partner (2).png" alt="partner (2)" />
+              <img src="assets/img/partners/partner (3).png" alt="partner (3)" />
+              <img src="assets/img/partners/partner (4).png" alt="partner (4)" />
+              <img src="assets/img/partners/partner (5).png" alt="partner (5)" />
+              <img src="assets/img/partners/partner (6).png" alt="partner (6)" />
+              <img src="assets/img/partners/partner (7).png" alt="partner (7)" />
+              <img src="assets/img/partners/partner (8).png" alt="partner (8)" />
+              <img src="assets/img/partners/partner (9).png" alt="partner (9)" />
+              <img
+                src="assets/img/partners/partner (10).png"
+                alt="partner (10)"
+              />
+              <img
+                src="assets/img/partners/partner (11).png"
+                alt="partner (11)"
+              />
+              <img
+                src="assets/img/partners/partner (12).png"
+                alt="partner (12)"
+              />
+              <img
+                src="assets/img/partners/partner (13).png"
+                alt="partner (13)"
+              />
+              <img
+                src="assets/img/partners/partner (14).png"
+                alt="partner (14)"
+              />
+              <img
+                src="assets/img/partners/partner (15).png"
+                alt="partner (15)"
+              />
+              <img
+                src="assets/img/partners/partner (16).png"
+                alt="partner (16)"
+              />
+              <img
+                src="assets/img/partners/partner (17).png"
+                alt="partner (17)"
+              />
+              <img
+                src="assets/img/partners/partner (18).png"
+                alt="partner (18)"
+              />
+              <img
+                src="assets/img/partners/partner (19).png"
+                alt="partner (19)"
+              />
+              <img
+                src="assets/img/partners/partner (20).png"
+                alt="partner (20)"
+              />
+              <img
+                src="assets/img/partners/partner (21).png"
+                alt="partner (21)"
+              />
+              <img
+                src="assets/img/partners/partner (22).png"
+                alt="partner (22)"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+    <!-- Modules Section - Version WAW (Contenu adapté pour "Solutions") -->
+<section class="section modules-section" id="solutions-activite"> <!-- PAS de gsap-section-fade-up ici -->
+   <div class="container">
+    <header class="section-header">
+      <!-- Le script animera .section-header.children (donc ce h2 et ce p) -->
+      <h2 class="section-title-2">Nos solutions adaptées à <span class="highlight-orange">votre activité</span> :</h2>
+      <p class="section-subtitle modules-section-subtitle">
+        Producteur, distributeur, détaillant ou organisateur d'événements ? Nowa Logistics s'adapte à vos besoins de gestion des consignes.
+      </p>
+    </header>
+
+    <div class="modules-grid">
+      <!-- Carte 1: Producteurs / Fabricants -->
+      <article class="module-card">
+        <figure class="module-card-icon-wrapper"><i class="fas fa-industry module-card-icon"></i></figure>
+        <div class="module-card-content">
+          <h3 class="module-card-title">Pour les producteurs & fabricants</h3>
+          <p class="module-card-description">Optimisez la gestion de vos contenants réutilisables dès la production et suivez leur cycle de vie avec précision.</p>
+          <ul class="module-card-features">
+            <li class="module-card-feature-item"><i class="fas fa-check module-card-feature-tick"></i>Traçabilité unitaire dès la création du contenant.</li>
+            <li class="module-card-feature-item"><i class="fas fa-check module-card-feature-tick"></i>Gestion des flux sortants vers distributeurs et clients.</li>
+            <li class="module-card-feature-item"><i class="fas fa-check module-card-feature-tick"></i>Analyse des taux de retour et de rotation du parc.</li>
+          </ul>
+        </div>
+        <a href="contact-us.html" class="btn btn-secondary-2 module-card-cta">Intéressé ? Contactez-nous !</a>
+        <div class="module-card-decoration decoration-top-right"></div>
+      </article>
+
+      <!-- Carte 2: Distributeurs / Logisticiens - Highlighted -->
+      <article class="module-card module-card--highlighted">
+        <!--<div class="popular-badge">LE PLUS ADAPTÉ</div>-->
+        <figure class="module-card-icon-wrapper module-card-icon-wrapper--highlighted"><i class="fas fa-truck-loading module-card-icon"></i></figure>
+        <div class="module-card-content">
+          <h3 class="module-card-title module-card-title--highlighted">Pour les distributeurs & acteurs logistiques</h3>
+          <p class="module-card-description module-card-description--highlighted">Fluidifiez la circulation de vos emballages consignés. Réduisez les pertes et améliorez l'efficacité de votre chaîne logistique.</p>
+          <ul class="module-card-features">
+            <li class="module-card-feature-item"><i class="fas fa-check module-card-feature-tick"></i>Suivi des mouvements inter-sites et vers points de vente.</li>
+            <li class="module-card-feature-item"><i class="fas fa-check module-card-feature-tick"></i>Optimisation des collectes et retours de contenants vides.</li>
+            <li class="module-card-feature-item"><i class="fas fa-check module-card-feature-tick"></i>Gestion des dépôts de consignes et des crédits clients.</li>
+          </ul>
+        </div>
+        <a href="contact-us.html" class="btn btn-primary-2 module-card-cta module-card-cta--highlighted">Intéressé ? Contactez-nous !</a>
+        <div class="module-card-decoration decoration-bottom-right--highlighted"></div>
+      </article>
+
+      <!-- Carte 3: Détaillants / Événementiel -->
+      <article class="module-card">
+        <figure class="module-card-icon-wrapper"><i class="fas fa-store module-card-icon"></i></figure>
+        <div class="module-card-content">
+          <h3 class="module-card-title">Pour les détaillants & organisateurs d'événements</h3>
+          <p class="module-card-description">Simplifiez la gestion des consignes au point de vente ou lors d'événements. Offrez une expérience client fluide et encouragez le réemploi.</p>
+          <ul class="module-card-features">
+            <li class="module-card-feature-item"><i class="fas fa-check module-card-feature-tick"></i>Enregistrement facile des consignes (achat/retour).</li>
+            <li class="module-card-feature-item"><i class="fas fa-check module-card-feature-tick"></i>Gestion simplifiée des crédits et remboursements.</li>
+            <li class="module-card-feature-item"><i class="fas fa-check module-card-feature-tick"></i>Suivi des stocks de contenants disponibles.</li>
+          </ul>
+        </div>
+        <a href="contact-us.html" class="btn btn-secondary-2 module-card-cta">Intéressé ? Contactez-nous !</a>
+        <div class="module-card-decoration decoration-bottom-left"></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Local Section - Version WAW -->
+<section class="section local-section gsap-section-fade-up">
+  <div class="container">
+    <div class="local-section-grid">
+      <div class="local-section-content">
+        <h2 class="section-title local-section-title">Un ERP <span>100% belge</span> :</h2>
+        <p class="local-section-description">
+          Conçu spécifiquement pour répondre aux besoins des entreprises
+          locales et aux réglementations belges en matière de consigne et de
+          réemploi.
+        </p>
+
+        <div class="local-features-grid">
+          <div class="local-feature-card">
+            <i class="fas fa-map-marked-alt local-feature-icon"></i>
+            <h4 class="local-feature-title">Intégration locale</h4>
+            <p class="local-feature-text">
+              Connecté aux initiatives zéro déchet belges
+            </p>
+          </div>
+
+          <div class="local-feature-card">
+            <i class="fas fa-comments local-feature-icon"></i>
+            <h4 class="local-feature-title">Support bilingue</h4>
+            <p class="local-feature-text">
+              Disponible en français et néerlandais
+            </p>
+          </div>
+        </div>
+
+        <a href="about-us.html" class="btn btn-primary local-section-btn">Découvrir notre histoire</a>
+        <!-- J'ai changé le href="#" vers about-us.html, ce qui semble plus logique -->
+      </div>
+
+      <div class="local-section-image-wrapper">
+        <img
+          src="assets/img/vide.png" 
+          alt="Carte de la Belgique illustrant l'ancrage local de Nowa Logistics"
+          class="local-section-image"
+        />
+      </div>
+    </div>
+
+    <!-- Floating elements -->
+    <div class="floating-shape local-floating-shape-1"></div>
+    <!-- J'ai retiré le deuxième élément flottant car il n'était pas dans le code d'origine, mais vous pouvez le rajouter si besoin -->
+  </div>
+</section>
+
+   <!-- Final CTA - Version WAW -->
+<section class="section final-cta-section gsap-section-fade-up"> <!-- Classe spécifique pour cette section CTA -->
+  <div class="final-cta-container"> <!-- Wrapper pour le contenu principal et le positionnement relatif -->
+    <header class="final-cta-header"> <!-- En-tête sémantique pour le titre et le texte -->
+      <h2 class="section-title-2">Prêt à <span class="highlight-orange">révolutionner</span> votre gestion des consignes ?</h2>
+      <p class="final-cta-text">
+        Découvrez comment Nowa Logistics peut transformer vos processus et
+        vous faire gagner du temps et de l'argent.
+      </p>
+    </header>
+    <div class="final-cta-action"> <!-- Wrapper pour le(s) bouton(s) -->
+      <a href="contact-us.html" class="btn btn-primary final-cta-button">Contactez-nous</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-col-gsap"> <!-- Classe pour animation GSAP -->
+        <div class="footer-logo">
+          <img src="assets/img/logo.png" alt="Nowa Logistics" />
+        </div>
+        <p class="footer-description">
+          Nowa Logistics est un ERP belge innovant spécialisé dans la
+          gestion des systèmes de consigne et la logistique circulaire.
+        </p>
+        <div class="social-links">
+          <a href="#" aria-label="LinkedIn Nowa Logistics" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Twitter Nowa Logistics" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Facebook Nowa Logistics" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram Nowa Logistics" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col footer-col-gsap" data-gsap-delay="0.1"> <!-- Classe et délai pour animation GSAP -->
+        <h3 class="footer-title">Navigation</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="pricing.html#fonctionnalites-incluses">Fonctionnalités</a></li>
+          <li><a href="pricing.html">Nos tarifs</a></li>
+          <li><a href="about-us.html">Qui sommes-nous ?</a></li>
+          <li><a href="contact-us.html">Nous contacter</a></li> <!-- Corrigé contact.html vers contact-us.html -->
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-gsap" data-gsap-delay="0.2"> <!-- Classe et délai pour animation GSAP -->
+        <h3 class="footer-title">Nos Solutions</h3>
+        <ul class="footer-links">
+          <li><a href="index.html#solutions-activite">Producteurs & fabricants</a></li>
+          <li><a href="index.html#solutions-activite">Distributeurs & logisticiens</a></li>
+          <li><a href="index.html#solutions-activite">Détaillants & événementiel</a></li>
+          <!-- Si vous avez une page dédiée "Intégrations", vous pouvez la lier ici, sinon retirez ou adaptez -->
+          <li><a href="pricing.html#fonctionnalites-incluses">Intégrations Clés</a></li> 
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-gsap" data-gsap-delay="0.3"> <!-- Classe et délai pour animation GSAP -->
+        <h3 class="footer-title">Ressources</h3>
+        <ul class="footer-links">
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">FAQ</a></li> <!-- Peut-être lier à une section FAQ sur une page si elle existe -->
+          <li><a href="contact-us.html#contact-form">Centre d'aide</a></li> <!-- Exemple d'ancre vers le formulaire de contact -->
+          <li><a href="#">Statut du service</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom footer-bottom-gsap"> <!-- Classe pour animation GSAP -->
+      <p>
+        Nowa Logistics © <span id="currentYear">2024</span> | ERP 100% belge | Codé avec ❤️ en Belgique |
+        Tous droits réservés
+      </p>
+      <ul class="footer-links-bottom">
+        <li><a href="#">Conditions Générales</a></li> <!-- Enveloppé dans <li> pour une meilleure structure -->
+        <li><a href="privacy-policy.html">Politique de Confidentialité</a></li> <!-- Enveloppé dans <li> -->
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="assets/js/script.js"></script>
+
+    
+  </body>
+</html>

@@ -234,7 +234,7 @@
       "id": "portfolio",
       "category": "Portfolio Personnel",
       "title": "Arnaud Martiny - Portfolio",
-      "imageSrc": "assets/img/preview-portfolio.png",
+      "imageSrc": "assets/img/preview-portfolio_1.webp",
       "imageAlt": "Aperçu du projet Portfolio",
       "description": "<strong>Le défi :</strong> prouver ma maîtrise des technologies web fondamentales sans framework. <strong>Ma solution :</strong> j'ai conçu et développé cette plateforme de A à Z en HTML, CSS et JavaScript pur, en y intégrant des animations complexes avec GSAP et un système de traduction sur-mesure. <strong>Ce projet valide ma capacité à architecturer une application front-end robuste et optimisée.</strong>",
       "tech": ["HTML5", "CSS3", "JavaScript (ES6+)", "GSAP", "i18n", "Figma"],
@@ -254,11 +254,11 @@
       "id": "nowa-logistics",
       "category": "Site Vitrine Professionnel (Stage)",
       "title": "Nowa Logistics",
-      "imageSrc": "assets/img/preview-nowa-logistics.png",
+      "imageSrc": "assets/img/preview-nowa-logistics_1.webp",
       "imageAlt": "Aperçu du projet Nowa Logistics",
       "description": "<strong>Le défi :</strong> créer l'identité digitale de la nouvelle entité logistique de Nowa Market. <strong>Ma solution :</strong> durant mon stage, j'ai pris en charge ce projet de la maquette UX/UI sur Figma jusqu'au développement front-end complet. <strong>Cette expérience a prouvé ma capacité à gérer un projet en autonomie dans un cadre professionnel et à livrer un produit fini répondant à un besoin business concret.</strong>",
       "tech": ["Figma", "HTML5", "CSS3", "JavaScript", "Gestion de Projet"],
-      "liveLink": "#",
+      "liveLink": "/beta/nowa-logistics/",
       "codeLink": "#",
       "caseStudy": {
         "title": "C:\\Projects\\Nowa_Logistics_Showcase.exe",
@@ -274,7 +274,7 @@
       "id": "theatre-des-poetes",
       "category": "Site Vitrine pour ASBL",
       "title": "Le Théâtre des Poètes",
-      "imageSrc": "assets/img/apercu_TDP.JPG",
+      "imageSrc": "assets/img/apercu_TDP.webp",
       "imageAlt": "Aperçu du projet Théâtre des Poètes",
       "description": "<strong>Le défi :</strong> remplacer un site vieillissant, hacké et non-administrable pour une ASBL à budget limité. <strong>Ma solution :</strong> j'ai mené une refonte complète en me concentrant sur la sécurité, la modernité et surtout, la simplicité de gestion pour l'équipe du théâtre. <strong>Ce projet démontre ma capacité à créer des solutions durables et adaptées aux besoins de clients non-techniques.</strong>",
       "tech": ["PHP", "MySQL", "JavaScript", "HTML/CSS", "Sécurité Web"],
@@ -294,7 +294,7 @@
       "id": "fast-n-friends",
       "category": "Projet Étudiant",
       "title": "Fast 'N Friends",
-      "imageSrc": "assets/img/preview-FNF.png",
+      "imageSrc": "assets/img/preview-FNF_1.webp",
       "imageAlt": "Aperçu du projet Fast N Friends",
       "description": "<strong>Le défi :</strong> construire en binôme une plateforme de covoiturage 100% fonctionnelle. <strong>Mon rôle</strong> a été central sur le back-end : j'ai conçu la base de données MySQL et développé en PHP la logique de gestion des utilisateurs, des sessions et des annonces. <strong>Ce projet a été clé pour solidifier mes compétences en développement back-end et en travail d'équipe avec Git.</strong>",
       "tech": ["PHP", "WordPress", "CSS", "MySQL", "Git & GitHub"],
@@ -320,42 +320,42 @@
         "arcanaNumber": "I",
         "skillTitle": "Créativité",
         "skillDescription": "Transformer une vision abstraite en une interface concrète et engageante, en trouvant des solutions visuelles uniques.",
-        "imageSrc": "assets/img/tarot/magician.png"
+        "imageSrc": "assets/img/tarot/magician.webp"
       },
       {
         "arcanaName": "Le Chariot",
         "arcanaNumber": "VII",
         "skillTitle": "Autonomie",
         "skillDescription": "Prendre en charge des projets de A à Z, de la recherche de solutions à l'implémentation finale avec rigueur et proactivité.",
-        "imageSrc": "assets/img/tarot/chariot.png"
+        "imageSrc": "assets/img/tarot/chariot.webp"
       },
       {
         "arcanaName": "Tempérance",
         "arcanaNumber": "XIV",
         "skillTitle": "Communication",
         "skillDescription": "Vulgariser des concepts techniques pour les non-initiés et collaborer efficacement avec toutes les parties prenantes d'un projet.",
-        "imageSrc": "assets/img/tarot/temperance.png"
+        "imageSrc": "assets/img/tarot/temperance.webp"
       },
       {
         "arcanaName": "La Justice",
         "arcanaNumber": "VIII",
         "skillTitle": "Résolution de problèmes",
         "skillDescription": "Analyser, décomposer et solutionner les défis techniques ou fonctionnels avec méthode, calme et persévérance.",
-        "imageSrc": "assets/img/tarot/justice.png"
+        "imageSrc": "assets/img/tarot/justice.webp"
       },
       {
         "arcanaName": "L'Amoureux",
         "arcanaNumber": "VI",
         "skillTitle": "Esprit d'équipe",
         "skillDescription": "Contribuer activement au succès collectif en partageant mes connaissances et en soutenant mes collaborateurs.",
-        "imageSrc": "assets/img/tarot/lovers.png"
+        "imageSrc": "assets/img/tarot/lovers.webp"
       },
       {
         "arcanaName": "La Roue de Fortune",
         "arcanaNumber": "X",
         "skillTitle": "Adaptabilité",
         "skillDescription": "Naviguer avec aisance entre différentes technologies, méthodes de travail et m'ajuster aux imprévus d'un projet.",
-        "imageSrc": "assets/img/tarot/wheel.png"
+        "imageSrc": "assets/img/tarot/wheel.webp"
       }
     ]
   },

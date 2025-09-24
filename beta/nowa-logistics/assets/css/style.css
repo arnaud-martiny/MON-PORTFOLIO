@@ -1,0 +1,3923 @@
+:root {
+  /* Couleurs principales */
+  --primary-green: #325138;
+  --primary-orange: #E04F2E;
+  --dark-green: #1e3d31;
+  --light-green: #e6f0ebd6; /* Trouver des palettes de couleurs différentes */
+  /*
+  Couleur pêche douce : 
+  
+  --light-green: #faf3e8;
+
+  Un peu menthe mais dénaturé : 
+
+  --light-green: #e6f0eb;
+
+  */
+  --light-orange: #ffe8d9;
+  --black: #1a1a1a;
+  --white: #ffffff;
+  --gray: #f5f5f5;
+  --dark-gray: #333333;
+
+  /* Polices */
+  --heading-font: "Montserrat", sans-serif;
+  --body-font: "Montserrat", sans-serif;
+
+  /* Effets */
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+    --linkedin-blue: #0A66C2;
+    --facebook-blue: #1877F2;
+    --phone-green: #25D366; /* WhatsApp Green ou un vert distinct */
+    --email-red: #D44638; /* Rouge Gmail / générique */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--body-font);
+  color: var(--black);
+  background-color: var(--white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading-font);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 8rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-title {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title span {
+  color: var(--primary-orange);
+}
+
+.section-title-2 {
+  font-size: 3rem;
+  text-align: center; /* Centre le texte à l'intérieur du bloc */
+  margin-bottom: 3rem;
+  display: block;
+
+}
+
+.section-title-2 span {
+  color: var(--primary-orange);
+}
+
+.section-title-3 {
+  font-size: 3rem;
+  text-align: center; /* Centre le texte à l'intérieur du bloc */
+  margin-bottom: 3rem;
+  display: block;
+
+}
+
+.section-title-3 .nowamarket {
+  color: var(--primary-orange);
+  text-decoration: underline;
+}
+
+.section-title-3 .nowalogistics {
+  color: var(--primary-green);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: var(--transition);
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--primary-orange);
+  color: var(--white);
+}
+
+.btn-primary-2:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn-primary-2 {
+  background-color: var(--primary-orange);
+  color: var(--white);
+
+    min-width: 90%;
+  text-align: center;
+}
+
+.btn-primary:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn-3 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: var(--transition);
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.btn-primary-3 {
+  background-color: var(--primary-orange);
+  color: var(--white);
+}
+
+.btn-primary-3:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-green);
+  border-color: var(--primary-green);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-green);
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn-secondary-2 {
+  background-color: transparent;
+  color: var(--primary-green);
+  border-color: var(--primary-green);
+  min-width: 90%;
+  text-align: center;
+}
+
+.btn-secondary-2:hover {
+  background-color: var(--primary-green);
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Navigation */
+nav {
+  position: sticky; /* On change fixed en sticky */
+  top: 32px;      /* Se colle juste en dessous de la bannière de 32px */
+  left: 0;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white); /* Changé de white à transparent */
+  box-shadow: none; /* Supprimé l'ombre initiale */
+  z-index: 1001;
+  transition: var(--transition);
+  box-sizing: border-box;
+}
+
+.logo img {
+  height: 70px;
+  transition: var(--transition);
+}
+
+nav.scrolled .logo img {
+  height: 40px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  font-weight: 400;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-links a:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-orange);
+  transition: var(--transition);
+}
+
+.nav-links a:hover:after {
+  width: 100%;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--primary-green);
+  cursor: pointer;
+  position: relative;
+  z-index: 1002;
+}
+
+/* Barre de progression */
+.scroll-progress {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  z-index: 999;
+}
+
+.progress-orange {
+  height: 100%;
+  width: 0;
+  background-color: var(--primary-orange);
+  transition: width 0.2s ease-out;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--light-green);
+  padding-top: 120px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+}
+
+.hero h1 span {
+  color: var(--primary-orange);
+  position: relative;
+}
+
+.hero h1 span:after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background-color: rgba(255, 107, 0, 0.2);
+  z-index: -1;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  color: var(--dark-gray);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.hero-image {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  max-width: 800px;
+  height: 90%;
+  object-fit: contain;
+  object-position: right bottom;
+  z-index: 1;
+}
+
+.floating-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+
+  display: none !important;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float 15s infinite ease-in-out;
+}
+
+.shape-1 {
+  width: 300px;
+  height: 300px;
+  background-color: var(--primary-green);
+  top: 10%;
+  left: 60%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 200px;
+  height: 200px;
+  background-color: var(--primary-orange);
+  top: 60%;
+  left: 20%;
+  animation-delay: 2s;
+}
+
+.shape-3 {
+  width: 150px;
+  height: 150px;
+  background-color: var(--primary-green);
+  top: 30%;
+  left: 80%;
+  animation-delay: 4s;
+}
+
+@media (max-width: 768px) {
+  /* Tu peux ajuster cette valeur si besoin */
+  .shape-1,
+  .shape-2,
+  .shape-3 {
+    display: none;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-50px) rotate(5deg);
+  }
+}
+
+/*DANS L'INDEX, LE DEROULE DES LOGOS :*/
+/* Section Partenaires */
+.partners-section {
+  background-color: var(
+    --primary-green
+  ) !important; /* Utilise la couleur verte foncée que vous avez spécifiée */
+  color: white;
+  padding: 60px 0; /* Ajuster le padding pour le slider */
+  overflow: hidden; /* Important pour cacher les logos en dehors du cadre */
+  white-space: nowrap; /* Empêche les logos de passer à la ligne */
+}
+
+.partners-section .brands-title {
+  color: white; /* Titre blanc sur fond vert foncé */
+  margin-bottom: 40px;
+}
+.partners-section .brands-title::after {
+  background-color: var(--primary-color); /* Ligne orange sous le titre */
+}
+
+.logo-slider {
+  display: inline-block; /* Permet le défilement horizontal */
+  animation: slide-left 40s linear infinite; /* Durée et type d'animation */
+  padding: 10px 0; /* Espace vertical autour des logos */
+}
+
+.logo-slider:hover {
+  animation-play-state: paused; /* Pause l'animation au survol */
+}
+
+.logo-slider img {
+  height: 60px; /* Taille des logos */
+  margin: 0 40px; /* Espacement entre les logos */
+  vertical-align: middle; /* Alignement vertical */
+  filter: invert(100%) grayscale(100%) brightness(200%); /* Rend l'image blanche */
+  opacity: 0.8; /* Légèrement transparent par défaut */
+  transition: opacity 0.3s ease;
+}
+
+.logo-slider img:hover {
+  opacity: 1; /* Pleine opacité au survol */
+}
+
+/* Animation de défilement */
+@keyframes slide-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(
+      -50%
+    ); /* Défilement de 50% pour un effet infini avec la duplication */
+  }
+}
+
+/* Process Section */
+.process-section {
+  background-color: var(--white);
+  position: relative;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.step {
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.step:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-hover);
+}
+
+.step:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background-color: var(--primary-orange);
+  z-index: -1;
+}
+
+.step-icon {
+  width: 60px;
+  height: 60px;
+  background-color: var(--light-orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: var(--primary-orange);
+  font-size: 1.5rem;
+}
+
+.step-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-green);
+}
+
+.step-number {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 3rem;
+  font-weight: 700;
+  color: rgba(42, 91, 69, 0.05);
+  font-family: var(--heading-font);
+}
+
+/* Features Section */
+.features-section {
+  background-color: var(--gray);
+  position: relative;
+  overflow: hidden;
+}
+
+.features-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.feature:nth-child(even) .feature-content {
+  order: 2;
+}
+
+.feature:nth-child(even) .feature-visual {
+  order: 1;
+}
+
+.feature-content {
+  padding: 2rem;
+}
+
+.feature-title {
+  font-size: 2.5rem;
+  color: var(--primary-green);
+  margin-bottom: 1.5rem;
+}
+
+.feature-title span {
+  color: var(--primary-orange);
+}
+
+.feature-description {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: var(--dark-gray);
+}
+
+.feature-benefits {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.benefit {
+  display: flex;
+  gap: 1rem;
+}
+
+.benefit-icon {
+  width: 40px;
+  height: 40px;
+  background-color: var(--light-orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-orange);
+  flex-shrink: 0;
+}
+
+.benefit-content h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-green);
+}
+
+.feature-visual {
+  position: relative;
+  height: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.feature-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.feature:hover .feature-image {
+  transform: scale(1.05);
+}
+
+/* Horizontal Scroll Section */
+.horizontal-scroll-section {
+  background-color: var(--primary-green);
+  color: var(--white);
+  padding: 6rem 0;
+  position: relative;
+}
+
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 2rem;
+  padding: 2rem 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-item {
+  min-width: 80%;
+  scroll-snap-align: start;
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 3rem;
+  color: var(--black);
+  box-shadow: var(--shadow);
+}
+
+.scroll-item h3 {
+  font-size: 2rem;
+  color: var(--primary-green);
+  margin-bottom: 1.5rem;
+}
+
+.scroll-item p {
+  margin-bottom: 2rem;
+}
+
+.scroll-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.indicator.active {
+  background-color: var(--white);
+  transform: scale(1.2);
+}
+
+/* assets/css/style.css */
+
+/* --- Modules Section --- */
+.modules-section {
+  background-color: var(
+    --light-green
+  ); /* Correspond à style="background-color: var(--light-green);" */
+  overflow: hidden; /* Correspond à style="overflow: hidden" */
+}
+
+/* Optionnel: si vous voulez des styles spécifiques pour l'en-tête de cette section */
+.modules-section .section-header {
+  margin-bottom: 3rem; /* Espace entre l'en-tête et la grille des modules */
+}
+
+.modules-section-subtitle {
+  /* Style pour le <p> sous .section-title */
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem; /* Réajusté car l'en-tête peut avoir sa propre marge */
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+}
+
+.modules-grid {
+  /* Correspond aux styles du <div> modules-grid */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  perspective: 1000px; /* Pour d'éventuels effets 3D sur les cartes */
+}
+
+.module-card {
+  /* Styles pour l'<article class="module-card"> */
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  transform-style: preserve-3d; /* Si vous prévoyez des transformations 3D au survol */
+  position: relative; /* Pour le positionnement absolu des décorations et du badge */
+  overflow: hidden; /* Pour que les décorations ne débordent pas la carte si elles sont plus grandes */
+  display: flex; /* Pour un meilleur contrôle de la disposition interne, notamment le bouton en bas */
+  flex-direction: column; /* Empile les enfants verticalement */
+  align-items: center; /* Centre les enfants horizontalement */
+}
+
+.module-card--highlighted {
+  /* Modificateur pour la carte "populaire" */
+  background: var(--primary-green);
+  color: var(--white); /* Le texte par défaut dans cette carte sera blanc */
+}
+
+.module-card-icon-wrapper {
+  /* Styles pour la <figure> contenant l'icône */
+  width: 80px;
+  height: 80px;
+  background: var(--light-orange);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem; /* Espace après l'icône */
+  flex-shrink: 0; /* Empêche l'icône de rétrécir */
+  align-items: center;
+}
+.module-card-icon-wrapper--highlighted {
+  background: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Fond pour l'icône de la carte populaire */
+}
+
+.module-card-icon {
+  /* L'icône <i class="fas ..."> elle-même */
+  color: var(--primary-orange);
+  font-size: 2rem;
+}
+.module-card-icon-wrapper--highlighted .module-card-icon {
+  color: var(--white); /* Icône blanche sur fond vert */
+}
+
+.module-card-content {
+  flex-grow: 1; /* Permet à cette div de prendre l'espace disponible, poussant le CTA en bas */
+}
+
+.module-card-title {
+  /* Styles pour le <h3> */
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-green);
+}
+.module-card-title--highlighted {
+  color: var(--white); /* Titre blanc pour la carte populaire */
+}
+
+.module-card-description {
+  /* Styles pour le <p> de description */
+  margin-bottom: 1.5rem;
+  color: var(--dark-gray);
+  line-height: 1.6;
+}
+.module-card-description--highlighted {
+  color: var(
+    --white
+  ); /* Ou une teinte légèrement moins blanche pour contraste */
+  opacity: 0.9; /* Opacité comme dans l'original */
+}
+
+.module-card-features {
+  /* Styles pour la liste <ul> */
+  margin-bottom: 2rem;
+  list-style: none; /* Pas de puces */
+  padding-left: 0; /* Annule le padding par défaut */
+}
+
+.module-card-feature-item {
+  /* Styles pour chaque <li> */
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem; /* Espace pour la coche */
+  position: relative; /* Pour positionner la coche */
+  font-size: 0.9rem; /* Taille de police pour les fonctionnalités */
+  color: var(--dark-gray); /* Couleur par défaut pour le texte des features */
+}
+.module-card--highlighted .module-card-feature-item {
+  color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Texte des features un peu moins blanc pour la carte populaire */
+}
+
+.module-card-feature-tick {
+  /* La coche <i class="fas fa-check"> */
+  position: absolute;
+  left: 0;
+  top: 0.1em; /* Ajustement fin vertical */
+  color: var(--primary-orange); /* Couleur de la coche */
+}
+
+.module-card-cta {
+  /* Le bouton <a> */
+  display: inline-block; /* Comportement du bouton */
+  margin-top: auto; /* Pousse le bouton en bas de la carte grâce au flex sur .module-card */
+  align-self: flex-start; /* Aligne le bouton à gauche dans la carte */
+}
+.module-card-cta--highlighted {
+  /* Bouton spécifique de la carte populaire */
+  background: var(--white);
+  color: var(--primary-green);
+}
+.module-card-cta--highlighted:hover {
+  background: var(--light-orange);
+  color: var(--primary-orange);
+}
+
+.popular-badge {
+  /* Le badge "LE PLUS POPULAIRE" */
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--primary-orange);
+  color: var(--white);
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 1; /* Pour être au-dessus des autres éléments de la carte si besoin */
+}
+
+.module-card-decoration {
+  /* Styles communs aux cercles décoratifs */
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1; /* Derrière le contenu de la carte */
+}
+.decoration-top-right {
+  width: 200px;
+  height: 200px;
+  background: rgba(42, 91, 69, 0.03); /* Vert très transparent */
+  top: -50px;
+  right: -50px;
+}
+.decoration-bottom-right--highlighted {
+  /* Notez le modificateur pour la carte populaire */
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.03); /* Blanc très transparent */
+  bottom: -150px;
+  right: -150px;
+}
+.decoration-bottom-left {
+  width: 200px;
+  height: 200px;
+  background: rgba(42, 91, 69, 0.03); /* Vert très transparent */
+  bottom: -50px;
+  left: -50px;
+}
+
+/* Effet de survol optionnel, si vous voulez le même pour toutes les cartes */
+.module-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Stats Section */
+.stats-section {
+  background-color: var(--light-green);
+  position: relative;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.stat-card {
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-hover);
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  color: var(--primary-orange);
+  margin-bottom: 1.5rem;
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  font-family: var(--heading-font);
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  color: var(--dark-gray);
+}
+
+/* --- Comparison Section --- */
+.comparison-section {
+  background-color: var(--light-green); /* Ou la couleur de fond choisie */
+}
+
+.comparison-section-subtitle {
+  /* Style pour le sous-titre spécifique */
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem;
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+}
+
+.comparison-table-wrapper {
+  /* Conteneur pour la table, gère le défilement horizontal */
+  overflow-x: auto;
+  padding-bottom: 2rem; /* Pour l'ombre de la barre de défilement si présente */
+}
+
+.comparison-table-main {
+  /* La table elle-même */
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px; /* Conserve la largeur minimale pour éviter que le contenu ne soit trop écrasé */
+  /* Optionnel: Si vous voulez une ombre ou une bordure autour de la table entière */
+  /* box-shadow: var(--shadow); */
+  /* border-radius: 8px; */ /* Nécessite overflow:hidden sur le wrapper si appliqué ici */
+  /* overflow: hidden; */ /* Si vous mettez des border-radius sur la table */
+}
+
+.comparison-th,
+.comparison-td {
+  padding: 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--gray); /* Bordure par défaut entre les lignes */
+  /* border-right: 1px solid var(--gray); /* Optionnel: bordures verticales */
+}
+/* .comparison-td:last-child,
+.comparison-th:last-child {
+  border-right: none; /* Optionnel: pas de bordure verticale à la fin */
+/* } */
+
+.comparison-th {
+  /* Styles pour les en-têtes de colonne */
+  background: var(--primary-green);
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem; /* Ajustez si besoin */
+}
+
+.comparison-th.th-feature {
+  /* En-tête de la colonne "Fonctionnalité" */
+  text-align: left;
+  border-radius: 8px 0 0 0; /* Coins arrondis */
+}
+
+.comparison-th.th-last-competitor {
+  /* En-tête de la dernière colonne "concurrent" */
+  border-radius: 0 8px 0 0; /* Coins arrondis */
+}
+
+.comparison-row-light {
+  /* Lignes avec fond blanc */
+  background: var(--white);
+}
+
+.comparison-row-dark {
+  /* Lignes avec fond gris (alternance) */
+  background: var(
+    --gray
+  ); /* Ou une autre teinte claire comme var(--light-green) si la section elle-même est blanche */
+}
+
+.comparison-td {
+  /* Styles communs aux cellules de données */
+  /* padding et text-align sont déjà définis plus haut */
+}
+
+.comparison-td.td-feature {
+  /* Cellules dans la colonne "Fonctionnalité" */
+  font-weight: 500;
+  text-align: left; /* Assure l'alignement à gauche pour les fonctionnalités */
+  /* background-color: var(--light-green); /* Optionnel: si vous voulez un fond distinct pour cette colonne */
+}
+
+.comparison-td.td-nowa-highlight {
+  /* Cellules spécifiques à "Nowa" qui sont mises en avant */
+  background: var(--light-orange);
+  color: var(--primary-orange);
+  font-weight: 600;
+}
+
+/* Styles pour les icônes dans le tableau */
+.comparison-td .fas {
+  /* Styles généraux pour les icônes FontAwesome */
+  margin-right: 0.5em; /* Espace entre l'icône et le texte */
+  /* La couleur par défaut des fa-check sera var(--primary-green) via le CSS global si vous l'avez */
+}
+.comparison-td .fa-check {
+  color: var(--primary-green); /* ou une autre couleur si besoin */
+}
+
+.comparison-icon-negative {
+  /* Pour les icônes fa-times */
+  color: #ff4d4d !important; /* Style pour la croix rouge, !important si besoin de surcharger */
+}
+
+/* Responsive (si vous avez besoin d'ajustements spécifiques pour ce tableau sur mobile) */
+@media (max-width: 768px) {
+  .comparison-table-main {
+    min-width: auto; /* Permet à la table de rétrécir davantage */
+    font-size: 0.9rem; /* Réduit la taille de la police pour gagner de la place */
+  }
+  .comparison-th,
+  .comparison-td {
+    padding: 1rem 0.5rem; /* Réduit le padding */
+  }
+  .comparison-td .fas {
+    margin-right: 0.25em;
+  }
+}
+
+/* assets/css/style.css */
+
+/* --- Local Section --- */
+.local-section {
+  position: relative;
+  overflow: hidden; /* Conserve cet effet si désiré pour les floating shapes */
+  /* Le background-color sera hérité de .section ou défini par une autre classe globale si besoin */
+}
+
+.local-section-grid {
+  /* Conteneur principal de la grille à deux colonnes */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Maintenu pour desktop */
+  gap: 4rem;
+  align-items: center;
+}
+
+.local-section-content {
+  /* Pas de styles spécifiques ici, les enfants sont stylés */
+}
+
+.local-section-title {
+  /* .section-title a déjà des styles, on peut surcharger si besoin, ex: margin */
+  /* text-align: left; /* Si vous voulez qu'il soit aligné à gauche par défaut */
+}
+
+.local-section-description {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: var(--dark-gray);
+  line-height: 1.7; /* Un peu plus d'espace interligne pour les paragraphes */
+}
+
+.local-features-grid {
+  /* Grille pour les deux cartes de fonctionnalités locales */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Maintenu pour desktop */
+  gap: 1.5rem;
+  margin-bottom: 2.5rem; /* Augmenté un peu l'espace avant le bouton */
+}
+
+.local-feature-card {
+  background: var(
+    --light-green
+  ); /* Ou la couleur de fond que vous avez choisie */
+  padding: 1.5rem;
+  border-radius: 12px;
+  /* box-shadow: var(--shadow-light); /* Optionnel: une ombre plus légère pour ces cartes */
+}
+
+.local-feature-icon {
+  display: block; /* Pour que margin-bottom fonctionne bien */
+  font-size: 1.8rem; /* Augmenté un peu la taille de l'icône */
+  color: var(--primary-orange);
+  margin-bottom: 1rem;
+}
+
+.local-feature-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-green);
+  font-weight: 600; /* Un peu plus de poids */
+}
+
+.local-feature-text {
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+  line-height: 1.5;
+}
+
+.local-section-btn {
+  /* Le style .btn .btn-primary est déjà défini globalement */
+  /* Vous pouvez ajouter des marges spécifiques si besoin ici */
+  margin-top: 1rem; /* Espace après les features cards */
+}
+
+.local-section-image-wrapper {
+  position: relative; /* Contexte de positionnement si besoin pour des overlays futurs */
+}
+
+.local-section-image {
+  width: 100%;
+  height: auto; /* Maintient le ratio de l'image */
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  display: block; /* Évite les espaces en dessous de l'image */
+}
+
+/* Floating elements pour la section locale */
+.local-floating-shape-1 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 107, 0, 0.05); /* Orange très transparent */
+  top: 50px;
+  right: -100px;
+  z-index: -1; /* Derrière le contenu */
+}
+
+/* --- Responsive pour Local Section --- */
+@media (max-width: 768px) {
+  .local-section-grid {
+    grid-template-columns: 1fr; /* Passage en une seule colonne */
+    gap: 3rem; /* Ajustement du gap pour le mode mobile */
+  }
+  .local-section-image-wrapper {
+    order: -1; /* Optionnel: Met l'image en premier sur mobile si vous préférez */
+    margin-bottom: 2rem; /* Espace si l'image est au-dessus du texte */
+  }
+  .local-section-content {
+    text-align: center; /* Centre le contenu texte sur mobile */
+  }
+  .local-section-title {
+    /* text-align: center; /* Déjà géré par .local-section-content */
+  }
+  .local-features-grid {
+    /* grid-template-columns: 1fr; /* Passe aussi en une seule colonne si besoin, mais 1fr 1fr peut rester joli */
+    /* max-width: 400px; /* Optionnel: pour centrer si elles sont en 1fr 1fr */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+  }
+  .local-section-btn {
+    margin-left: auto;
+    margin-right: auto;
+    display: table; /* Pour centrer un bouton inline-block avec margin auto */
+  }
+}
+
+@media (max-width: 576px) {
+  .local-features-grid {
+    grid-template-columns: 1fr; /* Force une seule colonne sur très petits écrans */
+  }
+  .local-feature-card {
+    text-align: left; /* Réaligne le texte à gauche dans les cartes si elles sont empilées */
+  }
+  .local-section-description {
+    font-size: 1.1rem;
+  }
+  .local-feature-icon {
+    font-size: 1.6rem;
+  }
+}
+
+/*Qui sommes nous ? style*/
+/* assets/css/style.css */
+
+/* --- About Us Page General --- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-section-image {
+  /* Définit un ratio de 7:5 (largeur:hauteur) pour une proportion "70 longueur 50 largeur" */
+  aspect-ratio: 7 / 5;
+  width: 100%; /* L'image prend toute la largeur disponible de son conteneur */
+  height: auto; /* La hauteur s'adapte automatiquement pour maintenir l'aspect-ratio */
+  object-fit: cover; /* L'image remplit la zone définie, rognant si nécessaire pour éviter la déformation */
+  border-radius: 25px; /* Coins arrondis pour un effet moins rectangulaire */
+  display: block; /* S'assure que l'image est un bloc pour gérer la largeur et la hauteur correctement */
+}
+
+
+/* --- Mission Section (about-us.html) --- */
+.about-mission-section {
+  background-color: var(--gray); 
+}
+.about-mission-grid {
+  margin-bottom: 4rem; /* Correspond au style en ligne */
+}
+.about-mission-content p {
+  color: var(--dark-gray);
+  line-height: 1.7;
+}
+.about-mission-text-lead {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+.about-mission-text {
+  font-size: 1.1rem;
+}
+.about-mission-image-wrapper {
+  position: relative; /* Contexte pour l'image */
+}
+
+/* --- Values Section (about-us.html) --- */
+.about-values-section {
+  background-color: var(--light-green); /* Correspond au style en ligne */
+}
+.about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+.value-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+  /* Les classes animate-fadeInUp delay-X sont gérées par animate.css */
+}
+.value-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  background: var(--light-orange);
+  border-radius: 16px; /* Était 50% pour un cercle, mais 16px dans le code original */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: var(--primary-orange);
+  font-size: 2rem;
+}
+.value-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-green);
+}
+.value-description {
+  color: var(--dark-gray);
+  font-size: 0.95rem; /* Léger ajustement pour la lisibilité */
+  line-height: 1.6;
+}
+
+.about-team-section{
+  background-color: var(--light-green);
+}
+/* La grille des cartes, si elle doit être maintenue telle quelle */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Minimum 280px, s'adapte */
+    gap: 2.5rem; /* Espace entre les cartes */
+    justify-content: center; /* Centre les cartes horizontalement si pas assez pour remplir la ligne */
+    align-items: stretch; /* Assure que toutes les cartes ont la même hauteur */
+    /* Gardez un max-width sur cette grille si vous voulez qu'elle reste compacte */
+    max-width: 600px; /* Ajustez selon la largeur souhaitée de la zone des cartes */
+    margin: 0 auto; /* Centrer la grille */
+}
+
+.team-member-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: var(--transition-medium);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+  min-height: 450px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.team-member-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 70%, var(--primary-green) 120%);
+    opacity: 0.05;
+    transition: var(--transition-medium);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.team-member-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.team-member-card:hover::before {
+    opacity: 0.1;
+}
+
+/* Wrapper de l'avatar */
+.team-member-avatar-wrapper {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin: 0 auto 2rem;
+  overflow: hidden;
+  position: relative;
+  border: 5px solid var(--primary-green);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: var(--transition-medium);
+  flex-shrink: 0;
+  background-color: var(--white);
+}
+
+.team-member-card:hover .team-member-avatar-wrapper {
+    border-color: var(--primary-orange);
+    transform: scale(1.03);
+}
+
+/* Image de l'avatar */
+.team-member-avatar-wrapper img.team-member-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: var(--transition-medium);
+}
+
+/* Nom du membre */
+.team-member-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+/* Rôle du membre */
+.team-member-role {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--primary-green);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Biographie */
+.team-member-bio {
+  font-size: 1rem;
+  color: var(--dark-gray);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+  max-width: 90%;
+}
+
+
+/* --- Section Réseaux Sociaux (Mise à jour) --- */
+.team-member-socials {
+  display: flex;
+  flex-wrap: wrap; /* Permet aux icônes de passer à la ligne si trop nombreuses */
+  justify-content: center;
+  gap: 1.2rem; /* Espacement entre les icônes, légèrement réduit si plus d'icônes */
+  margin-top: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.team-member-socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--light-gray);
+  color: var(--primary-green); /* Couleur par défaut des icônes */
+  font-size: 1.8rem;
+  transition: var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none; /* Enlève le soulignement des liens */
+}
+
+.team-member-socials a:hover {
+  color: var(--white);
+  transform: translateY(-5px) rotate(5deg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Styles spécifiques pour LinkedIn */
+.team-member-socials a[aria-label*="LinkedIn"]:hover {
+    background-color: var(--linkedin-blue); /* Couleur LinkedIn */
+}
+
+/* Styles spécifiques pour Facebook */
+.team-member-socials a[aria-label*="Facebook"]:hover {
+    background-color: var(--facebook-blue); /* Couleur Facebook */
+}
+
+/* Styles spécifiques pour le téléphone (nouvel ajout) */
+.team-member-socials a[aria-label*="Numéro de téléphone"]:hover {
+    background-color: var(--phone-green); /* Couleur verte pour le téléphone */
+    color: var(--white);
+}
+
+/* Styles spécifiques pour l'email (nouvel ajout) */
+.team-member-socials a[aria-label*="Email"]:hover {
+    background-color: var(--email-red); /* Couleur rouge pour l'email */
+    color: var(--white);
+}
+
+/* Style si vous conservez Twitter/X */
+.team-member-socials a[aria-label*="Twitter"]:hover,
+.team-member-socials a[aria-label*="X"]:hover {
+    background-color: #000000; /* Noir pour X/Twitter */
+    color: var(--white);
+}
+
+
+/* Media Queries pour la responsivité */
+@media (max-width: 768px) {
+  .team-member-socials {
+    gap: 0.8rem; /* Réduire le gap sur mobile si trop d'icônes */
+  }
+  .team-member-socials a {
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+  }
+}
+
+
+
+/* --- Stats Section (about-us.html) --- */
+.about-stats-section {
+  /* background-color: var(--white); */
+}
+.stats-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+.stat-card-item {
+  padding: 2.5rem;
+  border-radius: 16px;
+  color: white;
+  text-align: center;
+  box-shadow: var(
+    --shadow-hover
+  ); /* Ombre un peu plus forte pour se démarquer */
+}
+.stat-card-green {
+  background: var(--primary-green);
+}
+.stat-card-orange {
+  background: var(--primary-orange);
+}
+.stat-card-light-green {
+  background: var(--light-green);
+  color: var(--primary-green);
+}
+.stat-card-light-orange {
+  background: var(--light-orange);
+  color: var(--primary-orange);
+}
+.stat-card-number {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-family: var(
+    --heading-font
+  ); /* Assurez-vous que c'est bien votre police pour les titres */
+}
+.stat-card-label {
+  font-size: 1.1rem;
+}
+
+/* --- Commitment Section (about-us.html) --- */
+.about-commitment-section {
+  background-color: var(--light-green); /* Correspond au style en ligne */
+}
+.about-commitment-grid {
+  /* Utilise .about-grid (1fr 1fr) */
+}
+.commitment-item {
+  margin-bottom: 2.5rem; /* Augmenté l'espacement entre les items */
+}
+.commitment-item:last-child {
+  margin-bottom: 0;
+}
+.commitment-title {
+  font-size: 1.5rem;
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+  display: flex; /* Pour aligner l'icône et le texte */
+  align-items: center;
+}
+.commitment-icon {
+  color: var(--primary-orange);
+  margin-right: 0.75rem; /* Espacement après l'icône */
+  font-size: 1.2em; /* Taille de l'icône par rapport au texte du titre */
+}
+.commitment-text {
+  color: var(--dark-gray);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+.about-commitment-image-wrapper {
+  position: relative;
+}
+
+/* --- Final CTA Section (général, puis surcharges pour about-us si besoin) --- */
+/* Styles globaux pour .final-cta (vous les avez peut-être déjà) */
+.final-cta {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    var(--primary-green) 0%,
+    var(--dark-green) 100%
+  );
+  color: white;
+  text-align: center;
+  padding: 7rem 0; /* Réduit un peu le padding par rapport à 8rem */
+}
+.final-cta-container {
+  /* Classe spécifique pour le contenu du CTA */
+  position: relative;
+  z-index: 2; /* Au-dessus des formes flottantes */
+}
+.final-cta-title {
+  font-size: 2.8rem; /* Réduit un peu par rapport à 3rem */
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+.final-cta-text {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  opacity: 0.9;
+  line-height: 1.7;
+}
+.final-cta-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap; /* Permet aux boutons de passer à la ligne sur mobile */
+}
+
+.final-cta-btn-primary {
+  /* Styles spécifiques au bouton primaire du CTA */
+  background: white;
+  color: var(--primary-green);
+}
+.final-cta-btn-primary:hover {
+  background-color: var(--light-orange);
+  color: var(--primary-orange);
+}
+.final-cta-btn-secondary {
+  /* Styles spécifiques au bouton secondaire du CTA */
+  border-color: white;
+  color: white;
+}
+.final-cta-btn-secondary:hover {
+  background-color: white;
+  color: var(--primary-green);
+}
+
+/* Formes flottantes du CTA (si elles sont communes à tous les CTA finaux) */
+.cta-floating-shape-1 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  top: -100px;
+  left: -100px;
+  z-index: 1;
+}
+.cta-floating-shape-2 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  bottom: -150px;
+  right: -50px;
+  z-index: 1;
+}
+.cta-floating-shape-3 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255, 107, 0, 0.08); /* Légèrement plus visible */
+  top: 50%;
+  left: 20%;
+  z-index: 1;
+  transform: translateY(-50%);
+}
+
+/* assets/css/style.css */
+
+/* --- Final CTA Section --- */
+.final-cta-section {
+  position: relative; /* Contexte pour les formes flottantes absolues */
+  overflow: hidden; /* Empêche les formes flottantes de créer des barres de défilement */
+  background: linear-gradient(
+    135deg,
+    var(--primary-green) 0%,
+    var(--dark-green) 100%
+  );
+  color: var(--white); /* Couleur du texte par défaut pour cette section */
+  text-align: center; /* Centre le contenu textuel */
+  padding: 8rem 0; /* Padding vertical et horizontal */
+  /* La classe .section de votre CSS global gère déjà une partie de cela,
+     mais on peut surcharger ici si besoin. */
+}
+
+.final-cta-container {
+  /* Le .container à l'intérieur du CTA */
+  position: relative; /* Pour que z-index fonctionne par rapport aux formes flottantes */
+  z-index: 2; /* Au-dessus des formes flottantes */
+  /* Les styles de .container (max-width, margin auto, padding) sont hérités. */
+}
+
+.final-cta-header {
+  margin-bottom: 2.5rem; /* Espace entre le texte et le bouton */
+}
+
+.final-cta-title {
+  font-size: 3rem; /* Taille de police comme dans le style en ligne */
+  margin-bottom: 1.5rem; /* Marge comme dans le style en ligne */
+  line-height: 1.2; /* Bonne pratique pour les grands titres */
+  /* color: var(--white); /* Hérité de .final-cta-section */
+}
+
+.final-cta-text {
+  font-size: 1.2rem; /* Taille de police comme dans le style en ligne */
+  max-width: 700px; /* Largeur max comme dans le style en ligne */
+  margin: 0 auto 3rem; /* Marge comme dans le style en ligne (la marge inférieure est redondante avec celle du header) */
+  /* On peut simplifier en mettant juste margin: 0 auto; et gérer l'espace avec .final-cta-header */
+  opacity: 0.9; /* Opacité comme dans le style en ligne */
+  line-height: 1.7; /* Bonne pratique pour la lisibilité */
+  /* color: var(--white); /* Hérité de .final-cta-section */
+}
+/* Ajustement pour la marge du paragraphe si le header a déjà une marge en bas */
+.final-cta-header + .final-cta-action .final-cta-text {
+  /* Si le texte est directement avant l'action */
+  margin-bottom: 3rem;
+}
+.final-cta-header .final-cta-text {
+  /* Si le texte est dans le header */
+  margin-bottom: 0; /* Le header gère la marge inférieure */
+}
+
+.final-cta-action {
+  display: flex; /* Pour le centrage du bouton */
+  gap: 1.5rem; /* S'il y avait plusieurs boutons */
+  justify-content: center; /* Centre le(s) bouton(s) */
+}
+
+.final-cta-button.btn.btn-primary {
+  /* Cible le bouton spécifique du CTA */
+  background: var(--white); /* Fond blanc comme dans le style en ligne */
+  color: var(--primary-green); /* Texte vert comme dans le style en ligne */
+  /* Les autres styles de .btn et .btn-primary (padding, border-radius, etc.) sont hérités. */
+}
+.final-cta-button.btn.btn-primary:hover {
+  background-color: var(
+    --light-orange
+  ); /* Ou une autre couleur de survol désirée */
+  color: var(--primary-orange);
+}
+
+/* Floating elements pour le Final CTA */
+.final-cta-shape {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1; /* Derrière le contenu principal mais au-dessus du fond dégradé */
+}
+
+.final-cta-shape-top-left {
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.05); /* Blanc très transparent */
+  top: -100px;
+  left: -100px;
+}
+
+.final-cta-shape-bottom-right {
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.05); /* Blanc très transparent */
+  bottom: -150px;
+  right: -50px;
+}
+
+.final-cta-shape-middle-left-orange {
+  width: 200px;
+  height: 200px;
+  background: rgba(
+    255,
+    107,
+    0,
+    0.1
+  ); /* Orange très transparent (votre couleur primaire orange) */
+  top: 50%;
+  left: 20%;
+  transform: translateY(
+    -50%
+  ); /* Pour centrer verticalement par rapport à son 'top: 50%' */
+}
+
+/* --- Responsive pour la page About Us --- */
+@media (max-width: 768px) {
+  .about-grid {
+    /* Concerne mission-grid et commitment-grid */
+    grid-template-columns: 1fr;
+  }
+  .about-mission-image-wrapper,
+  .about-commitment-image-wrapper {
+    order: -1; /* Image en haut sur mobile */
+    margin-bottom: 2rem;
+  }
+  .about-mission-content,
+  .about-commitment-content {
+    text-align: center;
+  }
+  .commitment-title {
+    justify-content: center; /* Centre l'icône et le titre */
+  }
+
+  .timeline-line {
+    left: 20px; /* Décale la ligne à gauche pour le mode mobile */
+    transform: translateX(0);
+  }
+  .timeline-item {
+    grid-template-columns: auto 1fr; /* IconeConnecteur - ContenuTexte */
+    gap: 1.5rem;
+    width: auto; /* S'adapte au conteneur */
+    padding-left: 40px; /* Espace pour la ligne et le point */
+  }
+  .timeline-item-left .timeline-content,
+  .timeline-item-right .timeline-content {
+    text-align: left; /* Tout le texte à gauche */
+    grid-column: 2 / 3; /* Le contenu est toujours la 2ème colonne */
+  }
+  .timeline-item-left .timeline-icon-connector,
+  .timeline-item-right .timeline-icon-connector {
+    grid-column: 1 / 2; /* L'icône est toujours la 1ère colonne */
+    justify-self: left; /* Aligne sur la ligne (qui est maintenant à gauche) */
+    order: 0; /* Ordre naturel */
+    transform: translateX(-50%); /* Pour centrer l'icône sur la ligne de 20px */
+  }
+}
+
+@media (max-width: 768px) {
+  .final-cta-title {
+    font-size: 2.2rem;
+  }
+  .value-card,
+  .team-member-card,
+  .stat-card-item {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-values-grid,
+  .team-grid,
+  .stats-cards-grid {
+    grid-template-columns: 1fr; /* Empile tout sur une colonne */
+  }
+  .timeline-icon-box {
+    padding: 1rem;
+  }
+  .timeline-icon {
+    font-size: 1.5rem;
+  }
+}
+
+/* CTA Section */
+.cta-section {
+  background-color: var(--primary-green);
+  color: var(--white);
+  text-align: center;
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section h2 {
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  opacity: 0.9;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.cta-section .btn-primary {
+  background-color: var(--white);
+  color: var(--primary-green);
+}
+
+.cta-section .btn-primary:hover {
+  background-color: var(--light-orange);
+  color: var(--primary-orange);
+}
+
+.cta-section .btn-secondary {
+  border-color: var(--white);
+  color: var(--white);
+}
+
+.cta-section .btn-secondary:hover {
+  background-color: var(--white);
+  color: var(--primary-green);
+}
+
+.cta-shape {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.cta-shape-1 {
+  top: -100px;
+  left: -100px;
+}
+
+.cta-shape-2 {
+  bottom: -150px;
+  right: -150px;
+  width: 500px;
+  height: 500px;
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-green);
+  color: var(--white);
+  padding: 6rem 0 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.footer-logo img {
+  height: 100px;
+  margin-bottom: 1.5rem;
+}
+
+.footer-description {
+  opacity: 0.8;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.footer-title {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.footer-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--primary-orange);
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+  opacity: 0.8;
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  opacity: 1;
+  color: var(--primary-orange);
+  padding-left: 5px;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.social-link:hover {
+  background-color: var(--primary-orange);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  text-align: center;
+  opacity: 0.7;
+  font-size: 0.9rem;
+  /* Si vous voulez que le paragraphe et la liste soient l'un sous l'autre au centre : */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+}
+
+.footer-links-bottom {
+  list-style: none; /* Enlève les puces */
+  padding-left: 0; /* Enlève l'indentation par défaut de la liste */
+  margin-top: 0.5rem; /* Espace par rapport au paragraphe de copyright */
+}
+
+.footer-links-bottom li {
+  margin-bottom: 0.25rem; /* Petit espace entre les liens s'ils sont empilés */
+  /* Par défaut, <li> est display: list-item, ce qui est block-like et les met l'un sous l'autre */
+}
+.footer-links-bottom li:last-child {
+  margin-bottom: 0;
+}
+
+.footer-links-bottom a {
+  color: var(--white); /* Assurez-vous que la couleur est correcte */
+  text-decoration: none; /* Ou underline si vous préférez */
+  opacity: 0.8; /* Cohérence avec les autres liens du footer */
+}
+
+.footer-links-bottom a:hover {
+  opacity: 1;
+  text-decoration: underline; /* Soulignement au survol */
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 1s ease forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.2s;
+}
+
+.delay-2 {
+  animation-delay: 0.4s;
+}
+
+.delay-3 {
+  animation-delay: 0.6s;
+}
+
+/* ABOUT US :*/
+/* Hero Section */
+.hero-about {
+  height: 60vh;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--light-green);
+  padding-top: 100px;
+  text-align: center;
+}
+
+.hero-about::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.6)
+  );
+  z-index: 1;
+}
+
+.hero-content2 {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.hero-about h1 {
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+}
+
+.hero-about h1 span {
+  color: var(--primary-orange);
+  position: relative;
+}
+
+.hero-about h1 span:after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background-color: rgba(255, 107, 0, 0.2);
+  z-index: -1;
+}
+
+/* Histoire Section */
+.histoire {
+  padding: 80px 0;
+  background-color: var(--white);
+}
+
+.histoire-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.histoire-texte {
+  padding: 2rem;
+}
+
+.histoire-texte p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  color: var(--dark-gray);
+}
+
+/* Clean Timeline Section */
+.clean-timeline-section {
+  padding: 5rem 0;
+  background-color: #f9fafc;
+}
+
+.clean-timeline-wrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.clean-timeline {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.clean-timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 100%;
+  background: var(--primary-orange);
+}
+
+.clean-timeline-item {
+  position: relative;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.clean-timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-year {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-green);
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-card {
+  position: relative;
+  width: calc(50% - 4rem);
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  gap: 1.5rem;
+}
+
+.card-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--primary-orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-content h3 {
+  font-size: 1.3rem;
+  color: var(--primary-green);
+  margin-bottom: 0.8rem;
+}
+
+.card-content p {
+  color: var(--dark-gray);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Points sur la ligne */
+.clean-timeline-item::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: var(--primary-orange);
+  border-radius: 50%;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  border: 3px solid white;
+}
+
+/* Positionnement alterné */
+.clean-timeline-item:nth-child(odd) .timeline-card {
+  margin-right: auto;
+  margin-left: 2rem;
+}
+
+.clean-timeline-item:nth-child(even) .timeline-card {
+  margin-left: auto;
+  margin-right: 2rem;
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .clean-timeline::before {
+    left: 2rem;
+  }
+
+  .timeline-card {
+    width: calc(100% - 4rem);
+    margin-left: 3rem !important;
+    margin-right: 0 !important;
+  }
+
+  .clean-timeline-item::after {
+    left: 2rem;
+  }
+
+  .clean-timeline-item:nth-child(even) .timeline-card {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+/* Vision et valeurs Section */
+.vision {
+  padding: 80px 0;
+  background-color: var(--light-green);
+}
+
+.vision-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.vision-content {
+  margin-bottom: 60px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vision-text {
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+}
+
+.valeurs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.valeur-card {
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.valeur-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.valeur-card:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: var(--shadow-hover);
+}
+
+.valeur-icon {
+  width: 60px;
+  height: 60px;
+  background-color: var(--light-orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: var(--primary-orange);
+  font-size: 1.5rem;
+}
+
+.valeur-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-green);
+}
+
+/* L'équipe Section */
+.equipe {
+  padding: 80px 0;
+  background-color: var(--white);
+}
+
+.equipe-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.equipe-intro {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.team-member {
+  background-color: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.team-member.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.team-member:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: var(--shadow-hover);
+}
+
+.member-photo {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.member-info {
+  padding: 2rem;
+}
+
+.member-name {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-green);
+}
+
+.member-role {
+  color: var(--primary-orange);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.member-bio {
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  color: var(--dark-gray);
+}
+
+/* Statistiques Section */
+.stats {
+  padding: 80px 0;
+  background-color: var(--primary-green);
+  color: var(--white);
+  text-align: center;
+}
+
+.stats-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.stat-item {
+  padding: 2rem;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.5s ease;
+}
+
+.stat-item.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.stat-text {
+  font-size: 1.1rem;
+}
+
+/* Notre bureau Section */
+.bureau {
+  padding: 80px 0;
+  background-color: var(--light-green);
+}
+
+.bureau-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bureau-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+}
+
+.bureau-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  height: 250px;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.5s ease;
+}
+
+.gallery-item.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-item:nth-child(1) {
+  grid-column: span 2;
+}
+
+.gallery-item:nth-child(4) {
+  grid-column: span 2;
+}
+
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*Formulaire de contact*/
+/* Hero Contact */
+.contact-global-style {
+  background-color: var(--light-green);
+  padding: 10rem 0 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-hero {
+}
+
+.contact-hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-green);
+  text-align: center;
+}
+
+.contact-hero h1 span {
+  color: var(--primary-orange);
+  position: relative;
+}
+
+.contact-hero h1 span:after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background-color: rgba(255, 107, 0, 0.2);
+  z-index: -1;
+}
+
+.contact-hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  color: var(--dark-gray);
+  text-align: center;
+}
+
+.contact-hero-image {
+  margin-top: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.contact-shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+.contact-shape-1 {
+  width: 300px;
+  height: 300px;
+  background-color: var(--primary-green);
+  top: 10%;
+  left: 10%;
+}
+
+.contact-shape-2 {
+  width: 200px;
+  height: 200px;
+  background-color: var(--primary-orange);
+  bottom: 20%;
+  right: 15%;
+}
+
+/* Contact Form Section */
+.contact-section {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-info {
+  background-color: var(--light-green);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: var(--shadow);
+}
+
+.contact-info h2 {
+  font-size: 2rem;
+  color: var(--primary-green);
+  margin-bottom: 2rem;
+}
+
+.info-item {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: flex-start;
+}
+
+.info-icon {
+  width: 50px;
+  height: 50px;
+  background-color: var(--light-orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-orange);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.info-content h3 {
+  font-size: 1.2rem;
+  color: var(--primary-green);
+  margin-bottom: 0.5rem;
+}
+
+.info-content a,
+.info-content p {
+  color: var(--dark-gray);
+  transition: var(--transition);
+}
+
+.info-content a:hover {
+  color: var(--primary-orange);
+}
+
+.contact-form {
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: var(--shadow);
+}
+
+.contact-form h2 {
+  font-size: 2rem;
+  color: var(--primary-green);
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group-full-width {
+  margin-bottom: 1.5rem; /* Espace avant le prochain groupe/ligne */
+  /* Pas besoin de display: grid ici, l'input/textarea prendra 100% par défaut */
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--primary-green);
+  position: relative;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: var(--body-font);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-orange);
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+}
+
+textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--primary-orange);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.submit-btn:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Styles pour les nouveaux éléments */
+.required {
+  color: red;
+  margin-left: 5px;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.required.show {
+  opacity: 1;
+  transform: scale(1);
+  animation: bounce 0.5s ease;
+}
+
+/* Assurez-vous que cette règle est présente dans votre fichier style.css */
+#mapModal {
+  display: none; /* Cache la modal par défaut */
+  /* Les autres styles pour centrer, positionner, etc. */
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  width: 70vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+.close-button {
+  color: #aaa;
+  font-size: 32px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  z-index: 1001;
+}
+.close-button:hover,
+.close-button:focus {
+  color: #000;
+  text-decoration: none;
+}
+#map-iframe-container {
+  flex-grow: 1;
+  height: 100%;
+  margin-top: 10px;
+  overflow: hidden;
+}
+#map-iframe-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Styles spécifiques pour la page de politique de confidentialité */
+.privacy-policy-page {
+  padding-top: 120px; /* Espace pour la navbar fixe */
+  padding-bottom: 6rem;
+  background-color: var(--gray); /* Ou une couleur de fond très claire */
+}
+.privacy-policy-page .container {
+  max-width: 900px; /* Contenu plus étroit pour une meilleure lisibilité */
+}
+.privacy-policy-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--gray);
+}
+.privacy-policy-header h1 {
+  font-size: 2.8rem;
+  color: var(--primary-green);
+  margin-bottom: 0.5rem;
+}
+.privacy-policy-header .last-updated {
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+  opacity: 0.8;
+}
+.privacy-section {
+  margin-bottom: 2.5rem;
+}
+.privacy-section h2 {
+  font-size: 1.8rem;
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-orange);
+  display: inline-block; /* Pour que la bordure s'adapte au texte */
+}
+.privacy-section h3 {
+  font-size: 1.3rem;
+  color: var(--dark-green);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.privacy-section p,
+.privacy-section ul {
+  font-size: 1rem;
+  color: var(--dark-gray);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+.privacy-section ul {
+  list-style: disc;
+  padding-left: 25px;
+}
+.privacy-section ul li {
+  margin-bottom: 0.5rem;
+}
+.privacy-section a {
+  color: var(--primary-orange);
+  text-decoration: underline;
+}
+.privacy-section a:hover {
+  text-decoration: none;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  40% {
+    transform: translateY(-10px) scale(1.1);
+  }
+  60% {
+    transform: translateY(-5px) scale(1.05);
+  }
+}
+
+/* Champ téléphone avec sélecteur de pays */
+.phone-input-container {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden; /* Important to contain elements if any issues */
+  transition: var(--transition);
+  position: relative; /* Added this here as well for robustness */
+}
+
+.phone-input-container:focus-within {
+  border-color: var(--primary-orange);
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+}
+
+.phone-number-input {
+  border: none !important;
+  flex: 1;
+  padding: 0.8rem 1rem;
+  box-shadow: none !important;
+}
+
+.phone-number-input:focus {
+  outline: none;
+}
+
+/* Animation d'erreur */
+.error-border {
+  border-color: #ff4444 !important;
+  animation: shake 0.5s ease-in-out;
+  box-shadow: 0 0 0 3px rgba(255, 68, 68, 0.2) !important;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.country-selector {
+  font-family: var(--body-font);
+  background-color: var(--gray);
+  border: none;
+  padding: 0.8rem 1rem 0.8rem 40px !important; /* Original */
+  padding: 0.8rem 1rem 0.8rem 45px;
+  cursor: pointer;
+  max-width: 47%;
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+  line-height: 1.5;
+  transition: var(--transition);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.country-selector:focus {
+  outline: none;
+}
+
+/* Nos prix - PRICING PAGES */
+/* Hero Pricing */
+.pricing-hero {
+  background-color: var(--primary-green);
+  padding: 12rem 0 6rem;
+  text-align: center;
+  position: relative;
+  color: var(--white);
+}
+
+.pricing-hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: var(--white);
+}
+
+/* Pricing Section */
+.pricing-section {
+  background-color: var(--light-green);
+  position: relative;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(700px, 1fr));
+  gap: 2rem;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  position: relative;
+  /* Bordure par défaut pour les cartes non "popular" */
+  /* Les 2 cartes qui ne sont pas "popular" auront cette bordure orange */
+  border: 2px solid var(--primary-orange); /* Nouvelle ligne */
+}
+
+.pricing-card.popular {
+  /* Ici, on réinitialise le background à blanc et on met la bordure verte */
+  background: white; /* Changé de --primary-green à white */
+  color: var(
+    --black
+  ); /* Vous pouvez laisser 'white' si vous voulez, mais 'black' sera plus lisible sur fond blanc */
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-hover);
+  /* Bordure verte pour la carte "popular" */
+  border: 2px solid var(--primary-green); /* Nouvelle ligne */
+}
+
+/* Ajustements pour la carte populaire */
+.pricing-card.popular .price {
+  color: var(
+    --primary-green
+  ); /* Changé de 'white' pour la lisibilité sur fond blanc */
+}
+
+.popular-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--primary-orange);
+  color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* assets/css/style.css */
+
+/* --- Pricing Page Specific Styles (Original Structure) --- */
+
+/* Hero Pricing (Ancienne Version - basée sur le HTML que vous avez fourni pour la page) */
+.pricing-hero-section {
+  background-color: var(--primary-green); /* Couleur de fond d'origine */
+  padding: 10rem 0 6rem; /* Padding d'origine ou ajusté */
+  text-align: center;
+  position: relative;
+  /* overflow: hidden; /* Si vous aviez des formes flottantes spécifiques ici */
+  color: var(--white);
+}
+
+.pricing-hero-title {
+  /* Cible le <h1> */
+  font-size: 3.5rem; /* Taille de police d'origine */
+  margin-bottom: 1.5rem;
+  color: var(--white);
+}
+.pricing-hero-title span {
+  /* Si vous ajoutez des spans colorés dans le titre */
+  color: var(--primary-orange);
+}
+
+.pricing-hero-description {
+  /* Cible le <p> sous le titre */
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 2.5rem; /* Marge avant le bouton */
+  color: var(--white);
+  line-height: 1.6;
+}
+.pricing-hero-cta-wrapper {
+  /* Styles pour centrer le bouton si nécessaire */
+}
+/* Les styles pour .btn et .btn-primary sont globaux */
+
+/* Pricing Section (cartes de prix) */
+.pricing-section-main {
+  /* Classe pour la section principale des cartes de prix */
+  background-color: var(--light-green); /* Fond de la section */
+  position: relative;
+  /* padding: 8rem 0; /* Déjà sur .section */
+}
+
+.pricing-section-subtitle {
+  /* Pour le <p> sous le titre de la section des offres */
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem; /* Style d'origine */
+  font-size: 1.2rem; /* Style d'origine */
+  color: var(--dark-gray); /* Style d'origine */
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto; /* Pour centrer la grille si elle ne prend pas toute la largeur */
+}
+
+.pricing-card {
+  background: var(--white);
+  border-radius: 16px; /* Coins arrondis */
+  padding: 2.5rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  position: relative; /* Pour le .popular-badge */
+  display: flex; /* Pour aligner le bouton en bas */
+  flex-direction: column; /* Pour empiler verticalement */
+  border: 2px solid var(--gray); /* Bordure légère par défaut, l'original avait une bordure orange */
+}
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.pricing-card.popular {
+  border-color: var(--primary-green); /* Bordure verte pour populaire */
+  transform: translateY(-10px); /* Léger décalage pour la mise en avant */
+  /* Les autres styles de .pricing-card sont hérités */
+}
+/* Les styles spécifiques pour .pricing-card.popular .price (texte) et .pricing-card.popular h3 (texte)
+   étaient dans votre CSS global, s'ils doivent être surchargés, faites-le ici.
+   Ex:
+   .pricing-card.popular .pricing-card-price { color: var(--primary-green); }
+   .pricing-card.popular .pricing-card-title { color: var(--primary-green); }
+*/
+
+.popular-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--primary-orange);
+  color: var(--white);
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.pricing-card-title {
+  /* Cible les <h3> dans les cartes */
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-green);
+}
+
+.pricing-card-description {
+  /* Cible les <p> sous les titres des cartes */
+  font-size: 0.9rem; /* Un peu plus petit pour la description */
+  color: var(--dark-gray);
+  margin-bottom: 1.5rem;
+  min-height: 3em; /* Pour aider à aligner si les descriptions varient */
+}
+
+.pricing-card-price {
+  /* Cible les <div> avec la classe .price */
+  font-size: 3rem;
+  font-weight: 700;
+  font-family: var(--heading-font);
+  color: var(--primary-green); /* Couleur du prix */
+  margin-bottom: 1.5rem;
+  text-align: center; /* Centrer le prix */
+}
+.pricing-card-price span {
+  /* Pour "/mois" */
+  font-size: 1rem;
+  font-weight: 400;
+  margin-left: 0.25rem;
+  color: var(--dark-gray); /* Couleur pour "/mois" */
+}
+
+.pricing-card-features-list {
+  /* Cible les <ul> */
+  list-style: none;
+  padding-left: 0; /* Annuler le padding par défaut */
+  margin-bottom: 2.5rem;
+  flex-grow: 1; /* Pour pousser le bouton CTA en bas */
+}
+
+.pricing-card-feature-item {
+  /* Cible les <li> */
+  margin-bottom: 1rem;
+  padding-left: 1.8em; /* Espace pour l'icône */
+  position: relative;
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+}
+.pricing-card-feature-item i.fas.fa-check {
+  /* Style spécifique pour les icônes coche */
+  position: absolute;
+  left: 0;
+  top: 0.15em; /* Ajustement vertical */
+  color: var(--primary-orange); /* Couleur des coches */
+}
+
+.pricing-card-cta {
+  /* Cible les <a>.btn dans les cartes */
+  display: block; /* Pour prendre toute la largeur et centrer le texte */
+  text-align: center;
+  margin-top: auto; /* Assure qu'il est en bas grâce au flex sur .pricing-card */
+}
+
+/* Les styles .btn-primary et .btn-secondary sont globaux */
+
+/* Features Included Section (Anciennement .features-section2) */
+.features-included-section {
+  background-color: var(--gray); /* Couleur de fond d'origine */
+  /* padding: 6rem 0; /* Géré par .section */
+}
+
+.features-included-title {
+  /* Le style .section-title est global */
+  margin-bottom: 3rem; /* Plus d'espace après le titre */
+}
+
+.features-included-container {
+  /* Anciennement .features-container2 */
+  max-width: 1000px; /* Limite la largeur */
+  margin: 0 auto; /* Centre le conteneur */
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  ); /* Responsive grid */
+  gap: 2rem;
+}
+
+.feature-included-item {
+  /* Anciennement .feature-item2 */
+  display: flex;
+  align-items: flex-start; /* Aligne les icônes en haut avec le début du texte */
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.feature-included-icon {
+  /* Anciennement .feature-icon2 */
+  width: 50px;
+  height: 50px;
+  background-color: var(--light-orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-orange);
+  font-size: 1.2rem;
+  flex-shrink: 0; /* Empêche l'icône de rétrécir */
+}
+
+.feature-included-content {
+  /* Anciennement .feature-content2 */
+  /* Pas de style spécifique ici, les enfants sont stylés */
+}
+
+.feature-included-item-title {
+  /* Cible les <h4> */
+  font-size: 1.2rem;
+  color: var(--primary-green);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.feature-included-item-text {
+  /* Cible les <p> */
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+  line-height: 1.6;
+}
+
+/* Final CTA (Version WAW - Original) */
+.final-cta.pricing-final-cta {
+  /* Classe spécifique pour le CTA sur la page pricing */
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    var(--primary-green) 0%,
+    var(--dark-green) 100%
+  );
+  color: var(--white);
+  text-align: center;
+  padding: 8rem 0; /* Style d'origine */
+}
+
+.final-cta-content-wrapper {
+  /* Nouveau wrapper pour le contenu du CTA */
+  position: relative;
+  z-index: 2; /* Au-dessus des formes flottantes */
+}
+
+.final-cta-main-title {
+  /* Cible le <h2> */
+  font-size: 3rem; /* Style d'origine */
+  margin-bottom: 1.5rem; /* Style d'origine */
+  line-height: 1.2;
+}
+
+.final-cta-main-text {
+  /* Cible le <p> */
+  font-size: 1.2rem; /* Style d'origine */
+  max-width: 700px; /* Style d'origine */
+  margin: 0 auto 3rem; /* Style d'origine */
+  opacity: 0.9; /* Style d'origine */
+  line-height: 1.6;
+}
+
+.final-cta-buttons-wrapper {
+  /* Nouveau wrapper pour les boutons */
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center; /* Style d'origine */
+  flex-wrap: wrap; /* Pour la responsivité */
+}
+
+.final-cta-btn-contact {
+  /* Cible le bouton spécifique */
+  background: var(
+    --white
+  ) !important; /* Style d'origine, avec !important si besoin de forcer */
+  color: var(
+    --primary-green
+  ) !important; /* Style d'origine, avec !important si besoin de forcer */
+}
+/* Les styles .btn .btn-primary sont globaux et devraient s'appliquer.
+   Ce .final-cta-btn-contact est pour surcharger si le style global .btn-primary est différent. */
+
+/* Formes flottantes du Final CTA */
+.final-cta-shape {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1; /* Derrière le contenu mais au-dessus du fond */
+}
+.final-cta-shape-1 {
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.05); /* Style d'origine */
+  top: -100px;
+  left: -100px; /* Style d'origine */
+}
+.final-cta-shape-2 {
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.05); /* Style d'origine */
+  bottom: -150px;
+  right: -50px; /* Style d'origine */
+}
+.final-cta-shape-3 {
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 107, 0, 0.1); /* Style d'origine */
+  top: 50%;
+  left: 20%; /* Style d'origine */
+  transform: translateY(-50%); /* Pour centrer verticalement */
+}
+
+/* Features Included */
+.features-section2 {
+  background-color: var(--light-green);
+  padding: 6rem 0;
+}
+
+.features-container2 {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.feature-item2 {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.feature-icon2 {
+  width: 50px;
+  height: 50px;
+  background-color: var(--light-orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-orange);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.feature-content2 h4 {
+  font-size: 1.2rem;
+  color: var(--primary-green);
+  margin-bottom: 0.5rem;
+}
+
+/* CTA Section of the pricing*/
+.pricing-cta-section {
+  background: linear-gradient(
+    135deg,
+    var(--primary-green) 0%,
+    var(--dark-green) 100%
+  );
+  color: white;
+  text-align: center;
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-cta-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-cta-section p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  opacity: 0.9;
+}
+
+/* --- Responsive Design --- */
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  /* Hero Section (Index) */
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+  .hero-image {
+    width: 45%;
+  }
+  .hero-about h1 {
+    font-size: 3rem;
+  } /* About Us Hero */
+  .contact-hero h1 {
+    font-size: 3rem;
+  } /* Contact Hero */
+  .pricing-hero-title {
+    font-size: 3rem;
+  } /* Pricing Hero (si vous utilisez l'ancien) */
+
+  .section-title {
+    font-size: 2.5rem;
+  } /* Réduction générale des titres de section */
+  .final-cta-title {
+    font-size: 2.5rem;
+  }
+  .cta-section h2 {
+    font-size: 3rem;
+  }
+
+  /* Spécifique à certaines sections si besoin à ce breakpoint */
+  .feature-title {
+    font-size: 2.2rem;
+  } /* Features section (index) */
+  .modules-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  } /* Pas besoin de !important si les styles en ligne sont partis */
+  .valeurs-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  } /* About Us */
+  .team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  } /* About Us */
+
+  .footer-grid {
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 2rem;
+  }
+}
+
+/* ================================================================= */
+/* === Tablettes & Petits Desktops (Point de rupture principal) === */
+/* ================================================================= */
+@media (max-width: 992px) {
+  /* --- Navigation --- */
+  nav#navbar {
+    padding: 0.5rem 1rem;
+  }
+  .logo img {
+    height: 50px;
+  }
+  nav#navbar.scrolled .logo img {
+    height: 40px;
+  }
+  .scroll-progress {
+    top: 60px; /* Ajuster selon hauteur de nav.scrolled */
+  }
+
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 60px; /* Hauteur de la navbar scrollée */
+    left: 0;
+    width: 100%;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    background-color: var(--white);
+    flex-direction: column;
+    align-items: stretch; /* Changé pour que les liens prennent toute la largeur */
+    padding: 0;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid var(--gray);
+    z-index: 1000; /* En dessous du bouton hamburger mais au-dessus du reste */
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .nav-links a {
+    display: block; /* Pour prendre toute la largeur */
+    padding: 1.2rem 1.5rem; /* Plus de padding pour le clic */
+    width: 100%;
+    text-align: left; /* Ou center si vous préférez */
+    border-bottom: 1px solid var(--gray);
+    font-weight: 500; /* Assurer la graisse */
+  }
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+  .nav-links a:hover {
+    background-color: var(--light-green);
+  }
+  .nav-links a:after {
+    display: none;
+  } /* Pas de soulignement desktop */
+
+  .mobile-menu-btn {
+    display: block;
+    font-size: 1.6rem;
+    padding: 0.5rem; /* Pour zone de clic */
+  }
+  /* Les styles pour les barres du hamburger (si vous les avez changés) iraient ici */
+
+  /* --- Sections Générales --- */
+  .section {
+    padding: 5rem 0;
+  }
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* --- Hero Section (Index) --- */
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 80px; /* Plus d'espace pour la nav non scrollée */
+    height: auto;
+    min-height: unset;
+    padding-bottom: 3rem;
+  }
+  .hero-content {
+    max-width: 100%;
+    margin-bottom: 2.5rem;
+    padding: 0 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+  .hero p {
+    font-size: 1.05rem;
+  }
+  .hero-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-buttons .btn {
+    margin: 0.5rem;
+  }
+  .hero-image {
+    position: relative;
+    width: 80%;
+    max-width: 400px;
+    height: auto;
+    margin: 1.5rem auto 0;
+    bottom: auto;
+    right: auto;
+  }
+
+  /* --- Sections avec Grilles (Stacking) --- */
+  .process-steps,
+  .stats-cards-grid, /* about-us */
+  .pricing-grid, /* pricing */
+  .modules-grid, /* index */
+  .about-values-grid, /* about-us */
+  .team-grid, /* about-us */
+  .local-features-grid, /* index - grille interne */
+  .features-included-container, /* pricing */
+  .key-benefits-grid, /* index (si refonte V2) */
+  .testimonial-slider /* index (si refonte V2 et c'est une grille) */ {
+    grid-template-columns: 1fr;
+  }
+
+  /* Grilles à 2 colonnes qui deviennent 1 colonne */
+  .feature, /* index */
+  .local-section-grid, /* index */
+  .about-mission-grid, /* about-us */
+  .about-commitment-grid, /* about-us */
+  .contact-container, /* contact-us */
+  .feature-panel-grid /* index (tabs) */ {
+    grid-template-columns: 1fr;
+    gap: 2.5rem; /* Un gap cohérent pour les sections stackées */
+  }
+  .feature:nth-child(even) .feature-content,
+  .feature:nth-child(even) .feature-visual,
+  .local-section-image-wrapper, /* Pour l'ordre sur mobile */
+  .about-mission-image-wrapper,
+  .about-commitment-image-wrapper {
+    order: unset; /* Annule l'ordre pour stacking naturel, ou -1 pour image en haut */
+  }
+  .local-section-image-wrapper,
+  .about-mission-image-wrapper,
+  .about-commitment-image-wrapper {
+    margin-bottom: 2rem; /* Espace si l'image passe avant le texte */
+  }
+  .local-section-content,
+  .about-mission-content,
+  .about-commitment-content {
+    text-align: center; /* Centrer le texte quand l'image est stackée */
+  }
+  .commitment-title {
+    justify-content: center;
+  } /* Pour l'icône */
+
+  .feature-visual {
+    height: 300px;
+  }
+  .feature-benefits {
+    grid-template-columns: 1fr;
+  }
+
+  /* Formulaires (Contact) */
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  } /* Les champs s'empilent */
+  .contact-info,
+  .contact-form {
+    padding: 2rem 1.5rem;
+  }
+
+  /* Timeline (About Us - version V1 & V2) */
+  .timeline-line {
+    left: 25px;
+    transform: translateX(0);
+  }
+  .timeline-item, /* V1 */
+  .timeline-v2-item /* V2 */ {
+    grid-template-columns: auto 1fr; /* Icone - Contenu */
+    padding-left: 45px; /* Espace pour la ligne et le marqueur/point */
+    width: auto;
+    gap: 1.5rem;
+  }
+  .timeline-item-left .timeline-content, .timeline-item-right .timeline-content, /* V1 */
+  .timeline-v2-content /* V2 */ {
+    text-align: left;
+    grid-column: auto; /* Prend la place disponible */
+  }
+  .timeline-item-left .timeline-icon-connector, .timeline-item-right .timeline-icon-connector, /* V1 */
+  .timeline-v2-marker /* V2 */ {
+    grid-column: auto;
+    justify-self: left;
+    order: unset; /* Annule l'ordre pour V1 */
+    position: absolute; /* Pour V2 marker */
+    left: 25px; /* Aligné avec la ligne */
+    transform: translateX(-50%); /* Centré sur la ligne */
+  }
+  .timeline-item-right .timeline-icon-connector {
+    transform: translateX(-50%);
+  } /* Assurer centrage pour V1 aussi */
+
+  /* Pricing Page */
+  .pricing-hero-title {
+    font-size: 2.5rem;
+  }
+  .pricing-hero-description {
+    font-size: 1.1rem;
+  }
+  .pricing-card.popular {
+    transform: translateY(0);
+    order: -1; /* Met le populaire en haut */
+  }
+  .pricing-grid-v2 {
+    margin-top: 0;
+  } /* Si refonte V2 */
+  .pricing-card-v2 {
+    margin-bottom: 2rem;
+  } /* Si refonte V2 */
+  .pricing-card-v2.popular {
+    transform: scale(1);
+  } /* Si refonte V2 */
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .footer-col {
+    margin-bottom: 2rem;
+  }
+  .footer-logo img {
+    margin: 0 auto 1.5rem auto;
+  }
+  .footer-title:after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .social-links {
+    justify-content: center;
+  }
+
+  /* CTA Finaux */
+  .final-cta-title,
+  .cta-section h2 {
+    font-size: 2rem !important;
+  }
+  .final-cta-text,
+  .cta-section p {
+    font-size: 1.05rem !important;
+    max-width: 90%;
+  }
+  .final-cta-buttons,
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  .final-cta .btn,
+  .cta-section .btn {
+    width: 80%;
+    max-width: 320px;
+    margin-bottom: 1rem;
+  }
+  .final-cta .btn:last-child,
+  .cta-section .btn:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Comparaison Table */
+  .comparison-table-main {
+    min-width: auto;
+  } /* Permet le rétrécissement */
+  .comparison-th,
+  .comparison-td {
+    font-size: 0.85rem;
+    padding: 0.8rem 0.4rem;
+  }
+}
+
+/* ========================================= */
+/* === Petits Mobiles === */
+/* ========================================= */
+@media (max-width: 576px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 0.95rem;
+  }
+  .hero-subtitle-v2 {
+    font-size: 1rem;
+  } /* Si refonte V2 */
+  .hero-pricing-v2-title {
+    font-size: 2rem;
+  } /* Si refonte V2 */
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  .btn-lg {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+  .btn-xl {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+
+  .step-title,
+  .pricing-card-title,
+  .value-title,
+  .team-member-name,
+  .module-card-title,
+  .local-feature-title,
+  .benefit-card-title,
+  .step-v2-title,
+  .timeline-v2-title,
+  .feature-included-item-title {
+    font-size: 1.2rem; /* Titres de cartes/items plus petits */
+  }
+
+  .pricing-card-price {
+    font-size: 2.5rem;
+  } /* Prix sur pricing page */
+  .price-amount {
+    font-size: 2.5rem;
+  } /* Prix sur pricing page V2 */
+
+  /* Grilles internes plus petites */
+  .about-values-grid,
+  .team-grid,
+  .stats-cards-grid,
+  .local-features-grid,
+  .features-included-container {
+    gap: 1.5rem;
+  }
+  .value-card,
+  .team-member-card,
+  .stat-card-item,
+  .local-feature-card,
+  .pricing-card,
+  .module-card,
+  .step,
+  .feature-included-item,
+  .benefit-card {
+    padding: 1.5rem; /* Moins de padding interne */
+  }
+
+  .logo-slider img {
+    height: 40px;
+    margin: 0 15px;
+  }
+
+  /* Timeline sur très petits écrans */
+  .timeline-line {
+    left: 15px;
+  }
+  .timeline-item,
+  .timeline-v2-item {
+    padding-left: 35px;
+  }
+  .timeline-icon-connector,
+  .timeline-v2-marker {
+    left: 15px;
+  }
+  .timeline-icon-box {
+    padding: 0.8rem;
+  } /* V1 */
+  .timeline-icon,
+  .timeline-v2-icon {
+    font-size: 1.5rem;
+  }
+  .timeline-v2-icon-wrapper {
+    width: 40px;
+    height: 40px;
+  } /* V2 */
+
+  .comparison-th,
+  .comparison-td {
+    font-size: 0.75rem;
+    padding: 0.6rem 0.2rem;
+  }
+}
+
