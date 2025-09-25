@@ -206,20 +206,26 @@
       }
     ]
   },
-  "contactSection": {
-    "title": "ME CONTACTER",
-    "address": "Bruxelles, Belgique",
-    "phone": "+32 0492 451 456",
-    "email": "arnaudmartiny0@gmail.com",
-    "form": {
-      "namePlaceholder": "Nom",
-      "emailPlaceholder": "Email",
-      "subjectPlaceholder": "Sujet",
-      "messagePlaceholder": "Message",
-      "submitButton": "Envoyer",
-      "errorMessage": "Le formulaire de contact est en travaux, mais vous pouvez me contacter par mail ! N'hésitez pas : <a href=\"mailto:arnaudmartiny0@gmail.com\">arnaudmartiny0@gmail.com</a>"
+"contactSection": {
+  "title": "ME CONTACTER",
+  "address": "Bruxelles, Belgique",
+  "phone": "+32 0492 451 456",
+  "email": "arnaudmartiny0@gmail.com",
+  "form": {
+    "namePlaceholder": "Nom",
+    "emailPlaceholder": "Email",
+    "subjectPlaceholder": "Sujet",
+    "messagePlaceholder": "Message",
+    "submitButton": "Envoyer",
+    "results": {
+      "success": "Message envoyé avec succès ! Merci.",
+      "error_empty": "Erreur : Veuillez remplir tous les champs obligatoires.",
+      "error_email": "Erreur : Veuillez entrer une adresse email valide.",
+      "error_file": "Erreur serveur : Impossible d'enregistrer le message.",
+      "error_unknown": "Oups ! Une erreur inconnue est survenue."
     }
-  },
+  }
+},
   "footer": {
     "copyright": "© 2025 Arnaud Martiny. Tous droits réservés."
   },

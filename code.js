@@ -11,50 +11,60 @@ document.addEventListener("DOMContentLoaded", () => {
   nowaTooltip.id = 'nowa-tooltip';
   document.body.appendChild(nowaTooltip);
 
-   // NOUVEAU : Création dynamique de l'info-bulle pour le Case Study
+  // NOUVEAU : Création dynamique de l'info-bulle pour le Case Study
   const caseStudyTooltip = document.createElement('div');
   caseStudyTooltip.id = 'case-study-tooltip';
   document.body.appendChild(caseStudyTooltip);
 
-  const themeSwitcher = document.getElementById("theme-switcher");
+  // Sélectionne TOUS les boutons de thème et l'élément body
+  const themeSwitchers = document.querySelectorAll("#theme-switcher, #theme-switcher-mobile, #theme-switcher-mobile-nav");
   const body = document.body;
 
-  // On a besoin de cibler l'icône pour la changer
-  const themeIcon = themeSwitcher.querySelector("i");
-
-  // Fonction pour appliquer un thème (light ou dark)
+  // Nouvelle fonction pour appliquer un thème (light ou dark)
   const applyTheme = (theme) => {
-    body.classList.remove("light-mode", "dark-mode"); // On nettoie les classes d'abord
-    body.classList.add(`${theme}-mode`); // On ajoute la bonne classe (ex: 'light-mode')
+    // 1. Met à jour le body
+    body.classList.remove("light-mode", "dark-mode");
+    body.classList.add(`${theme}-mode`);
 
-    // On met à jour l'icône et on sauvegarde dans le localStorage
-    if (theme === "light") {
-      themeIcon.classList.replace("fa-sun", "fa-moon"); // Si mode clair, afficher lune
-      localStorage.setItem("theme", "light");
-    } else {
-      themeIcon.classList.replace("fa-moon", "fa-sun"); // Si mode sombre, afficher soleil
-      localStorage.setItem("theme", "dark");
-    }
+    // 2. Met à jour le localStorage
+    localStorage.setItem("theme", theme);
+
+    // 3. Met à jour l'icône sur TOUS les boutons de thème
+    themeSwitchers.forEach(switcher => {
+      const icon = switcher.querySelector("i");
+      if (theme === "light") {
+        icon.classList.replace("fa-sun", "fa-moon");
+      } else {
+        icon.classList.replace("fa-moon", "fa-sun");
+      }
+    });
   };
 
-  // Au chargement de la page, on vérifie si un thème a été sauvegardé
-  const savedTheme = localStorage.getItem("theme") || "dark"; // Par défaut, on met le thème sombre
+  // Au chargement de la page, on applique le thème sauvegardé
+  const savedTheme = localStorage.getItem("theme") || "dark";
   applyTheme(savedTheme);
 
-  // On ajoute l'écouteur d'événement sur le bouton
-  themeSwitcher.addEventListener("click", () => {
-    // On vérifie quel est le thème actuel pour basculer vers l'autre
-    const currentTheme = localStorage.getItem("theme");
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
-    applyTheme(newTheme);
+  // On ajoute un écouteur de clic à CHAQUE bouton de thème
+  themeSwitchers.forEach(switcher => {
+    switcher.addEventListener("click", () => {
+      const currentTheme = localStorage.getItem("theme");
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      applyTheme(newTheme);
+    });
   });
 
-  // --- I18N - GESTION MULTILINGUE ---
+  // =========================================================================
+  //      I18N - GESTION MULTILINGUE (BLOC ENTIÈREMENT CORRIGÉ)
+  // =========================================================================
   const translations = {};
   let currentLang = localStorage.getItem("language") || "fr";
   let langDataLoaded = false;
+  
+  // On sélectionne tous les boutons de langue une seule fois
   const langFrBtn = document.getElementById("lang-fr");
   const langEnBtn = document.getElementById("lang-en");
+  const mobileLangFrBtn = document.getElementById("lang-fr-mobile");
+  const mobileLangEnBtn = document.getElementById("lang-en-mobile");
 
   async function fetchTranslations(lang) {
     try {
@@ -108,79 +118,17 @@ document.addEventListener("DOMContentLoaded", () => {
       if (translation !== undefined)
         el.setAttribute("placeholder", translation);
     });
-
-    // --- GESTION DU FORMULAIRE DE CONTACT AVEC AJAX (SANS REDIRECTION) ---
-    const contactForm = document.getElementById('contact-form');
-    const resultMessage = document.getElementById('form-result-message');
-
-    if (contactForm) {
-      contactForm.addEventListener('submit', function (e) {
-        e.preventDefault(); // Empêche l'envoi classique du formulaire
-
-        const formData = new FormData(contactForm);
-        const object = {};
-        formData.forEach((value, key) => {
-          object[key] = value;
-        });
-        const json = JSON.stringify(object);
-
-        resultMessage.innerHTML = "Envoi en cours...";
-        resultMessage.classList.add('visible');
-        resultMessage.classList.remove('success', 'error');
-
-        fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: json
-        })
-        .then(async (response) => {
-          let jsonResponse = await response.json();
-          if (response.status == 200) {
-            resultMessage.innerHTML = "Message envoyé avec succès !";
-            resultMessage.classList.add('success');
-          } else {
-            console.log(response);
-            resultMessage.innerHTML = jsonResponse.message || "Une erreur est survenue.";
-            resultMessage.classList.add('error');
-          }
-        })
-        .catch(error => {
-          console.log(error);
-          resultMessage.innerHTML = "Oups ! Il y a eu un problème.";
-          resultMessage.classList.add('error');
-        })
-        .then(function () {
-          contactForm.reset(); // Vide les champs du formulaire
-          // Fait disparaître le message après 5 secondes
-          setTimeout(() => {
-            resultMessage.classList.remove('visible');
-          }, 5000);
-        });
-      });
-    }
-   
-    // ==========================================================
-    //    NOUVEAU : MISE À JOUR DYNAMIQUE DU LIEN DU CV
-    // ==========================================================
+    
     const cvLink = document.getElementById('nav-cv-link');
     if (cvLink) {
-        // Définissez ici les noms de vos fichiers CV
-        const cvFileNameFR = 'CV-Arnaud-Martiny-FR.pdf';
-        const cvFileNameEN = 'CV-Arnaud-Martiny-EN.pdf';
-
-        // Mettez à jour le lien en fonction de la langue
-        const filePath = lang === 'fr' 
-            ? `assets/CV/${cvFileNameFR}`
-            : `assets/CV/${cvFileNameEN}`;
-            
-        cvLink.setAttribute('href', filePath);
+      const cvFileNameFR = 'CV-Arnaud-Martiny-FR.pdf';
+      const cvFileNameEN = 'CV-Arnaud-Martiny-EN.pdf';
+      const filePath = lang === 'fr'
+        ? `assets/CV/${cvFileNameFR}`
+        : `assets/CV/${cvFileNameEN}`;
+      cvLink.setAttribute('href', filePath);
     }
 
-    
-    // --- PRÉPARATION DU BLOC JSON POUR L'ANIMATION DE FRAPPE ---
     const jsonContentEl = document.getElementById("language-json-content");
     if (
       jsonContentEl &&
@@ -191,14 +139,12 @@ document.addEventListener("DOMContentLoaded", () => {
       jsonContentEl.dataset.languages = JSON.stringify(
         langData.skillsSection.languages
       );
-
       const codeBlockTitle = document.getElementById("code-block-title");
       if (codeBlockTitle) {
         codeBlockTitle.textContent = "language.json";
       }
     }
 
-    // --- GÉNÉRATION DES VAGUES ---
     const wavesContainer = document.querySelector(".waves-container");
     if (
       wavesContainer &&
@@ -225,7 +171,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // --- TAGS DE COMPÉTENCES ---
     const aboutSkillsContainer = document.getElementById("about-skills-tags");
     if (aboutSkillsContainer && langData.about && langData.about.skillsTags) {
       aboutSkillsContainer.innerHTML = "";
@@ -237,7 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // --- GESTION DE LA NAVBAR AU SCROLL ---
     const navContainer = document.querySelector(".nav-container");
     if (navContainer) {
       window.addEventListener("scroll", () => {
@@ -249,7 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // --- LOGIQUE "SYSTÈME SOLAIRE PULSANT" ---
     const sceneContainer = document.getElementById("skills-scene-container");
     const solarSystem = document.getElementById("skills-solar-system");
     const infobox = document.getElementById("skills-infobox");
@@ -319,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
         skillPlanet.style.setProperty("--direction", direction);
         planetContainer.appendChild(skillPlanet);
         orbitPath.appendChild(planetContainer);
-        
+
         solarSystem.appendChild(orbitPath);
 
         gsap.to(orbitPath, {
@@ -337,8 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
     }
-    
-    // ===== BLOC TIMELINE CORRIGÉ =====
+
     const timelineContainer = document.getElementById("timeline-content");
     if (
       timelineContainer &&
@@ -361,7 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (item.description2) {
           descriptionHtml += `<br><p>${item.description2}</p>`;
         }
-        
+
         timelineItemDiv.innerHTML = `
           <div class="timeline-dot"></div>
           <div class="timeline-content" data-i18n-html>
@@ -373,7 +315,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // --- GÉNÉRATION DES PROJETS DÉTAILLÉS (AVEC BOUTON CASE STUDY) ---
     const projectsContainer = document.getElementById("featured-projects-container");
     if (
       projectsContainer &&
@@ -384,7 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
       langData.featuredProjects.items.forEach((project) => {
         const projectCard = document.createElement("div");
         projectCard.className = "project-card reveal";
-        
+
         if (project.id) {
           projectCard.id = project.id;
         }
@@ -394,86 +335,80 @@ document.addEventListener("DOMContentLoaded", () => {
           techHtml += `<div class="project-tech-item">${tech}</div>`;
         });
 
-        const liveLinkBtnId = project.id ? `id="live-link-${project.id}"` : '';
         const caseStudyButtonText = getNestedTranslation(langData, "featuredProjects.caseStudyButton") || "View Case Study";
-        const liveLinkDisabledStyle = project.liveLink === "#" ? 'style="pointer-events: none; opacity: 0.5;"' : '';
-        const codeLinkDisabledStyle = project.codeLink === "#" ? 'style="pointer-events: none; opacity: 0.5;"' : '';
 
-        const contentHtml = `
-                <div class="project-content">
-                    <p class="project-category">${project.category}</p>
-                    <h3 class="project-title">${project.title}</h3>
-                    <p class="project-description">${project.description}</p>
-                    <div class="project-tech-list">${techHtml}</div>
-                    <div class="project-links">
-                        <a href="${project.liveLink}" class="btn" target="_blank" ${liveLinkBtnId} ${liveLinkDisabledStyle}>Voir le site</a>
-                        <a href="${project.codeLink}" class="btn btn-outline" target="_blank" ${codeLinkDisabledStyle}>Voir le code</a>
-                        <button class="btn btn-case-study" data-project-id="${project.id}">
-                            <span>${caseStudyButtonText}</span>
-                        </button>
-                    </div>
-                </div>`;
+        projectCard.innerHTML = `
+            <div class="project-image">
+                <a href="${project.liveLink}" target="_blank" ${project.liveLink === "#" ? 'style="pointer-events: none; opacity: 0.5;"' : ''}>
+                    <img src="${project.imageSrc}" alt="${project.imageAlt}">
+                </a>
+            </div>
+            <div class="project-content">
+                <p class="project-category">${project.category}</p>
+                <h3 class="project-title">${project.title}</h3>
+                <p class="project-description">${project.description}</p>
+                <div class="project-tech-list">${techHtml}</div>
+                <div class="project-links">
+                    <a href="${project.liveLink}" class="btn" target="_blank" id="live-link-${project.id}" ${project.liveLink === "#" ? 'style="pointer-events: none; opacity: 0.5;"' : ''}>Voir le site</a>
+                    <a href="${project.codeLink}" class="btn btn-outline" target="_blank" ${project.codeLink === "#" ? 'style="pointer-events: none; opacity: 0.5;"' : ''}>Voir le code</a>
+                    <button class="btn btn-case-study" data-project-id="${project.id}">
+                        <span>${caseStudyButtonText}</span>
+                    </button>
+                </div>
+            </div>`;
 
-        const imageHtml = `
-                <div class="project-image">
-                    <a href="${project.liveLink}" target="_blank">
-                        <img src="${project.imageSrc}" alt="${project.imageAlt}">
-                    </a>
-                </div>`;
-
-        projectCard.innerHTML = imageHtml + contentHtml;
         projectsContainer.appendChild(projectCard);
       });
     }
 
-    // --- GESTION DES INFO-BULLES POUR LES PROJETS EN COURS ---
-    const nowaLiveLinkBtn = document.getElementById('live-link-nowa-logistics');
     const poetesLiveLinkBtn = document.getElementById('live-link-theatre-des-poetes');
-    
-    const setupTooltip = (button, tooltipKey) => {
-        if (button) {
-            const tooltipText = getNestedTranslation(langData, tooltipKey);
-            button.addEventListener('mouseenter', () => {
-                nowaTooltip.textContent = tooltipText;
-                nowaTooltip.style.display = 'block';
-            });
-            button.addEventListener('mouseleave', () => {
-                nowaTooltip.style.display = 'none';
-            });
-        }
+    const nowaLiveLinkBtn = document.getElementById('live-link-nowa-logistics');
+
+    const setupTooltip = (button, tooltipElement, tooltipKey) => {
+      if (button) {
+        const tooltipText = getNestedTranslation(langData, tooltipKey);
+
+        const showTooltip = (e) => {
+          tooltipElement.textContent = tooltipText;
+          tooltipElement.style.display = 'block';
+          moveTooltip(e);
+        };
+        const hideTooltip = () => {
+          tooltipElement.style.display = 'none';
+        };
+        const moveTooltip = (e) => {
+          tooltipElement.style.left = `${e.clientX + 20}px`;
+          tooltipElement.style.top = `${e.clientY - 30}px`;
+        };
+
+        button.addEventListener('mouseenter', showTooltip);
+        button.addEventListener('mouseleave', hideTooltip);
+        button.addEventListener('mousemove', moveTooltip);
+      }
     };
 
-    setupTooltip(nowaLiveLinkBtn, "featuredProjects.nowaTooltip");
-    setupTooltip(poetesLiveLinkBtn, "featuredProjects.poetesTooltip");
+    setupTooltip(nowaLiveLinkBtn, nowaTooltip, "featuredProjects.nowaTooltip");
+    setupTooltip(poetesLiveLinkBtn, nowaTooltip, "featuredProjects.poetesTooltip");
 
-    document.addEventListener('mousemove', (e) => {
-         if (nowaTooltip.style.display === 'block') {
-            nowaTooltip.style.left = `${e.clientX + 15}px`;
-            nowaTooltip.style.top = `${e.clientY + 15}px`;
-         }
-    });
-
-    // On appelle toutes les fonctions qui initialisent les sections dynamiques
     initializeRetroAnimation(langData);
     initializeTestimonialsTerminal(langData);
     initializeTarotDeck(langData);
     initializeSlotMachine(langData);
-    
-    // ✅ LA CORRECTION EST ICI : on appelle la bonne fonction pour la grille d'expériences
-    initializeExperienceGrid(langData); 
+    initializeExperienceGrid(langData);
 
-    // --- GESTION DE LA DATE DANS LE POP-UP D'ÉVOLUTION ---
     const evolutionPopupMessage = document.querySelector('#evolution-popup p[data-i18n="evolutionPopup.message"]');
     const evolutionPopupEl = document.getElementById('evolution-popup');
     if (evolutionPopupMessage && evolutionPopupEl && evolutionPopupEl.dataset.lastUpdated) {
-        const lastUpdatedDate = evolutionPopupEl.dataset.lastUpdated;
-        evolutionPopupMessage.innerHTML = evolutionPopupMessage.innerHTML.replace('{{date}}', `<b>${lastUpdatedDate}</b>`);
+      const lastUpdatedDate = evolutionPopupEl.dataset.lastUpdated;
+      evolutionPopupMessage.innerHTML = evolutionPopupMessage.innerHTML.replace('{{date}}', `<b>${lastUpdatedDate}</b>`);
     }
-
+    
+    // ✅ CORRECTION : On appelle la fonction de mise à jour unifiée ici
     updateLangButtons();
     if (typeof reveal === "function") reveal();
   }
-
+  
+  // ✅ CORRECTION : Fonction de changement de langue simplifiée
   async function setLanguage(lang, force = false) {
     if (currentLang === lang && !force) return;
     if (!translations[lang]) {
@@ -483,14 +418,21 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("language", lang);
     applyTranslations(lang);
   }
-
+  
+  // ✅ NOUVEAU : Fonction centralisée pour mettre à jour l'état visuel des boutons
   function updateLangButtons() {
-    if (langFrBtn) langFrBtn.classList.toggle("active", currentLang === "fr");
-    if (langEnBtn) langEnBtn.classList.toggle("active", currentLang === "en");
+    const isFr = currentLang === "fr";
+    if (langFrBtn) langFrBtn.classList.toggle("active", isFr);
+    if (langEnBtn) langEnBtn.classList.toggle("active", !isFr);
+    if (mobileLangFrBtn) mobileLangFrBtn.classList.toggle("active", isFr);
+    if (mobileLangEnBtn) mobileLangEnBtn.classList.toggle("active", !isFr);
   }
 
+  // ✅ CORRECTION : On attache les événements à tous les boutons
   if (langFrBtn) langFrBtn.addEventListener("click", () => setLanguage("fr"));
   if (langEnBtn) langEnBtn.addEventListener("click", () => setLanguage("en"));
+  if (mobileLangFrBtn) mobileLangFrBtn.addEventListener("click", () => setLanguage("fr"));
+  if (mobileLangEnBtn) mobileLangEnBtn.addEventListener("click", () => setLanguage("en"));
 
   (async () => {
     await Promise.all([fetchTranslations("fr"), fetchTranslations("en")]);
@@ -501,7 +443,53 @@ document.addEventListener("DOMContentLoaded", () => {
     await setLanguage(langToApply, true);
     reveal();
   })();
-  // --- FIN DU SCRIPT I18N ---
+  // --- FIN DU SCRIPT I18N CORRIGÉ ---
+
+  // ====================================================================
+  //    GESTION DU FORMULAIRE DE CONTACT AVEC POP-UP (AJAX)
+  // ====================================================================
+  const contactForm = document.getElementById('contact-form');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(contactForm);
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+
+      const sendingText = getNestedTranslation(translations[currentLang], "contactSection.form.sending") || "Envoi...";
+      const originalButtonText = getNestedTranslation(translations[currentLang], "contactSection.form.submitButton") || "Envoyer";
+
+      submitButton.disabled = true;
+      submitButton.textContent = sendingText;
+
+      fetch('traitement-formulaire.php', {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => response.json())
+        .then(data => {
+          const messageKey = data.messageKey;
+          const status = data.status;
+
+          const translatedMessage = getNestedTranslation(translations[currentLang], messageKey) || "Un problème est survenu.";
+          showPopupNotification(translatedMessage, status);
+
+          if (status === 'success') {
+            contactForm.reset();
+          }
+        })
+        .catch(error => {
+          console.error('Erreur:', error);
+          const fallbackMessage = getNestedTranslation(translations[currentLang], 'contactSection.form.results.error_unknown') || "Oups ! Une erreur réseau est survenue.";
+          showPopupNotification(fallbackMessage, 'error');
+        })
+        .finally(() => {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        });
+    });
+  }
 
   // --- GESTION DU CURSEUR PERSONNALISÉ ---
   const cursor = document.querySelector(".cursor");
@@ -561,35 +549,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const skillsSection = document.querySelector(".skills-section");
   const counterSection = document.querySelector(".counter-section");
 
-  async function backspace(count) {
-    const codeEl = document.getElementById("language-json-content");
-    const backspaceSpeed = 40;
-    const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-    for (let i = 0; i < count; i++) {
-      let currentHtml = codeEl.innerHTML.replace(
-        /<span class="typing-caret"><\/span>$/,
-        ""
-      );
-      const lastTagOpen = currentHtml.lastIndexOf("<");
-      const lastTagClose = currentHtml.lastIndexOf(">");
-      let textPart;
-      let tagPart = "";
-      if (lastTagOpen > lastTagClose) {
-        textPart = currentHtml;
-      } else {
-        tagPart = currentHtml.substring(lastTagOpen);
-        textPart = currentHtml.substring(0, lastTagOpen);
-      }
-      if (textPart) {
-        textPart = textPart.slice(0, -1);
-      }
-      codeEl.innerHTML =
-        textPart + tagPart + '<span class="typing-caret"></span>';
-      await pause(backspaceSpeed);
-    }
-  }
-
+  // ==============================================================
+  //    >>> BLOC D'ANIMATION JSON ENTIÈREMENT CORRIGÉ <<<
+  // ==============================================================
   async function animateJsonTypingAdvanced() {
     const codeEl = document.getElementById("language-json-content");
     if (!codeEl || !codeEl.dataset.languages) return;
@@ -598,106 +560,94 @@ document.addEventListener("DOMContentLoaded", () => {
     const lang1 = languages[0];
     const lang2 = languages[1];
 
-    const baseTypingSpeed = 15;
-    const mistakeSpeed = 25;
-    const backspaceSpeed = 20;
-    const pauseDuration = 250;
+    const baseTypingSpeed = 25;
+    const mistakeSpeed = 35;
+    const backspaceSpeed = 25;
+    const pauseDuration = 400;
 
     const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-    const addCaret = () => `<span class="typing-caret"></span>`;
-    const updateContent = (content) => {
-      codeEl.innerHTML = content + addCaret();
+
+    let currentContent = "";
+    const render = () => {
+      codeEl.innerHTML = currentContent.replace(/\n/g, '<br>') + '<span class="typing-caret"></span>';
     };
     const removeCaret = () => {
-      const caret = codeEl.querySelector(".typing-caret");
-      if (caret) caret.remove();
+      codeEl.innerHTML = currentContent.replace(/\n/g, '<br>');
     };
 
     async function type(text) {
-      let currentContent = codeEl.innerHTML.replace(addCaret(), "");
       for (const char of text) {
-        const randomSpeed = baseTypingSpeed + (Math.random() - 0.5) * 30;
         currentContent += char;
-        updateContent(currentContent);
-        await pause(randomSpeed);
+        render();
+        await pause(baseTypingSpeed + (Math.random() - 0.5) * 20);
       }
     }
 
-    async function typeColoredText(text, className, speed = baseTypingSpeed) {
-      let currentContent = codeEl.innerHTML.replace(addCaret(), "");
-      let builtString = "";
-      const openTag = `<span class="${className}">"`;
-      const closeTag = '"</span>';
-      for (const char of text) {
-        const randomSpeed = speed + (Math.random() - 0.5) * 40;
-        builtString += char;
-        updateContent(currentContent + openTag + builtString + closeTag);
-        await pause(randomSpeed);
-      }
-      codeEl.innerHTML = currentContent + openTag + text + closeTag;
-      updateContent(codeEl.innerHTML);
+    function addHtml(html) {
+      currentContent += html;
+      render();
     }
 
-    updateContent("");
+    async function backspace(count) {
+      for (let i = 0; i < count; i++) {
+        currentContent = currentContent.slice(0, -1);
+        render();
+        await pause(backspaceSpeed);
+      }
+    }
+
     const punc = (char) => `<span class="json-punctuation">${char}</span>`;
     const key = (text) => `<span class="json-key">"${text}"</span>`;
+    const str = (text) => `<span class="json-string">"${text}"</span>`;
     const comment = (text) => `<span class="json-comment">${text}</span>`;
-    const openBrace = punc("{");
-    const closeBrace = punc("}");
-    const comma = punc(",");
-    const colon = punc(":");
-    const newLine = (indent = 1) => "\n" + "  ".repeat(indent);
+    const nl = (indent = 1) => "\n" + "  ".repeat(indent);
 
-    await type(openBrace + newLine());
-    await type(key("languages") + colon + " " + punc("[") + newLine(2));
-    await type(openBrace + newLine(3));
-    await type(
-      key("name") +
-        colon +
-        " " +
-        `<span class="json-string">"${lang1.name}"</span>` +
-        comma +
-        newLine(3)
-    );
-    await type(key("level") + colon + " ");
-    await typeColoredText(lang1.levelMistake, "json-string", mistakeSpeed);
+    codeEl.innerHTML = "";
+
+    addHtml(punc('{') + nl());
+    await type("  ");
+    addHtml(key('languages') + punc(':') + ' ' + punc('[') + nl(2));
+
+    await type("    ");
+    addHtml(punc('{') + nl(3));
+    await type("      ");
+    addHtml(key('name') + punc(':') + ' ' + str(lang1.name) + punc(',') + nl(3));
+    await type("      ");
+    addHtml(key('level') + punc(':') + ' ');
+    addHtml('<span class="json-string">"');
+    await type(lang1.levelMistake);
     await pause(pauseDuration);
-    await backspace(lang1.levelMistake.length + 2);
-    await typeColoredText(lang1.levelText, "json-string");
-    await type(comma + newLine(3));
-    await type(
-      key("comment") +
-        colon +
-        " " +
-        comment(`"${lang1.jsonComment}"`) +
-        newLine(2)
-    );
-    await type(closeBrace + comma);
-    await type(newLine(2) + openBrace + newLine(3));
-    await type(
-      key("name") +
-        colon +
-        " " +
-        `<span class="json-string">"${lang2.name}"</span>` +
-        comma +
-        newLine(3)
-    );
-    await type(key("level") + colon + " ");
-    await typeColoredText(lang2.levelMistake, "json-string", mistakeSpeed);
+    await backspace(lang1.levelMistake.length);
+    await type(lang1.levelText);
+    addHtml('"</span>' + punc(',') + nl(3));
+    await type("      ");
+    addHtml(key('comment') + punc(':') + ' ' + comment(`"${lang1.jsonComment}"`) + nl(2));
+    await type("    ");
+    addHtml(punc('}') + punc(','));
+
+    addHtml(nl(2));
+    await type("    ");
+    addHtml(punc('{') + nl(3));
+    await type("      ");
+    addHtml(key('name') + punc(':') + ' ' + str(lang2.name) + punc(',') + nl(3));
+    await type("      ");
+    addHtml(key('level') + punc(':') + ' ');
+    addHtml('<span class="json-string">"');
+    await type(lang2.levelMistake);
     await pause(pauseDuration);
-    await backspace(lang2.levelMistake.length + 2);
-    await typeColoredText(lang2.levelText, "json-string");
-    await type(comma + newLine(3));
-    await type(
-      key("comment") +
-        colon +
-        " " +
-        comment(`"${lang2.jsonComment}"`) +
-        newLine(2)
-    );
-    await type(closeBrace);
-    await type(newLine(1) + punc("]"));
-    await type(newLine(0) + closeBrace);
+    await backspace(lang2.levelMistake.length);
+    await type(lang2.levelText);
+    addHtml('"</span>' + punc(',') + nl(3));
+    await type("      ");
+    addHtml(key('comment') + punc(':') + ' ' + comment(`"${lang2.jsonComment}"`) + nl(2));
+    await type("    ");
+    addHtml(punc('}'));
+
+    addHtml(nl(1));
+    await type("  ");
+    addHtml(punc(']'));
+    addHtml(nl(0) + punc('}'));
+
     removeCaret();
   }
 
@@ -824,26 +774,31 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-  
-  // --- GESTION DU MENU HAMBURGER ---
+
+  // =================================================================
+  //      MENU HAMBURGER - LOGIQUE ENTIÈREMENT FONCTIONNELLE
+  // =================================================================
   const hamburgerBtn = document.getElementById("hamburger-btn");
   const mobileMenu = document.getElementById("mobile-menu");
-  const mobileMenuLinks = mobileMenu.querySelectorAll("a");
   const bodyEl = document.body;
-  
-  const mobileMenuCloseBtn = document.getElementById('mobile-menu-close-btn');
 
   if (hamburgerBtn && mobileMenu) {
+    const mobileMenuLinks = mobileMenu.querySelectorAll("a");
+    const mobileMenuCloseBtn = document.getElementById('mobile-menu-close-btn');
+
+    // Ouvre le menu
     hamburgerBtn.addEventListener("click", () => {
-      bodyEl.classList.toggle("mobile-menu-open");
+      bodyEl.classList.add("mobile-menu-open");
     });
 
+    // Ferme le menu avec le bouton "X"
     if (mobileMenuCloseBtn) {
       mobileMenuCloseBtn.addEventListener('click', () => {
         bodyEl.classList.remove('mobile-menu-open');
       });
     }
 
+    // Ferme le menu en cliquant sur un lien
     mobileMenuLinks.forEach((link) => {
       link.addEventListener("click", () => {
         bodyEl.classList.remove("mobile-menu-open");
@@ -851,83 +806,37 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- SYNCHRONISATION DES BOUTONS DE THÈME ET LANGUE ---
-  const mobileThemeSwitcher = document.getElementById("theme-switcher-mobile");
-  const mobileLangFrBtn = document.getElementById("lang-fr-mobile");
-  const mobileLangEnBtn = document.getElementById("lang-en-mobile");
-
-  if (mobileThemeSwitcher) {
-    const mobileThemeIcon = mobileThemeSwitcher.querySelector("i");
-    if (localStorage.getItem("theme") === "light") {
-      mobileThemeIcon.classList.replace("fa-sun", "fa-moon");
-    }
-    mobileThemeSwitcher.addEventListener("click", () => {
-      themeSwitcher.click();
-      if (bodyEl.classList.contains("light-mode")) {
-        mobileThemeIcon.classList.replace("fa-sun", "fa-moon");
-      } else {
-        mobileThemeIcon.classList.replace("fa-moon", "fa-sun");
-      }
-    });
-  }
-
-  if (mobileLangFrBtn && mobileLangEnBtn) {
-    mobileLangFrBtn.classList.toggle("active", currentLang === "fr");
-    mobileLangEnBtn.classList.toggle("active", currentLang === "en");
-    mobileLangFrBtn.addEventListener("click", () => {
-      setLanguage("fr");
-      mobileLangFrBtn.classList.add("active");
-      mobileLangEnBtn.classList.remove("active");
-    });
-    mobileLangEnBtn.addEventListener("click", () => {
-      setLanguage("en");
-      mobileLangEnBtn.classList.add("active");
-      mobileLangFrBtn.classList.remove("active");
-    });
-  }
-
-// --- GESTION DU POP-UP D'ÉVOLUTION ---
+  // --- GESTION DU POP-UP D'ÉVOLUTION ---
   const evolutionPopupOverlay = document.getElementById("evolution-popup-overlay");
   const evolutionPopup = document.getElementById("evolution-popup");
   const evolutionPopupCloseBtn = document.getElementById("evolution-popup-close");
 
   if (evolutionPopupOverlay && evolutionPopup && evolutionPopupCloseBtn) {
-    // Fonction pour fermer le pop-up avec l'animation
     const closeEvolutionPopup = () => {
       evolutionPopup.classList.add('exploding');
-      // On attend la fin de l'animation CSS pour cacher complètement l'overlay
       evolutionPopup.addEventListener('animationend', () => {
         evolutionPopupOverlay.classList.remove('visible');
         evolutionPopup.classList.remove('exploding');
-      }, { once: true }); // 'once: true' supprime l'écouteur après son exécution
+      }, { once: true });
     };
 
-    // On vérifie si le pop-up n'a pas déjà été montré dans cette session
     if (!sessionStorage.getItem('evolutionPopupShown')) {
-      // On attend 4 secondes avant de le montrer
       setTimeout(() => {
         evolutionPopupOverlay.classList.add('visible');
-        // On enregistre qu'il a été montré pour ne pas le réafficher
         sessionStorage.setItem('evolutionPopupShown', 'true');
       }, 4000);
     }
 
-    // Ajout des écouteurs d'événements
     evolutionPopupCloseBtn.addEventListener('click', closeEvolutionPopup);
     evolutionPopupOverlay.addEventListener('click', (e) => {
-        // Si on clique sur le fond (l'overlay) et non sur le pop-up lui-même
-        if (e.target === evolutionPopupOverlay) {
-            closeEvolutionPopup();
-        }
+      if (e.target === evolutionPopupOverlay) {
+        closeEvolutionPopup();
+      }
     });
-
-    evolutionPopup.addEventListener('click', (e) => {
-      // Empêche le pop-up de se fermer si on clique à l'intérieur
-      e.stopPropagation();
-    });
+    evolutionPopup.addEventListener('click', (e) => e.stopPropagation());
   }
-  
-  // --- GESTION DU POP-UP DE MISE À JOUR DES PROJETS (NOUVELLE LOGIQUE) ---
+
+  // --- GESTION DU POP-UP DE MISE À JOUR DES PROJETS ---
   const projectsUpdatePopupOverlay = document.getElementById("projects-update-popup-overlay");
   if (projectsUpdatePopupOverlay) {
     const projectsUpdatePopupCloseBtn = document.getElementById("projects-update-popup-close");
@@ -935,40 +844,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const closeProjectsPopup = () => {
       projectsUpdatePopupOverlay.classList.remove('visible');
-      // On sauvegarde le fait que l'utilisateur a fermé manuellement le pop-up pour cette session
       sessionStorage.setItem('projectsUpdatePopupClosed', 'true');
     };
 
     if (projectsUpdatePopupCloseBtn) {
       projectsUpdatePopupCloseBtn.addEventListener('click', closeProjectsPopup);
     }
-    
-    // Fermer si on clique en dehors
+
     projectsUpdatePopupOverlay.addEventListener('click', (e) => {
-        if (e.target === projectsUpdatePopupOverlay) {
-            closeProjectsPopup();
-        }
+      if (e.target === projectsUpdatePopupOverlay) {
+        closeProjectsPopup();
+      }
     });
-    // Empêcher la fermeture si on clique dessus
     document.getElementById('projects-update-popup').addEventListener('click', e => e.stopPropagation());
 
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      // On déclenche un peu avant et après pour un effet fluide
-      threshold: [0.1, 0.9] 
+      threshold: [0.1, 0.9]
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        // On vérifie si l'utilisateur ne l'a pas déjà fermé
         const isClosedManually = sessionStorage.getItem('projectsUpdatePopupClosed');
-
         if (entry.isIntersecting && !isClosedManually) {
-          // Si la section est visible, on affiche le pop-up
           projectsUpdatePopupOverlay.classList.add('visible');
         } else {
-          // Sinon, on le cache
           projectsUpdatePopupOverlay.classList.remove('visible');
         }
       });
@@ -978,7 +879,6 @@ document.addEventListener("DOMContentLoaded", () => {
       observer.observe(projectsSectionTrigger);
     }
   }
-
 
   // --- LOGIQUE DE LA MODALE CASE STUDY ---
   const caseStudyOverlay = document.getElementById('case-study-overlay');
@@ -997,61 +897,61 @@ document.addEventListener("DOMContentLoaded", () => {
     let rainIntervalId;
 
     const setupRain = () => {
-        if (rainIntervalId) clearInterval(rainIntervalId);
-        const ctx = binaryRainCanvas.getContext('2d');
-        binaryRainCanvas.width = window.innerWidth;
-        binaryRainCanvas.height = window.innerHeight;
-        const characters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン01';
-        const fontSize = 16;
-        const columns = binaryRainCanvas.width / fontSize;
-        const rainDrops = Array.from({ length: Math.floor(columns) }).map(() => 1);
-        
-        const drawRain = () => {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, binaryRainCanvas.width, binaryRainCanvas.height);
-            ctx.fillStyle = '#0F0';
-            ctx.font = `${fontSize}px monospace`;
-            rainDrops.forEach((y, i) => {
-                const text = characters.charAt(Math.floor(Math.random() * characters.length));
-                ctx.fillText(text, i * fontSize, y * fontSize);
-                if (y * fontSize > binaryRainCanvas.height && Math.random() > 0.975) {
-                    rainDrops[i] = 0;
-                }
-                rainDrops[i]++;
-            });
-        };
-        rainIntervalId = setInterval(drawRain, 40);
+      if (rainIntervalId) clearInterval(rainIntervalId);
+      const ctx = binaryRainCanvas.getContext('2d');
+      binaryRainCanvas.width = window.innerWidth;
+      binaryRainCanvas.height = window.innerHeight;
+      const characters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン01';
+      const fontSize = 16;
+      const columns = binaryRainCanvas.width / fontSize;
+      const rainDrops = Array.from({ length: Math.floor(columns) }).map(() => 1);
+
+      const drawRain = () => {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, binaryRainCanvas.width, binaryRainCanvas.height);
+        ctx.fillStyle = '#0F0';
+        ctx.font = `${fontSize}px monospace`;
+        rainDrops.forEach((y, i) => {
+          const text = characters.charAt(Math.floor(Math.random() * characters.length));
+          ctx.fillText(text, i * fontSize, y * fontSize);
+          if (y * fontSize > binaryRainCanvas.height && Math.random() > 0.975) {
+            rainDrops[i] = 0;
+          }
+          rainDrops[i]++;
+        });
+      };
+      rainIntervalId = setInterval(drawRain, 40);
     };
 
     const runBootSequence = () => {
-        const bootLines = ['AM_BIOS v4.2.1...', 'Initializing Kernel...', 'Memory Test: OK', 'Loading OS...', 'Authenticating user: A.Martiny...', 'LAUNCHING APPLICATION...'];
-        bootSequenceEl.innerHTML = '';
-        let delay = 0;
-        bootLines.forEach(line => {
-            setTimeout(() => {
-                const p = document.createElement('p');
-                p.className = 'boot-line';
-                p.textContent = line;
-                bootSequenceEl.appendChild(p);
-            }, delay);
-            delay += (Math.random() * 200 + 100);
-        });
-        return delay + 1000;
+      const bootLines = ['AM_BIOS v4.2.1...', 'Initializing Kernel...', 'Memory Test: OK', 'Loading OS...', 'Authenticating user: A.Martiny...', 'LAUNCHING APPLICATION...'];
+      bootSequenceEl.innerHTML = '';
+      let delay = 0;
+      bootLines.forEach(line => {
+        setTimeout(() => {
+          const p = document.createElement('p');
+          p.className = 'boot-line';
+          p.textContent = line;
+          bootSequenceEl.appendChild(p);
+        }, delay);
+        delay += (Math.random() * 200 + 100);
+      });
+      return delay + 1000;
     };
 
     const launchCaseStudy = (projectId) => {
-        const langData = translations[currentLang];
-        const projectData = langData.featuredProjects.items.find(p => p.id === projectId);
+      const langData = translations[currentLang];
+      const projectData = langData.featuredProjects.items.find(p => p.id === projectId);
 
-        if (!projectData || !projectData.caseStudy) {
-            console.error("No case study data for project:", projectId);
-            return;
-        }
+      if (!projectData || !projectData.caseStudy) {
+        console.error("No case study data for project:", projectId);
+        return;
+      }
 
-        const cs = projectData.caseStudy;
-        
-        caseStudyWindowTitle.textContent = cs.title;
-        caseStudyContentEl.innerHTML = `
+      const cs = projectData.caseStudy;
+
+      caseStudyWindowTitle.textContent = cs.title;
+      caseStudyContentEl.innerHTML = `
             <h4>${cs.briefTitle}</h4>
             <p>${cs.brief}</p>
             <h4>${cs.roleTitle}</h4>
@@ -1062,76 +962,76 @@ document.addEventListener("DOMContentLoaded", () => {
             <p>${cs.results}</p>
         `;
 
-        caseStudyOverlay.style.display = 'block';
-        bootSequenceEl.style.display = 'block';
-        caseStudyWindowEl.style.display = 'none';
-        contactPopup.style.display = 'none';
-        document.body.style.overflow = 'hidden';
-        
-        setupRain();
-        const bootDuration = runBootSequence();
+      caseStudyOverlay.style.display = 'block';
+      bootSequenceEl.style.display = 'block';
+      caseStudyWindowEl.style.display = 'none';
+      contactPopup.style.display = 'none';
+      document.body.style.overflow = 'hidden';
 
-        setTimeout(() => {
-            bootSequenceEl.style.display = 'none';
-            caseStudyWindowEl.style.display = 'flex';
-            popupTimerId = setTimeout(() => {
-                contactPopup.style.display = 'block';
-            }, 8000);
-        }, bootDuration);
+      setupRain();
+      const bootDuration = runBootSequence();
+
+      setTimeout(() => {
+        bootSequenceEl.style.display = 'none';
+        caseStudyWindowEl.style.display = 'flex';
+        popupTimerId = setTimeout(() => {
+          contactPopup.style.display = 'block';
+        }, 8000);
+      }, bootDuration);
     };
 
     const closeCaseStudy = () => {
-        caseStudyOverlay.style.display = 'none';
-        document.body.style.overflow = 'auto';
-        clearInterval(rainIntervalId);
-        clearTimeout(popupTimerId);
+      caseStudyOverlay.style.display = 'none';
+      document.body.style.overflow = 'auto';
+      clearInterval(rainIntervalId);
+      clearTimeout(popupTimerId);
     };
 
     document.addEventListener('click', (event) => {
-        const caseStudyBtn = event.target.closest('.btn-case-study');
-        if (caseStudyBtn) {
-            const projectId = caseStudyBtn.dataset.projectId;
-            launchCaseStudy(projectId);
-        }
+      const caseStudyBtn = event.target.closest('.btn-case-study');
+      if (caseStudyBtn) {
+        const projectId = caseStudyBtn.dataset.projectId;
+        launchCaseStudy(projectId);
+      }
     });
 
     document.querySelectorAll('.case-study-close-btn').forEach(btn => {
-        btn.addEventListener('click', closeCaseStudy);
+      btn.addEventListener('click', closeCaseStudy);
     });
 
     closePopupBtn.addEventListener('click', () => {
-        contactPopup.style.display = 'none';
+      contactPopup.style.display = 'none';
     });
 
     contactLinkBtn.addEventListener('click', () => {
-        closeCaseStudy();
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
-            contactSection.scrollIntoView({ behavior: 'smooth' });
-        }
+      closeCaseStudy();
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
     });
 
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && caseStudyOverlay.style.display === 'block') {
-            closeCaseStudy();
-        }
+      if (e.key === 'Escape' && caseStudyOverlay.style.display === 'block') {
+        closeCaseStudy();
+      }
     });
 
     let isDragging = false, offsetX, offsetY;
     windowTitleBar.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        offsetX = e.clientX - caseStudyWindowEl.offsetLeft;
-        offsetY = e.clientY - caseStudyWindowEl.offsetTop;
-        e.preventDefault();
+      isDragging = true;
+      offsetX = e.clientX - caseStudyWindowEl.offsetLeft;
+      offsetY = e.clientY - caseStudyWindowEl.offsetTop;
+      e.preventDefault();
     });
     document.addEventListener('mousemove', (e) => {
-        if (isDragging) {
-            caseStudyWindowEl.style.left = `${e.clientX - offsetX}px`;
-            caseStudyWindowEl.style.top = `${e.clientY - offsetY}px`;
-        }
+      if (isDragging) {
+        caseStudyWindowEl.style.left = `${e.clientX - offsetX}px`;
+        caseStudyWindowEl.style.top = `${e.clientY - offsetY}px`;
+      }
     });
     document.addEventListener('mouseup', () => {
-        isDragging = false;
+      isDragging = false;
     });
   }
 
@@ -1168,95 +1068,95 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =======================================================
-  //   ANIMATION DE LA SECTION RÉTRO METHODOLOGIE (VERSION CORRIGÉE ET ROBUSTE)
+  //   ANIMATION DE LA SECTION RÉTRO METHODOLOGIE
   // =======================================================
   gsap.registerPlugin(ScrollTrigger, TextPlugin);
-  let retroTimeline; 
+  let retroTimeline;
 
   function initializeRetroAnimation(langData) {
-      if (retroTimeline) {
-          retroTimeline.kill();
+    if (retroTimeline) {
+      retroTimeline.kill();
+    }
+
+    const retroSection = document.getElementById('retro-methodology');
+    if (!retroSection || !langData.retroMethodologySection) {
+      return;
+    }
+
+    const searchWindow = document.getElementById('google-search-window');
+    const resultsWindow = document.getElementById('search-results-window');
+    const downloadWindow = document.getElementById('download-box-window');
+    const finalWindow = document.getElementById('final-report-window');
+
+    gsap.set([searchWindow, resultsWindow, downloadWindow, finalWindow], { display: 'none', opacity: 0 });
+    gsap.set('#typing-caret', { display: 'inline' });
+    gsap.set('#retro-search-input', { text: "" });
+
+    retroTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: retroSection,
+        start: "top top",
+        end: "+=6000",
+        pin: true,
+        scrub: 1.5,
       }
+    });
 
-      const retroSection = document.getElementById('retro-methodology');
-      if (!retroSection || !langData.retroMethodologySection) {
-          return;
-      }
-
-      const searchWindow = document.getElementById('google-search-window');
-      const resultsWindow = document.getElementById('search-results-window');
-      const downloadWindow = document.getElementById('download-box-window');
-      const finalWindow = document.getElementById('final-report-window');
-
-      gsap.set([searchWindow, resultsWindow, downloadWindow, finalWindow], { display: 'none', opacity: 0 });
-      gsap.set('#typing-caret', { display: 'inline' });
-      gsap.set('#retro-search-input', { text: "" });
-
-      retroTimeline = gsap.timeline({
-          scrollTrigger: {
-              trigger: retroSection,
-              start: "top top",
-              end: "+=6000",
-              pin: true,
-              scrub: 1.5,
-          }
-      });
-
-      retroTimeline.to(searchWindow, { display: 'block', opacity: 1, duration: 0.5 })
-        .to('#retro-search-input', {
-            duration: 2,
-            text: {
-                value: langData.retroMethodologySection.searchQuery,
-            },
-            ease: "none"
-        })
-        .set('#typing-caret', { display: 'none' })
-        .to('#retro-search-btn', { scale: 0.95, duration: 0.1, repeat: 1, yoyo: true })
-        .to(searchWindow, { opacity: 0, display: 'none', duration: 0.5, delay: 0.5 })
-        .call(() => { 
-            const resultsData = langData.retroMethodologySection.results;
-            const resultsContainer = resultsWindow.querySelector('.retro-window-body');
-            resultsContainer.innerHTML = resultsData.map(r => `
+    retroTimeline.to(searchWindow, { display: 'block', opacity: 1, duration: 0.5 })
+      .to('#retro-search-input', {
+        duration: 2,
+        text: {
+          value: langData.retroMethodologySection.searchQuery,
+        },
+        ease: "none"
+      })
+      .set('#typing-caret', { display: 'none' })
+      .to('#retro-search-btn', { scale: 0.95, duration: 0.1, repeat: 1, yoyo: true })
+      .to(searchWindow, { opacity: 0, display: 'none', duration: 0.5, delay: 0.5 })
+      .call(() => {
+        const resultsData = langData.retroMethodologySection.results;
+        const resultsContainer = resultsWindow.querySelector('.retro-window-body');
+        resultsContainer.innerHTML = resultsData.map(r => `
               <div class="search-result">
                   <a href="#">${r.title}</a>
                   <p>${r.description}</p>
                   <span>${r.url}</span>
               </div>
             `).join('');
-        })
-        .to(resultsWindow, { display: 'block', opacity: 1, duration: 0.5 });
-        
-      const downloadsData = langData.retroMethodologySection.downloads;
-      downloadsData.forEach((download, index) => {
-          retroTimeline.to(downloadWindow, { display: 'block', opacity: 1, duration: 0.5, delay: 1 })
-            .call(() => {
-                document.getElementById('download-filename').textContent = download.filename;
-                document.getElementById('time-left').textContent = download.time;
-                gsap.set('#download-progress-fill', { width: '0%' });
-            })
-            .to('#download-progress-fill', { width: '100%', duration: 2, ease: "power1.inOut" })
-            .to(downloadWindow, { opacity: 0, display: 'none', duration: 0.5 });
-      });
+      })
+      .to(resultsWindow, { display: 'block', opacity: 1, duration: 0.5 });
 
-      retroTimeline.to(resultsWindow, { opacity: 0, display: 'none', duration: 0.5 })
-        .to(finalWindow, { display: 'block', opacity: 1, duration: 1 });
+    const downloadsData = langData.retroMethodologySection.downloads;
+    downloadsData.forEach((download, index) => {
+      retroTimeline.to(downloadWindow, { display: 'block', opacity: 1, duration: 0.5, delay: 1 })
+        .call(() => {
+          document.getElementById('download-filename').textContent = download.filename;
+          document.getElementById('time-left').textContent = download.time;
+          gsap.set('#download-progress-fill', { width: '0%' });
+        })
+        .to('#download-progress-fill', { width: '100%', duration: 2, ease: "power1.inOut" })
+        .to(downloadWindow, { opacity: 0, display: 'none', duration: 0.5 });
+    });
+
+    retroTimeline.to(resultsWindow, { opacity: 0, display: 'none', duration: 0.5 })
+      .to(finalWindow, { display: 'block', opacity: 1, duration: 1 });
   }
 
-function initializeTarotDeck(langData) {
+  function initializeTarotDeck(langData) {
     const container = document.getElementById('tarot-container');
     if (!container || !langData.tarotSkillsSection || !langData.tarotSkillsSection.cards) {
-        return;
+      return;
     }
 
-    container.innerHTML = ''; 
+    container.innerHTML = '';
 
     const cardsData = langData.tarotSkillsSection.cards;
 
     cardsData.forEach(cardInfo => {
-        const cardEl = document.createElement('div');
-        cardEl.className = 'tarot-card';
+      const cardEl = document.createElement('div');
+      cardEl.className = 'tarot-card';
 
-        cardEl.innerHTML = `
+      cardEl.innerHTML = `
             <div class="tarot-card-inner">
                 <div class="tarot-card-front">
                     <img src="${cardInfo.imageSrc}" alt="${cardInfo.skillTitle}">
@@ -1268,140 +1168,91 @@ function initializeTarotDeck(langData) {
                 </div>
             </div>
         `;
-        
-        cardEl.addEventListener('click', () => {
-            cardEl.classList.toggle('is-locked');
-            cardEl.classList.toggle('is-flipped');
-        });
 
-        cardEl.addEventListener('mouseenter', () => {
-            if (!cardEl.classList.contains('is-locked')) {
-                cardEl.classList.add('is-flipped');
-            }
-        });
+      cardEl.addEventListener('click', () => {
+        cardEl.classList.toggle('is-locked');
+        cardEl.classList.toggle('is-flipped');
+      });
 
-        cardEl.addEventListener('mouseleave', () => {
-            if (!cardEl.classList.contains('is-locked')) {
-                cardEl.classList.remove('is-flipped');
-            }
-        });
+      cardEl.addEventListener('mouseenter', () => {
+        if (!cardEl.classList.contains('is-locked')) {
+          cardEl.classList.add('is-flipped');
+        }
+      });
 
-        container.appendChild(cardEl);
+      cardEl.addEventListener('mouseleave', () => {
+        if (!cardEl.classList.contains('is-locked')) {
+          cardEl.classList.remove('is-flipped');
+        }
+      });
+
+      container.appendChild(cardEl);
     });
-}
-
-// DANS code.js, REMPLACE l'ancienne fonction "initializeProfessionalExperiences"
-
-// DANS code.js, REMPLACEZ l'ancienne fonction par celle-ci
-
-// DANS code.js, REMPLACEZ l'ancienne fonction par celle-ci
-
-function initializeExperienceGrid(langData) {
-  const container = document.getElementById('experience-grid-container');
-  const detailsDisplay = document.getElementById('experience-details-display');
-  const companyNameEl = document.getElementById('details-company-name');
-  const roleEl = document.getElementById('details-role');
-  const descriptionEl = document.getElementById('details-description');
-  
-  if (!container || !detailsDisplay || !langData.professionalExperiences || !langData.professionalExperiences.items) {
-    return;
   }
 
-  container.innerHTML = '';
-  detailsDisplay.classList.add('hidden');
-
-  const experiences = langData.professionalExperiences.items;
-  const cards = [];
-  let hideTimeout;
-
-  experiences.forEach(exp => {
-    const card = document.createElement('div');
-    card.className = 'experience-card';
-    if (exp.id) {
-      card.id = exp.id;
+  function initializeExperienceGrid(langData) {
+    const container = document.getElementById('experience-grid-container');
+    const detailsDisplayDesktop = document.getElementById('experience-details-display');
+    if (!container || !detailsDisplayDesktop || !langData.professionalExperiences?.items) {
+      console.error("Éléments manquants pour la grille des collaborations.");
+      return;
     }
-    card.innerHTML = `<img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo">`;
-    container.appendChild(card);
-    cards.push(card);
 
-    card.addEventListener('mouseenter', () => {
-      clearTimeout(hideTimeout);
+    const experiences = langData.professionalExperiences.items;
+    container.innerHTML = '';
 
-      // On prépare le texte mais on le laisse vide pour que l'animation le remplisse
-      companyNameEl.textContent = exp.companyName;
-      roleEl.textContent = exp.role;
-      descriptionEl.textContent = exp.description;
-      
-      cards.forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
+    if (window.matchMedia("(max-width: 992px)").matches) {
+      detailsDisplayDesktop.style.display = 'none';
 
-      detailsDisplay.classList.remove('hidden');
+      experiences.forEach(exp => {
+        const itemWrapper = document.createElement('div');
+        itemWrapper.className = 'experience-item-mobile';
 
-      // =============================================================
-      //      NOUVELLE ANIMATION MODERNE (REMPLACE L'ANCIENNE)
-      // =============================================================
-
-      // On s'assure qu'aucune animation précédente n'est en cours
-      gsap.killTweensOf([companyNameEl, roleEl, descriptionEl]);
-      
-      // On divise le texte en mots, puis chaque mot en lettres pour plus de contrôle
-      const splitTitle = new SplitText(companyNameEl, { type: "chars, words" });
-      const splitRole = new SplitText(roleEl, { type: "chars, words" });
-
-      // Animation 1 : Le titre (Nom de l'entreprise)
-      gsap.from(splitTitle.chars, {
-        duration: 0.8,
-        opacity: 0,
-        scaleY: 1.8, // Commence étiré verticalement
-        y: 40,
-        filter: 'blur(10px)', // Commence flou
-        transformOrigin: "top", // L'étirement se fait depuis le haut
-        ease: "expo.out",
-        stagger: {
-          amount: 0.5, // L'animation de toutes les lettres dure 0.5s au total
-          from: "start"
-        }
-      });
-      
-      // Animation 2 : Le sous-titre (Rôle)
-      gsap.from(splitRole.chars, {
-        duration: 0.6,
-        opacity: 0,
-        x: -30, // Glisse depuis la gauche
-        ease: "power2.out",
-        stagger: 0.04, // Chaque lettre a un léger décalage
-        delay: 0.2 // Commence après le titre
+        itemWrapper.innerHTML = `
+                <div class="experience-card" id="${exp.id}">
+                    <img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo">
+                </div>
+                <div class="experience-details-mobile">
+                    <h4>${exp.companyName}</h4>
+                    <span class="role">${exp.role}</span>
+                    <p class="description">${exp.description}</p>
+                </div>`;
+        container.appendChild(itemWrapper);
       });
 
-      // Animation 3 : La description
-      gsap.from(descriptionEl, {
-        duration: 1.0,
-        opacity: 0,
-        y: 20, // Simple montée en fondu
-        ease: "power2.out",
-        delay: 0.4 // Commence après le sous-titre
-      });
-    });
-  });
+    } else {
+      detailsDisplayDesktop.style.display = 'block';
+      const companyNameEl = document.getElementById('details-company-name');
+      const roleEl = document.getElementById('details-role');
+      const descriptionEl = document.getElementById('details-description');
 
-  container.addEventListener('mouseleave', () => {
-    hideTimeout = setTimeout(() => {
-      // Animation de disparition douce avant de cacher l'élément
-      gsap.to(detailsDisplay, {
-        opacity: 0,
-        duration: 0.3,
-        onComplete: () => {
-          detailsDisplay.classList.add('hidden');
-          // On remet l'opacité à 1 pour la prochaine animation
-          gsap.set(detailsDisplay, { opacity: 1 }); 
-        }
-      });
-      cards.forEach(c => c.classList.remove('active'));
-    }, 200);
-  });
-}
+      detailsDisplayDesktop.classList.add('hidden');
 
-function initializeSlotMachine(langData) {
+      experiences.forEach(exp => {
+        const card = document.createElement('div');
+        card.className = 'experience-card';
+        card.id = exp.id;
+        card.innerHTML = `<img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo">`;
+        container.appendChild(card);
+
+        card.addEventListener('mouseenter', () => {
+          companyNameEl.textContent = exp.companyName;
+          roleEl.textContent = exp.role;
+          descriptionEl.textContent = exp.description;
+          detailsDisplayDesktop.classList.remove('hidden');
+          document.querySelectorAll('.experience-card.active').forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+        });
+      });
+
+      container.addEventListener('mouseleave', () => {
+        detailsDisplayDesktop.classList.add('hidden');
+        document.querySelectorAll('.experience-card.active').forEach(c => c.classList.remove('active'));
+      });
+    }
+  }
+
+  function initializeSlotMachine(langData) {
     const lever = document.getElementById('slot-lever');
     const reels = [document.getElementById('reel1'), document.getElementById('reel2'), document.getElementById('reel3')];
     const payoutDisplay = document.getElementById('slot-payout-display');
@@ -1409,12 +1260,12 @@ function initializeSlotMachine(langData) {
     if (!lever || reels.some(r => !r) || !payoutDisplay || !langData.softSkillsSlot) {
       return;
     }
-    
+
     const skills = langData.softSkillsSlot.skills;
     let isSpinning = false;
-    
+
     reels.forEach(reel => {
-      reel.innerHTML = ''; 
+      reel.innerHTML = '';
       const symbolContainer = document.createElement('div');
       symbolContainer.className = 'reel-symbols';
       const repeatedSkills = [...skills, ...skills, ...skills];
@@ -1434,28 +1285,28 @@ function initializeSlotMachine(langData) {
 
       reels.forEach((reel, index) => {
         const symbolContainer = reel.querySelector('.reel-symbols');
-        const symbolHeight = 100; 
+        const symbolHeight = 100;
         const randomIndex = Math.floor(Math.random() * skills.length);
         results.push(skills[randomIndex]);
         const targetPosition = -(randomIndex + skills.length) * symbolHeight;
 
         symbolContainer.style.transition = 'none';
         symbolContainer.style.transform = `translateY(0)`;
-        symbolContainer.offsetHeight; 
+        symbolContainer.offsetHeight;
         symbolContainer.style.transition = `transform ${2.5 + index * 0.5}s cubic-bezier(0.25, 0.1, 0.25, 1)`;
         symbolContainer.style.transform = `translateY(${targetPosition}px)`;
       });
 
       setTimeout(() => {
         lever.classList.remove('pulled');
-        
+
         let payoutText = langData.softSkillsSlot.payoutText;
         payoutText = payoutText.replace('{0}', results[0].name)
-                               .replace('{1}', results[1].name)
-                               .replace('{2}', results[2].name);
-        
+          .replace('{1}', results[1].name)
+          .replace('{2}', results[2].name);
+
         payoutDisplay.innerHTML = `<p>${payoutText}</p>`;
-        
+
         isSpinning = false;
       }, 3500);
     };
@@ -1463,60 +1314,57 @@ function initializeSlotMachine(langData) {
     lever.addEventListener('click', spin);
   }
 
-});
+  const wtfButton = document.getElementById('wtf-btn');
 
-const wtfButton = document.getElementById('wtf-btn');
-
-if (wtfButton) {
-  
-  const getRandomHorribleColor = () => {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
-
-  const unleashVisualCarnage = () => {
-    document.body.style.fontFamily = 'Comic Sans MS, cursive, sans-serif';
-    const elementsToRuin = document.querySelectorAll('body, header, section, .btn, h1, h2, h3, p, .logo, .skill-tag, .project-card, .timeline-content, footer, .about-image-placeholder, .nav-container');
-    elementsToRuin.forEach(el => {
-      el.style.backgroundColor = getRandomHorribleColor();
-      el.style.color = getRandomHorribleColor();
-      el.style.borderColor = getRandomHorribleColor();
-    });
-
-    wtfButton.textContent = "AU SECOURS !";
-    wtfButton.style.backgroundColor = 'white';
-    wtfButton.style.color = 'black';
-    wtfButton.onclick = () => {
-      location.reload(); 
+  if (wtfButton) {
+    const getRandomHorribleColor = () => {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
     };
-  };
 
-  wtfButton.onclick = unleashVisualCarnage;
-}
+    const unleashVisualCarnage = () => {
+      document.body.style.fontFamily = 'Comic Sans MS, cursive, sans-serif';
+      const elementsToRuin = document.querySelectorAll('body, header, section, .btn, h1, h2, h3, p, .logo, .skill-tag, .project-card, .timeline-content, footer, .about-image-placeholder, .nav-container');
+      elementsToRuin.forEach(el => {
+        el.style.backgroundColor = getRandomHorribleColor();
+        el.style.color = getRandomHorribleColor();
+        el.style.borderColor = getRandomHorribleColor();
+      });
 
-function initializeTestimonialsTerminal(langData) {
+      wtfButton.textContent = "AU SECOURS !";
+      wtfButton.style.backgroundColor = 'white';
+      wtfButton.style.color = 'black';
+      wtfButton.onclick = () => {
+        location.reload();
+      };
+    };
+
+    wtfButton.onclick = unleashVisualCarnage;
+  }
+
+  function initializeTestimonialsTerminal(langData) {
     const terminal = document.getElementById('testimonial-terminal');
     const sourcesList = document.getElementById('testimonial-sources-list');
     const display = document.getElementById('testimonial-display');
 
     if (!terminal || !sourcesList || !display || !langData.decryptionTestimonials) {
-        return;
+      return;
     }
 
     const testimonials = langData.decryptionTestimonials.items;
     const placeholderHint = sourcesList.querySelector('.placeholder-prompt');
     const placeholderDisplay = display.querySelector('.placeholder');
-    
+
     sourcesList.innerHTML = '';
     if (placeholderHint) {
-        sourcesList.appendChild(placeholderHint);
-        placeholderHint.style.display = 'block';
+      sourcesList.appendChild(placeholderHint);
+      placeholderHint.style.display = 'block';
     }
-    
+
     display.innerHTML = '';
     if (placeholderDisplay) {
       display.appendChild(placeholderDisplay);
@@ -1524,55 +1372,55 @@ function initializeTestimonialsTerminal(langData) {
     }
 
     testimonials.forEach((item, index) => {
-        const menuItem = document.createElement('button');
-        menuItem.className = 'testimonial-source-item';
-        menuItem.innerHTML = `<strong>${item.name}</strong><span>${item.project}</span>`;
-        menuItem.dataset.index = index;
-        sourcesList.appendChild(menuItem);
+      const menuItem = document.createElement('button');
+      menuItem.className = 'testimonial-source-item';
+      menuItem.innerHTML = `<strong>${item.name}</strong><span>${item.project}</span>`;
+      menuItem.dataset.index = index;
+      sourcesList.appendChild(menuItem);
     });
-    
+
     let isTyping = false;
     let activeMenuItem = null;
 
     sourcesList.addEventListener('click', (e) => {
-        const clickedItem = e.target.closest('.testimonial-source-item');
-        if (!clickedItem || isTyping) return;
+      const clickedItem = e.target.closest('.testimonial-source-item');
+      if (!clickedItem || isTyping) return;
 
-        if (placeholderHint) placeholderHint.style.display = 'none';
+      if (placeholderHint) placeholderHint.style.display = 'none';
 
-        isTyping = true;
-        
-        if (activeMenuItem) {
-            activeMenuItem.classList.remove('active');
-        }
-        activeMenuItem = clickedItem;
-        activeMenuItem.classList.add('active');
+      isTyping = true;
 
-        const index = clickedItem.dataset.index;
-        const testimonialData = testimonials[index];
-        
-        runTestimonialSequence(testimonialData, langData, display)
-            .finally(() => {
-                isTyping = false;
-            });
+      if (activeMenuItem) {
+        activeMenuItem.classList.remove('active');
+      }
+      activeMenuItem = clickedItem;
+      activeMenuItem.classList.add('active');
+
+      const index = clickedItem.dataset.index;
+      const testimonialData = testimonials[index];
+
+      runTestimonialSequence(testimonialData, langData, display)
+        .finally(() => {
+          isTyping = false;
+        });
     });
-}
+  }
 
-async function runTestimonialSequence(testimonial, langData, display) {
+  async function runTestimonialSequence(testimonial, langData, display) {
     const pause = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     const caret = `<span id="testimonial-caret"></span>`;
 
     async function type(element, text, speed = 25) {
-        const existingCaret = element.querySelector('#testimonial-caret');
-        if (existingCaret) existingCaret.remove();
+      const existingCaret = element.querySelector('#testimonial-caret');
+      if (existingCaret) existingCaret.remove();
 
-        let currentText = element.innerHTML;
-        for (const char of text) {
-            currentText += char;
-            element.innerHTML = currentText + caret;
-            await pause(speed + (Math.random() - 0.5) * 15);
-        }
-        element.innerHTML = currentText;
+      let currentText = element.innerHTML;
+      for (const char of text) {
+        currentText += char;
+        element.innerHTML = currentText + caret;
+        await pause(speed + (Math.random() - 0.5) * 15);
+      }
+      element.innerHTML = currentText;
     }
 
     const headerText = langData.decryptionTestimonials.transmission_header || "TRANSMISSION...";
@@ -1596,10 +1444,41 @@ async function runTestimonialSequence(testimonial, langData, display) {
     await type(fromEl, testimonial.name);
     await type(projectEl, testimonial.project);
     await type(dateEl, testimonial.date);
-    
-    quoteEl.innerHTML = `> ${caret}`; 
+
+    quoteEl.innerHTML = `> ${caret}`;
     await type(quoteEl, testimonial.quote);
 
     const finalCaret = display.querySelector('#testimonial-caret');
-    if(finalCaret) finalCaret.remove();
+    if (finalCaret) finalCaret.remove();
+  }
+
+}); // Fin de document.addEventListener("DOMContentLoaded")
+
+/**
+ * Affiche une notification pop-up en bas de l'écran.
+ * @param {string} message Le message à afficher.
+ * @param {string} type 'success' ou 'error' pour le style.
+ */
+function showPopupNotification(message, type) {
+  const existingPopup = document.querySelector('.popup-notification');
+  if (existingPopup) {
+    existingPopup.remove();
+  }
+
+  const popup = document.createElement('div');
+  popup.className = `popup-notification ${type}`;
+  popup.textContent = message;
+
+  document.body.appendChild(popup);
+
+  setTimeout(() => {
+    popup.classList.add('show');
+  }, 10);
+
+  setTimeout(() => {
+    popup.classList.remove('show');
+    popup.addEventListener('transitionend', () => {
+      popup.remove();
+    }, { once: true });
+  }, 5000);
 }

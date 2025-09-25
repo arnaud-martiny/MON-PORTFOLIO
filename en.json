@@ -202,20 +202,26 @@
       }
     ]
   },
-  "contactSection": {
-    "title": "CONTACT ME",
-    "address": "Brussels, Belgium",
-    "phone": "+32 0492 451 456",
-    "email": "arnaudmartiny0@gmail.com",
-    "form": {
-      "namePlaceholder": "Name",
-      "emailPlaceholder": "Email",
-      "subjectPlaceholder": "Subject",
-      "messagePlaceholder": "Message",
-      "submitButton": "Send",
-      "errorMessage": "The contact form is under construction, but you can contact me by email! Don't hesitate: <a href=\"mailto:arnaudmartiny0@gmail.com\">arnaudmartiny0@gmail.com</a>"
+"contactSection": {
+  "title": "CONTACT ME",
+  "address": "Brussels, Belgium",
+  "phone": "+32 0492 451 456",
+  "email": "arnaudmartiny0@gmail.com",
+  "form": {
+    "namePlaceholder": "Name",
+    "emailPlaceholder": "Email",
+    "subjectPlaceholder": "Subject",
+    "messagePlaceholder": "Message",
+    "submitButton": "Send",
+    "results": {
+      "success": "Message sent successfully! Thank you.",
+      "error_empty": "Error: Please fill in all required fields.",
+      "error_email": "Error: Please enter a valid email address.",
+      "error_file": "Server Error: Could not save the message.",
+      "error_unknown": "Oops! An unknown error occurred."
     }
-  },
+  }
+},
   "footer": {
     "copyright": "© 2025 Arnaud Martiny. All rights reserved."
   },
