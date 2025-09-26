@@ -78,61 +78,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
-    <!-- REMPLACEZ VOTRE ANCIENNE <div class="nav-container"> PAR CELLE-CI -->
+    <!-- START: Bloc de navigation corrigé -->
 <div class="nav-container">
-
-  <!-- ============================================= -->
-  <!--                LOGO (UNCHANGED)               -->
-  <!-- ============================================= -->
   <div class="logo" data-i18n="nav.logo">AM.</div>
 
-  <!-- =================================================================== -->
-  <!--   GROUPE COMPLET POUR LA VUE ORDINATEUR (SERA CACHÉ SUR MOBILE)     -->
-  <!-- =================================================================== -->
+  <!-- ============================================= -->
+  <!--   GROUPE POUR LA VUE ORDINATEUR (Desktop)     -->
+  <!-- ============================================= -->
   <div class="nav-desktop-group">
-    <!-- Switcher de langue (au centre) -->
     <div class="language-switcher">
-      <button id="lang-fr" class="active">FR</button>
-      <button id="lang-en">EN</button>
+      <button id="lang-fr" class="lang-btn active" data-lang="fr">FR</button>
+      <button id="lang-en" class="lang-btn" data-lang="en">EN</button>
     </div>
-
-    <!-- Le groupe de droite (liens + switcher de thème) -->
     <div class="nav-right-group">
       <button id="wtf-btn" class="nav-wtf-btn" aria-label="Rebelle va" data-i18n="nav.wtfButton">Ne pas cliquer</button>
-      
-      <!-- BOUTON CV -->
-      <a href="assets/CV/CV-Arnaud-Martiny-FR.pdf"
-          id="nav-cv-link"
-          target="_blank" 
-          class="nav-cv-btn" 
-          data-i18n="nav.cvLink">
-          <i class="fas fa-file-lines"></i>
-          <span>Mon CV</span>
+      <a href="assets/CV/CV-Arnaud-Martiny-FR.pdf" id="nav-cv-link" target="_blank" class="nav-cv-btn cv-link" data-i18n="nav.cvLink">
+        <i class="fas fa-file-lines"></i>
+        <span>Mon CV</span>
       </a>
-
-      <!-- Liens sociaux -->
       <div class="nav-socials">
-          <a href="https://github.com/arnaud-martiny" target="_blank" rel="noopener noreferrer" aria-label="Mon GitHub">
-              <i class="fab fa-github"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" rel="noopener noreferrer" aria-label="Mon LinkedIn">
-              <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a href="mailto:arnaudmartiny0@gmail.com" aria-label="M'envoyer un email">
-              <i class="fas fa-envelope"></i>
-          </a>
+        <a href="https://github.com/arnaud-martiny" target="_blank" rel="noopener noreferrer" aria-label="Mon GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" rel="noopener noreferrer" aria-label="Mon LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:arnaudmartiny0@gmail.com" aria-label="M'envoyer un email"><i class="fas fa-envelope"></i></a>
       </div>
-
-      <!-- Bouton pour le thème -->
-      <button
-          id="theme-switcher"
-          class="theme-btn"
-          aria-label="Changer de thème"
-      >
-          <i class="fas fa-sun"></i>
-      </button>
-
-      <!-- Liens de navigation principaux -->
+      <button id="theme-switcher" class="theme-btn" aria-label="Changer de thème"><i class="fas fa-sun"></i></button>
       <div class="nav-links">
         <a href="#apropos" data-i18n="nav.about">À propos</a>
         <a href="#competences" data-i18n="nav.skills">Compétences</a>
@@ -142,41 +111,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-
-  <!-- =================================================================== -->
-  <!--      NOUVEAU GROUPE COMPLET POUR LA VUE MOBILE UNIQUEMENT           -->
-  <!-- =================================================================== -->
-  <!-- Ce conteneur ne sera visible que sur mobile grâce au CSS -->
+  <!-- ============================================= -->
+  <!--       GROUPE POUR LA VUE MOBILE (MODIFIÉ)     -->
+  <!-- ============================================= -->
   <div class="nav-mobile-group">
-    
-    <!-- Les icônes sociales déplacées ici pour la version mobile -->
-    <div class="nav-socials">
-      <a href="https://github.com/arnaud-martiny" target="_blank" rel="noopener noreferrer" aria-label="Mon GitHub">
-        <i class="fab fa-github"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" rel="noopener noreferrer" aria-label="Mon LinkedIn">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-      <a href="mailto:arnaudmartiny0@gmail.com" aria-label="M'envoyer un email">
-        <i class="fas fa-envelope"></i>
-      </a>
+    <div class="language-switcher">
+      <button id="lang-fr-topnav" class="lang-btn active" data-lang="fr">FR</button>
+      <button id="lang-en-topnav" class="lang-btn" data-lang="en">EN</button>
     </div>
-
-    <!-- Le bouton de thème pour la version mobile -->
-    <button id="theme-switcher-mobile-nav" class="theme-btn" aria-label="Changer de thème">
-        <i class="fas fa-sun"></i>
-    </button>
-    
-    <!-- Le bouton hamburger fait maintenant partie de ce groupe pour un alignement parfait -->
+    <a href="assets/CV/CV-Arnaud-Martiny-FR.pdf" id="nav-cv-link-mobile-topbar" target="_blank" class="nav-cv-btn cv-link">
+      <i class="fas fa-file-lines"></i><span>Mon CV</span>
+    </a>
+    <div class="nav-socials">
+      <a href="https://github.com/arnaud-martiny" target="_blank" rel="noopener noreferrer" aria-label="Mon GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" rel="noopener noreferrer" aria-label="Mon LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <button id="theme-switcher-mobile-nav" class="theme-btn" aria-label="Changer de thème"><i class="fas fa-sun"></i></button>
     <button id="hamburger-btn" aria-label="Ouvrir le menu">
       <span></span>
       <span></span>
       <span></span>
     </button>
   </div>
-
 </div>
-<!-- FIN DU BLOC NAVBAR -->
+<!-- END: Bloc de navigation corrigé -->
+
+<!-- ============================================= -->
+<!--       MENU MOBILE (Slide-out) (MODIFIÉ)       -->
+<!-- ============================================= -->
+<div id="mobile-menu">
+  <button id="mobile-menu-close-btn" aria-label="Fermer le menu">&times;</button>
+  <div class="mobile-menu-content">
+    <div class="mobile-menu-links">
+      <a href="#accueil" data-i18n="nav.home_special">Accueil</a>
+      <a href="#apropos" data-i18n="nav.about">À propos</a>
+      <a href="#competences" data-i18n="nav.skills">Compétences</a>
+      <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="mobile-menu-footer">
+      <!-- Le bouton CV et les réseaux sociaux principaux sont maintenant dans la barre de navigation supérieure -->
+      <div class="nav-socials">
+        <!-- On garde juste l'email ici pour un accès rapide -->
+        <a href="mailto:arnaudmartiny0@gmail.com" aria-label="M'envoyer un email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- Section d'accueil -->
     <header id="accueil">
@@ -553,33 +534,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- index.html -->
-
-    <!-- ============================================= -->
-    <!--            NOUVEAU : MENU MOBILE              -->
-    <!-- ============================================= -->
-    <div id="mobile-menu">
-      <button id="mobile-menu-close-btn" aria-label="Fermer le menu">&times;</button>
-    
-      <div class="mobile-menu-links">
-        <a href="#accueil" data-i18n="nav.home_special">Accueil</a>
-        <a href="#apropos" data-i18n="nav.about">À propos</a>
-        <a href="#competences" data-i18n="nav.skills">Compétences</a>
-        <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
-        <a href="#contact" data-i18n="nav.contact">Contact</a>
-      </div>
-    
-      <div class="mobile-menu-bottom">
-        <div class="mobile-controls-group">
-          <div class="language-switcher">
-            <button id="lang-fr-mobile">FR</button>
-            <button id="lang-en-mobile">EN</button>
-          </div>
-          <button id="theme-switcher-mobile" class="theme-btn" aria-label="Changer de thème">
-            <i class="fas fa-sun"></i>
-          </button>
-        </div>
-      </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">

@@ -144,7 +144,7 @@ section {
 
 .language-switcher {
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .nav-container {
@@ -2628,3 +2628,72 @@ a:not(.btn):not(.social-icon):hover {
         gap: 1.2rem; /* Espace entre les icônes et le bouton hamburger */
     }
 }
+/* ======================================================= */
+/*    BLOC DE CORRECTIONS CSS À AJOUTER À LA FIN DU FICHIER */
+/* ======================================================= */
+
+/* --- Correction alignement Desktop --- */
+.nav-desktop-group, .nav-right-group {
+    display: flex;
+    align-items: center;
+    margin-left: 1.5rem; /* <-- AJOUTEZ CETTE LIGNE */
+}
+
+/* --- Masquage/Affichage des groupes Desktop/Mobile --- */
+.nav-mobile-group {
+    display: none;
+}
+
+
+/* --- Styles pour le nouveau menu mobile --- */
+#mobile-menu {
+    justify-content: center;
+    text-align: center;
+}
+
+.mobile-menu-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 70%;
+}
+
+.mobile-menu-footer {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+#mobile-menu .nav-cv-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+}
+
+#mobile-menu .nav-socials {
+    gap: 2rem;
+}
+#mobile-menu .nav-socials a {
+    font-size: 1.8rem;
+}
+
+/* --- Média Query pour le passage en mode mobile --- */
+@media (max-width: 768px) {
+    .nav-desktop-group {
+        display: none;
+    }
+
+    .nav-mobile-group {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    /* On cache les anciens contrôles en bas du menu mobile */
+    #mobile-menu .mobile-menu-bottom {
+        display: none;
+    }
+}
+
