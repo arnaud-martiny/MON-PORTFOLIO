@@ -1539,24 +1539,19 @@ body.mobile-menu-open .mobile-menu-links a:nth-child(4) {
   transform: scale(1.2) translateY(-2px);
 }
 
-#nowa-tooltip,
-#case-study-tooltip,
-#poetes-tooltip {
-  position: fixed;
-  display: none;
-  background-color: #333;
-  color: #fff;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  z-index: 10002;
-  pointer-events: none;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  white-space: nowrap;
-}
-
-#case-study-tooltip {
-  background-color: #000;
+/* ✅ CORRECTION : Style pour l'infobulle universelle */
+#universal-tooltip {
+    position: fixed;
+    display: none;
+    background-color: #333;
+    color: #fff;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    z-index: 10002;
+    pointer-events: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
 }
 
 :root {
@@ -2338,10 +2333,11 @@ a:not(.btn):not(.social-icon):hover {
   perspective: 1500px;
 }
 
+/* ✅ MODIFICATION ICI : Taille des cartes de tarot */
 .tarot-card {
   background-color: transparent;
-  width: 220px;
-  height: 385px;
+  width: 210px; /* Ancienne valeur : 220px. Vous pouvez ajuster cette valeur. */
+  height: 368px; /* Hauteur ajustée pour garder les proportions */
   perspective: 1000px;
   cursor: pointer;
 }
@@ -2696,4 +2692,3 @@ a:not(.btn):not(.social-icon):hover {
         display: none;
     }
 }
-

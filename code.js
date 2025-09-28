@@ -6,15 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let jsonAnimated = false; // Pour l'animation JSON
   let wavesAnimated = false; // Pour les vagues
 
-  // NOUVEAU : Création dynamique de l'info-bulle pour Nowa Logistics
-  const nowaTooltip = document.createElement('div');
-  nowaTooltip.id = 'nowa-tooltip';
-  document.body.appendChild(nowaTooltip);
+  // ✅ CORRECTION : Création d'UNE SEULE infobulle universelle
+  const universalTooltip = document.createElement('div');
+  universalTooltip.id = 'universal-tooltip';
+  document.body.appendChild(universalTooltip);
 
-  // NOUVEAU : Création dynamique de l'info-bulle pour le Case Study
-  const caseStudyTooltip = document.createElement('div');
-  caseStudyTooltip.id = 'case-study-tooltip';
-  document.body.appendChild(caseStudyTooltip);
 
   // Sélectionne TOUS les boutons de thème et l'élément body
   const themeSwitchers = document.querySelectorAll("#theme-switcher, #theme-switcher-mobile, #theme-switcher-mobile-nav");
@@ -63,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // On sélectionne tous les boutons de langue une seule fois
   const langFrBtn = document.getElementById("lang-fr");
   const langEnBtn = document.getElementById("lang-en");
-  const mobileLangFrBtn = document.getElementById("lang-fr-mobile");
-  const mobileLangEnBtn = document.getElementById("lang-en-mobile");
+  const mobileLangFrBtn = document.getElementById("lang-fr-topnav");
+  const mobileLangEnBtn = document.getElementById("lang-en-topnav");
 
   async function fetchTranslations(lang) {
     try {
@@ -119,15 +115,17 @@ document.addEventListener("DOMContentLoaded", () => {
         el.setAttribute("placeholder", translation);
     });
     
-    const cvLink = document.getElementById('nav-cv-link');
-    if (cvLink) {
-      const cvFileNameFR = 'CV-Arnaud-Martiny-FR.pdf';
-      const cvFileNameEN = 'CV-Arnaud-Martiny-EN.pdf';
-      const filePath = lang === 'fr'
-        ? `assets/CV/${cvFileNameFR}`
-        : `assets/CV/${cvFileNameEN}`;
-      cvLink.setAttribute('href', filePath);
+    // Mise à jour des liens de CV
+    const cvLinks = document.querySelectorAll('.cv-link'); // Sélectionne tous les liens de CV
+    if (cvLinks.length > 0) {
+        const cvFileNameFR = 'CV-Arnaud-Martiny-FR.pdf';
+        const cvFileNameEN = 'CV-Arnaud-Martiny-EN.pdf';
+        const filePath = lang === 'fr'
+            ? `assets/CV/${cvFileNameFR}`
+            : `assets/CV/${cvFileNameEN}`;
+        cvLinks.forEach(link => link.setAttribute('href', filePath));
     }
+
 
     const jsonContentEl = document.getElementById("language-json-content");
     if (
@@ -326,20 +324,31 @@ document.addEventListener("DOMContentLoaded", () => {
         const projectCard = document.createElement("div");
         projectCard.className = "project-card reveal";
 
-        if (project.id) {
-          projectCard.id = project.id;
-        }
-
         let techHtml = "";
         project.tech.forEach((tech) => {
           techHtml += `<div class="project-tech-item">${tech}</div>`;
         });
 
         const caseStudyButtonText = getNestedTranslation(langData, "featuredProjects.caseStudyButton") || "View Case Study";
+        
+        let liveLinkTooltip = '';
+        if (project.id === 'theatre-des-poetes') {
+            liveLinkTooltip = 'data-tooltip-key="featuredProjects.poetesTooltip"';
+        }
+
+        let codeLinkTooltip = '';
+        if (project.id === 'nowa-logistics') {
+            codeLinkTooltip = 'data-tooltip-key="featuredProjects.noCodeTooltip"';
+        } else if (project.id === 'theatre-des-poetes') {
+            codeLinkTooltip = 'data-tooltip-key="featuredProjects.poetesCodeTooltip"';
+        }
+        
+        // ✅ CORRECTION ICI : Remplacement de "pointer-events: none"
+        const disabledState = 'style="opacity: 0.5; cursor: not-allowed;" onclick="event.preventDefault();"';
 
         projectCard.innerHTML = `
             <div class="project-image">
-                <a href="${project.liveLink}" target="_blank" ${project.liveLink === "#" ? 'style="pointer-events: none; opacity: 0.5;"' : ''}>
+                <a href="${project.liveLink}" target="_blank" ${project.liveLink === "#" ? disabledState : ''}>
                     <img src="${project.imageSrc}" alt="${project.imageAlt}">
                 </a>
             </div>
@@ -349,9 +358,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p class="project-description">${project.description}</p>
                 <div class="project-tech-list">${techHtml}</div>
                 <div class="project-links">
-                    <a href="${project.liveLink}" class="btn" target="_blank" id="live-link-${project.id}" ${project.liveLink === "#" ? 'style="pointer-events: none; opacity: 0.5;"' : ''}>Voir le site</a>
-                    <a href="${project.codeLink}" class="btn btn-outline" target="_blank" ${project.codeLink === "#" ? 'style="pointer-events: none; opacity: 0.5;"' : ''}>Voir le code</a>
-                    <button class="btn btn-case-study" data-project-id="${project.id}">
+                    <a href="${project.liveLink}" class="btn" target="_blank" ${liveLinkTooltip} ${project.liveLink === "#" ? disabledState : ''}>Voir le site</a>
+                    <a href="${project.codeLink}" class="btn btn-outline" target="_blank" ${codeLinkTooltip} ${project.codeLink === "#" ? disabledState : ''}>Voir le code</a>
+                    <button class="btn btn-case-study" data-project-id="${project.id}" data-tooltip-key="featuredProjects.caseStudyTooltip">
                         <span>${caseStudyButtonText}</span>
                     </button>
                 </div>
@@ -360,36 +369,32 @@ document.addEventListener("DOMContentLoaded", () => {
         projectsContainer.appendChild(projectCard);
       });
     }
+    
+    // Nouvelle logique d'infobulle universelle
+    function moveTooltip(e) {
+        if (universalTooltip.style.display === 'block') {
+            universalTooltip.style.left = `${e.clientX + 20}px`;
+            universalTooltip.style.top = `${e.clientY - 30}px`;
+        }
+    }
 
-    const poetesLiveLinkBtn = document.getElementById('live-link-theatre-des-poetes');
-    const nowaLiveLinkBtn = document.getElementById('live-link-nowa-logistics');
-
-    const setupTooltip = (button, tooltipElement, tooltipKey) => {
-      if (button) {
-        const tooltipText = getNestedTranslation(langData, tooltipKey);
-
-        const showTooltip = (e) => {
-          tooltipElement.textContent = tooltipText;
-          tooltipElement.style.display = 'block';
-          moveTooltip(e);
-        };
-        const hideTooltip = () => {
-          tooltipElement.style.display = 'none';
-        };
-        const moveTooltip = (e) => {
-          tooltipElement.style.left = `${e.clientX + 20}px`;
-          tooltipElement.style.top = `${e.clientY - 30}px`;
-        };
-
-        button.addEventListener('mouseenter', showTooltip);
-        button.addEventListener('mouseleave', hideTooltip);
+    const tooltipButtons = document.querySelectorAll('[data-tooltip-key]');
+    tooltipButtons.forEach(button => {
+        button.addEventListener('mouseenter', (e) => {
+            const tooltipKey = button.getAttribute('data-tooltip-key');
+            const tooltipText = getNestedTranslation(langData, tooltipKey);
+            if (tooltipText) {
+                universalTooltip.textContent = tooltipText;
+                universalTooltip.style.display = 'block';
+                moveTooltip(e);
+            }
+        });
+        button.addEventListener('mouseleave', () => {
+            universalTooltip.style.display = 'none';
+        });
         button.addEventListener('mousemove', moveTooltip);
-      }
-    };
-
-    setupTooltip(nowaLiveLinkBtn, nowaTooltip, "featuredProjects.nowaTooltip");
-    setupTooltip(poetesLiveLinkBtn, nowaTooltip, "featuredProjects.poetesTooltip");
-
+    });
+    
     initializeRetroAnimation(langData);
     initializeTestimonialsTerminal(langData);
     initializeTarotDeck(langData);
@@ -399,16 +404,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const evolutionPopupMessage = document.querySelector('#evolution-popup p[data-i18n="evolutionPopup.message"]');
     const evolutionPopupEl = document.getElementById('evolution-popup');
     if (evolutionPopupMessage && evolutionPopupEl && evolutionPopupEl.dataset.lastUpdated) {
-      const lastUpdatedDate = evolutionPopupEl.dataset.lastUpdated;
-      evolutionPopupMessage.innerHTML = evolutionPopupMessage.innerHTML.replace('{{date}}', `<b>${lastUpdatedDate}</b>`);
+        const lastUpdatedDate = evolutionPopupEl.dataset.lastUpdated;
+        const messageTemplate = getNestedTranslation(langData, "evolutionPopup.message") || "Last update on {{date}}.";
+        evolutionPopupMessage.innerHTML = messageTemplate.replace('{{date}}', `<b>${lastUpdatedDate}</b>`);
     }
     
-    // ✅ CORRECTION : On appelle la fonction de mise à jour unifiée ici
     updateLangButtons();
     if (typeof reveal === "function") reveal();
   }
   
-  // ✅ CORRECTION : Fonction de changement de langue simplifiée
+  // Fonction de changement de langue simplifiée
   async function setLanguage(lang, force = false) {
     if (currentLang === lang && !force) return;
     if (!translations[lang]) {
@@ -419,16 +424,18 @@ document.addEventListener("DOMContentLoaded", () => {
     applyTranslations(lang);
   }
   
-  // ✅ NOUVEAU : Fonction centralisée pour mettre à jour l'état visuel des boutons
+  // Fonction centralisée pour mettre à jour l'état visuel de tous les boutons
   function updateLangButtons() {
     const isFr = currentLang === "fr";
+    // Met à jour les boutons du bureau
     if (langFrBtn) langFrBtn.classList.toggle("active", isFr);
     if (langEnBtn) langEnBtn.classList.toggle("active", !isFr);
+    // Met à jour les boutons mobiles
     if (mobileLangFrBtn) mobileLangFrBtn.classList.toggle("active", isFr);
     if (mobileLangEnBtn) mobileLangEnBtn.classList.toggle("active", !isFr);
   }
 
-  // ✅ CORRECTION : On attache les événements à tous les boutons
+  // On attache les événements à tous les boutons
   if (langFrBtn) langFrBtn.addEventListener("click", () => setLanguage("fr"));
   if (langEnBtn) langEnBtn.addEventListener("click", () => setLanguage("en"));
   if (mobileLangFrBtn) mobileLangFrBtn.addEventListener("click", () => setLanguage("fr"));
@@ -763,17 +770,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  document.querySelectorAll('a[href^="#"]:not(#nav-cv-link)').forEach((anchor) => {
+  document.querySelectorAll('a[href^="#"]:not(.cv-link)').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
       const targetId = this.getAttribute("href");
       try {
-        document.querySelector(targetId).scrollIntoView({ behavior: "smooth" });
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }
       } catch (error) {
         console.error("Smooth scroll target not found:", targetId, error);
       }
     });
   });
+
 
   // =================================================================
   //      MENU HAMBURGER - LOGIQUE ENTIÈREMENT FONCTIONNELLE
@@ -941,26 +952,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const launchCaseStudy = (projectId) => {
       const langData = translations[currentLang];
+      if (!langData || !langData.featuredProjects || !langData.featuredProjects.items) return;
+
       const projectData = langData.featuredProjects.items.find(p => p.id === projectId);
 
       if (!projectData || !projectData.caseStudy) {
         console.error("No case study data for project:", projectId);
         return;
       }
+      
+      const caseStudyData = projectData.caseStudy;
+      let techHtml = (projectData.tech || []).join(' | ');
 
-      const cs = projectData.caseStudy;
-
-      caseStudyWindowTitle.textContent = cs.title;
+      caseStudyWindowTitle.textContent = caseStudyData.title || "Case Study";
       caseStudyContentEl.innerHTML = `
-            <h4>${cs.briefTitle}</h4>
-            <p>${cs.brief}</p>
-            <h4>${cs.roleTitle}</h4>
-            <p>${cs.role}</p>
-            <h4>${cs.techTitle}</h4>
-            <p>${projectData.tech.join(' | ')}</p>
-            <h4>${cs.resultsTitle}</h4>
-            <p>${cs.results}</p>
-        `;
+        <h4>${caseStudyData.briefTitle || "Brief"}</h4>
+        <p>${caseStudyData.brief || ""}</p>
+        <h4>${caseStudyData.roleTitle || "My Role"}</h4>
+        <p>${caseStudyData.role || ""}</p>
+        <h4>Technologies</h4>
+        <p>${techHtml}</p>
+        <h4>${caseStudyData.resultsTitle || "Results"}</h4>
+        <p>${caseStudyData.results || ""}</p>
+      `;
+
 
       caseStudyOverlay.style.display = 'block';
       bootSequenceEl.style.display = 'block';
@@ -1032,38 +1047,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     document.addEventListener('mouseup', () => {
       isDragging = false;
-    });
-  }
-
-  // --- GESTION DE L'INFO-BULLE POUR LE BOUTON CASE STUDY ---
-  const caseStudyTooltipEl = document.getElementById('case-study-tooltip');
-
-  if (caseStudyTooltipEl) {
-    let currentCaseStudyBtn = null;
-
-    document.addEventListener('mouseover', (e) => {
-      const btn = e.target.closest('.btn-case-study');
-      if (btn) {
-        currentCaseStudyBtn = btn;
-        const tooltipText = getNestedTranslation(translations[currentLang], "featuredProjects.caseStudyTooltip");
-        caseStudyTooltipEl.textContent = tooltipText || "You won't regret the trip ;-)";
-        caseStudyTooltipEl.style.display = 'block';
-      }
-    });
-
-    document.addEventListener('mousemove', (e) => {
-      if (caseStudyTooltipEl.style.display === 'block') {
-        caseStudyTooltipEl.style.left = `${e.clientX + 20}px`;
-        caseStudyTooltipEl.style.top = `${e.clientY - 30}px`;
-      }
-    });
-
-    document.addEventListener('mouseout', (e) => {
-      const btn = e.target.closest('.btn-case-study');
-      if (btn) {
-        caseStudyTooltipEl.style.display = 'none';
-        currentCaseStudyBtn = null;
-      }
     });
   }
 

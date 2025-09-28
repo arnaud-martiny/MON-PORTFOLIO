@@ -161,7 +161,7 @@
   },
   "projectsUpdatePopup": {
     "title": "Mise à Jour des Projets",
-    "message": "Les sites pour <strong>Nowa Logistics</strong> et <strong>Le Théâtre des Poètes</strong> seront publiés dans moins d'un mois. Quelques modifications et finitions sont encore en cours. Merci pour votre patience !"
+    "message": "Le site de <strong>Nowa Logistics</strong> est désormais publié et accessible en version bêta ! Celui du <strong>Théâtre des Poètes</strong> sera également mis en ligne prochainement."
   },
   "experienceSection": {
     "title": "EXPÉRIENCE & FORMATION",
@@ -231,8 +231,9 @@
   },
    "featuredProjects": {
   "title": "Mes Réalisations Web",
-  "nowaTooltip": "Site en construction, disponible dans quelques semaines !",
   "poetesTooltip": "Site en développement, lancement prévu prochainement !",
+  "noCodeTooltip": "Malheureusement, aucun dépôt GitHub n'a été créé pour ce projet.",
+  "poetesCodeTooltip": "Le dépôt GitHub sera publié prochainement. La patience est une vertu, surtout en développement !",
   "caseStudyButton": "Voir le Case Study",
   "caseStudyTooltip": "Vous n'allez pas regretter le voyage ;-)",
   "items": [
@@ -264,7 +265,7 @@
       "imageAlt": "Aperçu du projet Nowa Logistics",
       "description": "<strong>Le défi :</strong> créer l'identité digitale de la nouvelle entité logistique de Nowa Market. <strong>Ma solution :</strong> durant mon stage, j'ai pris en charge ce projet de la maquette UX/UI sur Figma jusqu'au développement front-end complet. <strong>Cette expérience a prouvé ma capacité à gérer un projet en autonomie dans un cadre professionnel et à livrer un produit fini répondant à un besoin business concret.</strong>",
       "tech": ["Figma", "HTML5", "CSS3", "JavaScript", "Gestion de Projet"],
-      "liveLink": "/beta/nowa-logistics/",
+      "liveLink": "beta/nowa-logistics/index.html",
       "codeLink": "#",
       "caseStudy": {
         "title": "C:\\Projects\\Nowa_Logistics_Showcase.exe",
