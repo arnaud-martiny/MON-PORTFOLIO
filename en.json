@@ -155,6 +155,10 @@
     { "filename": "Launch.zip", "time": "42 seconds" }
   ]
 },
+"evolutionPopup": {
+  "title": "Site in constant evolution",
+  "message": "This portfolio is a living project! New features and animations are added regularly. Last update on {{date}}. Check back soon!"
+},
   "projectsUpdatePopup": {
     "title": "Projects Update",
     "message": "The <strong>Nowa Logistics</strong> website is now published and accessible in beta! The <strong>Théâtre des Poètes</strong> site will also be launched soon."
@@ -398,7 +402,7 @@
       { "name": "Communication", "icon": "fa-comments" },
       { "name": "Logic", "icon": "fa-puzzle-piece" },
       { "name": "Collaboration", "icon": "fa-people-group" },
-      { "name": "Adaptabilité", "icon": "fa-cogs" }
+      { "name": "Adaptability", "icon": "fa-cogs" }
     ]
   }
 }
