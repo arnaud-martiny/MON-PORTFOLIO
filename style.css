@@ -2952,3 +2952,71 @@ a:not(.btn):not(.social-icon):hover {
     font-size: 1.1rem;
     line-height: 1.7;
 }
+
+/* ======================================================= */
+/*          STYLE POUR LES RÉPONSES DE L'IA                */
+/* ======================================================= */
+.ai-response {
+    color: #c3e88d; /* La couleur verte que vous aimez */
+    padding-left: 1rem;
+    white-space: pre-wrap; /* Respecte les sauts de ligne de l'IA */
+}
+
+.ai-response strong {
+    color: #89ddff; /* Met en évidence les mots en gras */
+}
+
+/* AJOUTEZ CECI À LA FIN DE style.css */
+.ai-typing {
+    padding-left: 1rem;
+    color: #888;
+}
+
+.ai-typing span {
+    animation: blink 1.4s infinite both;
+    font-size: 2rem;
+    line-height: 0;
+}
+
+.ai-typing span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.ai-typing span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes blink {
+    0% { opacity: 0.2; }
+    20% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+
+/* AJOUTEZ CECI À LA FIN DE VOTRE style.css */
+
+/* Style pour le texte en gras dans la réponse de l'IA */
+.ai-response strong {
+    color: #89ddff; /* Un bleu clair pour mettre en évidence, comme dans vos commandes */
+    font-weight: normal; /* La police VT323 est déjà assez épaisse, on évite le double gras */
+}
+
+/* Style pour les liens (adresses e-mail) dans la réponse de l'IA */
+.ai-response a {
+    color: #c3e88d; /* La même couleur verte que le texte normal de l'IA */
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    transition: color 0.3s ease;
+}
+
+.ai-response a:hover {
+    color: #ffffff; /* Le lien devient blanc au survol */
+}
+
+.terminal-separator {
+    text-align: center;
+    color: var(--primary);
+    opacity: 0.3;
+    margin: 1rem 0;
+    letter-spacing: 0.5em; /* Espace les tirets */
+}
