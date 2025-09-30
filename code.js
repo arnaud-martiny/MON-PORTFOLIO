@@ -397,9 +397,13 @@ document.addEventListener("DOMContentLoaded", () => {
     
     initializeRetroAnimation(langData);
     initializeTestimonialsTerminal(langData);
-    initializeTarotDeck(langData);
+    // initializeTarotDeck(langData); // SECTION EN COMMENTAIRE
     initializeSlotMachine(langData);
     initializeExperienceGrid(langData);
+    
+    // NOUVELLES INITIALISATIONS
+    initializeTerminal(langData);
+    initializeSkillsSandbox(langData);
 
     const evolutionPopupMessage = document.querySelector('#evolution-popup p[data-i18n="evolutionPopup.message"]');
     const evolutionPopupEl = document.getElementById('evolution-popup');
@@ -964,18 +968,23 @@ document.addEventListener("DOMContentLoaded", () => {
       const caseStudyData = projectData.caseStudy;
       let techHtml = (projectData.tech || []).join(' | ');
 
+      // NOUVEAU : On récupère la traduction du titre "Technologies"
+      const technologiesTitle = getNestedTranslation(langData, "caseStudyPopup.technologiesTitle") || "Technologies";
+
       caseStudyWindowTitle.textContent = caseStudyData.title || "Case Study";
       caseStudyContentEl.innerHTML = `
         <h4>${caseStudyData.briefTitle || "Brief"}</h4>
         <p>${caseStudyData.brief || ""}</p>
         <h4>${caseStudyData.roleTitle || "My Role"}</h4>
         <p>${caseStudyData.role || ""}</p>
-        <h4>Technologies</h4>
+        
+        <!-- MODIFIÉ : On utilise la variable ici -->
+        <h4>${technologiesTitle}</h4>
+
         <p>${techHtml}</p>
         <h4>${caseStudyData.resultsTitle || "Results"}</h4>
         <p>${caseStudyData.results || ""}</p>
       `;
-
 
       caseStudyOverlay.style.display = 'block';
       bootSequenceEl.style.display = 'block';
@@ -1125,6 +1134,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .to(finalWindow, { display: 'block', opacity: 1, duration: 1 });
   }
 
+  /*
   function initializeTarotDeck(langData) {
     const container = document.getElementById('tarot-container');
     if (!container || !langData.tarotSkillsSection || !langData.tarotSkillsSection.cards) {
@@ -1172,6 +1182,7 @@ document.addEventListener("DOMContentLoaded", () => {
       container.appendChild(cardEl);
     });
   }
+  */
 
   function initializeExperienceGrid(langData) {
     const container = document.getElementById('experience-grid-container');
@@ -1318,7 +1329,12 @@ document.addEventListener("DOMContentLoaded", () => {
         el.style.borderColor = getRandomHorribleColor();
       });
 
-      wtfButton.textContent = "AU SECOURS !";
+      // NOUVEAU : On va chercher la traduction du texte "AU SECOURS !"
+      const helpText = getNestedTranslation(translations[currentLang], "nav.wtfButtonHelp") || "HELP ME!";
+      
+      // MODIFIÉ : On utilise la variable de traduction ici
+      wtfButton.textContent = helpText;
+
       wtfButton.style.backgroundColor = 'white';
       wtfButton.style.color = 'black';
       wtfButton.onclick = () => {
@@ -1434,6 +1450,226 @@ document.addEventListener("DOMContentLoaded", () => {
     const finalCaret = display.querySelector('#testimonial-caret');
     if (finalCaret) finalCaret.remove();
   }
+  
+  // =======================================================
+  //     NOUVELLE FONCTION : INITIALISATION DU TERMINAL
+  // =======================================================
+  function initializeTerminal(langData) {
+      const terminalBody = document.getElementById('terminal-body');
+      const terminalOutput = document.getElementById('terminal-output');
+      const terminalInput = document.getElementById('terminal-input');
+
+      if (!terminalBody || !terminalOutput || !terminalInput || !langData.terminal) {
+          return;
+      }
+      
+      let commandHistory = [];
+      let historyIndex = -1;
+
+      const welcomeMessage = getNestedTranslation(langData, "terminal.welcomeMessage");
+      terminalOutput.innerHTML = `<p class="command-output">${welcomeMessage}</p>`;
+      
+      // NOUVEAU : On récupère la traduction du prompt ici
+      const promptText = getNestedTranslation(langData, "terminal.prompt") || "user@arnaud-martiny.be:~$";
+      // NOUVEAU : On met à jour le prompt visible en permanence dans l'input
+      document.querySelector('.terminal-prompt').textContent = promptText;
+
+      terminalBody.addEventListener('click', () => terminalInput.focus());
+
+      terminalInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+              const command = terminalInput.value.trim();
+              if (command) {
+                  processCommand(command);
+                  commandHistory.push(command);
+                  historyIndex = commandHistory.length;
+              }
+              terminalInput.value = '';
+          } else if (e.key === 'ArrowUp') {
+              if (historyIndex > 0) {
+                  historyIndex--;
+                  terminalInput.value = commandHistory[historyIndex];
+              }
+          } else if (e.key === 'ArrowDown') {
+              if (historyIndex < commandHistory.length - 1) {
+                  historyIndex++;
+                  terminalInput.value = commandHistory[historyIndex];
+              } else {
+                  historyIndex = commandHistory.length;
+                  terminalInput.value = '';
+              }
+          }
+      });
+
+      function processCommand(command) {
+          // MODIFIÉ : On utilise notre variable de traduction ici
+          const prompt = `<span class="terminal-prompt">${promptText}</span>`;
+          const commandLine = `<p class="user-command">${prompt} ${command}</p>`;
+          terminalOutput.innerHTML += commandLine;
+
+          const args = command.toLowerCase().split(' ');
+          const cmd = args[0];
+          let output = '';
+
+          switch (cmd) {
+              case 'help':
+                  output = getNestedTranslation(langData, "terminal.help");
+                  break;
+              case 'whoami':
+                  output = getNestedTranslation(langData, "terminal.whoami");
+                  break;
+              case 'skills':
+                  output = getNestedTranslation(langData, "terminal.skills");
+                  break;
+              case 'projects':
+                  output = getNestedTranslation(langData, "terminal.projects");
+                  break;
+              case 'contact':
+                  output = getNestedTranslation(langData, "terminal.contact");
+                  break;
+              case 'clear':
+                  terminalOutput.innerHTML = '';
+                  break;
+              default:
+                  let notFoundMsg = getNestedTranslation(langData, "terminal.commandNotFound") || "Command not found: {command}.";
+                  output = `<span class="command-error">${notFoundMsg.replace('{command}', command)}</span>`;
+                  break;
+          }
+          
+          if (output) {
+              terminalOutput.innerHTML += `<div class="command-output">${output}</div>`;
+          }
+          
+          terminalBody.scrollTop = terminalBody.scrollHeight;
+      }
+  }
+
+  // =======================================================
+  //     NOUVELLE FONCTION : INITIALISATION DU SANDBOX
+  // =======================================================
+  let matterInstance = null;
+  function initializeSkillsSandbox(langData) {
+      if (typeof Matter === 'undefined') {
+          console.error("Matter.js is not loaded.");
+          return;
+      }
+      
+      const container = document.getElementById('sandbox-container');
+      if (!container || !langData.skillsSandbox || !langData.skillsSandbox.skills) {
+          return;
+      }
+
+      // Vider le conteneur et détruire l'ancienne instance si elle existe
+      if (matterInstance) {
+          Matter.Render.stop(matterInstance.render);
+          Matter.World.clear(matterInstance.engine.world);
+          Matter.Engine.clear(matterInstance.engine);
+          container.innerHTML = '';
+      }
+
+      const skills = langData.skillsSandbox.skills;
+      
+      const { Engine, Render, Runner, World, Bodies, Mouse, MouseConstraint } = Matter;
+
+      const engine = Engine.create({ gravity: { y: 0.4 } });
+      const render = Render.create({
+          element: container,
+          engine: engine,
+          options: {
+              width: container.clientWidth,
+              height: container.clientHeight,
+              wireframes: false,
+              background: 'transparent'
+          }
+      });
+      
+      matterInstance = { engine, render };
+
+      const ground = Bodies.rectangle(container.clientWidth / 2, container.clientHeight + 25, container.clientWidth, 50, { isStatic: true, render: { visible: false } });
+      const wallLeft = Bodies.rectangle(-25, container.clientHeight / 2, 50, container.clientHeight, { isStatic: true, render: { visible: false } });
+      const wallRight = Bodies.rectangle(container.clientWidth + 25, container.clientHeight / 2, 50, container.clientHeight, { isStatic: true, render: { visible: false } });
+      const roof = Bodies.rectangle(container.clientWidth / 2, -25, container.clientWidth, 50, { isStatic: true, render: { visible: false } });
+
+      World.add(engine.world, [ground, wallLeft, wallRight, roof]);
+
+      const skillBodies = skills.map(skill => {
+          const width = 180;
+          const height = 60;
+          const body = Bodies.rectangle(
+              Math.random() * (container.clientWidth - width) + width / 2,
+              Math.random() * (container.clientHeight / 2),
+              width, height,
+              { 
+                  restitution: 0.5,
+                  friction: 0.3,
+                  render: {
+                      fillStyle: 'transparent',
+                      strokeStyle: 'transparent'
+                  }
+              }
+          );
+          body.skillData = skill; // Attacher les données
+          return body;
+      });
+
+      World.add(engine.world, skillBodies);
+
+      const mouse = Mouse.create(render.canvas);
+      const mouseConstraint = MouseConstraint.create(engine, {
+          mouse: mouse,
+          constraint: {
+              stiffness: 0.2,
+              render: {
+                  visible: false
+              }
+          }
+      });
+      World.add(engine.world, mouseConstraint);
+
+      Render.run(render);
+      const runner = Runner.create();
+      Runner.run(runner, engine);
+
+      // Créer et synchroniser les éléments HTML
+      const skillElements = {};
+      skillBodies.forEach(body => {
+          const el = document.createElement('div');
+          el.className = 'sandbox-skill-item';
+          el.innerHTML = `<i class="fas ${body.skillData.icon}"></i><span>${body.skillData.name}</span>`;
+          container.appendChild(el);
+          skillElements[body.id] = el;
+          
+          el.addEventListener('click', () => {
+              showSandboxModal(body.skillData);
+          });
+      });
+
+      function updateElements() {
+          skillBodies.forEach(body => {
+              const el = skillElements[body.id];
+              el.style.transform = `translate(${body.position.x - el.offsetWidth / 2}px, ${body.position.y - el.offsetHeight / 2}px) rotate(${body.angle}rad)`;
+          });
+          requestAnimationFrame(updateElements);
+      }
+      updateElements();
+      
+      function showSandboxModal(skillData) {
+          const modal = document.getElementById('sandbox-modal');
+          document.getElementById('sandbox-modal-title').textContent = skillData.name;
+          document.getElementById('sandbox-modal-description').textContent = skillData.description;
+          modal.classList.add('visible');
+      }
+
+      const modal = document.getElementById('sandbox-modal');
+      const closeModalBtn = document.getElementById('sandbox-modal-close');
+      closeModalBtn.addEventListener('click', () => modal.classList.remove('visible'));
+      modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+              modal.classList.remove('visible');
+          }
+      });
+  }
+
 
 }); // Fin de document.addEventListener("DOMContentLoaded")
 

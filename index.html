@@ -228,148 +228,86 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
     </section>
+    
+    <!-- NOUVELLE SECTION : TERMINAL OS INTERACTIF -->
+    <section id="terminal-section" class="terminal-section reveal">
+        
+        <!-- Voici le titre ajouté pour donner du contexte -->
+        <h2 class="section-heading" data-i18n="terminal.sectionTitle">
+            EXPLOREZ MON PROFIL
+        </h2>
 
-
-          <!-- ======================================================== -->
-          <!--     NOUVELLE SECTION : GRILLE DE DONNÉES INTERACTIVE     -->
-          <!-- ======================================================== -->
-          <section id="experiences-pro" class="professional-experiences-section">
-            <h2 class="section-heading reveal" data-i18n="professionalExperiences.title">
-              COLLABORATIONS PROFESSIONNELLES
-            </h2>
-            <div class="experience-grid-container reveal" id="experience-grid-container">
-              <!-- Le contenu de la grille sera généré par JavaScript -->
+        <div class="terminal-window">
+            <div class="terminal-title-bar">
+                <div class="terminal-dots">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <span data-i18n="terminal.title">AM_os - /bin/bash</span>
             </div>
-            <!-- NOUVELLE ZONE D'AFFICHAGE POUR LES DÉTAILS -->
-                  <div id="experience-details-display" class="experience-details-display reveal">
-                      <h4 id="details-company-name"></h4>
-                      <p id="details-role"></p>
-                      <p id="details-description"></p>
-                  </div>
-          </section>
-
-      <!-- Section Compteurs -->
-      <section class="counter-section">
-        <!-- PREMIER COMPTEUR : PROJETS -->
-        <div class="counter-item reveal">
-          <div class="counter-number" data-count="5">0</div>
-          <div class="counter-text" data-i18n="counters.projects">Projets Réalisés</div>
+            <div class="terminal-body" id="terminal-body">
+                <div id="terminal-output"></div>
+                <div class="terminal-input-line">
+                    <span class="terminal-prompt">user@arnaud-martiny.be:~$</span>
+                    <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- DEUXIÈME COMPTEUR : COMMITS -->
-        <div class="counter-item reveal">
-          <div class="counter-number" data-count="120">0</div>
-          <div class="counter-text" data-i18n="counters.commits">Commits sur GitHub</div>
-        </div>
-
-        <!-- TROISIÈME COMPTEUR : CAFÉ (LA TOUCHE D'HUMOUR) -->
-        <div class="counter-item reveal">
-          <div class="counter-number" data-count="999">0</div>
-          <div class="counter-text" data-i18n="counters.coffee">Tasses de café</div>
-        </div>
-      </section>
 
     <!-- ======================================================== -->
-    <!-- NOUVELLE STRUCTURE HTML POUR LA SECTION COMPÉTENCES      -->
+    <!--     GRILLE DE COLLABORATIONS PROFESSIONNELLES (INCHANGÉ) -->
     <!-- ======================================================== -->
+    <section id="experiences-pro" class="professional-experiences-section">
+      <h2 class="section-heading reveal" data-i18n="professionalExperiences.title">
+        COLLABORATIONS PROFESSIONNELLES
+      </h2>
+      <div class="experience-grid-container reveal" id="experience-grid-container">
+      </div>
+      <div id="experience-details-display" class="experience-details-display reveal">
+          <h4 id="details-company-name"></h4>
+          <p id="details-role"></p>
+          <p id="details-description"></p>
+      </div>
+    </section>
+
+    <!-- Section Compteurs (INCHANGÉ) -->
+    <section class="counter-section">
+      <div class="counter-item reveal">
+        <div class="counter-number" data-count="5">0</div>
+        <div class="counter-text" data-i18n="counters.projects">Projets Réalisés</div>
+      </div>
+      <div class="counter-item reveal">
+        <div class="counter-number" data-count="120">0</div>
+        <div class="counter-text" data-i18n="counters.commits">Commits sur GitHub</div>
+      </div>
+      <div class="counter-item reveal">
+        <div class="counter-number" data-count="999">0</div>
+        <div class="counter-text" data-i18n="counters.coffee">Tasses de café</div>
+      </div>
+    </section>
+
+    <!-- Section Compétences Techniques (Galaxie) (INCHANGÉ) -->
     <section id="competences" class="skills-section">
-      <!-- Le titre de la section -->
       <h2 class="section-heading reveal" data-i18n="skillsSection.title">
         MA GALAXIE DE COMPÉTENCES
       </h2>
-
-      <!-- Le conteneur principal qui sert de "scène" -->
       <div id="skills-scene-container" class="reveal">
-        <!-- Le canvas pour l'arrière-plan étoilé -->
         <canvas id="starfield-canvas"></canvas>
-
-        <!-- Le conteneur pour le système solaire (soleil et orbites) -->
         <div id="skills-solar-system">
-          <!-- Le soleil est placé ici comme point central. Le reste est généré par JS -->
           <div id="skill-sun">
             <div class="sun-flare"></div>
             <div class="sun-core">AM.</div>
           </div>
-
-          <!-- Les orbites et les planètes seront injectées dynamiquement par JavaScript ici -->
         </div>
       </div>
-
       <br /><br /><br /><br /><br /><br />
-
-      <!-- L'infobox pour les descriptions est placée en dehors du système pour une gestion plus simple -->
       <div id="skills-infobox"></div>
     </section>
 
-<!-- ======================================================= -->
-    <!--          SECTION RÉTRO METHODOLOGIE (MISE EN COMMENTAIRE) -->
-    <!-- ======================================================= -->
-    <!--
-    <section id="retro-methodology" class="retro-methodology-section">
-        <div class="retro-container">
-            <div id="google-search-window" class="retro-window">
-                <div class="retro-title-bar">
-                    <span>Google - AM-Explorer</span>
-                    <div class="retro-title-buttons"><span>_</span><span>□</span><span>X</span></div>
-                </div>
-                <div class="retro-window-body">
-                    <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google Logo" style="max-width: 180px; margin-bottom: 20px;" />
-                    <div class="search-bar-retro">
-                        <input type="text" id="retro-search-input" readonly />
-                        <span id="typing-caret">|</span>
-                    </div>
-                    <div class="search-buttons-retro">
-                        <button id="retro-search-btn" data-i18n="retroMethodologySection.searchButton">Recherche Google</button>
-                        <button data-i18n="retroMethodologySection.luckyButton">J'ai de la chance</button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="search-results-window" class="retro-window">
-                <div class="retro-title-bar">
-                    <span data-i18n="retroMethodologySection.resultsTitle">Résultats de la recherche - AM-Explorer</span>
-                    <div class="retro-title-buttons"><span>_</span><span>□</span><span>X</span></div>
-                </div>
-                <div class="retro-window-body results-body"></div>
-            </div>
-            
-            <div id="download-box-window" class="retro-window">
-                 <div class="retro-title-bar">
-                    <span id="download-title">Téléchargement en cours...</span>
-                 </div>
-                <div class="download-body">
-                    <p>Sauvegarde du fichier :<br><strong id="download-filename">filename.zip</strong></p>
-                    <div class="download-progress-bar">
-                        <div id="download-progress-fill"></div>
-                    </div>
-                    <div class="download-details-container">
-                        <span>Taille : 2,45 Mo</span>
-                        <span>Temps restant : <span id="time-left">calcul...</span></span>
-                    </div>
-                    <div class="download-footer">
-                        <button class="retro-button">Annuler</button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="final-report-window" class="retro-window">
-                 <div class="retro-title-bar">
-                    <span>Rapport Final</span>
-                    <div class="retro-title-buttons"><span>_</span><span>□</span><span>X</span></div>
-                </div>
-                 <div class="retro-window-body final-report">
-                    <img src="assets/img/FAVICON/favicon-96x96.png" alt="Success icon" style="width: 64px; height: 64px;" />
-                    <p>Processus terminé avec succès.<br>Votre projet est prêt à être lancé.</p>
-                    <button class="retro-button">OK</button>
-                 </div>
-            </div>
-        </div>
-    </section>
-    -->
-
-    <!-- ======================================================== -->
-    <!--          NOUVELLES SECTIONS LANGUES (V1: JSON)           -->
-    <!-- ======================================================== -->
+    <!-- Section Langues (JSON) (INCHANGÉ) -->
     <section id="language-section-json" class="language-section-v2 reveal">
       <h3 class="skills-subheading" data-i18n="skillsSection.languagesTitle">
         Langues
@@ -382,135 +320,71 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="dot green"></div>
             <span id="code-block-title" class="code-block-title"></span>
           </div>
-          <pre
-            contenteditable="true"
-          ><code id="language-json-content"></code></pre>
+          <pre contenteditable="true"><code id="language-json-content"></code></pre>
         </div>
       </div>
     </section>
 
-    <!-- ==================================================== -->
-    <!--          NOUVELLE SECTION PROJETS DÉTAILLÉS          -->
-    <!-- ==================================================== -->
+    <!-- Section Portfolio (Projets Détaillés) (INCHANGÉ) -->
     <section id="portfolio" class="featured-projects-section">
       <h2 class="section-heading reveal" data-i18n="featuredProjects.title">
         MES RÉALISATIONS WEB
       </h2>
-
       <div class="featured-projects-grid" id="featured-projects-container">
-        <!-- Les projets seront générés dynamiquement par JavaScript ici -->
       </div>
     </section>
 
     <!-- ======================================================== -->
-    <!--         NOUVELLE SECTION : TAROT DES COMPÉTENCES         -->
+    <!--         SECTION TAROT (Chercher un remplacement)     -->
     <!-- ======================================================== -->
+    
+    <!--
     <section id="tarot-skills-section" class="tarot-skills-section reveal">
         <h2 class="section-heading" data-i18n="tarotSkillsSection.title">
             MON JEU DE COMPÉTENCES
         </h2>
         <div class="tarot-container" id="tarot-container">
-            <!-- Les cartes de tarot seront injectées ici par JavaScript -->
         </div>
-    </section>
+    </section>-->
+    
 
-    <!-- NOUVELLE SECTION : MACHINE À SOUS RÉTRO
-    <section id="soft-skills-slot" class="soft-skills-slot-section reveal">
-       <h2 class="section-heading" data-i18n="softSkillsSlot.title">
-        LA COMBINAISON GAGNANTE
-      </h2>
-      <div class="slot-machine-container">
-        <div id="slot-machine-window" class="retro-window">
-          <div class="retro-title-bar">
-            <span>Soft_Skills_Combinator.exe</span>
-            <div class="retro-title-buttons"><span>_</span><span>□</span><span>X</span></div>
-          </div>
-          <div class="retro-window-body">
-            <div class="reels-container">
-              <div class="reel" id="reel1"></div>
-              <div class="reel" id="reel2"></div>
-              <div class="reel" id="reel3"></div>
-            </div>
-            <div id="slot-payout-display">
-              <p data-i18n="softSkillsSlot.initialText">Appuyez sur le levier pour découvrir une synergie de compétences !</p>
-            </div>
-          </div>
-        </div>
-        <div id="slot-lever">
-          <div class="lever-stick"></div>
-          <div class="lever-handle"></div>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- SECTION TÉMOIGNAGES (CORRIGÉE ET FONCTIONNELLE) -->
-    <!--           
-    <section id="testimonials" class="testimonials-section reveal">
-        <h2 class="section-heading" data-i18n="decryptionTestimonials.title">
-            ILS M'ONT FAIT CONFIANCE
-        </h2>
-        <div id="testimonial-terminal" class="testimonial-terminal">
-            <div id="testimonial-sources-list" class="testimonial-sources-list">
-                  <p class="placeholder-prompt" data-i18n="decryptionTestimonials.user_prompt_hint">Choisissez une transmission...</p>
-            </div>
-            <div id="testimonial-display" class="testimonial-display">
-                <p class="placeholder" data-i18n="decryptionTestimonials.placeholder">[ ATTENTE DE COMMANDE... ]</p>
-            </div>
-        </div>
-    </section>
-    -->
-
-
-    <!-- Section Expérience -->
+    <!-- Section Expérience (INCHANGÉ) -->
     <section id="experience" class="experience-section">
       <h2 class="section-heading reveal" data-i18n="experienceSection.title">
         EXPÉRIENCE & FORMATION
       </h2>
       <div class="timeline reveal" id="timeline-content">
-        <!-- Les items de la timeline seront générés par JS à partir de experienceSection.items -->
       </div>
     </section>
 
-    <!-- ==================================================== -->
-<!--    SECTION CONTACT (FINAL - CORRIGÉE POUR WEB3FORMS) -->
-<!-- ==================================================== -->
-<section id="contact" class="contact-section">
-  <div class="bg-shape shape4"></div>
-  <h2 class="section-heading reveal" data-i18n="contactSection.title">
-    ME CONTACTER
-  </h2>
-
-  <div class="contact-container">
-    <!-- Colonne de gauche (déjà fonctionnelle) -->
-    <div class="contact-info reveal">
-      <div class="contact-item">
-        <i class="fas fa-map-marker-alt"></i>
-        <p data-i18n="contactSection.address">Bruxelles, Belgique</p>
-      </div>
-      <div class="contact-item">
-        <i class="fas fa-phone"></i>
-        <a href="tel:+32492451456" data-i18n="contactSection.phone">+32 0492 451 456</a>
-      </div>
-      <div class="contact-item">
-        <i class="fas fa-envelope"></i>
-        <a href="mailto:arnaudmartiny0@gmail.com" data-i18n="contactSection.email">arnaudmartiny0@gmail.com</a>
-      </div>
-      <div class="social-icons">
-        <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://github.com/arnaud-martiny" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      </div>
-    </div>
-
-        <!-- REMPLACEZ TOUTE CETTE DIV PAR CELLE-CI -->
+    <!-- Section Contact (MODIFIÉE) -->
+    <section id="contact" class="contact-section">
+      <div class="bg-shape shape4"></div>
+      <h2 class="section-heading reveal" data-i18n="contactSection.title">
+        ME CONTACTER
+      </h2>
+      <div class="contact-container">
+        <div class="contact-info reveal">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <p data-i18n="contactSection.address">Bruxelles, Belgique</p>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <a href="tel:+32492451456" data-i18n="contactSection.phone">+32 0492 451 456</a>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:arnaudmartiny0@gmail.com" data-i18n="contactSection.email">arnaudmartiny0@gmail.com</a>
+          </div>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/arnaud-martiny" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
         <div class="contact-form reveal">
-          
-          <!-- Ajout d'un id="contact-form" à la balise form -->
-              <form id="contact-form" action="traitement-formulaire.php" method="POST">
-
-            <!-- Votre clé d'accès reste ici, c'est parfait -->
+          <form id="contact-form" action="traitement-formulaire.php" method="POST">
             <input type="hidden" name="access_key" value="40d5c484-203a-4285-ba13-33c05514dfe3">
-
-            <!-- Les champs du formulaire (pas de changement ici) -->
             <div class="form-group">
               <input type="text" name="name" required placeholder="Nom" data-i18n-attr-placeholder="contactSection.form.namePlaceholder">
             </div>
@@ -523,28 +397,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="form-group">
               <textarea name="message" required placeholder="Message" data-i18n-attr-placeholder="contactSection.form.messagePlaceholder"></textarea>
             </div>
-            
-            <!-- Le Captcha (pas de changement) -->
             <div class="h-captcha" data-captcha="true"></div>
-
             <button type="submit" class="btn" data-i18n="contactSection.form.submitButton">
               Envoyer
             </button>
-            
-            <!-- Le paragraphe pour afficher le résultat, avec un nouvel id -->
             <p class="form-result" id="form-result-message"></p>
-
           </form>
         </div>
-  </div>
-</section>
+      </div>
+    </section>
 
-<!-- index.html -->
-
-    <!-- Footer -->
-    <footer class="footer">
-
-    <!-- Footer -->
+    <!-- Footer & Popups (INCHANGÉ) -->
     <footer class="footer">
       <div class="footer-content">
         <div class="logo" data-i18n="nav.logo">AM.</div>
@@ -553,16 +416,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </p>
       </div>
     </footer>
-
-    <!-- Bouton retour en haut -->
     <a href="#accueil" class="back-to-top" aria-label="Retour en haut">
       <i class="fas fa-arrow-up"></i>
     </a>
-
-    <!-- Pop-up d'évolution -->
     <div id="evolution-popup-overlay" class="evolution-popup-overlay">
-      <!-- NOUVEAU : Ajout de l'attribut data-last-updated. Modifiez cette date quand vous mettez à jour le site. -->
-      <div id="evolution-popup" class="evolution-popup" data-last-updated="28/09/2025">
+      <div id="evolution-popup" class="evolution-popup" data-last-updated="30/09/2025">
         <button id="evolution-popup-close" class="evolution-popup-close">×</button>
         <h4 data-i18n="evolutionPopup.title">Site en Évolution</h4>
         <p data-i18n="evolutionPopup.message" data-i18n-html>
@@ -570,8 +428,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </p>
       </div>
     </div>
-
-    <!-- NOUVEAU : POP-UP POUR LA MISE À JOUR DES PROJETS -->
     <div id="projects-update-popup-overlay" class="projects-update-popup-overlay">
       <div id="projects-update-popup" class="projects-update-popup">
         <button id="projects-update-popup-close" class="projects-update-popup-close">×</button>
@@ -581,14 +437,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </p>
       </div>
     </div>
-
-    <!-- ======================================================== -->
-    <!--          NOUVEAU : MODALE CASE STUDY INTERACTIVE         -->
-    <!-- ======================================================== -->
     <div id="case-study-overlay">
         <canvas id="binary-rain-canvas"></canvas>
         <div id="boot-sequence"></div>
-
         <div id="case-study-window" class="case-study-window">
             <div class="case-study-title-bar" id="window-title-bar">
                 <span id="case-study-window-title">C:\Projects\CaseStudy_Loader.exe</span>
@@ -598,59 +449,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="case-study-window-body">
                 <div id="case-study-content">
-                    <!-- Le contenu sera injecté par JavaScript -->
                 </div>
             </div>
         </div>
-
-        <div id="contact-popup" class="case-study-popup-window">
-             <div class="case-study-title-bar"><span>Message de l'auteur</span></div>
-             <div class="popup-body">
-                <img class="popup-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFYSURBVFhH7ZDNAcJAEEVD9zQ3cBs3cAN3EARdQSdyBSdxBEfgFRkI2aRkbB9kYB+E/2Yv2WTHEbsCQGgAgb6A+Hlu6qT8N3oBfCNu2kS8R+sFFN6iP4/H6wU8f/eF2bC8na7XnQPY1+3i572N4TbpYtJ3/bA928t/K60b2fBAbICfX59k41bMhW2on0Xb2Vb2u/xM3s40p3bWz6PN/K1jB/nZ2c/2P55jL+D1/Hj3cBdGcf5mJ/fT+f75/f4x912MvzTGI7+8/cJfQf4d/Xk8Hv8l92yKiv0/B+hPABGgTzRnMzC/gI5+KgG6TMAVqgO+TEBH7QvEBlsD1E+ALdSvALJSb8CAb9A7578A3YqAYR2gO/A2gAN6Qx+fIZ9shgB5p0YCqQna/hA70V+Kz/C/AEEArsENnIuYAAAAAElFTkSuQmCC" alt="Information Icon"/>
-                <p>J'espère que cette petite expérience vous a plu !<br><br>Si vous cherchez un développeur créatif pour donner vie à une idée, parlons-en.</p>
-             </div>
-             <div class="popup-footer">
-                <button id="contact-link-btn">Me Contacter</button>
-                <button id="close-popup-btn">Fermer</button>
-             </div>
-        </div>
+                <div id="contact-popup" class="case-study-popup-window">
+                    <!-- MODIFICATION ICI -->
+                    <div class="case-study-title-bar"><span data-i18n="caseStudyPopup.authorMessageTitle">Message de l'auteur</span></div>
+                    <div class="popup-body">
+                        <img class="popup-icon" src="data:image/png;base64,..." alt="Information Icon"/>
+                        <!-- MODIFICATION ICI -->
+                        <p data-i18n="caseStudyPopup.authorMessageText">J'espère que cette petite expérience vous a plu !<br><br>Si vous cherchez un développeur créatif pour donner vie à une idée, parlons-en.</p>
+                    </div>
+                    <div class="popup-footer">
+                        <!-- MODIFICATION ICI -->
+                        <button id="contact-link-btn" data-i18n="caseStudyPopup.contactButton">Me Contacter</button>
+                        <button id="close-popup-btn" data-i18n="caseStudyPopup.closeButton">Fermer</button>
+                    </div>
+                </div>
     </div>
 
-
+    <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-
-     <!-- ✅ AJOUTEZ CETTE LIGNE CI-DESSOUS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/TextPlugin.min.js"></script>
-
-    <!-- Dans index.html, juste avant votre script code.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
-    <!-- Dans index.html, juste après les autres scripts GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/SplitText.min.js"></script>
+    <!-- ✅ NOUVEAU SCRIPT POUR LA PHYSIQUE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
     
     <script src="code.js" defer></script>
 
-    <!-- ✅ AJOUTEZ LE SCRIPT WEB3FORMS ICI -->
     <script src="https://web3forms.com/client/script.js" async defer></script>
-
-    <!-- CLOUDFLARE ANALYTICS-->
-    <script
-      defer
-      src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token": "a7f54faff13c4512b0dbbbc62d498028"}'
-    ></script>
-    <!-- End Cloudflare Web Analytics -->
-
-
-
-
-
-      <!-- Google Tag Manager (noscript) -->
-      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N7NQ2HCC"
-      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-      <!-- End Google Tag Manager (noscript) -->
-
-
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "a7f54faff13c4512b0dbbbc62d498028"}'></script>
   </body>
 </html>

@@ -1928,36 +1928,12 @@ a:not(.btn):not(.social-icon):hover {
   box-sizing: border-box;
 }
 
-/* Version mobile de la section collaboration */
-.experience-item-mobile {
-  background-color: var(--accent);
-  border: 1px solid color-mix(in srgb, var(--primary) 10%, transparent);
-  border-radius: 12px;
-  margin-bottom: 2rem;
-}
-
+/* On supprime les anciennes règles mobiles qui sont maintenant dans la media query */
+.experience-item-mobile,
 .experience-details-mobile {
-  padding: 1.5rem;
-  text-align: center;
+   /* Ces règles sont maintenant gérées dans la media query ci-dessous */
 }
 
-.experience-details-mobile h4 {
-  font-size: 1.8rem;
-  color: var(--color-accent-new);
-  margin-bottom: 0.5rem;
-}
-
-.experience-details-mobile .role {
-  font-style: italic;
-  opacity: 0.7;
-  margin-bottom: 1rem;
-  display: block;
-}
-
-.experience-details-mobile .description {
-  font-size: 1rem;
-  line-height: 1.7;
-}
 
 /****************************************************************/
 /*                                                              */
@@ -2026,8 +2002,6 @@ a:not(.btn):not(.social-icon):hover {
     order: -1;
   }
 
-  /* Image en premier */
-
   .timeline::before {
     left: 15px;
     transform: translateX(0);
@@ -2064,28 +2038,94 @@ a:not(.btn):not(.social-icon):hover {
   .social-icons {
     justify-content: center;
   }
-
-  /* Section collaborations passe en mode mobile */
+  
+  /* ================================================================= */
+  /* NOUVELLE PRÉSENTATION MOBILE POUR LES COLLABORATIONS PRO          */
+  /* ================================================================= */
   .experience-grid-container {
-    display: block;
+    display: block; /* On s'assure que les éléments sont empilés */
   }
 
-  .experience-card {
-    cursor: default;
-  }
-
-  .experience-card:hover,
-  .experience-card.active {
-    transform: none;
-    box-shadow: none;
-    border-color: color-mix(in srgb, var(--primary) 15%, transparent);
-  }
-
+  /* On cache définitivement le panneau de détails de la version desktop */
   .experience-details-display {
     display: none;
   }
 
-  /* On cache la version desktop */
+  /* La carte principale qui contient tout (logo + texte) */
+  .experience-item-mobile {
+      background-color: color-mix(in srgb, var(--accent) 85%, transparent);
+      border: 1px solid color-mix(in srgb, var(--primary) 10%, transparent);
+      border-radius: 16px;
+      margin-bottom: 2rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  /* Le conteneur du logo, maintenant stylisé en cercle */
+  .experience-card {
+      /* Annulation des styles desktop */
+      aspect-ratio: unset;
+      cursor: default;
+      border: none;
+      backdrop-filter: none;
+      transform: none !important; /* Force l'annulation du transform */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+      border-color: transparent !important;
+      
+      /* Nouveaux styles */
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 1.5rem;
+      background-color: color-mix(in srgb, var(--secondary) 80%, black);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+  }
+
+  /* On s'assure que les effets de survol sont bien désactivés */
+  .experience-card:hover, .experience-card.active {
+      transform: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Le logo lui-même, à l'intérieur du cercle */
+  .experience-card-logo {
+      max-width: 65%;
+      max-height: 65%;
+  }
+  .experience-card:hover .experience-card-logo {
+      transform: none;
+  }
+
+  /* Le conteneur du texte */
+  .experience-details-mobile {
+      padding: 0; /* Le padding est maintenant sur la carte parente */
+  }
+
+  .experience-details-mobile h4 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+  }
+
+  .experience-details-mobile .role {
+      font-style: italic;
+      opacity: 0.7;
+      margin-bottom: 1rem;
+      display: block;
+  }
+
+  .experience-details-mobile .description {
+      font-size: 1rem;
+      line-height: 1.7;
+      opacity: 0.9;
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -2304,6 +2344,11 @@ a:not(.btn):not(.social-icon):hover {
   box-shadow: 0 0 20px rgba(255, 69, 0, 0.8);
 }
 
+/* ============================================= */
+/*          STYLES POUR LA SECTION TAROT         */
+/*          MIS EN COMMENTAIRE TEMPORAIREMENT    */
+/* ============================================= */
+/*
 .tarot-skills-section {
   padding: 8rem 5%;
   background-color: var(--accent);
@@ -2333,11 +2378,10 @@ a:not(.btn):not(.social-icon):hover {
   perspective: 1500px;
 }
 
-/* ✅ MODIFICATION ICI : Taille des cartes de tarot */
 .tarot-card {
   background-color: transparent;
-  width: 210px; /* Ancienne valeur : 220px. Vous pouvez ajuster cette valeur. */
-  height: 368px; /* Hauteur ajustée pour garder les proportions */
+  width: 210px;
+  height: 368px;
   perspective: 1000px;
   cursor: pointer;
 }
@@ -2419,6 +2463,7 @@ a:not(.btn):not(.social-icon):hover {
   font-size: 0.9rem;
   line-height: 1.6;
 }
+*/
 
 .projects-update-popup-overlay {
   position: fixed;
@@ -2691,4 +2736,219 @@ a:not(.btn):not(.social-icon):hover {
     #mobile-menu .mobile-menu-bottom {
         display: none;
     }
+}
+
+/* ======================================================= */
+/*          NOUVEAUX STYLES : SECTION TERMINAL             */
+/* ======================================================= */
+.terminal-section {
+    padding: 6rem 5%;
+    background-color: var(--accent);
+}
+
+.terminal-window {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #1E1E1E;
+    border-radius: 10px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid #444;
+}
+
+.terminal-title-bar {
+    background-color: #333;
+    padding: 0.7rem 1rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    color: #ccc;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+}
+
+.terminal-dots {
+    display: flex;
+    gap: 0.5rem;
+    margin-right: 1rem;
+}
+
+.terminal-body {
+    padding: 1.5rem;
+    height: 450px;
+    overflow-y: auto;
+    font-family: 'VT323', monospace;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: #EAEAEA;
+    cursor: text;
+}
+
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+.terminal-body::-webkit-scrollbar-track {
+    background: #1E1E1E;
+}
+.terminal-body::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+}
+
+.terminal-prompt {
+    color: #82aaff; /* Bleu */
+    margin-right: 0.5rem;
+    white-space: nowrap;
+}
+
+.terminal-input {
+    flex-grow: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: #EAEAEA;
+    font-family: 'VT323', monospace;
+    font-size: 1.4rem;
+}
+
+.terminal-output p {
+    margin: 0;
+    white-space: pre-wrap; /* Respecte les retours à la ligne */
+}
+
+.terminal-output .user-command {
+    color: #EAEAEA;
+}
+
+.terminal-output .command-output {
+    color: #c3e88d; /* Vert */
+    padding-left: 1rem;
+}
+
+.terminal-output .command-error {
+    color: #ff5370; /* Rouge */
+}
+
+.terminal-output .command-output strong {
+    color: #89ddff;
+}
+
+/* ======================================================= */
+/*         NOUVEAUX STYLES : SECTION SANDBOX PHYSIQUE      */
+/* ======================================================= */
+
+.skills-sandbox-section {
+    padding: 8rem 5%;
+    background-color: var(--secondary);
+    text-align: center;
+    overflow: hidden;
+}
+
+.sandbox-instructions {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    opacity: 0.7;
+}
+
+.sandbox-container {
+    position: relative;
+    max-width: 1000px;
+    width: 100%;
+    height: 600px;
+    margin: 0 auto;
+    border: 1px dashed color-mix(in srgb, var(--primary) 20%, transparent);
+    background-color: color-mix(in srgb, var(--primary) 3%, transparent);
+    user-select: none;
+}
+
+.sandbox-skill-item {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: var(--accent);
+    color: var(--primary);
+    cursor: grab;
+    will-change: transform;
+    text-align: center;
+    font-weight: 500;
+    border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+}
+.sandbox-skill-item:active {
+    cursor: grabbing;
+}
+.sandbox-skill-item i {
+    font-size: 1.5rem;
+    margin-right: 0.75rem;
+}
+
+.sandbox-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10003;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.sandbox-modal.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.sandbox-modal-content {
+    background-color: var(--accent);
+    padding: 2.5rem;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.sandbox-modal.visible .sandbox-modal-content {
+    transform: scale(1);
+}
+
+.sandbox-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--primary);
+    opacity: 0.7;
+    cursor: pointer;
+}
+.sandbox-modal-close:hover {
+    opacity: 1;
+}
+
+.sandbox-modal-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--color-accent-new);
+}
+
+.sandbox-modal-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
 }
