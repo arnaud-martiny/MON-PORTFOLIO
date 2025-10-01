@@ -46,19 +46,17 @@
     "sectionTitle": "MON IA RÉPOND À VOS QUESTIONS SUR MOI",
     "title": "AM_os - /bin/zsh",
     "prompt": "user@arnaud-martiny.be:~$",
-    "suggestionsLabel": "Essayez :",
+    "suggestionsLabel": "Suggestions :",
     "suggestions": [
-      { "display": "compétences", "command": "liste mes compétences" },
-      { "display": "projets", "command": "quels sont tes projets ?" },
-      { "display": "contact", "command": "comment puis-je te contacter ?" }
-    ],
-    "welcomeMessage": "Bienvenue sur AM_os v1.0\nTapez `help` pour voir la liste des commandes disponibles",
-    "commandNotFound": "Commande non trouvée: {command}. Tapez `help` pour assistance",
-    "help": "Commandes disponibles :\n\n  <strong>whoami</strong>    - Affiche une courte biographie\n  <strong>skills</strong>    - Liste mes compétences techniques\n  <strong>projects</strong>  - Montre mes réalisations notables\n  <strong>contact</strong>     - Affiche mes informations de contact\n  <strong>clear</strong>       - Nettoie l'écran du terminal",
-    "whoami": "Je suis Arnaud Martiny, un développeur Full-Stack créatif basé à Bruxelles\nMa mission : transformer des idées complexes en expériences digitales simples et intuitives\nJe suis passionné par l'architecture logicielle, le design d'interaction et la résolution de problèmes",
-    "skills": "Voici un aperçu de ma stack technique :\n\n  <strong>Langages :</strong>   JavaScript (ES6+), PHP, SQL, HTML5, CSS3\n  <strong>Frameworks :</strong>   GSAP, (et j'apprends React !)\n  <strong>Backend :</strong>      PHP, MySQL, API REST\n  <strong>Frontend :</strong>     JS Vanilla, CSS Grid/Flexbox\n  <strong>CMS & E-com:</strong> Shopify, WordPress\n  <strong>Outils :</strong>       Git, GitHub, Figma, GTM, Analytics",
-    "projects": "Quelques projets clés :\n\n  - <strong>Portfolio Personnel :</strong> Codé de A à Z en JS Vanilla pour démontrer ma maîtrise du front-end\n  - <strong>Nowa Logistics :</strong> Site vitrine conçu et développé durant mon stage (Figma vers HTML/CSS/JS)\n  - <strong>Le Théâtre des Poètes :</strong> Refonte complète (PHP/MySQL) d'un site pour une ASBL\n  - <strong>Fast 'N Friends :</strong> Plateforme de covoiturage (PHP/WordPress) réalisée en équipe",
-    "contact": "Restons en contact :\n\n  <strong>Email :</strong>    <a href=\"mailto:arnaudmartiny0@gmail.com\">arnaudmartiny0@gmail.com</a>\n  <strong>LinkedIn :</strong> <a href=\"https://www.linkedin.com/in/arnaud-martiny/\" target=\"_blank\">linkedin.com/in/arnaud-martiny</a>\n  <strong>GitHub :</strong>   <a href=\"https://github.com/arnaud-martiny\" target=\"_blank\">github.com/arnaud-martiny</a>"
+      { "display": "Compétences ?", "command": "Quelles sont ses compétences techniques ?" },
+      { "display": "Ses projets ?", "command": "Parle-moi de ses projets les plus importants." },
+      { "display": "Expérience Nowa ?", "command": "Quel a été son rôle durant son stage chez Nowa Market ?" },
+      { "display": "Philosophie ?", "command": "Quelle est sa philosophie de travail ?" },
+      { "display": "Maîtrise Figma ?", "command": "Quel est son niveau sur Figma ?" },
+      { "display": "Formation ?", "command": "Quelle formation suit-il ?" },
+      { "display": "Disponibilité ?", "command": "Est-il disponible à Bruxelles ?" },
+      { "display": "Le contacter ?", "command": "Comment puis-je le contacter ?" }
+    ]
   },
   "professionalExperiences": {
     "title": "COLLABORATIONS PROFESSIONNELLES",
