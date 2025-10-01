@@ -3075,3 +3075,24 @@ body.light-mode .terminal-suggestions button:hover {
     background-color: rgba(0, 0, 0, 0.1);
     color: #000;
 }
+
+/* AJOUTER À LA FIN DE style.css */
+body.terminal-cursor-active {
+    cursor: cell;
+}
+
+/* AJOUTEZ CECI À LA FIN DE style.css */
+
+/* Quand la souris est sur le terminal... */
+body.terminal-hover .cursor {
+    width: 2px; /* Largeur d'un curseur de texte */
+    height: 1.5rem; /* Hauteur adaptée à la police du terminal */
+    border-radius: 0; /* Pour en faire un rectangle */
+    background-color: #c3e88d; /* Couleur verte du terminal */
+    mix-blend-mode: normal; /* Annule l'effet de différence de couleur */
+    margin-left: -1px; /* Centrage parfait */
+}
+
+body.terminal-hover .cursor-follower {
+    opacity: 0; /* On cache le cercle suiveur */
+}

@@ -271,7 +271,6 @@ document.addEventListener("DOMContentLoaded", () => {
           codeLinkTooltip = 'data-tooltip-key="featuredProjects.poetesCodeTooltip"';
         }
         const disabledState = 'style="opacity: 0.5; cursor: not-allowed;" onclick="event.preventDefault();"';
-        // MODIFICATION ICI: ajout de loading="lazy" à la balise img
         projectCard.innerHTML = `<div class="project-image"><a href="${project.liveLink}" target="_blank" ${project.liveLink === "#" ? disabledState : ''}><img src="${project.imageSrc}" alt="${project.imageAlt}" loading="lazy"></a></div><div class="project-content"><p class="project-category">${project.category}</p><h3 class="project-title">${project.title}</h3><p class="project-description">${project.description}</p><div class="project-tech-list">${techHtml}</div><div class="project-links"><a href="${project.liveLink}" class="btn" target="_blank" ${liveLinkTooltip} ${project.liveLink === "#" ? disabledState : ''}>Voir le site</a><a href="${project.codeLink}" class="btn btn-outline" target="_blank" ${codeLinkTooltip} ${project.codeLink === "#" ? disabledState : ''}>Voir le code</a><button class="btn btn-case-study" data-project-id="${project.id}" data-tooltip-key="featuredProjects.caseStudyTooltip"><span>${caseStudyButtonText}</span></button></div></div>`;
         projectsContainer.appendChild(projectCard);
       });
@@ -928,7 +927,6 @@ document.addEventListener("DOMContentLoaded", () => {
       experiences.forEach(exp => {
         const itemWrapper = document.createElement('div');
         itemWrapper.className = 'experience-item-mobile';
-        // MODIFICATION ICI: ajout de loading="lazy" à la balise img
         itemWrapper.innerHTML = `<div class="experience-card" id="${exp.id}"><img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo" loading="lazy"></div><div class="experience-details-mobile"><h4>${exp.companyName}</h4><span class="role">${exp.role}</span><p class="description">${exp.description}</p></div>`;
         container.appendChild(itemWrapper);
       });
@@ -942,7 +940,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const card = document.createElement('div');
         card.className = 'experience-card';
         card.id = exp.id;
-        // MODIFICATION ICI: ajout de loading="lazy" à la balise img
         card.innerHTML = `<img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo" loading="lazy">`;
         container.appendChild(card);
         card.addEventListener('mouseenter', () => {
@@ -1119,6 +1116,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (finalCaret) finalCaret.remove();
   }
 
+  // =========================================================================
+  //                  DÉBUT DE LA SECTION TERMINAL CORRIGÉE v2
+  // =========================================================================
   function initializeTerminal(langData) {
     const terminalSection = document.getElementById('terminal-section');
     const terminalBody = document.getElementById('terminal-body');
@@ -1126,11 +1126,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const terminalInput = document.getElementById('terminal-input');
     const terminalForm = document.getElementById('terminal-form');
     const suggestionsContainer = document.getElementById('terminal-suggestions');
+    const terminalWindow = document.querySelector('.terminal-window');
 
     if (!terminalSection || !terminalBody || !terminalOutput || !terminalInput || !terminalForm || !langData.terminal) {
         return;
     }
     
+    // === MODIFICATION : GESTION DU CURSEUR PERSONNALISÉ CORRIGÉE ===
+    if (terminalWindow) {
+        terminalWindow.addEventListener('mouseenter', () => {
+            document.body.classList.add('terminal-hover');
+        });
+        terminalWindow.addEventListener('mouseleave', () => {
+            document.body.classList.remove('terminal-hover');
+        });
+    }
+
     terminalOutput.innerHTML = '';
 
     if (suggestionsContainer && langData.terminal.suggestions) {
@@ -1166,7 +1177,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const promptText = getNestedTranslation(langData, "terminal.prompt") || "user@arnaud-martiny.be:~$";
     document.querySelector('.terminal-prompt').textContent = promptText;
 
-    terminalBody.addEventListener('click', () => terminalInput.focus());
+    // === MODIFICATION : GESTION DES CLICS SUR LES LIENS CORRIGÉE ===
+    terminalBody.addEventListener('click', (e) => {
+      if (e.target.tagName !== 'A') {
+          terminalInput.focus();
+      }
+    });
 
     const startAiConversation = () => {
         if (hasAiStarted) return;
@@ -1222,30 +1238,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function typeAiResponse(message) {
-        const typingSpeed = 20;
-        const responseElement = document.createElement('p');
+        const typingSpeed = 15;
+        const responseElement = document.createElement('div');
         responseElement.className = 'ai-response';
         terminalOutput.appendChild(responseElement);
-
+    
         const pause = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
+    
         for (let i = 0; i < message.length; i++) {
             if (message[i] === '<') {
                 const tagEnd = message.indexOf('>', i);
                 if (tagEnd !== -1) {
                     responseElement.innerHTML += message.substring(i, tagEnd + 1);
                     i = tagEnd;
+                    continue;
                 }
-            } else {
-                responseElement.innerHTML += message[i];
             }
+            responseElement.innerHTML += message[i];
             terminalBody.scrollTop = terminalBody.scrollHeight;
             await pause(typingSpeed);
         }
     }
 
     function formatMessage(message) {
-        let formattedMessage = message.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+        let formattedMessage = message.replace(/\\n|\n/g, '<br>');
+        formattedMessage = formattedMessage.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         formattedMessage = formattedMessage.replace(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi, '<a href="mailto:$1">$1</a>');
         return formattedMessage;
     }
@@ -1260,7 +1277,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await fetch('proxy-voiceflow.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ actionType, message, conversationId })
+                body: JSON.stringify({
+                    actionType,
+                    message,
+                    conversationId,
+                    locale: currentLang // === MODIFICATION : ENVOI DE LA LANGUE ===
+                })
             });
 
             if (!response.ok) {
@@ -1323,6 +1345,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
   }
+  // =========================================================================
+  //                  FIN DE LA SECTION TERMINAL CORRIGÉE v2
+  // =========================================================================
 
   let matterInstance = null;
   function initializeSkillsSandbox(langData) {
