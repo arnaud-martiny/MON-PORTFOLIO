@@ -194,6 +194,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               src="assets/img/myself_1.webp"
               alt="Portrait de moi"
               data-i18n-attr-alt="about.imageAlt"
+              loading="lazy"
             />
           </div>
         </div>
@@ -246,13 +247,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
                 <span data-i18n="terminal.title">AM_os - /bin/bash</span>
             </div>
-            <div class="terminal-body" id="terminal-body">
-                <div id="terminal-output"></div>
-                <div class="terminal-input-line">
-                    <span class="terminal-prompt">user@arnaud-martiny.be:~$</span>
-                    <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+                <div class="terminal-body" id="terminal-body">
+                    <div id="terminal-output"></div>
+                    <form id="terminal-form" class="terminal-input-line">
+                        <span class="terminal-prompt">user@arnaud-martiny.be:~$</span>
+                        <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+                    </form>
+                    <!-- AJOUTEZ CETTE DIV VIDE -->
+                    <div id="terminal-suggestions" class="terminal-suggestions"></div>
                 </div>
-            </div>
         </div>
     </section>
 

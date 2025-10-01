@@ -43,9 +43,15 @@
     ]
   },
   "terminal": {
-    "sectionTitle": "EXPLORE MY PROFILE",
+    "sectionTitle": "MY AI ANSWERS YOUR QUESTIONS ABOUT ME",
     "title": "AM_os - /bin/zsh",
     "prompt": "user@arnaud-martiny.be:~$",
+    "suggestionsLabel": "Try:",
+    "suggestions": [
+      { "display": "skills", "command": "list my skills" },
+      { "display": "projects", "command": "what are your projects?" },
+      { "display": "contact", "command": "how can I contact you?" }
+    ],
     "welcomeMessage": "Welcome to AM_os v1.0\nType `help` to see the list of available commands",
     "commandNotFound": "Command not found: {command}. Type `help` for assistance",
     "help": "Available commands:\n\n  <strong>whoami</strong>    - Displays a short bio\n  <strong>skills</strong>    - Lists my technical skills\n  <strong>projects</strong>  - Shows my notable achievements\n  <strong>contact</strong>     - Displays my contact information\n  <strong>clear</strong>       - Clears the terminal screen",

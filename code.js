@@ -1,5 +1,5 @@
 // =========================================================================
-//                  SCRIPT.JS - VERSION FINALE ET CORRIGÉE (AVEC EFFET DE FRAPPE)
+//                  SCRIPT.JS - VERSION FINALE ET CORRIGÉE
 // =========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -271,7 +271,8 @@ document.addEventListener("DOMContentLoaded", () => {
           codeLinkTooltip = 'data-tooltip-key="featuredProjects.poetesCodeTooltip"';
         }
         const disabledState = 'style="opacity: 0.5; cursor: not-allowed;" onclick="event.preventDefault();"';
-        projectCard.innerHTML = `<div class="project-image"><a href="${project.liveLink}" target="_blank" ${project.liveLink === "#" ? disabledState : ''}><img src="${project.imageSrc}" alt="${project.imageAlt}"></a></div><div class="project-content"><p class="project-category">${project.category}</p><h3 class="project-title">${project.title}</h3><p class="project-description">${project.description}</p><div class="project-tech-list">${techHtml}</div><div class="project-links"><a href="${project.liveLink}" class="btn" target="_blank" ${liveLinkTooltip} ${project.liveLink === "#" ? disabledState : ''}>Voir le site</a><a href="${project.codeLink}" class="btn btn-outline" target="_blank" ${codeLinkTooltip} ${project.codeLink === "#" ? disabledState : ''}>Voir le code</a><button class="btn btn-case-study" data-project-id="${project.id}" data-tooltip-key="featuredProjects.caseStudyTooltip"><span>${caseStudyButtonText}</span></button></div></div>`;
+        // MODIFICATION ICI: ajout de loading="lazy" à la balise img
+        projectCard.innerHTML = `<div class="project-image"><a href="${project.liveLink}" target="_blank" ${project.liveLink === "#" ? disabledState : ''}><img src="${project.imageSrc}" alt="${project.imageAlt}" loading="lazy"></a></div><div class="project-content"><p class="project-category">${project.category}</p><h3 class="project-title">${project.title}</h3><p class="project-description">${project.description}</p><div class="project-tech-list">${techHtml}</div><div class="project-links"><a href="${project.liveLink}" class="btn" target="_blank" ${liveLinkTooltip} ${project.liveLink === "#" ? disabledState : ''}>Voir le site</a><a href="${project.codeLink}" class="btn btn-outline" target="_blank" ${codeLinkTooltip} ${project.codeLink === "#" ? disabledState : ''}>Voir le code</a><button class="btn btn-case-study" data-project-id="${project.id}" data-tooltip-key="featuredProjects.caseStudyTooltip"><span>${caseStudyButtonText}</span></button></div></div>`;
         projectsContainer.appendChild(projectCard);
       });
     }
@@ -927,7 +928,8 @@ document.addEventListener("DOMContentLoaded", () => {
       experiences.forEach(exp => {
         const itemWrapper = document.createElement('div');
         itemWrapper.className = 'experience-item-mobile';
-        itemWrapper.innerHTML = `<div class="experience-card" id="${exp.id}"><img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo"></div><div class="experience-details-mobile"><h4>${exp.companyName}</h4><span class="role">${exp.role}</span><p class="description">${exp.description}</p></div>`;
+        // MODIFICATION ICI: ajout de loading="lazy" à la balise img
+        itemWrapper.innerHTML = `<div class="experience-card" id="${exp.id}"><img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo" loading="lazy"></div><div class="experience-details-mobile"><h4>${exp.companyName}</h4><span class="role">${exp.role}</span><p class="description">${exp.description}</p></div>`;
         container.appendChild(itemWrapper);
       });
     } else {
@@ -940,7 +942,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const card = document.createElement('div');
         card.className = 'experience-card';
         card.id = exp.id;
-        card.innerHTML = `<img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo">`;
+        // MODIFICATION ICI: ajout de loading="lazy" à la balise img
+        card.innerHTML = `<img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo" loading="lazy">`;
         container.appendChild(card);
         card.addEventListener('mouseenter', () => {
           companyNameEl.textContent = exp.companyName;
@@ -1121,12 +1124,38 @@ document.addEventListener("DOMContentLoaded", () => {
     const terminalBody = document.getElementById('terminal-body');
     const terminalOutput = document.getElementById('terminal-output');
     const terminalInput = document.getElementById('terminal-input');
+    const terminalForm = document.getElementById('terminal-form');
+    const suggestionsContainer = document.getElementById('terminal-suggestions');
 
-    if (!terminalSection || !terminalBody || !terminalOutput || !terminalInput || !langData.terminal) {
+    if (!terminalSection || !terminalBody || !terminalOutput || !terminalInput || !terminalForm || !langData.terminal) {
         return;
     }
     
     terminalOutput.innerHTML = '';
+
+    if (suggestionsContainer && langData.terminal.suggestions) {
+        suggestionsContainer.innerHTML = '';
+        const label = document.createElement('span');
+        label.textContent = getNestedTranslation(langData, "terminal.suggestionsLabel") || 'Try:';
+        suggestionsContainer.appendChild(label);
+
+        langData.terminal.suggestions.forEach(suggestion => {
+            const button = document.createElement('button');
+            button.textContent = suggestion.display;
+            button.dataset.command = suggestion.command;
+            suggestionsContainer.appendChild(button);
+        });
+    }
+
+    if (suggestionsContainer) {
+        suggestionsContainer.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON' && !isWaitingForAi) {
+                const command = e.target.dataset.command;
+                terminalInput.value = command;
+                terminalForm.dispatchEvent(new Event('submit', { cancelable: true }));
+            }
+        });
+    }
 
     const conversationId = 'user-' + Date.now();
     let commandHistory = [];
@@ -1154,16 +1183,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     observer.observe(terminalSection);
     
+    terminalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (isWaitingForAi) return;
+
+        const command = terminalInput.value.trim();
+        if (command) {
+            processUserInput(command);
+            commandHistory.push(command);
+            historyIndex = commandHistory.length;
+        }
+        terminalInput.value = '';
+    });
+
     terminalInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && !isWaitingForAi) {
-            const command = terminalInput.value.trim();
-            if (command) {
-                processUserInput(command);
-                commandHistory.push(command);
-                historyIndex = commandHistory.length;
-            }
-            terminalInput.value = '';
-        } else if (e.key === 'ArrowUp' && commandHistory.length > 0) {
+        if (e.key === 'ArrowUp' && commandHistory.length > 0) {
             e.preventDefault();
             historyIndex = Math.max(0, historyIndex - 1);
             terminalInput.value = commandHistory[historyIndex];
@@ -1211,14 +1245,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function formatMessage(message) {
-        let formattedMessage = message
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\n/g, '<br>');
-
-        formattedMessage = formattedMessage.replace(
-            /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi,
-            '<a href="mailto:$1">$1</a>'
-        );
+        let formattedMessage = message.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+        formattedMessage = formattedMessage.replace(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi, '<a href="mailto:$1">$1</a>');
         return formattedMessage;
     }
 
@@ -1226,19 +1254,27 @@ document.addEventListener("DOMContentLoaded", () => {
         isWaitingForAi = true;
         terminalInput.disabled = true;
         showAiTyping(true);
+        let shouldReEnableInput = true;
 
         try {
             const response = await fetch('proxy-voiceflow.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    actionType: actionType,
-                    message: message,
-                    conversationId: conversationId
-                })
+                body: JSON.stringify({ actionType, message, conversationId })
             });
 
-            if (!response.ok) throw new Error(`Erreur du serveur proxy: ${response.statusText}`);
+            if (!response.ok) {
+                if (response.status === 429) {
+                    const errorData = await response.json();
+                    const rateLimitMessage = errorData[0]?.payload?.message || "Limite de messages atteinte. Veuillez réessayer demain.";
+                    showAiTyping(false);
+                    await typeAiResponse(rateLimitMessage);
+                    terminalInput.placeholder = "Limite quotidienne atteinte.";
+                    shouldReEnableInput = false;
+                    return;
+                }
+                throw new Error(`Erreur du serveur proxy: ${response.statusText}`);
+            }
             
             const data = await response.json();
             showAiTyping(false);
@@ -1246,11 +1282,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if (data.length === 0 && actionType !== 'launch') {
                 await typeAiResponse("Désolé, je n'ai pas compris. Pouvez-vous reformuler ?");
             } else {
-                for (let i = 0; i < data.length; i++) {
-                    const trace = data[i];
+                for (const trace of data) {
                     if (trace.type === 'text' || trace.type === 'speak') {
-                        const formatted = formatMessage(trace.payload.message);
-                        await typeAiResponse(formatted);
+                        await typeAiResponse(formatMessage(trace.payload.message));
                     }
                 }
             }
@@ -1263,10 +1297,11 @@ document.addEventListener("DOMContentLoaded", () => {
             separator.className = 'terminal-separator';
             separator.innerHTML = '---';
             terminalOutput.appendChild(separator);
-
             isWaitingForAi = false;
-            terminalInput.disabled = false;
-            terminalInput.focus();
+            if (shouldReEnableInput) {
+                terminalInput.disabled = false;
+                terminalInput.focus();
+            }
             terminalBody.scrollTop = terminalBody.scrollHeight;
         }
     }
@@ -1274,15 +1309,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function processUserInput(input) {
         const prompt = `<span class="terminal-prompt">${promptText}</span>`;
         const commandLine = `<p class="user-command">${prompt} ${input}</p>`;
-        
         const lastSeparator = terminalOutput.querySelector('.terminal-separator:last-child');
         if (lastSeparator) lastSeparator.remove();
-
         terminalOutput.innerHTML += commandLine;
         terminalBody.scrollTop = terminalBody.scrollHeight;
-
         if (input.toLowerCase() === 'clear') {
             terminalOutput.innerHTML = '';
+            isWaitingForAi = false;
+            terminalInput.disabled = false;
+            terminalInput.focus();
         } else {
             sendToVoiceflow(input, 'text');
         }
