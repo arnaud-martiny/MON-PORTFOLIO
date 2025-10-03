@@ -387,5 +387,35 @@
         "imageSrc": "assets/img/tarot/wheel.webp"
       }
     ]
+  },
+  "privacyModal": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: October 03, 2025",
+    "intro": "Respecting your privacy is important to me. This privacy policy explains what data is collected when you interact with this website (arnaud-martiny.be) and how it is used.",
+    "contactFormTitle": "1. Data Collected via the Contact Form",
+    "contactFormIntro": "When you use the contact form, the following information is collected and stored in a secure file on the server, and is also sent to me by email:",
+    "contactFormPoints": [
+      "Your name",
+      "Your email address",
+      "The subject and content of your message",
+      "Your IP address"
+    ],
+    "contactFormPurpose": "<strong>Purpose:</strong> This data is collected solely for the purpose of responding to your request and ensuring follow-up on our communications.",
+    "aiAssistantTitle": "2. Data Collected via the AI Assistant (Terminal)",
+    "aiAssistantIntro": "When you interact with the AI assistant available on this site, the following data is recorded for each message you send:",
+    "aiAssistantPoints": [
+      "Your message (prompt)",
+      "The response provided by the AI",
+      "Your IP address (to manage usage limits)",
+      "The language of the conversation",
+      "A timestamp of the exchange"
+    ],
+    "aiAssistantPurpose": "<strong>Purpose:</strong> This data is collected for analytical purposes to improve the quality and relevance of the AI's responses, as well as to prevent abuse of the service (rate limiting).",
+    "dataUsageTitle": "3. Use of Data",
+    "dataUsageText": "Your personal data is never shared, sold, or rented to third parties. It is used exclusively for the purposes described above.",
+    "retentionTitle": "4. Data Retention",
+    "retentionText": "Data from the contact form and the AI assistant is kept for a period not exceeding what is necessary for the purposes for which it is processed, generally for a maximum of 3 years after our last contact.",
+    "yourRightsTitle": "5. Your Rights",
+    "yourRightsText": "In accordance with the GDPR, you have the right to access, rectify, and delete your data. To exercise these rights, you can contact me directly at <strong>arnaudmartiny0@gmail.com</strong>."
   }
 }
