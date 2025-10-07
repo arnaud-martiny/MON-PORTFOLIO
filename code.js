@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let jsonAnimated = false; // Pour l'animation JSON
   let wavesAnimated = false; // Pour les vagues
 
+  // --- AJOUT --- : On déclare le journal de la conversation ici pour qu'il soit accessible
+  // à la fois par le terminal et par l'événement de fermeture de la page.
+  let conversationLog = [];
+
   const universalTooltip = document.createElement('div');
   universalTooltip.id = 'universal-tooltip';
   document.body.appendChild(universalTooltip);
@@ -1148,6 +1152,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // --- MODIFICATION --- : On réinitialise le log à chaque chargement du terminal.
+    conversationLog = [];
+
     if (terminalWindow) {
       terminalWindow.addEventListener('mouseenter', () => document.body.classList.add('terminal-hover'));
       terminalWindow.addEventListener('mouseleave', () => document.body.classList.remove('terminal-hover'));
@@ -1316,15 +1323,28 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
         showAiTyping(false);
 
+        // --- AJOUT --- : On prépare un tableau pour collecter toutes les réponses de l'IA pour ce tour.
+        const aiResponsesForLog = [];
+
         if (data.length === 0 && actionType !== 'launch') {
-          await typeAiResponse("Désolé, je n'ai pas compris. Pouvez-vous reformuler ?");
+          const errorMessage = "Désolé, je n'ai pas compris. Pouvez-vous reformuler ?";
+          await typeAiResponse(errorMessage);
+          aiResponsesForLog.push(errorMessage);
         } else {
           for (const trace of data) {
             if (trace.type === 'text' || trace.type === 'speak') {
               await typeAiResponse(formatMessage(trace.payload.message));
+              // --- AJOUT --- : On stocke le message brut (sans HTML) pour le log.
+              aiResponsesForLog.push(trace.payload.message);
             }
           }
         }
+
+        // --- AJOUT --- : Si l'IA a répondu, on ajoute sa réponse complète au log.
+        if (aiResponsesForLog.length > 0) {
+          conversationLog.push({ author: 'AI', message: aiResponsesForLog.join('\n') });
+        }
+
       } catch (error) {
         console.error("Erreur de communication:", error);
         showAiTyping(false);
@@ -1349,6 +1369,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const lastSeparator = terminalOutput.querySelector('.terminal-separator:last-child');
       if (lastSeparator) lastSeparator.remove();
       terminalOutput.innerHTML += commandLine;
+
+      // --- AJOUT --- : On enregistre la commande de l'utilisateur dans le log.
+      conversationLog.push({ author: 'User', message: input });
+
       terminalBody.scrollTop = terminalBody.scrollHeight;
       if (input.toLowerCase() === 'clear') {
         terminalOutput.innerHTML = '';
@@ -1524,6 +1548,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // --- AJOUT --- : Cet événement s'exécutera lorsque l'utilisateur quitte la page.
+  window.addEventListener('unload', function () {
+    // On vérifie s'il y a eu une conversation (au moins une question et une réponse).
+    if (conversationLog.length > 1) {
+      // On prépare les données à envoyer. C'est plus robuste d'utiliser un Blob.
+      const dataToSend = new Blob([JSON.stringify(conversationLog)], { type: 'application/json' });
+
+      // On envoie les données à un nouveau script PHP de manière asynchrone et fiable,
+      // sans retarder la fermeture de la page.
+      navigator.sendBeacon('send-conversation-summary.php', dataToSend);
+    }
+  });
 
 }); // Fin de document.addEventListener("DOMContentLoaded")
 

@@ -3225,3 +3225,24 @@ body.terminal-hover .cursor-follower {
     background: color-mix(in srgb, var(--primary) 40%, transparent);
     border-radius: 4px;
 }
+
+/* AJOUTEZ CECI À LA FIN DE style.css (ou vérifiez sa présence) */
+
+/* Règle pour le texte "Suggestions :" en mode clair */
+body.light-mode .terminal-suggestions span {
+    color: #555;
+}
+
+/* Règle pour les boutons en mode clair */
+body.light-mode .terminal-suggestions button {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.15);
+    color: #333; /* Texte plus sombre pour une meilleure lisibilité */
+}
+
+/* Règle pour le survol des boutons en mode clair */
+body.light-mode .terminal-suggestions button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.2);
+    color: #000;
+}
