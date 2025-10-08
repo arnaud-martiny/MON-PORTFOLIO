@@ -1138,7 +1138,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (finalCaret) finalCaret.remove();
   }
 
-  // ✅ REMPLACEZ L'ANCIENNE FONCTION PAR CELLE-CI
   function initializeTerminal(langData) {
     const terminalSection = document.getElementById('terminal-section');
     const terminalBody = document.getElementById('terminal-body');
@@ -1206,10 +1205,12 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
+    // ========== MODIFICATION 3 ==========
     const startAiConversation = () => {
       if (hasAiStarted) return;
       hasAiStarted = true;
-      sendToVoiceflow(null, 'launch');
+      // On envoie un premier message ("Bonjour" ou sa traduction) pour que l'IA se présente.
+      sendToGoogleAI(getNestedTranslation(langData, "terminal.initialGreeting") || "Bonjour");
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -1289,101 +1290,83 @@ document.addEventListener("DOMContentLoaded", () => {
       return formattedMessage;
     }
 
-    async function sendToVoiceflow(message, actionType = 'text') {
+    // ========== MODIFICATION 1 ==========
+    async function sendToGoogleAI(userInput) {
       isWaitingForAi = true;
       terminalInput.disabled = true;
       showAiTyping(true);
-      let shouldReEnableInput = true;
+
+      // On ajoute la nouvelle question de l'utilisateur à l'historique
+      // On s'assure de ne pas envoyer la réponse précédente de l'IA deux fois.
+      const lastMessage = conversationLog[conversationLog.length - 1];
+      if (!lastMessage || lastMessage.author !== 'User' || lastMessage.message !== userInput) {
+          conversationLog.push({ author: 'User', message: userInput });
+      }
 
       try {
-        const response = await fetch('proxy-voiceflow.php', {
+        // On appelle notre NOUVEAU script PHP : proxy-google-ai.php
+        const response = await fetch('proxy-cloudflare-ai.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            actionType,
-            message,
-            conversationId,
+            history: conversationLog, // On envoie tout l'historique de la conversation
             locale: currentLang
           })
         });
 
         if (!response.ok) {
-          if (response.status === 429) {
-            const errorData = await response.json();
-            const rateLimitMessage = errorData[0]?.payload?.message || "Limite de messages atteinte. Veuillez réessayer demain.";
-            showAiTyping(false);
-            await typeAiResponse(rateLimitMessage);
-            terminalInput.placeholder = "Limite quotidienne atteinte.";
-            shouldReEnableInput = false;
-            return;
-          }
-          throw new Error(`Erreur du serveur proxy: ${response.statusText}`);
+           const errorData = await response.json();
+           const errorMessage = errorData.error || `Erreur du serveur: ${response.statusText}`;
+           throw new Error(errorMessage);
         }
 
         const data = await response.json();
         showAiTyping(false);
 
-        // --- AJOUT --- : On prépare un tableau pour collecter toutes les réponses de l'IA pour ce tour.
-        const aiResponsesForLog = [];
-
-        if (data.length === 0 && actionType !== 'launch') {
-          const errorMessage = "Désolé, je n'ai pas compris. Pouvez-vous reformuler ?";
-          await typeAiResponse(errorMessage);
-          aiResponsesForLog.push(errorMessage);
+        if (data.response) {
+            const formattedMessage = formatMessage(data.response);
+            await typeAiResponse(formattedMessage);
+            // On ajoute la réponse de l'IA à l'historique pour le prochain tour
+            conversationLog.push({ author: 'AI', message: data.response });
         } else {
-          for (const trace of data) {
-            if (trace.type === 'text' || trace.type === 'speak') {
-              await typeAiResponse(formatMessage(trace.payload.message));
-              // --- AJOUT --- : On stocke le message brut (sans HTML) pour le log.
-              aiResponsesForLog.push(trace.payload.message);
-            }
-          }
-        }
-
-        // --- AJOUT --- : Si l'IA a répondu, on ajoute sa réponse complète au log.
-        if (aiResponsesForLog.length > 0) {
-          conversationLog.push({ author: 'AI', message: aiResponsesForLog.join('\n') });
+            throw new Error("La réponse de l'IA est vide.");
         }
 
       } catch (error) {
-        console.error("Erreur de communication:", error);
+        console.error("Erreur de communication avec Google AI:", error);
         showAiTyping(false);
-        await typeAiResponse("Oups... Il y a eu une erreur de connexion. Veuillez réessayer.");
+        await typeAiResponse("Oups... Il y a eu une erreur de connexion avec le modèle d'IA. Veuillez réessayer. Détail : " + error.message);
       } finally {
         const separator = document.createElement('p');
         separator.className = 'terminal-separator';
         separator.innerHTML = '---';
         terminalOutput.appendChild(separator);
         isWaitingForAi = false;
-        if (shouldReEnableInput) {
-          terminalInput.disabled = false;
-          terminalInput.focus();
-        }
+        terminalInput.disabled = false;
+        terminalInput.focus();
         terminalBody.scrollTop = terminalBody.scrollHeight;
       }
     }
 
+    // ========== MODIFICATION 2 ==========
     function processUserInput(input) {
       const prompt = `<span class="terminal-prompt">${promptText}</span>`;
       const commandLine = `<p class="user-command">${prompt} ${input}</p>`;
-      const lastSeparator = terminalOutput.querySelector('.terminal-separator:last-child');
-      if (lastSeparator) lastSeparator.remove();
       terminalOutput.innerHTML += commandLine;
-
-      // --- AJOUT --- : On enregistre la commande de l'utilisateur dans le log.
-      conversationLog.push({ author: 'User', message: input });
-
       terminalBody.scrollTop = terminalBody.scrollHeight;
+
       if (input.toLowerCase() === 'clear') {
-        terminalOutput.innerHTML = '';
-        isWaitingForAi = false;
-        terminalInput.disabled = false;
-        terminalInput.focus();
+        terminalOutput.innerHTML = ''; // Vide l'affichage
+        conversationLog = []; // Vide la mémoire de la conversation
+        // On relance une nouvelle conversation pour que l'IA se présente à nouveau
+        startAiConversation();
       } else {
-        sendToVoiceflow(input, 'text');
+        // On appelle notre NOUVELLE fonction
+        sendToGoogleAI(input);
       }
     }
   }
+
 
   // ✅ AJOUTEZ CE BLOC COMPLET POUR LA GESTION DE LA MODALE
   const privacyModal = document.getElementById('privacy-modal');
