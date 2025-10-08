@@ -50,7 +50,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&family=VT323&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css" /> 
+    <link rel="stylesheet" href="style.css?v=1.0.1" /> 
 
 
             <!-- Google tag (gtag.js) -->
@@ -387,7 +387,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="contact-form reveal">
           <form id="contact-form" action="traitement-formulaire.php" method="POST">
-            <input type="hidden" name="access_key" value="40d5c484-203a-4285-ba13-33c05514dfe3">
             <div class="form-group">
               <input type="text" name="name" required placeholder="Nom" data-i18n-attr-placeholder="contactSection.form.namePlaceholder">
             </div>
@@ -410,20 +409,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <!-- Footer & Popups (INCHANGÉ) -->
+    <!-- Footer & Popups -->
     <footer class="footer">
       <div class="footer-content">
         <div class="logo" data-i18n="nav.logo">AM.</div>
+        <!-- AJOUT DU LIEN POUR LA POLITIQUE DE CONFIDENTIALITÉ -->
+        <div class="footer-links">
+            <a href="#" id="open-privacy-modal-btn">Politique de Confidentialité</a>
+        </div>
         <p data-i18n="footer.copyright">
           © 2025 Arnaud Martiny. Tous droits réservés.
         </p>
       </div>
     </footer>
+
+
     <a href="#accueil" class="back-to-top" aria-label="Retour en haut">
       <i class="fas fa-arrow-up"></i>
     </a>
     <div id="evolution-popup-overlay" class="evolution-popup-overlay">
-      <div id="evolution-popup" class="evolution-popup" data-last-updated="30/09/2025">
+      <div id="evolution-popup" class="evolution-popup" data-last-updated="03/10/2025">
         <button id="evolution-popup-close" class="evolution-popup-close">×</button>
         <h4 data-i18n="evolutionPopup.title">Site en Évolution</h4>
         <p data-i18n="evolutionPopup.message" data-i18n-html>
@@ -471,6 +476,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
     </div>
 
+     <!-- ======================================================== -->
+    <!--     NOUVELLE MODALE DE POLITIQUE DE CONFIDENTIALITÉ      -->
+    <!-- ======================================================== -->
+<div id="privacy-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-privacy-modal-btn" class="modal-close-btn">&times;</button>
+            
+            <h3 data-i18n="privacyModal.title">Politique de Confidentialité</h3>
+            
+            <p><strong data-i18n="privacyModal.lastUpdated"></strong></p>
+            
+            <p data-i18n="privacyModal.intro"></p>
+
+            <h4 data-i18n="privacyModal.contactFormTitle"></h4>
+            <p data-i18n="privacyModal.contactFormIntro"></p>
+            <ul id="privacy-contact-points">
+                <!-- Les points seront générés par JS -->
+            </ul>
+            <p data-i18n="privacyModal.contactFormPurpose" data-i18n-html></p>
+
+            <h4 data-i18n="privacyModal.aiAssistantTitle"></h4>
+            <p data-i18n="privacyModal.aiAssistantIntro"></p>
+            <ul id="privacy-ai-points">
+                <!-- Les points seront générés par JS -->
+            </ul>
+            <p data-i18n="privacyModal.aiAssistantPurpose" data-i18n-html></p>
+
+            <h4 data-i18n="privacyModal.dataUsageTitle"></h4>
+            <p data-i18n="privacyModal.dataUsageText"></p>
+            
+            <h4 data-i18n="privacyModal.retentionTitle"></h4>
+            <p data-i18n="privacyModal.retentionText"></p>
+
+            <h4 data-i18n="privacyModal.yourRightsTitle"></h4>
+            <p data-i18n="privacyModal.yourRightsText" data-i18n-html></p>
+        </div>
+    </div>
+
     <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
@@ -479,9 +522,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- ✅ NOUVEAU SCRIPT POUR LA PHYSIQUE -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
     
-    <script src="code.js" defer></script>
+    <script src="code.js?v=1.0.1" defer></script>
 
-    <script src="https://web3forms.com/client/script.js" async defer></script>
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "a7f54faff13c4512b0dbbbc62d498028"}'></script>
   </body>
 </html>

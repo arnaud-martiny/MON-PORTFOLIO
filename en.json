@@ -46,19 +46,17 @@
     "sectionTitle": "MY AI ANSWERS YOUR QUESTIONS ABOUT ME",
     "title": "AM_os - /bin/zsh",
     "prompt": "user@arnaud-martiny.be:~$",
-    "suggestionsLabel": "Try:",
+    "suggestionsLabel": "Suggestions:",
     "suggestions": [
-      { "display": "skills", "command": "list my skills" },
-      { "display": "projects", "command": "what are your projects?" },
-      { "display": "contact", "command": "how can I contact you?" }
-    ],
-    "welcomeMessage": "Welcome to AM_os v1.0\nType `help` to see the list of available commands",
-    "commandNotFound": "Command not found: {command}. Type `help` for assistance",
-    "help": "Available commands:\n\n  <strong>whoami</strong>    - Displays a short bio\n  <strong>skills</strong>    - Lists my technical skills\n  <strong>projects</strong>  - Shows my notable achievements\n  <strong>contact</strong>     - Displays my contact information\n  <strong>clear</strong>       - Clears the terminal screen",
-    "whoami": "I am Arnaud Martiny, a creative Full-Stack Developer based in Brussels\nMy mission: to transform complex ideas into simple and intuitive digital experiences\nI am passionate about software architecture, interaction design, and problem-solving",
-    "skills": "Here is an overview of my technical stack:\n\n  <strong>Languages:</strong>    JavaScript (ES6+), PHP, SQL, HTML5, CSS3\n  <strong>Frameworks:</strong>   GSAP, (and I'm learning React!)\n  <strong>Backend:</strong>      PHP, MySQL, REST APIs\n  <strong>Frontend:</strong>     Vanilla JS, CSS Grid/Flexbox\n  <strong>CMS & E-com:</strong>  Shopify, WordPress\n  <strong>Tools:</strong>        Git, GitHub, Figma, GTM, Analytics",
-    "projects": "Key projects:\n\n  - <strong>Personal Portfolio:</strong> Coded from scratch in Vanilla JS to demonstrate my mastery of the front-end\n  - <strong>Nowa Logistics:</strong> Showcase website designed and developed during my internship (Figma to HTML/CSS/JS)\n  - <strong>Le Théâtre des Poètes:</strong> Complete redesign (PHP/MySQL) of a site for a non-profit organization\n  - <strong>Fast 'N Friends:</strong> Carpooling platform (PHP/WordPress) created as part of a team",
-    "contact": "Let's stay in touch:\n\n  <strong>Email:</strong>    <a href=\"mailto:arnaudmartiny0@gmail.com\">arnaudmartiny0@gmail.com</a>\n  <strong>LinkedIn:</strong> <a href=\"https://www.linkedin.com/in/arnaud-martiny/\" target=\"_blank\">linkedin.com/in/arnaud-martiny</a>\n  <strong>GitHub:</strong>   <a href=\"https://github.com/arnaud-martiny\" target=\"_blank\">github.com/arnaud-martiny</a>"
+      { "display": "His skills?", "command": "What are his technical skills?" },
+      { "display": "His projects?", "command": "Tell me about his most important projects." },
+      { "display": "Nowa experience?", "command": "What was his role during his internship at Nowa Market?" },
+      { "display": "Philosophy?", "command": "What is his work philosophy?" },
+      { "display": "Figma skills?", "command": "What is his proficiency in Figma?" },
+      { "display": "Education?", "command": "What is his educational background?" },
+      { "display": "Availability?", "command": "Is he available in Brussels?" },
+      { "display": "Contact him?", "command": "How can I contact him?" }
+    ]
   },
   "professionalExperiences": {
     "title": "PROFESSIONAL COLLABORATIONS",
@@ -389,5 +387,35 @@
         "imageSrc": "assets/img/tarot/wheel.webp"
       }
     ]
+  },
+  "privacyModal": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: October 03, 2025",
+    "intro": "Respecting your privacy is important to me. This privacy policy explains what data is collected when you interact with this website (arnaud-martiny.be) and how it is used.",
+    "contactFormTitle": "1. Data Collected via the Contact Form",
+    "contactFormIntro": "When you use the contact form, the following information is collected and stored in a secure file on the server, and is also sent to me by email:",
+    "contactFormPoints": [
+      "Your name",
+      "Your email address",
+      "The subject and content of your message",
+      "Your IP address"
+    ],
+    "contactFormPurpose": "<strong>Purpose:</strong> This data is collected solely for the purpose of responding to your request and ensuring follow-up on our communications.",
+    "aiAssistantTitle": "2. Data Collected via the AI Assistant (Terminal)",
+    "aiAssistantIntro": "When you interact with the AI assistant available on this site, the following data is recorded for each message you send:",
+    "aiAssistantPoints": [
+      "Your message (prompt)",
+      "The response provided by the AI",
+      "Your IP address (to manage usage limits)",
+      "The language of the conversation",
+      "A timestamp of the exchange"
+    ],
+    "aiAssistantPurpose": "<strong>Purpose:</strong> This data is collected for analytical purposes to improve the quality and relevance of the AI's responses, as well as to prevent abuse of the service (rate limiting).",
+    "dataUsageTitle": "3. Use of Data",
+    "dataUsageText": "Your personal data is never shared, sold, or rented to third parties. It is used exclusively for the purposes described above.",
+    "retentionTitle": "4. Data Retention",
+    "retentionText": "Data from the contact form and the AI assistant is kept for a period not exceeding what is necessary for the purposes for which it is processed, generally for a maximum of 3 years after our last contact.",
+    "yourRightsTitle": "5. Your Rights",
+    "yourRightsText": "In accordance with the GDPR, you have the right to access, rectify, and delete your data. To exercise these rights, you can contact me directly at <strong>arnaudmartiny0@gmail.com</strong>."
   }
 }

@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let jsonAnimated = false; // Pour l'animation JSON
   let wavesAnimated = false; // Pour les vagues
 
+  // --- AJOUT --- : On déclare le journal de la conversation ici pour qu'il soit accessible
+  // à la fois par le terminal et par l'événement de fermeture de la page.
+  let conversationLog = [];
+
   const universalTooltip = document.createElement('div');
   universalTooltip.id = 'universal-tooltip';
   document.body.appendChild(universalTooltip);
@@ -42,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const translations = {};
   let currentLang = localStorage.getItem("language") || "fr";
-  
+
   const langFrBtn = document.getElementById("lang-fr");
   const langEnBtn = document.getElementById("lang-en");
   const mobileLangFrBtn = document.getElementById("lang-fr-topnav");
@@ -50,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function fetchTranslations(lang) {
     try {
+      // ✅ MODIFICATION : Ajout du "cache busting" pour les fichiers de traduction
       const response = await fetch(`${lang}.json?v=${new Date().getTime()}`);
       if (!response.ok) throw new Error(`Failed to load ${lang}.json`);
       translations[lang] = await response.json();
@@ -99,15 +104,15 @@ document.addEventListener("DOMContentLoaded", () => {
       if (translation !== undefined)
         el.setAttribute("placeholder", translation);
     });
-    
+
     const cvLinks = document.querySelectorAll('.cv-link');
     if (cvLinks.length > 0) {
-        const cvFileNameFR = 'CV-Arnaud-Martiny-FR.pdf';
-        const cvFileNameEN = 'CV-Arnaud-Martiny-EN.pdf';
-        const filePath = lang === 'fr'
-            ? `assets/CV/${cvFileNameFR}`
-            : `assets/CV/${cvFileNameEN}`;
-        cvLinks.forEach(link => link.setAttribute('href', filePath));
+      const cvFileNameFR = 'CV-Arnaud-Martiny-FR.pdf';
+      const cvFileNameEN = 'CV-Arnaud-Martiny-EN.pdf';
+      const filePath = lang === 'fr'
+        ? `assets/CV/${cvFileNameFR}`
+        : `assets/CV/${cvFileNameEN}`;
+      cvLinks.forEach(link => link.setAttribute('href', filePath));
     }
 
     const jsonContentEl = document.getElementById("language-json-content");
@@ -271,12 +276,11 @@ document.addEventListener("DOMContentLoaded", () => {
           codeLinkTooltip = 'data-tooltip-key="featuredProjects.poetesCodeTooltip"';
         }
         const disabledState = 'style="opacity: 0.5; cursor: not-allowed;" onclick="event.preventDefault();"';
-        // MODIFICATION ICI: ajout de loading="lazy" à la balise img
         projectCard.innerHTML = `<div class="project-image"><a href="${project.liveLink}" target="_blank" ${project.liveLink === "#" ? disabledState : ''}><img src="${project.imageSrc}" alt="${project.imageAlt}" loading="lazy"></a></div><div class="project-content"><p class="project-category">${project.category}</p><h3 class="project-title">${project.title}</h3><p class="project-description">${project.description}</p><div class="project-tech-list">${techHtml}</div><div class="project-links"><a href="${project.liveLink}" class="btn" target="_blank" ${liveLinkTooltip} ${project.liveLink === "#" ? disabledState : ''}>Voir le site</a><a href="${project.codeLink}" class="btn btn-outline" target="_blank" ${codeLinkTooltip} ${project.codeLink === "#" ? disabledState : ''}>Voir le code</a><button class="btn btn-case-study" data-project-id="${project.id}" data-tooltip-key="featuredProjects.caseStudyTooltip"><span>${caseStudyButtonText}</span></button></div></div>`;
         projectsContainer.appendChild(projectCard);
       });
     }
-    
+
     function moveTooltip(e) {
       if (universalTooltip.style.display === 'block') {
         universalTooltip.style.left = `${e.clientX + 20}px`;
@@ -299,7 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       button.addEventListener('mousemove', moveTooltip);
     });
-    
+
     initializeRetroAnimation(langData);
     initializeTestimonialsTerminal(langData);
     initializeSlotMachine(langData);
@@ -310,15 +314,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const evolutionPopupMessage = document.querySelector('#evolution-popup p[data-i18n="evolutionPopup.message"]');
     const evolutionPopupEl = document.getElementById('evolution-popup');
     if (evolutionPopupMessage && evolutionPopupEl && evolutionPopupEl.dataset.lastUpdated) {
-        const lastUpdatedDate = evolutionPopupEl.dataset.lastUpdated;
-        const messageTemplate = getNestedTranslation(langData, "evolutionPopup.message") || "Last update on {{date}}.";
-        evolutionPopupMessage.innerHTML = messageTemplate.replace('{{date}}', `<b>${lastUpdatedDate}</b>`);
+      const lastUpdatedDate = evolutionPopupEl.dataset.lastUpdated;
+      const messageTemplate = getNestedTranslation(langData, "evolutionPopup.message") || "Last update on {{date}}.";
+      evolutionPopupMessage.innerHTML = messageTemplate.replace('{{date}}', `<b>${lastUpdatedDate}</b>`);
     }
-    
+
+    // ✅ NOUVEAU BLOC À AJOUTER À LA FIN DE applyTranslations
+    // Génération des listes pour la modale de confidentialité
+    function generateList(listId, pointsKey) {
+      const listElement = document.getElementById(listId);
+      const listPoints = getNestedTranslation(langData, pointsKey);
+      if (listElement && Array.isArray(listPoints)) {
+        listElement.innerHTML = ''; // On vide la liste
+        listPoints.forEach(point => {
+          const li = document.createElement('li');
+          li.textContent = point;
+          listElement.appendChild(li);
+        });
+      }
+    }
+    generateList('privacy-contact-points', 'privacyModal.contactFormPoints');
+    generateList('privacy-ai-points', 'privacyModal.aiAssistantPoints');
+
     updateLangButtons();
     if (typeof reveal === "function") reveal();
   }
-  
+
   async function setLanguage(lang, force = false) {
     if (currentLang === lang && !force) return;
     if (!translations[lang]) {
@@ -328,7 +349,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("language", lang);
     applyTranslations(lang);
   }
-  
+
   function updateLangButtons() {
     const isFr = currentLang === "fr";
     if (langFrBtn) langFrBtn.classList.toggle("active", isFr);
@@ -928,7 +949,6 @@ document.addEventListener("DOMContentLoaded", () => {
       experiences.forEach(exp => {
         const itemWrapper = document.createElement('div');
         itemWrapper.className = 'experience-item-mobile';
-        // MODIFICATION ICI: ajout de loading="lazy" à la balise img
         itemWrapper.innerHTML = `<div class="experience-card" id="${exp.id}"><img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo" loading="lazy"></div><div class="experience-details-mobile"><h4>${exp.companyName}</h4><span class="role">${exp.role}</span><p class="description">${exp.description}</p></div>`;
         container.appendChild(itemWrapper);
       });
@@ -942,7 +962,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const card = document.createElement('div');
         card.className = 'experience-card';
         card.id = exp.id;
-        // MODIFICATION ICI: ajout de loading="lazy" à la balise img
         card.innerHTML = `<img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo" loading="lazy">`;
         container.appendChild(card);
         card.addEventListener('mouseenter', () => {
@@ -1119,6 +1138,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (finalCaret) finalCaret.remove();
   }
 
+  // ✅ REMPLACEZ L'ANCIENNE FONCTION PAR CELLE-CI
   function initializeTerminal(langData) {
     const terminalSection = document.getElementById('terminal-section');
     const terminalBody = document.getElementById('terminal-body');
@@ -1126,325 +1146,422 @@ document.addEventListener("DOMContentLoaded", () => {
     const terminalInput = document.getElementById('terminal-input');
     const terminalForm = document.getElementById('terminal-form');
     const suggestionsContainer = document.getElementById('terminal-suggestions');
+    const terminalWindow = document.querySelector('.terminal-window');
 
     if (!terminalSection || !terminalBody || !terminalOutput || !terminalInput || !terminalForm || !langData.terminal) {
-        return;
+      return;
     }
-    
+
+    // --- MODIFICATION --- : On réinitialise le log à chaque chargement du terminal.
+    conversationLog = [];
+
+    if (terminalWindow) {
+      terminalWindow.addEventListener('mouseenter', () => document.body.classList.add('terminal-hover'));
+      terminalWindow.addEventListener('mouseleave', () => document.body.classList.remove('terminal-hover'));
+    }
+
     terminalOutput.innerHTML = '';
 
     if (suggestionsContainer && langData.terminal.suggestions) {
-        suggestionsContainer.innerHTML = '';
-        const label = document.createElement('span');
-        label.textContent = getNestedTranslation(langData, "terminal.suggestionsLabel") || 'Try:';
-        suggestionsContainer.appendChild(label);
+      suggestionsContainer.innerHTML = '';
+      const label = document.createElement('span');
+      label.textContent = getNestedTranslation(langData, "terminal.suggestionsLabel") || 'Suggestions :';
+      suggestionsContainer.appendChild(label);
 
-        langData.terminal.suggestions.forEach(suggestion => {
-            const button = document.createElement('button');
-            button.textContent = suggestion.display;
-            button.dataset.command = suggestion.command;
-            suggestionsContainer.appendChild(button);
-        });
-    }
+      langData.terminal.suggestions.forEach(suggestion => {
+        const button = document.createElement('button');
+        button.textContent = suggestion.display;
+        button.dataset.command = suggestion.command;
+        suggestionsContainer.appendChild(button);
+      });
 
-    if (suggestionsContainer) {
-        suggestionsContainer.addEventListener('click', (e) => {
-            if (e.target.tagName === 'BUTTON' && !isWaitingForAi) {
-                const command = e.target.dataset.command;
-                terminalInput.value = command;
-                terminalForm.dispatchEvent(new Event('submit', { cancelable: true }));
-            }
-        });
+      suggestionsContainer.addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON' && !isWaitingForAi) {
+          terminalInput.value = e.target.dataset.command;
+          terminalForm.dispatchEvent(new Event('submit', { cancelable: true }));
+        }
+      });
     }
 
     const conversationId = 'user-' + Date.now();
-    let commandHistory = [];
-    let historyIndex = -1;
-    let isWaitingForAi = false;
-    let hasAiStarted = false;
+    let commandHistory = [], historyIndex = -1, isWaitingForAi = false, hasAiStarted = false;
 
     const promptText = getNestedTranslation(langData, "terminal.prompt") || "user@arnaud-martiny.be:~$";
     document.querySelector('.terminal-prompt').textContent = promptText;
 
-    terminalBody.addEventListener('click', () => terminalInput.focus());
+    // GESTIONNAIRE DE CLICS FUSIONNÉ ET CORRIGÉ
+    if (terminalBody) {
+      terminalBody.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (link) {
+          if (link.getAttribute('href') === '#privacy-modal') {
+            e.preventDefault();
+            if (typeof openPrivacyModal === 'function') {
+              openPrivacyModal();
+            }
+          }
+        } else {
+          if (terminalInput) terminalInput.focus();
+        }
+      });
+    }
 
     const startAiConversation = () => {
-        if (hasAiStarted) return;
-        hasAiStarted = true;
-        sendToVoiceflow(null, 'launch');
+      if (hasAiStarted) return;
+      hasAiStarted = true;
+      sendToVoiceflow(null, 'launch');
     };
 
     const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-            startAiConversation();
-            observer.disconnect();
-        }
+      if (entries[0].isIntersecting) {
+        startAiConversation();
+        observer.disconnect();
+      }
     }, { threshold: 0.5 });
-
     observer.observe(terminalSection);
-    
-    terminalForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (isWaitingForAi) return;
 
-        const command = terminalInput.value.trim();
-        if (command) {
-            processUserInput(command);
-            commandHistory.push(command);
-            historyIndex = commandHistory.length;
-        }
-        terminalInput.value = '';
+    terminalForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (isWaitingForAi) return;
+
+      const command = terminalInput.value.trim();
+      if (command) {
+        processUserInput(command);
+        commandHistory.push(command);
+        historyIndex = commandHistory.length;
+      }
+      terminalInput.value = '';
     });
 
     terminalInput.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowUp' && commandHistory.length > 0) {
-            e.preventDefault();
-            historyIndex = Math.max(0, historyIndex - 1);
-            terminalInput.value = commandHistory[historyIndex];
-        } else if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            historyIndex = Math.min(commandHistory.length, historyIndex + 1);
-            terminalInput.value = (historyIndex === commandHistory.length) ? '' : commandHistory[historyIndex];
-        }
+      if (e.key === 'ArrowUp' && commandHistory.length > 0) {
+        e.preventDefault();
+        historyIndex = Math.max(0, historyIndex - 1);
+        terminalInput.value = commandHistory[historyIndex];
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        historyIndex = Math.min(commandHistory.length, historyIndex + 1);
+        terminalInput.value = (historyIndex === commandHistory.length) ? '' : commandHistory[historyIndex];
+      }
     });
 
     function showAiTyping(show) {
-        let typingIndicator = terminalOutput.querySelector('.ai-typing');
-        if (show && !typingIndicator) {
-            typingIndicator = document.createElement('p');
-            typingIndicator.className = 'ai-typing';
-            typingIndicator.innerHTML = '<span>.</span><span>.</span><span>.</span>';
-            terminalOutput.appendChild(typingIndicator);
-            terminalBody.scrollTop = terminalBody.scrollHeight;
-        } else if (!show && typingIndicator) {
-            typingIndicator.remove();
-        }
+      let typingIndicator = terminalOutput.querySelector('.ai-typing');
+      if (show && !typingIndicator) {
+        typingIndicator = document.createElement('p');
+        typingIndicator.className = 'ai-typing';
+        typingIndicator.innerHTML = '<span>.</span><span>.</span><span>.</span>';
+        terminalOutput.appendChild(typingIndicator);
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+      } else if (!show && typingIndicator) {
+        typingIndicator.remove();
+      }
     }
 
     async function typeAiResponse(message) {
-        const typingSpeed = 20;
-        const responseElement = document.createElement('p');
-        responseElement.className = 'ai-response';
-        terminalOutput.appendChild(responseElement);
+      const typingSpeed = 15;
+      const responseElement = document.createElement('div');
+      responseElement.className = 'ai-response';
+      terminalOutput.appendChild(responseElement);
 
-        const pause = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+      const pause = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-        for (let i = 0; i < message.length; i++) {
-            if (message[i] === '<') {
-                const tagEnd = message.indexOf('>', i);
-                if (tagEnd !== -1) {
-                    responseElement.innerHTML += message.substring(i, tagEnd + 1);
-                    i = tagEnd;
-                }
-            } else {
-                responseElement.innerHTML += message[i];
-            }
-            terminalBody.scrollTop = terminalBody.scrollHeight;
-            await pause(typingSpeed);
+      for (let i = 0; i < message.length; i++) {
+        if (message[i] === '<') {
+          const tagEnd = message.indexOf('>', i);
+          if (tagEnd !== -1) {
+            responseElement.innerHTML += message.substring(i, tagEnd + 1);
+            i = tagEnd;
+            continue;
+          }
         }
+        responseElement.innerHTML += message[i];
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+        await pause(typingSpeed);
+      }
     }
 
     function formatMessage(message) {
-        let formattedMessage = message.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-        formattedMessage = formattedMessage.replace(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi, '<a href="mailto:$1">$1</a>');
-        return formattedMessage;
+      let formattedMessage = message.replace(/\\n|\n/g, '<br>');
+      formattedMessage = formattedMessage.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      formattedMessage = formattedMessage.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+      formattedMessage = formattedMessage.replace(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi, '<a href="mailto:$1">$1</a>');
+      return formattedMessage;
     }
 
     async function sendToVoiceflow(message, actionType = 'text') {
-        isWaitingForAi = true;
-        terminalInput.disabled = true;
-        showAiTyping(true);
-        let shouldReEnableInput = true;
+      isWaitingForAi = true;
+      terminalInput.disabled = true;
+      showAiTyping(true);
+      let shouldReEnableInput = true;
 
-        try {
-            const response = await fetch('proxy-voiceflow.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ actionType, message, conversationId })
-            });
+      try {
+        const response = await fetch('proxy-voiceflow.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            actionType,
+            message,
+            conversationId,
+            locale: currentLang
+          })
+        });
 
-            if (!response.ok) {
-                if (response.status === 429) {
-                    const errorData = await response.json();
-                    const rateLimitMessage = errorData[0]?.payload?.message || "Limite de messages atteinte. Veuillez réessayer demain.";
-                    showAiTyping(false);
-                    await typeAiResponse(rateLimitMessage);
-                    terminalInput.placeholder = "Limite quotidienne atteinte.";
-                    shouldReEnableInput = false;
-                    return;
-                }
-                throw new Error(`Erreur du serveur proxy: ${response.statusText}`);
-            }
-            
-            const data = await response.json();
+        if (!response.ok) {
+          if (response.status === 429) {
+            const errorData = await response.json();
+            const rateLimitMessage = errorData[0]?.payload?.message || "Limite de messages atteinte. Veuillez réessayer demain.";
             showAiTyping(false);
-
-            if (data.length === 0 && actionType !== 'launch') {
-                await typeAiResponse("Désolé, je n'ai pas compris. Pouvez-vous reformuler ?");
-            } else {
-                for (const trace of data) {
-                    if (trace.type === 'text' || trace.type === 'speak') {
-                        await typeAiResponse(formatMessage(trace.payload.message));
-                    }
-                }
-            }
-        } catch (error) {
-            console.error("Erreur de communication:", error);
-            showAiTyping(false);
-            await typeAiResponse("Oups... Il y a eu une erreur de connexion. Veuillez réessayer.");
-        } finally {
-            const separator = document.createElement('p');
-            separator.className = 'terminal-separator';
-            separator.innerHTML = '---';
-            terminalOutput.appendChild(separator);
-            isWaitingForAi = false;
-            if (shouldReEnableInput) {
-                terminalInput.disabled = false;
-                terminalInput.focus();
-            }
-            terminalBody.scrollTop = terminalBody.scrollHeight;
+            await typeAiResponse(rateLimitMessage);
+            terminalInput.placeholder = "Limite quotidienne atteinte.";
+            shouldReEnableInput = false;
+            return;
+          }
+          throw new Error(`Erreur du serveur proxy: ${response.statusText}`);
         }
+
+        const data = await response.json();
+        showAiTyping(false);
+
+        // --- AJOUT --- : On prépare un tableau pour collecter toutes les réponses de l'IA pour ce tour.
+        const aiResponsesForLog = [];
+
+        if (data.length === 0 && actionType !== 'launch') {
+          const errorMessage = "Désolé, je n'ai pas compris. Pouvez-vous reformuler ?";
+          await typeAiResponse(errorMessage);
+          aiResponsesForLog.push(errorMessage);
+        } else {
+          for (const trace of data) {
+            if (trace.type === 'text' || trace.type === 'speak') {
+              await typeAiResponse(formatMessage(trace.payload.message));
+              // --- AJOUT --- : On stocke le message brut (sans HTML) pour le log.
+              aiResponsesForLog.push(trace.payload.message);
+            }
+          }
+        }
+
+        // --- AJOUT --- : Si l'IA a répondu, on ajoute sa réponse complète au log.
+        if (aiResponsesForLog.length > 0) {
+          conversationLog.push({ author: 'AI', message: aiResponsesForLog.join('\n') });
+        }
+
+      } catch (error) {
+        console.error("Erreur de communication:", error);
+        showAiTyping(false);
+        await typeAiResponse("Oups... Il y a eu une erreur de connexion. Veuillez réessayer.");
+      } finally {
+        const separator = document.createElement('p');
+        separator.className = 'terminal-separator';
+        separator.innerHTML = '---';
+        terminalOutput.appendChild(separator);
+        isWaitingForAi = false;
+        if (shouldReEnableInput) {
+          terminalInput.disabled = false;
+          terminalInput.focus();
+        }
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+      }
     }
 
     function processUserInput(input) {
-        const prompt = `<span class="terminal-prompt">${promptText}</span>`;
-        const commandLine = `<p class="user-command">${prompt} ${input}</p>`;
-        const lastSeparator = terminalOutput.querySelector('.terminal-separator:last-child');
-        if (lastSeparator) lastSeparator.remove();
-        terminalOutput.innerHTML += commandLine;
-        terminalBody.scrollTop = terminalBody.scrollHeight;
-        if (input.toLowerCase() === 'clear') {
-            terminalOutput.innerHTML = '';
-            isWaitingForAi = false;
-            terminalInput.disabled = false;
-            terminalInput.focus();
-        } else {
-            sendToVoiceflow(input, 'text');
-        }
+      const prompt = `<span class="terminal-prompt">${promptText}</span>`;
+      const commandLine = `<p class="user-command">${prompt} ${input}</p>`;
+      const lastSeparator = terminalOutput.querySelector('.terminal-separator:last-child');
+      if (lastSeparator) lastSeparator.remove();
+      terminalOutput.innerHTML += commandLine;
+
+      // --- AJOUT --- : On enregistre la commande de l'utilisateur dans le log.
+      conversationLog.push({ author: 'User', message: input });
+
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+      if (input.toLowerCase() === 'clear') {
+        terminalOutput.innerHTML = '';
+        isWaitingForAi = false;
+        terminalInput.disabled = false;
+        terminalInput.focus();
+      } else {
+        sendToVoiceflow(input, 'text');
+      }
     }
   }
 
+  // ✅ AJOUTEZ CE BLOC COMPLET POUR LA GESTION DE LA MODALE
+  const privacyModal = document.getElementById('privacy-modal');
+  const openModalBtn = document.getElementById('open-privacy-modal-btn');
+  const closeModalBtn = document.getElementById('close-privacy-modal-btn');
+
+  const openPrivacyModal = () => {
+    if (privacyModal) {
+      privacyModal.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+  // On rend la fonction accessible globalement pour que le terminal puisse l'appeler
+  window.openPrivacyModal = openPrivacyModal;
+
+  const closePrivacyModal = () => {
+    if (privacyModal) {
+      privacyModal.classList.remove('visible');
+      document.body.style.overflow = '';
+    }
+  };
+
+  if (openModalBtn) {
+    openModalBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openPrivacyModal();
+    });
+  }
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closePrivacyModal);
+  }
+  if (privacyModal) {
+    privacyModal.addEventListener('click', (e) => {
+      if (e.target === privacyModal) {
+        closePrivacyModal();
+      }
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && privacyModal && privacyModal.classList.contains('visible')) {
+      closePrivacyModal();
+    }
+  });
+
   let matterInstance = null;
   function initializeSkillsSandbox(langData) {
-      if (typeof Matter === 'undefined') {
-          console.error("Matter.js is not loaded.");
-          return;
-      }
-      
-      const container = document.getElementById('sandbox-container');
-      if (!container || !langData.skillsSandbox || !langData.skillsSandbox.skills) {
-          return;
-      }
+    if (typeof Matter === 'undefined') {
+      console.error("Matter.js is not loaded.");
+      return;
+    }
 
-      if (matterInstance) {
-          Matter.Render.stop(matterInstance.render);
-          Matter.World.clear(matterInstance.engine.world);
-          Matter.Engine.clear(matterInstance.engine);
-          container.innerHTML = '';
+    const container = document.getElementById('sandbox-container');
+    if (!container || !langData.skillsSandbox || !langData.skillsSandbox.skills) {
+      return;
+    }
+
+    if (matterInstance) {
+      Matter.Render.stop(matterInstance.render);
+      Matter.World.clear(matterInstance.engine.world);
+      Matter.Engine.clear(matterInstance.engine);
+      container.innerHTML = '';
+    }
+
+    const skills = langData.skillsSandbox.skills;
+
+    const { Engine, Render, Runner, World, Bodies, Mouse, MouseConstraint } = Matter;
+
+    const engine = Engine.create({ gravity: { y: 0.4 } });
+    const render = Render.create({
+      element: container,
+      engine: engine,
+      options: {
+        width: container.clientWidth,
+        height: container.clientHeight,
+        wireframes: false,
+        background: 'transparent'
       }
+    });
 
-      const skills = langData.skillsSandbox.skills;
-      
-      const { Engine, Render, Runner, World, Bodies, Mouse, MouseConstraint } = Matter;
+    matterInstance = { engine, render };
 
-      const engine = Engine.create({ gravity: { y: 0.4 } });
-      const render = Render.create({
-          element: container,
-          engine: engine,
-          options: {
-              width: container.clientWidth,
-              height: container.clientHeight,
-              wireframes: false,
-              background: 'transparent'
+    const ground = Bodies.rectangle(container.clientWidth / 2, container.clientHeight + 25, container.clientWidth, 50, { isStatic: true, render: { visible: false } });
+    const wallLeft = Bodies.rectangle(-25, container.clientHeight / 2, 50, container.clientHeight, { isStatic: true, render: { visible: false } });
+    const wallRight = Bodies.rectangle(container.clientWidth + 25, container.clientHeight / 2, 50, container.clientHeight, { isStatic: true, render: { visible: false } });
+    const roof = Bodies.rectangle(container.clientWidth / 2, -25, container.clientWidth, 50, { isStatic: true, render: { visible: false } });
+
+    World.add(engine.world, [ground, wallLeft, wallRight, roof]);
+
+    const skillBodies = skills.map(skill => {
+      const width = 180;
+      const height = 60;
+      const body = Bodies.rectangle(
+        Math.random() * (container.clientWidth - width) + width / 2,
+        Math.random() * (container.clientHeight / 2),
+        width, height,
+        {
+          restitution: 0.5,
+          friction: 0.3,
+          render: {
+            fillStyle: 'transparent',
+            strokeStyle: 'transparent'
           }
+        }
+      );
+      body.skillData = skill;
+      return body;
+    });
+
+    World.add(engine.world, skillBodies);
+
+    const mouse = Mouse.create(render.canvas);
+    const mouseConstraint = MouseConstraint.create(engine, {
+      mouse: mouse,
+      constraint: {
+        stiffness: 0.2,
+        render: {
+          visible: false
+        }
+      }
+    });
+    World.add(engine.world, mouseConstraint);
+
+    Render.run(render);
+    const runner = Runner.create();
+    Runner.run(runner, engine);
+
+    const skillElements = {};
+    skillBodies.forEach(body => {
+      const el = document.createElement('div');
+      el.className = 'sandbox-skill-item';
+      el.innerHTML = `<i class="fas ${body.skillData.icon}"></i><span>${body.skillData.name}</span>`;
+      container.appendChild(el);
+      skillElements[body.id] = el;
+
+      el.addEventListener('click', () => {
+        showSandboxModal(body.skillData);
       });
-      
-      matterInstance = { engine, render };
+    });
 
-      const ground = Bodies.rectangle(container.clientWidth / 2, container.clientHeight + 25, container.clientWidth, 50, { isStatic: true, render: { visible: false } });
-      const wallLeft = Bodies.rectangle(-25, container.clientHeight / 2, 50, container.clientHeight, { isStatic: true, render: { visible: false } });
-      const wallRight = Bodies.rectangle(container.clientWidth + 25, container.clientHeight / 2, 50, container.clientHeight, { isStatic: true, render: { visible: false } });
-      const roof = Bodies.rectangle(container.clientWidth / 2, -25, container.clientWidth, 50, { isStatic: true, render: { visible: false } });
-
-      World.add(engine.world, [ground, wallLeft, wallRight, roof]);
-
-      const skillBodies = skills.map(skill => {
-          const width = 180;
-          const height = 60;
-          const body = Bodies.rectangle(
-              Math.random() * (container.clientWidth - width) + width / 2,
-              Math.random() * (container.clientHeight / 2),
-              width, height,
-              { 
-                  restitution: 0.5,
-                  friction: 0.3,
-                  render: {
-                      fillStyle: 'transparent',
-                      strokeStyle: 'transparent'
-                  }
-              }
-          );
-          body.skillData = skill;
-          return body;
-      });
-
-      World.add(engine.world, skillBodies);
-
-      const mouse = Mouse.create(render.canvas);
-      const mouseConstraint = MouseConstraint.create(engine, {
-          mouse: mouse,
-          constraint: {
-              stiffness: 0.2,
-              render: {
-                  visible: false
-              }
-          }
-      });
-      World.add(engine.world, mouseConstraint);
-
-      Render.run(render);
-      const runner = Runner.create();
-      Runner.run(runner, engine);
-
-      const skillElements = {};
+    function updateElements() {
       skillBodies.forEach(body => {
-          const el = document.createElement('div');
-          el.className = 'sandbox-skill-item';
-          el.innerHTML = `<i class="fas ${body.skillData.icon}"></i><span>${body.skillData.name}</span>`;
-          container.appendChild(el);
-          skillElements[body.id] = el;
-          
-          el.addEventListener('click', () => {
-              showSandboxModal(body.skillData);
-          });
+        const el = skillElements[body.id];
+        el.style.transform = `translate(${body.position.x - el.offsetWidth / 2}px, ${body.position.y - el.offsetHeight / 2}px) rotate(${body.angle}rad)`;
       });
+      requestAnimationFrame(updateElements);
+    }
+    updateElements();
 
-      function updateElements() {
-          skillBodies.forEach(body => {
-              const el = skillElements[body.id];
-              el.style.transform = `translate(${body.position.x - el.offsetWidth / 2}px, ${body.position.y - el.offsetHeight / 2}px) rotate(${body.angle}rad)`;
-          });
-          requestAnimationFrame(updateElements);
-      }
-      updateElements();
-      
-      function showSandboxModal(skillData) {
-          const modal = document.getElementById('sandbox-modal');
-          document.getElementById('sandbox-modal-title').textContent = skillData.name;
-          document.getElementById('sandbox-modal-description').textContent = skillData.description;
-          modal.classList.add('visible');
-      }
-
+    function showSandboxModal(skillData) {
       const modal = document.getElementById('sandbox-modal');
-      const closeModalBtn = document.getElementById('sandbox-modal-close');
-      closeModalBtn.addEventListener('click', () => modal.classList.remove('visible'));
-      modal.addEventListener('click', (e) => {
-          if (e.target === modal) {
-              modal.classList.remove('visible');
-          }
-      });
+      document.getElementById('sandbox-modal-title').textContent = skillData.name;
+      document.getElementById('sandbox-modal-description').textContent = skillData.description;
+      modal.classList.add('visible');
+    }
+
+    const modal = document.getElementById('sandbox-modal');
+    const closeModalBtn = document.getElementById('sandbox-modal-close');
+    closeModalBtn.addEventListener('click', () => modal.classList.remove('visible'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('visible');
+      }
+    });
   }
-  
+
+  // --- AJOUT --- : Cet événement s'exécutera lorsque l'utilisateur quitte la page.
+  window.addEventListener('unload', function () {
+    // On vérifie s'il y a eu une conversation (au moins une question et une réponse).
+    if (conversationLog.length > 1) {
+      // On prépare les données à envoyer. C'est plus robuste d'utiliser un Blob.
+      const dataToSend = new Blob([JSON.stringify(conversationLog)], { type: 'application/json' });
+
+      // On envoie les données à un nouveau script PHP de manière asynchrone et fiable,
+      // sans retarder la fermeture de la page.
+      navigator.sendBeacon('send-conversation-summary.php', dataToSend);
+    }
+  });
+
 }); // Fin de document.addEventListener("DOMContentLoaded")
 
 function showPopupNotification(message, type) {

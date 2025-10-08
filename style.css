@@ -3020,3 +3020,229 @@ a:not(.btn):not(.social-icon):hover {
     margin: 1rem 0;
     letter-spacing: 0.5em; /* Espace les tirets */
 }
+
+/* ======================================================= */
+/*          STYLES POUR LES SUGGESTIONS DU TERMINAL        */
+/* ======================================================= */
+
+.terminal-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding-left: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+}
+
+.terminal-suggestions span {
+    color: #888; /* Couleur du label "Essayez :" */
+    margin-right: 0.25rem;
+}
+
+.terminal-suggestions button {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ccc;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.terminal-suggestions button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+/* Styles pour le mode clair */
+body.light-mode .terminal-suggestions span {
+    color: #666;
+}
+
+body.light-mode .terminal-suggestions button {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #444;
+}
+
+body.light-mode .terminal-suggestions button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #000;
+}
+
+/* AJOUTER À LA FIN DE style.css */
+body.terminal-cursor-active {
+    cursor: cell;
+}
+
+/* AJOUTEZ CECI À LA FIN DE style.css */
+
+/* Quand la souris est sur le terminal... */
+body.terminal-hover .cursor {
+    width: 2px; /* Largeur d'un curseur de texte */
+    height: 1.5rem; /* Hauteur adaptée à la police du terminal */
+    border-radius: 0; /* Pour en faire un rectangle */
+    background-color: #c3e88d; /* Couleur verte du terminal */
+    mix-blend-mode: normal; /* Annule l'effet de différence de couleur */
+    margin-left: -1px; /* Centrage parfait */
+}
+
+body.terminal-hover .cursor-follower {
+    opacity: 0; /* On cache le cercle suiveur */
+}
+
+/* ======================================================= */
+/*          STYLES POUR LA MODALE DE CONFIDENTIALITÉ       */
+/* ======================================================= */
+
+/* --- Styles pour le lien dans le footer --- */
+.footer-links {
+    margin: 1rem 0;
+}
+
+.footer-links a {
+    color: var(--primary);
+    opacity: 0.7;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--primary) 40%, transparent);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    text-decoration-color: var(--primary);
+}
+
+/* --- Styles pour la modale --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10005; /* Doit être au-dessus de tout le reste */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.modal-overlay.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    background-color: var(--accent);
+    color: var(--primary);
+    padding: 2.5rem 3rem;
+    border-radius: 12px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
+    transform: scale(0.95) translateY(20px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.visible .modal-content {
+    transform: scale(1) translateY(0);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--primary);
+    opacity: 0.6;
+    cursor: pointer;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+.modal-content h3 {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.modal-content h4 {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+    padding-bottom: 0.5rem;
+}
+
+.modal-content p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.modal-content ul {
+    list-style-type: '• ';
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.modal-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* Scrollbar personnalisée pour la modale */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+.modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+.modal-content::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--primary) 40%, transparent);
+    border-radius: 4px;
+}
+
+/* AJOUTEZ CECI À LA FIN DE style.css (ou vérifiez sa présence) */
+
+/* Règle pour le texte "Suggestions :" en mode clair */
+body.light-mode .terminal-suggestions span {
+    color: #555;
+}
+
+/* Règle pour les boutons en mode clair */
+body.light-mode .terminal-suggestions button {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.15);
+    color: #333; /* Texte plus sombre pour une meilleure lisibilité */
+}
+
+/* Règle pour le survol des boutons en mode clair */
+body.light-mode .terminal-suggestions button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.2);
+    color: #000;
+}
