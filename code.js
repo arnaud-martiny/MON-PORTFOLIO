@@ -1205,12 +1205,72 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // ========== MODIFICATION 3 ==========
+    // =========================================================================
+    //         NOUVELLE FONCTION CORRIGÉE POUR VOTRE SCRIPT.JS
+    // =========================================================================
+
+    async function sendToAi(userInput) { // <-- Nom plus logique
+      isWaitingForAi = true;
+      terminalInput.disabled = true;
+      showAiTyping(true);
+
+      const lastMessage = conversationLog[conversationLog.length - 1];
+      if (!lastMessage || lastMessage.author !== 'User' || lastMessage.message !== userInput) {
+        conversationLog.push({ author: 'User', message: userInput });
+      }
+
+      try {
+        // CORRECTION CRUCIALE : On appelle le bon fichier PHP !
+        const response = await fetch('proxy-groq-ai.php', { // <-- MODIFIÉ
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            history: conversationLog,
+            locale: currentLang
+          })
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          // On essaie d'afficher un message d'erreur plus clair de Groq
+          const errorMessage = errorData.error ? errorData.error.message : `Erreur du serveur: ${response.statusText}`;
+          throw new Error(errorMessage);
+        }
+
+        const data = await response.json();
+        showAiTyping(false);
+
+        if (data.response) {
+          const formattedMessage = formatMessage(data.response);
+          await typeAiResponse(formattedMessage);
+          conversationLog.push({ author: 'AI', message: data.response });
+        } else {
+          throw new Error("La réponse de l'IA est vide.");
+        }
+
+      } catch (error) {
+        console.error("Erreur de communication avec l'IA:", error);
+        showAiTyping(false);
+        // On affiche l'erreur détaillée dans le terminal, c'est très utile !
+        await typeAiResponse("Oups... Erreur de connexion avec le modèle d'IA. Détail : " + error.message);
+      } finally {
+        const separator = document.createElement('p');
+        separator.className = 'terminal-separator';
+        separator.innerHTML = '---';
+        terminalOutput.appendChild(separator);
+        isWaitingForAi = false;
+        terminalInput.disabled = false;
+        terminalInput.focus();
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+      }
+    }
+
+    // === BLOC 1 CORRIGÉ ===
     const startAiConversation = () => {
       if (hasAiStarted) return;
       hasAiStarted = true;
-      // On envoie un premier message ("Bonjour" ou sa traduction) pour que l'IA se présente.
-      sendToGoogleAI(getNestedTranslation(langData, "terminal.initialGreeting") || "Bonjour");
+      // On appelle la bonne fonction
+      sendToAi(getNestedTranslation(langData, "terminal.initialGreeting") || "Bonjour"); // <-- MODIFIÉ
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -1290,65 +1350,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return formattedMessage;
     }
 
-    // ========== MODIFICATION 1 ==========
-    async function sendToGoogleAI(userInput) {
-      isWaitingForAi = true;
-      terminalInput.disabled = true;
-      showAiTyping(true);
+    // === BLOC 2 SUPPRIMÉ (l'ancienne fonction sendToGoogleAI a été retirée) ===
 
-      // On ajoute la nouvelle question de l'utilisateur à l'historique
-      // On s'assure de ne pas envoyer la réponse précédente de l'IA deux fois.
-      const lastMessage = conversationLog[conversationLog.length - 1];
-      if (!lastMessage || lastMessage.author !== 'User' || lastMessage.message !== userInput) {
-          conversationLog.push({ author: 'User', message: userInput });
-      }
-
-      try {
-        // On appelle notre NOUVEAU script PHP : proxy-google-ai.php
-        const response = await fetch('proxy-cloudflare-ai.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            history: conversationLog, // On envoie tout l'historique de la conversation
-            locale: currentLang
-          })
-        });
-
-        if (!response.ok) {
-           const errorData = await response.json();
-           const errorMessage = errorData.error || `Erreur du serveur: ${response.statusText}`;
-           throw new Error(errorMessage);
-        }
-
-        const data = await response.json();
-        showAiTyping(false);
-
-        if (data.response) {
-            const formattedMessage = formatMessage(data.response);
-            await typeAiResponse(formattedMessage);
-            // On ajoute la réponse de l'IA à l'historique pour le prochain tour
-            conversationLog.push({ author: 'AI', message: data.response });
-        } else {
-            throw new Error("La réponse de l'IA est vide.");
-        }
-
-      } catch (error) {
-        console.error("Erreur de communication avec Google AI:", error);
-        showAiTyping(false);
-        await typeAiResponse("Oups... Il y a eu une erreur de connexion avec le modèle d'IA. Veuillez réessayer. Détail : " + error.message);
-      } finally {
-        const separator = document.createElement('p');
-        separator.className = 'terminal-separator';
-        separator.innerHTML = '---';
-        terminalOutput.appendChild(separator);
-        isWaitingForAi = false;
-        terminalInput.disabled = false;
-        terminalInput.focus();
-        terminalBody.scrollTop = terminalBody.scrollHeight;
-      }
-    }
-
-    // ========== MODIFICATION 2 ==========
+    // === BLOC 4 VÉRIFIÉ ET CORRIGÉ ===
     function processUserInput(input) {
       const prompt = `<span class="terminal-prompt">${promptText}</span>`;
       const commandLine = `<p class="user-command">${prompt} ${input}</p>`;
@@ -1362,7 +1366,7 @@ document.addEventListener("DOMContentLoaded", () => {
         startAiConversation();
       } else {
         // On appelle notre NOUVELLE fonction
-        sendToGoogleAI(input);
+        sendToAi(input); // <-- MODIFIÉ
       }
     }
   }

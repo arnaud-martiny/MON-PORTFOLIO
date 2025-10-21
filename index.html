@@ -1,529 +1,530 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <!-- La lang sera mise à jour par JS -->
+<!-- La lang sera mise à jour par JS -->
+
 <head>
-    <!-- ============== META ESSENTIELLES ============== -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ============== META ESSENTIELLES ============== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO : Titre et Description statiques-->
-    <title>Arnaud Martiny | Développeur web Full-Stack – Portfolio & Créations sur mesure</title>
-    <meta
-      name="description"
-      content="Développeur Full-Stack passionné basé à Bruxelles. Je transforme vos idées en applications web modernes, du design UX/UI sur Figma au développement. Découvrez mes projets et parlons-en !"
-    />
+  <!-- SEO : Titre et Description mis à jour depuis le JSON -->
+  <title>Arnaud Martiny | Développeur web Full-Stack – Portfolio & Créations sur mesure</title>
+  <meta name="description"
+    content="Développeur Full-Stack passionné basé à Bruxelles. Je transforme vos idées en applications web modernes, du design UX/UI sur Figma au développement. Découvrez mes projets et parlons-en !" />
 
-    <!-- SEO : URL Canonique -->
-    <link rel="canonical" href="https://www.arnaud-martiny.be/" />
+  <!-- SEO : URL Canonique -->
+  <link rel="canonical" href="https://www.arnaud-martiny.be/" />
 
 
-    <!-- ============== FAVICONS (Générés par RealFaviconGenerator) - C'est parfait ! ============== -->
-     <link rel="icon" href="assets/img/FAVICON/FAVICON.jpg" type="image/x-icon" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/FAVICON/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/FAVICON/favicon-96x96.png" />
-    <link rel="icon" type="image/svg+xml" href="/assets/img/FAVICON/favicon.svg" />
-    <link rel="manifest" href="/assets/img/FAVICON/site.webmanifest" />
-    <link rel="shortcut icon" href="/assets/img/FAVICON/favicon.ico" />
-    <!-- Remarque : Le fichier .ico est inclus via "shortcut icon". Les autres tailles de PNG sont référencées dans le manifest. -->
+  <!-- ============== FAVICONS (Générés par RealFaviconGenerator) - C'est parfait ! ============== -->
+  <link rel="icon" href="assets/img/FAVICON/FAVICON.jpg" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/FAVICON/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/FAVICON/favicon-96x96.png" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/FAVICON/favicon.svg" />
+  <link rel="manifest" href="/assets/img/FAVICON/site.webmanifest" />
+  <link rel="shortcut icon" href="/assets/img/FAVICON/favicon.ico" />
+  <!-- Remarque : Le fichier .ico est inclus via "shortcut icon". Les autres tailles de PNG sont référencées dans le manifest. -->
 
 
-    <!-- ============== META POUR LE PARTAGE (OPEN GRAPH & TWITTER CARDS) ============== -->
-    <!-- Open Graph (pour Facebook, LinkedIn, etc.) -->
-    <meta property="og:title" content="Arnaud Martiny | Développeur web Full-Stack" />
-    <meta property="og:description" content="Je transforme vos idées en applications web modernes et performantes. Découvrez mon portfolio." />
-    <meta property="og:image" content="https://www.arnaud-martiny.be/assets/img/preview-portfolio_1.webp" />
-    <meta property="og:url" content="https://www.arnaud-martiny.be/" />
-    <meta property="og:type" content="website" />
+  <!-- ============== META POUR LE PARTAGE (OPEN GRAPH & TWITTER CARDS) ============== -->
+  <!-- Open Graph (pour Facebook, LinkedIn, etc.) -->
+  <meta property="og:title" content="Arnaud Martiny | Développeur web Full-Stack" />
+  <meta property="og:description"
+    content="Je transforme vos idées en applications web modernes et performantes. Découvrez mon portfolio." />
+  <meta property="og:image" content="https://www.arnaud-martiny.be/assets/img/preview-portfolio_1.webp" />
+  <meta property="og:url" content="https://www.arnaud-martiny.be/" />
+  <meta property="og:type" content="website" />
 
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Arnaud Martiny | Développeur web Full-Stack" />
-    <meta name="twitter:description" content="Je transforme vos idées en applications web modernes et performantes. Découvrez mon portfolio." />
-    <meta name="twitter:image" content="https://www.arnaud-martiny.be/assets/img/preview-portfolio_1.webp" />
-
-
-    <!-- ============== STYLES ET SCRIPTS ============== -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&family=VT323&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css?v=1.0.1" /> 
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Arnaud Martiny | Développeur web Full-Stack" />
+  <meta name="twitter:description"
+    content="Je transforme vos idées en applications web modernes et performantes. Découvrez mon portfolio." />
+  <meta name="twitter:image" content="https://www.arnaud-martiny.be/assets/img/preview-portfolio_1.webp" />
 
 
-            <!-- Google tag (gtag.js) -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-9EWQ5ES7H5"></script>
-            <script>
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
+  <!-- ============== STYLES ET SCRIPTS ============== -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-              gtag('config', 'G-9EWQ5ES7H5');
-            </script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&family=VT323&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css?v=1.0.1" />
+
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9EWQ5ES7H5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-9EWQ5ES7H5');
+  </script>
 
 
 
 </head>
 
-  <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N7NQ2HCC"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N7NQ2HCC" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Loader - page de chargement de la page ==> mon univers ! -->
-    <div class="loader">
-      <div class="loader-text">
-        <span data-i18n="loader.welcome">BIENVENUE DANS MON UNIVERS</span>
+  <!-- Loader - page de chargement de la page ==> mon univers ! -->
+  <div class="loader">
+    <div class="loader-text">
+      <span data-i18n="loader.welcome">BIENVENUE DANS MON UNIVERS</span>
+    </div>
+  </div>
+
+  <!-- Curseur personnalisé -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- START: Bloc de navigation corrigé -->
+  <div class="nav-container">
+    <div class="logo" data-i18n="nav.logo">AM.</div>
+
+    <!-- ============================================= -->
+    <!--   GROUPE POUR LA VUE ORDINATEUR (Desktop)     -->
+    <!-- ============================================= -->
+    <div class="nav-desktop-group">
+      <div class="language-switcher">
+        <button id="lang-fr" class="lang-btn active" data-lang="fr">FR</button>
+        <button id="lang-en" class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <div class="nav-right-group">
+        <button id="wtf-btn" class="nav-wtf-btn" aria-label="Rebelle va" data-i18n="nav.wtfButton">Ne pas
+          cliquer</button>
+        <a href="assets/CV/CV-Arnaud-Martiny-FR.pdf" id="nav-cv-link" target="_blank" class="nav-cv-btn cv-link">
+          <i class="fas fa-file-lines"></i>
+          <span data-i18n="nav.cvLink">Mon CV</span>
+        </a>
+        <div class="nav-socials">
+          <a href="https://github.com/arnaud-martiny" target="_blank" rel="noopener noreferrer"
+            aria-label="Mon GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" rel="noopener noreferrer"
+            aria-label="Mon LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:arnaudmartiny0@gmail.com" aria-label="M'envoyer un email"><i class="fas fa-envelope"></i></a>
+        </div>
+        <button id="theme-switcher" class="theme-btn" aria-label="Changer de thème"><i class="fas fa-sun"></i></button>
+        <div class="nav-links">
+          <a href="#apropos" data-i18n="nav.about">À propos</a>
+          <a href="#competences" data-i18n="nav.skills">Compétences</a>
+          <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+          <a href="#contact" data-i18n="nav.contact">Contact</a>
+        </div>
       </div>
     </div>
 
-    <!-- Curseur personnalisé -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-
-    <!-- START: Bloc de navigation corrigé -->
-<div class="nav-container">
-  <div class="logo" data-i18n="nav.logo">AM.</div>
-
-  <!-- ============================================= -->
-  <!--   GROUPE POUR LA VUE ORDINATEUR (Desktop)     -->
-  <!-- ============================================= -->
-  <div class="nav-desktop-group">
-    <div class="language-switcher">
-      <button id="lang-fr" class="lang-btn active" data-lang="fr">FR</button>
-      <button id="lang-en" class="lang-btn" data-lang="en">EN</button>
-    </div>
-    <div class="nav-right-group">
-      <button id="wtf-btn" class="nav-wtf-btn" aria-label="Rebelle va" data-i18n="nav.wtfButton">Ne pas cliquer</button>
-      <a href="assets/CV/CV-Arnaud-Martiny-FR.pdf" id="nav-cv-link" target="_blank" class="nav-cv-btn cv-link" data-i18n="nav.cvLink">
-        <i class="fas fa-file-lines"></i>
-        <span>Mon CV</span>
+    <!-- ============================================= -->
+    <!--       GROUPE POUR LA VUE MOBILE (MODIFIÉ)     -->
+    <!-- ============================================= -->
+    <div class="nav-mobile-group">
+      <div class="language-switcher">
+        <button id="lang-fr-topnav" class="lang-btn active" data-lang="fr">FR</button>
+        <button id="lang-en-topnav" class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="assets/CV/CV-Arnaud-Martiny-FR.pdf" id="nav-cv-link-mobile-topbar" target="_blank"
+        class="nav-cv-btn cv-link">
+        <i class="fas fa-file-lines"></i><span data-i18n="nav.cvLink">Mon CV</span>
       </a>
       <div class="nav-socials">
-        <a href="https://github.com/arnaud-martiny" target="_blank" rel="noopener noreferrer" aria-label="Mon GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" rel="noopener noreferrer" aria-label="Mon LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="mailto:arnaudmartiny0@gmail.com" aria-label="M'envoyer un email"><i class="fas fa-envelope"></i></a>
+        <a href="https://github.com/arnaud-martiny" target="_blank" rel="noopener noreferrer" aria-label="Mon GitHub"><i
+            class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" rel="noopener noreferrer"
+          aria-label="Mon LinkedIn"><i class="fab fa-linkedin-in"></i></a>
       </div>
-      <button id="theme-switcher" class="theme-btn" aria-label="Changer de thème"><i class="fas fa-sun"></i></button>
-      <div class="nav-links">
+      <button id="theme-switcher-mobile-nav" class="theme-btn" aria-label="Changer de thème"><i
+          class="fas fa-sun"></i></button>
+      <button id="hamburger-btn" aria-label="Ouvrir le menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+  <!-- END: Bloc de navigation corrigé -->
+
+  <!-- ============================================= -->
+  <!--       MENU MOBILE (Slide-out) (MODIFIÉ)       -->
+  <!-- ============================================= -->
+  <div id="mobile-menu">
+    <button id="mobile-menu-close-btn" aria-label="Fermer le menu">&times;</button>
+    <div class="mobile-menu-content">
+      <div class="mobile-menu-links">
+        <a href="#accueil" data-i18n="nav.home_special">Accueil</a>
         <a href="#apropos" data-i18n="nav.about">À propos</a>
         <a href="#competences" data-i18n="nav.skills">Compétences</a>
         <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
         <a href="#contact" data-i18n="nav.contact">Contact</a>
       </div>
-    </div>
-  </div>
-
-  <!-- ============================================= -->
-  <!--       GROUPE POUR LA VUE MOBILE (MODIFIÉ)     -->
-  <!-- ============================================= -->
-  <div class="nav-mobile-group">
-    <div class="language-switcher">
-      <button id="lang-fr-topnav" class="lang-btn active" data-lang="fr">FR</button>
-      <button id="lang-en-topnav" class="lang-btn" data-lang="en">EN</button>
-    </div>
-    <a href="assets/CV/CV-Arnaud-Martiny-FR.pdf" id="nav-cv-link-mobile-topbar" target="_blank" class="nav-cv-btn cv-link">
-      <i class="fas fa-file-lines"></i><span>Mon CV</span>
-    </a>
-    <div class="nav-socials">
-      <a href="https://github.com/arnaud-martiny" target="_blank" rel="noopener noreferrer" aria-label="Mon GitHub"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" rel="noopener noreferrer" aria-label="Mon LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-    </div>
-    <button id="theme-switcher-mobile-nav" class="theme-btn" aria-label="Changer de thème"><i class="fas fa-sun"></i></button>
-    <button id="hamburger-btn" aria-label="Ouvrir le menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-</div>
-<!-- END: Bloc de navigation corrigé -->
-
-<!-- ============================================= -->
-<!--       MENU MOBILE (Slide-out) (MODIFIÉ)       -->
-<!-- ============================================= -->
-<div id="mobile-menu">
-  <button id="mobile-menu-close-btn" aria-label="Fermer le menu">&times;</button>
-  <div class="mobile-menu-content">
-    <div class="mobile-menu-links">
-      <a href="#accueil" data-i18n="nav.home_special">Accueil</a>
-      <a href="#apropos" data-i18n="nav.about">À propos</a>
-      <a href="#competences" data-i18n="nav.skills">Compétences</a>
-      <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
-      <a href="#contact" data-i18n="nav.contact">Contact</a>
-    </div>
-    <div class="mobile-menu-footer">
-      <!-- Le bouton CV et les réseaux sociaux principaux sont maintenant dans la barre de navigation supérieure -->
-      <div class="nav-socials">
-        <!-- On garde juste l'email ici pour un accès rapide -->
-        <a href="mailto:arnaudmartiny0@gmail.com" aria-label="M'envoyer un email"><i class="fas fa-envelope"></i></a>
-      </div>
-    </div>
-  </div>
-</div>
-
-    <!-- Section d'accueil -->
-    <header id="accueil">
-      <div class="bg-shape shape1"></div>
-      <div class="bg-shape shape2"></div>
-
-      <div class="hero">
-        <h1 class="hero-title">
-          <span data-i18n="hero.title">ARNAUD MARTINY</span>
-        </h1>
-        <p class="hero-subtitle" data-i18n="hero.subtitle">
-          Développeur Web & Créateur Digital
-        </p>
-        <a href="#contact" class="btn btn-hero" data-i18n="hero.contactButton">Contactez-moi</a>
-      </div>
-
-      <div class="scroll-down">
-        <i class="fas fa-chevron-down"></i>
-      </div>
-    </header>
-
-    <!-- Section À propos -->
-    <section id="apropos" class="about-section">
-      <div class="about-grid">
-        <div class="about-image reveal">
-          <div class="about-image-placeholder">
-            <img
-              src="assets/img/myself_1.webp"
-              alt="Portrait de moi"
-              data-i18n-attr-alt="about.imageAlt"
-              loading="lazy"
-            />
-          </div>
-        </div>
-        <div class="about-content reveal">
-          <h2 class="section-heading" data-i18n="about.title">
-            À PROPOS DE MOI
-          </h2>
-          <p class="about-text" data-i18n="about.paragraph1" data-i18n-html>
-            Passionné par le monde du digital, j'aime relever des défis et
-            accomplir différentes tâches lorsque je travaille devant un
-            ordinateur. À 20 ans, basé à Bruxelles, j'étudie la
-            communication/création digitale depuis 2023, avec un focus sur la
-            création de contenu numérique et l'utilisation des outils web en
-            tout genres.
-          </p>
-          <p class="about-text" data-i18n="about.paragraph2" data-i18n-html>
-            J'adore apprendre toujours plus de choses, avec une soif de
-            connaissances inépuisable. En dehors du développement web, j'explore
-            constamment de nouvelles technologies et enrichir mes connaissances
-            peu importe les domaines.
-          </p>
-          <p class="about-text" data-i18n="about.paragraph3" data-i18n-html>
-            Je suis aussi un fan de vélo, de nature, de voiture, de voyage,
-            j'adore vivre pleinement la vie !
-          </p>
-          <div class="skills-container" id="about-skills-tags">
-            <!-- Les skill tags seront générés par JS à partir de about.skillsTags -->
-            <div class="skill-tag">HTML</div>
-            <div class="skill-tag">CSS</div>
-            <div class="skill-tag">JavaScript</div>
-          </div>
+      <div class="mobile-menu-footer">
+        <!-- Le bouton CV et les réseaux sociaux principaux sont maintenant dans la barre de navigation supérieure -->
+        <div class="nav-socials">
+          <!-- On garde juste l'email ici pour un accès rapide -->
+          <a href="mailto:arnaudmartiny0@gmail.com" aria-label="M'envoyer un email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
-    </section>
-    
-    <!-- NOUVELLE SECTION : TERMINAL OS INTERACTIF -->
-    <section id="terminal-section" class="terminal-section reveal">
-        
-        <!-- Voici le titre ajouté pour donner du contexte -->
-        <h2 class="section-heading" data-i18n="terminal.sectionTitle">
-            EXPLOREZ MON PROFIL
+    </div>
+  </div>
+
+  <!-- Section d'accueil -->
+  <header id="accueil">
+    <div class="bg-shape shape1"></div>
+    <div class="bg-shape shape2"></div>
+
+    <div class="hero">
+      <h1 class="hero-title">
+        <span data-i18n="hero.title">ARNAUD MARTINY</span>
+      </h1>
+      <p class="hero-subtitle" data-i18n="hero.subtitle">
+        Développeur Full-Stack & Créatif Digital
+      </p>
+      <a href="#contact" class="btn btn-hero" data-i18n="hero.contactButton">Contactez-moi</a>
+    </div>
+
+    <div class="scroll-down">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </header>
+
+  <!-- Section À propos -->
+  <section id="apropos" class="about-section">
+    <div class="about-grid">
+      <div class="about-image reveal">
+        <div class="about-image-placeholder">
+          <img src="assets/img/myself_1.webp" alt="Portrait de moi pour illustrer la section -À propos-"
+            data-i18n-attr-alt="about.imageAlt" loading="lazy" />
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <h2 class="section-heading" data-i18n="about.title">
+          À PROPOS DE MOI
         </h2>
-
-        <div class="terminal-window">
-            <div class="terminal-title-bar">
-                <div class="terminal-dots">
-                    <div class="dot red"></div>
-                    <div class="dot yellow"></div>
-                    <div class="dot green"></div>
-                </div>
-                <span data-i18n="terminal.title">AM_os - /bin/bash</span>
-            </div>
-                <div class="terminal-body" id="terminal-body">
-                    <div id="terminal-output"></div>
-                    <form id="terminal-form" class="terminal-input-line">
-                        <span class="terminal-prompt">user@arnaud-martiny.be:~$</span>
-                        <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
-                    </form>
-                    <!-- AJOUTEZ CETTE DIV VIDE -->
-                    <div id="terminal-suggestions" class="terminal-suggestions"></div>
-                </div>
-        </div>
-    </section>
-
-
-    <!-- ======================================================== -->
-    <!--     GRILLE DE COLLABORATIONS PROFESSIONNELLES (INCHANGÉ) -->
-    <!-- ======================================================== -->
-    <section id="experiences-pro" class="professional-experiences-section">
-      <h2 class="section-heading reveal" data-i18n="professionalExperiences.title">
-        COLLABORATIONS PROFESSIONNELLES
-      </h2>
-      <div class="experience-grid-container reveal" id="experience-grid-container">
-      </div>
-      <div id="experience-details-display" class="experience-details-display reveal">
-          <h4 id="details-company-name"></h4>
-          <p id="details-role"></p>
-          <p id="details-description"></p>
-      </div>
-    </section>
-
-    <!-- Section Compteurs (INCHANGÉ) -->
-    <section class="counter-section">
-      <div class="counter-item reveal">
-        <div class="counter-number" data-count="5">0</div>
-        <div class="counter-text" data-i18n="counters.projects">Projets Réalisés</div>
-      </div>
-      <div class="counter-item reveal">
-        <div class="counter-number" data-count="120">0</div>
-        <div class="counter-text" data-i18n="counters.commits">Commits sur GitHub</div>
-      </div>
-      <div class="counter-item reveal">
-        <div class="counter-number" data-count="999">0</div>
-        <div class="counter-text" data-i18n="counters.coffee">Tasses de café</div>
-      </div>
-    </section>
-
-    <!-- Section Compétences Techniques (Galaxie) (INCHANGÉ) -->
-    <section id="competences" class="skills-section">
-      <h2 class="section-heading reveal" data-i18n="skillsSection.title">
-        MA GALAXIE DE COMPÉTENCES
-      </h2>
-      <div id="skills-scene-container" class="reveal">
-        <canvas id="starfield-canvas"></canvas>
-        <div id="skills-solar-system">
-          <div id="skill-sun">
-            <div class="sun-flare"></div>
-            <div class="sun-core">AM.</div>
-          </div>
-        </div>
-      </div>
-      <br /><br /><br /><br /><br /><br />
-      <div id="skills-infobox"></div>
-    </section>
-
-    <!-- Section Langues (JSON) (INCHANGÉ) -->
-    <section id="language-section-json" class="language-section-v2 reveal">
-      <h3 class="skills-subheading" data-i18n="skillsSection.languagesTitle">
-        Langues
-      </h3>
-      <div class="code-block-container">
-        <div class="code-block">
-          <div class="code-block-header">
-            <div class="dot red"></div>
-            <div class="dot yellow"></div>
-            <div class="dot green"></div>
-            <span id="code-block-title" class="code-block-title"></span>
-          </div>
-          <pre contenteditable="true"><code id="language-json-content"></code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section Portfolio (Projets Détaillés) (INCHANGÉ) -->
-    <section id="portfolio" class="featured-projects-section">
-      <h2 class="section-heading reveal" data-i18n="featuredProjects.title">
-        MES RÉALISATIONS WEB
-      </h2>
-      <div class="featured-projects-grid" id="featured-projects-container">
-      </div>
-    </section>
-
-    <!-- ======================================================== -->
-    <!--         SECTION TAROT (Chercher un remplacement)     -->
-    <!-- ======================================================== -->
-    
-    <!--
-    <section id="tarot-skills-section" class="tarot-skills-section reveal">
-        <h2 class="section-heading" data-i18n="tarotSkillsSection.title">
-            MON JEU DE COMPÉTENCES
-        </h2>
-        <div class="tarot-container" id="tarot-container">
-        </div>
-    </section>-->
-    
-
-    <!-- Section Expérience (INCHANGÉ) -->
-    <section id="experience" class="experience-section">
-      <h2 class="section-heading reveal" data-i18n="experienceSection.title">
-        EXPÉRIENCE & FORMATION
-      </h2>
-      <div class="timeline reveal" id="timeline-content">
-      </div>
-    </section>
-
-    <!-- Section Contact (MODIFIÉE) -->
-    <section id="contact" class="contact-section">
-      <div class="bg-shape shape4"></div>
-      <h2 class="section-heading reveal" data-i18n="contactSection.title">
-        ME CONTACTER
-      </h2>
-      <div class="contact-container">
-        <div class="contact-info reveal">
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <p data-i18n="contactSection.address">Bruxelles, Belgique</p>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <a href="tel:+32492451456" data-i18n="contactSection.phone">+32 0492 451 456</a>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <a href="mailto:arnaudmartiny0@gmail.com" data-i18n="contactSection.email">arnaudmartiny0@gmail.com</a>
-          </div>
-          <div class="social-icons">
-            <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://github.com/arnaud-martiny" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          </div>
-        </div>
-        <div class="contact-form reveal">
-          <form id="contact-form" action="traitement-formulaire.php" method="POST">
-            <div class="form-group">
-              <input type="text" name="name" required placeholder="Nom" data-i18n-attr-placeholder="contactSection.form.namePlaceholder">
-            </div>
-            <div class="form-group">
-              <input type="email" name="email" required placeholder="Email" data-i18n-attr-placeholder="contactSection.form.emailPlaceholder">
-            </div>
-            <div class="form-group">
-              <input type="text" name="subject" placeholder="Sujet" data-i18n-attr-placeholder="contactSection.form.subjectPlaceholder">
-            </div>
-            <div class="form-group">
-              <textarea name="message" required placeholder="Message" data-i18n-attr-placeholder="contactSection.form.messagePlaceholder"></textarea>
-            </div>
-            <div class="h-captcha" data-captcha="true"></div>
-            <button type="submit" class="btn" data-i18n="contactSection.form.submitButton">
-              Envoyer
-            </button>
-            <p class="form-result" id="form-result-message"></p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer & Popups -->
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="logo" data-i18n="nav.logo">AM.</div>
-        <!-- AJOUT DU LIEN POUR LA POLITIQUE DE CONFIDENTIALITÉ -->
-        <div class="footer-links">
-            <a href="#" id="open-privacy-modal-btn">Politique de Confidentialité</a>
-        </div>
-        <p data-i18n="footer.copyright">
-          © 2025 Arnaud Martiny. Tous droits réservés.
+        <p class="about-text" data-i18n="about.paragraph1" data-i18n-html>
+          Pour moi, un site web est bien plus qu'une vitrine. C'est le point de rencontre digital entre une idée et son
+          public. Ma passion est de construire cette rencontre : concevoir des expériences web qui sont non seulement
+          belles, mais aussi logiques, performantes et intuitives.
         </p>
-      </div>
-    </footer>
-
-
-    <a href="#accueil" class="back-to-top" aria-label="Retour en haut">
-      <i class="fas fa-arrow-up"></i>
-    </a>
-    <div id="evolution-popup-overlay" class="evolution-popup-overlay">
-      <div id="evolution-popup" class="evolution-popup" data-last-updated="03/10/2025">
-        <button id="evolution-popup-close" class="evolution-popup-close">×</button>
-        <h4 data-i18n="evolutionPopup.title">Site en Évolution</h4>
-        <p data-i18n="evolutionPopup.message" data-i18n-html>
-          Ce portfolio est un projet vivant ! De nouvelles fonctionnalités sont ajoutées régulièrement. Revenez bientôt !
+        <p class="about-text" data-i18n="about.paragraph2" data-i18n-html>
+          Mon approche Full-Stack me permet de piloter cette vision de A à Z. Côté <strong>Back-End</strong>,
+          j'architecte des logiques serveur et des bases de données solides (PHP, MySQL) qui forment la colonne
+          vertébrale de l'application. Côté <strong>Front-End</strong>, je sculpte chaque interaction pour créer une
+          expérience utilisateur (UX/UI) fluide et engageante, où la technologie se fait oublier.
         </p>
-      </div>
-    </div>
-    <div id="projects-update-popup-overlay" class="projects-update-popup-overlay">
-      <div id="projects-update-popup" class="projects-update-popup">
-        <button id="projects-update-popup-close" class="projects-update-popup-close">×</button>
-        <h4 data-i18n="projectsUpdatePopup.title">Mise à Jour des Projets</h4>
-        <p data-i18n="projectsUpdatePopup.message" data-i18n-html>
-          Message par défaut...
+        <p class="about-text" data-i18n="about.paragraph3" data-i18n-html>
+          Cette double compétence est ma plus grande force : elle garantit une cohérence totale entre la technique et le
+          design. Avide de défis et méticuleux, j'aborde chaque projet – qu'il s'agisse de créer une plateforme sur
+          mesure ou d'optimiser une boutique Shopify – avec le même engagement : livrer un produit digital fiable,
+          efficace et dont vous serez fier.
         </p>
+        <div class="skills-container" id="about-skills-tags">
+          <!-- Les skill tags seront générés par JS à partir de about.skillsTags -->
+        </div>
       </div>
     </div>
-    <div id="case-study-overlay">
-        <canvas id="binary-rain-canvas"></canvas>
-        <div id="boot-sequence"></div>
-        <div id="case-study-window" class="case-study-window">
-            <div class="case-study-title-bar" id="window-title-bar">
-                <span id="case-study-window-title">C:\Projects\CaseStudy_Loader.exe</span>
-                <div class="title-bar-controls">
-                    <button class="case-study-close-btn">X</button>
-                </div>
-            </div>
-            <div class="case-study-window-body">
-                <div id="case-study-content">
-                </div>
-            </div>
+  </section>
+
+  <!-- NOUVELLE SECTION : TERMINAL OS INTERACTIF -->
+  <section id="terminal-section" class="terminal-section reveal">
+
+    <h2 class="section-heading" data-i18n="terminal.sectionTitle">
+      MON IA RÉPOND À VOS QUESTIONS SUR MOI
+    </h2>
+
+    <div class="terminal-window">
+      <div class="terminal-title-bar">
+        <div class="terminal-dots">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
         </div>
-                <div id="contact-popup" class="case-study-popup-window">
-                    <!-- MODIFICATION ICI -->
-                    <div class="case-study-title-bar"><span data-i18n="caseStudyPopup.authorMessageTitle">Message de l'auteur</span></div>
-                    <div class="popup-body">
-                        <img class="popup-icon" src="data:image/png;base64,..." alt="Information Icon"/>
-                        <!-- MODIFICATION ICI -->
-                        <p data-i18n="caseStudyPopup.authorMessageText">J'espère que cette petite expérience vous a plu !<br><br>Si vous cherchez un développeur créatif pour donner vie à une idée, parlons-en.</p>
-                    </div>
-                    <div class="popup-footer">
-                        <!-- MODIFICATION ICI -->
-                        <button id="contact-link-btn" data-i18n="caseStudyPopup.contactButton">Me Contacter</button>
-                        <button id="close-popup-btn" data-i18n="caseStudyPopup.closeButton">Fermer</button>
-                    </div>
-                </div>
+        <span data-i18n="terminal.title">AM_os - /bin/zsh</span>
+      </div>
+      <div class="terminal-body" id="terminal-body">
+        <div id="terminal-output"></div>
+        <form id="terminal-form" class="terminal-input-line">
+          <span class="terminal-prompt" data-i18n="terminal.prompt">user@arnaud-martiny.be:~$</span>
+          <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" autocorrect="off"
+            autocapitalize="off" spellcheck="false" />
+        </form>
+        <div id="terminal-suggestions" class="terminal-suggestions"></div>
+      </div>
     </div>
+  </section>
 
-     <!-- ======================================================== -->
-    <!--     NOUVELLE MODALE DE POLITIQUE DE CONFIDENTIALITÉ      -->
-    <!-- ======================================================== -->
-<div id="privacy-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button id="close-privacy-modal-btn" class="modal-close-btn">&times;</button>
-            
-            <h3 data-i18n="privacyModal.title">Politique de Confidentialité</h3>
-            
-            <p><strong data-i18n="privacyModal.lastUpdated"></strong></p>
-            
-            <p data-i18n="privacyModal.intro"></p>
 
-            <h4 data-i18n="privacyModal.contactFormTitle"></h4>
-            <p data-i18n="privacyModal.contactFormIntro"></p>
-            <ul id="privacy-contact-points">
-                <!-- Les points seront générés par JS -->
-            </ul>
-            <p data-i18n="privacyModal.contactFormPurpose" data-i18n-html></p>
+  <!-- ======================================================== -->
+  <!--     GRILLE DE COLLABORATIONS PROFESSIONNELLES          -->
+  <!-- ======================================================== -->
+  <section id="experiences-pro" class="professional-experiences-section">
+    <h2 class="section-heading reveal" data-i18n="professionalExperiences.title">
+      COLLABORATIONS PROFESSIONNELLES
+    </h2>
+    <div class="experience-grid-container reveal" id="experience-grid-container">
+    </div>
+    <div id="experience-details-display" class="experience-details-display reveal">
+      <h4 id="details-company-name"></h4>
+      <p id="details-role"></p>
+      <p id="details-description"></p>
+    </div>
+  </section>
 
-            <h4 data-i18n="privacyModal.aiAssistantTitle"></h4>
-            <p data-i18n="privacyModal.aiAssistantIntro"></p>
-            <ul id="privacy-ai-points">
-                <!-- Les points seront générés par JS -->
-            </ul>
-            <p data-i18n="privacyModal.aiAssistantPurpose" data-i18n-html></p>
+  <!-- Section Compteurs -->
+  <section class="counter-section">
+    <div class="counter-item reveal">
+      <div class="counter-number" data-count="5">0</div>
+      <div class="counter-text" data-i18n="counters.projects">Projets Réalisés</div>
+    </div>
+    <div class="counter-item reveal">
+      <div class="counter-number" data-count="120">0</div>
+      <div class="counter-text" data-i18n="counters.commits">Commits sur GitHub</div>
+    </div>
+    <div class="counter-item reveal">
+      <div class="counter-number" data-count="999">0</div>
+      <div class="counter-text" data-i18n="counters.coffee">Tasses de café</div>
+    </div>
+  </section>
 
-            <h4 data-i18n="privacyModal.dataUsageTitle"></h4>
-            <p data-i18n="privacyModal.dataUsageText"></p>
-            
-            <h4 data-i18n="privacyModal.retentionTitle"></h4>
-            <p data-i18n="privacyModal.retentionText"></p>
-
-            <h4 data-i18n="privacyModal.yourRightsTitle"></h4>
-            <p data-i18n="privacyModal.yourRightsText" data-i18n-html></p>
+  <!-- Section Compétences Techniques (Galaxie) -->
+  <section id="competences" class="skills-section">
+    <h2 class="section-heading reveal" data-i18n="skillsSection.title">
+      MA GALAXIE DE COMPÉTENCES
+    </h2>
+    <div id="skills-scene-container" class="reveal">
+      <canvas id="starfield-canvas"></canvas>
+      <div id="skills-solar-system">
+        <div id="skill-sun">
+          <div class="sun-flare"></div>
+          <div class="sun-core">AM.</div>
         </div>
+      </div>
     </div>
+    <br /><br /><br /><br /><br /><br />
+    <div id="skills-infobox"></div>
+  </section>
 
-    <!-- SCRIPTS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/TextPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/SplitText.min.js"></script>
-    <!-- ✅ NOUVEAU SCRIPT POUR LA PHYSIQUE -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
-    
-    <script src="code.js?v=1.0.1" defer></script>
+  <!-- Section Langues (JSON) -->
+  <section id="language-section-json" class="language-section-v2 reveal">
+    <h3 class="skills-subheading" data-i18n="skillsSection.languagesTitle">
+      Langues
+    </h3>
+    <div class="code-block-container">
+      <div class="code-block">
+        <div class="code-block-header">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+          <span id="code-block-title" class="code-block-title"></span>
+        </div>
+        <pre contenteditable="true"><code id="language-json-content"></code></pre>
+      </div>
+    </div>
+  </section>
 
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "a7f54faff13c4512b0dbbbc62d498028"}'></script>
-  </body>
+  <!-- Section Portfolio (Projets Détaillés) -->
+  <section id="portfolio" class="featured-projects-section">
+    <h2 class="section-heading reveal" data-i18n="featuredProjects.title">
+      Mes Réalisations Web
+    </h2>
+    <div class="featured-projects-grid" id="featured-projects-container">
+    </div>
+  </section>
+
+  <!-- Section Expérience -->
+  <section id="experience" class="experience-section">
+    <h2 class="section-heading reveal" data-i18n="experienceSection.title">
+      EXPÉRIENCE & FORMATION
+    </h2>
+    <div class="timeline reveal" id="timeline-content">
+    </div>
+  </section>
+
+  <!-- Section Contact -->
+  <section id="contact" class="contact-section">
+    <div class="bg-shape shape4"></div>
+    <h2 class="section-heading reveal" data-i18n="contactSection.title">
+      ME CONTACTER
+    </h2>
+    <div class="contact-container">
+      <div class="contact-info reveal">
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <p data-i18n="contactSection.address">Bruxelles, Belgique</p>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <a href="tel:+32492451456" data-i18n="contactSection.phone">+32 0492 451 456</a>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:arnaudmartiny0@gmail.com" data-i18n="contactSection.email">arnaudmartiny0@gmail.com</a>
+        </div>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" rel="noopener noreferrer"
+            class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/arnaud-martiny" target="_blank" rel="noopener noreferrer" class="social-icon"
+            aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <form id="contact-form" action="traitement-formulaire.php" method="POST">
+          <div class="form-group">
+            <input type="text" name="name" required placeholder="Nom"
+              data-i18n-attr-placeholder="contactSection.form.namePlaceholder">
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" required placeholder="Email"
+              data-i18n-attr-placeholder="contactSection.form.emailPlaceholder">
+          </div>
+          <div class="form-group">
+            <input type="text" name="subject" placeholder="Sujet"
+              data-i18n-attr-placeholder="contactSection.form.subjectPlaceholder">
+          </div>
+          <div class="form-group">
+            <textarea name="message" required placeholder="Message"
+              data-i18n-attr-placeholder="contactSection.form.messagePlaceholder"></textarea>
+          </div>
+          <div class="h-captcha" data-captcha="true"></div>
+          <button type="submit" class="btn" data-i18n="contactSection.form.submitButton">
+            Envoyer
+          </button>
+          <p class="form-result" id="form-result-message"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer & Popups -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="logo" data-i18n="nav.logo">AM.</div>
+      <div class="footer-links">
+        <a href="#" id="open-privacy-modal-btn">Politique de Confidentialité</a>
+      </div>
+      <p data-i18n="footer.copyright">
+        © 2025 Arnaud Martiny. Tous droits réservés.
+      </p>
+    </div>
+  </footer>
+
+
+  <a href="#accueil" class="back-to-top" aria-label="Retour en haut">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+  <div id="evolution-popup-overlay" class="evolution-popup-overlay">
+    <div id="evolution-popup" class="evolution-popup" data-last-updated="03/10/2025">
+      <button id="evolution-popup-close" class="evolution-popup-close">×</button>
+      <h4 data-i18n="evolutionPopup.title">Site en constante évolution</h4>
+      <p data-i18n="evolutionPopup.message" data-i18n-html>
+        Ce portfolio est un projet vivant ! De nouvelles fonctionnalités et animations sont ajoutées régulièrement.
+        Dernière mise à jour le {{date}}. Revenez bientôt !
+      </p>
+    </div>
+  </div>
+  <div id="projects-update-popup-overlay" class="projects-update-popup-overlay">
+    <div id="projects-update-popup" class="projects-update-popup">
+      <button id="projects-update-popup-close" class="projects-update-popup-close">×</button>
+      <h4 data-i18n="projectsUpdatePopup.title">Mise à Jour des Projets</h4>
+      <p data-i18n="projectsUpdatePopup.message" data-i18n-html>
+        Le site de <strong>Nowa Logistics</strong> est désormais publié et accessible en version bêta ! Celui du
+        <strong>Théâtre des Poètes</strong> sera également mis en ligne prochainement.
+      </p>
+    </div>
+  </div>
+  <div id="case-study-overlay">
+    <canvas id="binary-rain-canvas"></canvas>
+    <div id="boot-sequence"></div>
+    <div id="case-study-window" class="case-study-window">
+      <div class="case-study-title-bar" id="window-title-bar">
+        <span id="case-study-window-title">C:\Projects\CaseStudy_Loader.exe</span>
+        <div class="title-bar-controls">
+          <button class="case-study-close-btn">X</button>
+        </div>
+      </div>
+      <div class="case-study-window-body">
+        <div id="case-study-content">
+        </div>
+      </div>
+    </div>
+    <div id="contact-popup" class="case-study-popup-window">
+      <div class="case-study-title-bar"><span data-i18n="caseStudyPopup.authorMessageTitle">Message de l'auteur</span>
+      </div>
+      <div class="popup-body">
+        <img class="popup-icon" src="data:image/png;base64,..." alt="Information Icon" />
+        <p data-i18n="caseStudyPopup.authorMessageText">J'espère que cette petite expérience vous a plu !<br><br>Si vous
+          cherchez un développeur créatif pour donner vie à une idée, parlons-en.</p>
+      </div>
+      <div class="popup-footer">
+        <button id="contact-link-btn" data-i18n="caseStudyPopup.contactButton">Me Contacter</button>
+        <button id="close-popup-btn" data-i18n="caseStudyPopup.closeButton">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="privacy-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button id="close-privacy-modal-btn" class="modal-close-btn">&times;</button>
+
+      <h3 data-i18n="privacyModal.title">Politique de Confidentialité</h3>
+
+      <p><strong data-i18n="privacyModal.lastUpdated">Dernière mise à jour : 03/10/2025</strong></p>
+
+      <p data-i18n="privacyModal.intro">Le respect de votre vie privée est important pour moi. Cette politique de
+        confidentialité explique quelles données sont collectées lorsque vous interagissez avec ce site web
+        (arnaud-martiny.be) et comment elles sont utilisées.</p>
+
+      <h4 data-i18n="privacyModal.contactFormTitle">1. Données collectées via le Formulaire de Contact</h4>
+      <p data-i18n="privacyModal.contactFormIntro">Lorsque vous utilisez le formulaire de contact, les informations
+        suivantes sont collectées et stockées dans un fichier sécurisé sur le serveur, et me sont également envoyées par
+        e-mail :</p>
+      <ul id="privacy-contact-points">
+        <!-- Les points seront générés par JS -->
+      </ul>
+      <p data-i18n="privacyModal.contactFormPurpose" data-i18n-html><strong>Finalité :</strong> Ces données sont
+        collectées uniquement dans le but de pouvoir répondre à votre demande et d'assurer le suivi de nos échanges.</p>
+
+      <h4 data-i18n="privacyModal.aiAssistantTitle">2. Données collectées via l'Assistant IA (Terminal)</h4>
+      <p data-i18n="privacyModal.aiAssistantIntro">Lorsque vous interagissez avec l'assistant IA disponible sur ce site,
+        les données suivantes sont enregistrées pour chaque message que vous envoyez :</p>
+      <ul id="privacy-ai-points">
+        <!-- Les points seront générés par JS -->
+      </ul>
+      <p data-i18n="privacyModal.aiAssistantPurpose" data-i18n-html><strong>Finalité :</strong> Ces données sont
+        collectées à des fins d'analyse pour améliorer la qualité et la pertinence des réponses de l'IA, ainsi que pour
+        prévenir les abus du service (limitation des requêtes).</p>
+
+      <h4 data-i18n="privacyModal.dataUsageTitle">3. Utilisation des Données</h4>
+      <p data-i18n="privacyModal.dataUsageText">Vos données personnelles ne sont jamais partagées, vendues ou louées à
+        des tiers. Elles sont utilisées exclusivement dans le cadre des finalités décrites ci-dessus.</p>
+
+      <h4 data-i18n="privacyModal.retentionTitle">4. Durée de Conservation</h4>
+      <p data-i18n="privacyModal.retentionText">Les données du formulaire de contact et de l'assistant IA sont
+        conservées pour une durée n'excédant pas ce qui est nécessaire aux finalités pour lesquelles elles sont
+        traitées, généralement pour une durée maximale de 3 ans après notre dernier contact.</p>
+
+      <h4 data-i18n="privacyModal.yourRightsTitle">5. Vos Droits</h4>
+      <p data-i18n="privacyModal.yourRightsText" data-i18n-html>Conformément au RGPD, vous disposez d'un droit d'accès,
+        de rectification et de suppression de vos données. Pour exercer ces droits, vous pouvez me contacter directement
+        à l'adresse <strong>arnaudmartiny0@gmail.com</strong>.</p>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/TextPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/SplitText.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+
+  <script src="code.js?v=1.0.1" defer></script>
+
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "a7f54faff13c4512b0dbbbc62d498028"}'></script>
+</body>
+
 </html>
