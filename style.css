@@ -3246,3 +3246,9 @@ body.light-mode .terminal-suggestions button:hover {
     border-color: rgba(0, 0, 0, 0.2);
     color: #000;
 }
+
+/* AJOUTEZ CECI À LA FIN DE VOTRE FICHIER style.css */
+
+.image-miroir {
+  transform: scaleX(-1);
+}
