@@ -390,7 +390,7 @@
   },
   "privacyModal": {
     "title": "Privacy Policy",
-    "lastUpdated": "Last updated: October 03, 2025",
+    "lastUpdated": "Last updated: November 22, 2025",
     "intro": "Respecting your privacy is important to me. This privacy policy explains what data is collected when you interact with this website (arnaud-martiny.be) and how it is used.",
     "contactFormTitle": "1. Data Collected via the Contact Form",
     "contactFormIntro": "When you use the contact form, the following information is collected and stored in a secure file on the server, and is also sent to me by email:",
@@ -411,11 +411,21 @@
       "A timestamp of the exchange"
     ],
     "aiAssistantPurpose": "<strong>Purpose:</strong> This data is collected for analytical purposes to improve the quality and relevance of the AI's responses, as well as to prevent abuse of the service (rate limiting).",
-    "dataUsageTitle": "3. Use of Data",
+    "landingPageTitle": "3. Data Collected via Redirection Links",
+    "landingPageIntro": "As part of specific communication campaigns (e.g., LinkedIn), I use redirection links to analyze traffic sources. When a visitor clicks on these links, the following technical data is automatically collected before redirection:",
+    "landingPagePoints": [
+      "IP address",
+      "Approximate location (City, Region, Country)",
+      "Internet Service Provider (ISP)",
+      "Browser type and device used",
+      "Date and time of the click"
+    ],
+    "landingPagePurpose": "<strong>Purpose:</strong> This data is used for purely statistical purposes to measure the effectiveness of my professional communications and is not cross-referenced with other personal data.",
+    "dataUsageTitle": "4. Use of Data",
     "dataUsageText": "Your personal data is never shared, sold, or rented to third parties. It is used exclusively for the purposes described above.",
-    "retentionTitle": "4. Data Retention",
+    "retentionTitle": "5. Data Retention",
     "retentionText": "Data from the contact form and the AI assistant is kept for a period not exceeding what is necessary for the purposes for which it is processed, generally for a maximum of 3 years after our last contact.",
-    "yourRightsTitle": "5. Your Rights",
+    "yourRightsTitle": "6. Your Rights",
     "yourRightsText": "In accordance with the GDPR, you have the right to access, rectify, and delete your data. To exercise these rights, you can contact me directly at <strong>arnaudmartiny0@gmail.com</strong>."
   }
 }

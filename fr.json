@@ -390,7 +390,7 @@
   },
   "privacyModal": {
     "title": "Politique de Confidentialité",
-    "lastUpdated": "Dernière mise à jour : 03/10/2025",
+    "lastUpdated": "Dernière mise à jour : 22/11/2025",
     "intro": "Le respect de votre vie privée est important pour moi. Cette politique de confidentialité explique quelles données sont collectées lorsque vous interagissez avec ce site web (arnaud-martiny.be) et comment elles sont utilisées.",
     "contactFormTitle": "1. Données collectées via le Formulaire de Contact",
     "contactFormIntro": "Lorsque vous utilisez le formulaire de contact, les informations suivantes sont collectées et stockées dans un fichier sécurisé sur le serveur, et me sont également envoyées par e-mail :",
@@ -411,11 +411,21 @@
       "Un horodatage (timestamp) de l'échange"
     ],
     "aiAssistantPurpose": "<strong>Finalité :</strong> Ces données sont collectées à des fins d'analyse pour améliorer la qualité et la pertinence des réponses de l'IA, ainsi que pour prévenir les abus du service (limitation des requêtes).",
-    "dataUsageTitle": "3. Utilisation des Données",
+    "landingPageTitle": "3. Données collectées via les Liens de Redirection",
+    "landingPageIntro": "Dans le cadre de campagnes de communication spécifiques (ex: LinkedIn), j'utilise des liens de redirection pour analyser l'origine du trafic. Lorsqu'un visiteur clique sur ces liens, les données techniques suivantes sont collectées automatiquement avant la redirection :",
+    "landingPagePoints": [
+      "Adresse IP",
+      "Localisation approximative (Ville, Région, Pays)",
+      "Fournisseur d'accès à Internet (FAI)",
+      "Type de navigateur et appareil utilisé",
+      "Date et heure du clic"
+    ],
+    "landingPagePurpose": "<strong>Finalité :</strong> Ces données sont utilisées à des fins purement statistiques pour mesurer l'efficacité de mes communications professionnelles et ne sont pas croisées avec d'autres données personnelles.",
+    "dataUsageTitle": "4. Utilisation des Données",
     "dataUsageText": "Vos données personnelles ne sont jamais partagées, vendues ou louées à des tiers. Elles sont utilisées exclusivement dans le cadre des finalités décrites ci-dessus.",
-    "retentionTitle": "4. Durée de Conservation",
+    "retentionTitle": "5. Durée de Conservation",
     "retentionText": "Les données du formulaire de contact et de l'assistant IA sont conservées pour une durée n'excédant pas ce qui est nécessaire aux finalités pour lesquelles elles sont traitées, généralement pour une durée maximale de 3 ans après notre dernier contact.",
-    "yourRightsTitle": "5. Vos Droits",
+    "yourRightsTitle": "6. Vos Droits",
     "yourRightsText": "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, vous pouvez me contacter directement à l'adresse <strong>arnaudmartiny0@gmail.com</strong>."
   }
 }
