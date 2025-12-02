@@ -52,7 +52,6 @@
 
   <link rel="stylesheet" href="style.css?v=1.0.1" />
 
-
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9EWQ5ES7H5"></script>
   <script>
@@ -172,19 +171,29 @@
     </div>
   </div>
 
-  <!-- Section d'accueil -->
+  <!-- Remplacer tout le bloc <header id="accueil"> par ceci -->
   <header id="accueil">
-    <div class="bg-shape shape1"></div>
-    <div class="bg-shape shape2"></div>
+    <!-- Le conteneur 3D (Fond étoilé) -->
+    <div id="hero-canvas"></div>
 
     <div class="hero">
-      <h1 class="hero-title">
-        <span data-i18n="hero.title">ARNAUD MARTINY</span>
+      <h1 class="hero-title-modern">
+        <!-- L'effet "Barre" scanner se joue sur ces spans -->
+        <div class="hero-line">
+          <span class="outline-text" data-text="ARNAUD">ARNAUD</span>
+        </div>
+        <div class="hero-line">
+          <span class="outline-text" data-text="MARTINY">MARTINY</span>
+        </div>
       </h1>
-      <p class="hero-subtitle" data-i18n="hero.subtitle">
+
+      <p class="hero-subtitle reveal" data-i18n="hero.subtitle">
         Développeur Full-Stack & Créatif Digital
       </p>
-      <a href="#contact" class="btn btn-hero" data-i18n="hero.contactButton">Contactez-moi</a>
+
+      <div class="hero-buttons reveal">
+        <a href="#contact" class="btn btn-hero" data-i18n="hero.contactButton">Contactez-moi</a>
+      </div>
     </div>
 
     <div class="scroll-down">
@@ -197,7 +206,7 @@
     <div class="about-grid">
       <div class="about-image reveal">
         <div class="about-image-placeholder">
-            <img src="assets/img/myself_1.webp" alt="Portrait de moi pour illustrer la section -À propos-"
+          <img src="assets/img/myself_1.webp" alt="Portrait de moi pour illustrer la section -À propos-"
             data-i18n-attr-alt="about.imageAlt" loading="lazy" class="image-miroir" />
         </div>
       </div>
@@ -290,21 +299,22 @@
     </div>
   </section>
 
-  <!-- Section Compétences Techniques (Galaxie) -->
+  <!-- Dans la section #competences -->
   <section id="competences" class="skills-section">
-    <h2 class="section-heading reveal" data-i18n="skillsSection.title">
-      MA GALAXIE DE COMPÉTENCES
-    </h2>
+    <h2 class="section-heading reveal" data-i18n="skillsSection.title">MA GALAXIE DE COMPÉTENCES</h2>
+
+    <!-- AJOUTE CE BOUTON ICI -->
+    <button id="gravity-btn" class="btn btn-outline">Activer la Gravité</button>
+
     <div id="skills-scene-container" class="reveal">
+      <!-- Le canvas starfield reste en fond -->
       <canvas id="starfield-canvas"></canvas>
+      <!-- Le système solaire va être caché par le JS -->
       <div id="skills-solar-system">
-        <div id="skill-sun">
-          <div class="sun-flare"></div>
-          <div class="sun-core">AM.</div>
-        </div>
+        <!-- ... (le contenu du système solaire est généré par JS, pas besoin de toucher) ... -->
       </div>
+      <!-- Le JS ajoutera le conteneur pour la physique ici -->
     </div>
-    <br /><br /><br /><br /><br /><br />
     <div id="skills-infobox"></div>
   </section>
 
@@ -417,7 +427,7 @@
     <i class="fas fa-arrow-up"></i>
   </a>
   <div id="evolution-popup-overlay" class="evolution-popup-overlay">
-    <div id="evolution-popup" class="evolution-popup" data-last-updated="12/11/2025">
+    <div id="evolution-popup" class="evolution-popup" data-last-updated="02/12/2025">
       <button id="evolution-popup-close" class="evolution-popup-close">×</button>
       <h4 data-i18n="evolutionPopup.title">Site en constante évolution</h4>
       <p data-i18n="evolutionPopup.message" data-i18n-html>
@@ -500,11 +510,15 @@
 
       <!-- NOUVELLE SECTION 3 -->
       <h4 data-i18n="privacyModal.landingPageTitle">3. Données collectées via les Liens de Redirection</h4>
-      <p data-i18n="privacyModal.landingPageIntro">Dans le cadre de campagnes de communication spécifiques (ex: LinkedIn), j'utilise des liens de redirection pour analyser l'origine du trafic. Lorsqu'un visiteur clique sur ces liens, les données techniques suivantes sont collectées automatiquement avant la redirection :</p>
+      <p data-i18n="privacyModal.landingPageIntro">Dans le cadre de campagnes de communication spécifiques (ex:
+        LinkedIn), j'utilise des liens de redirection pour analyser l'origine du trafic. Lorsqu'un visiteur clique sur
+        ces liens, les données techniques suivantes sont collectées automatiquement avant la redirection :</p>
       <ul id="privacy-landing-page-points">
         <!-- Les points seront générés par JS -->
       </ul>
-      <p data-i18n="privacyModal.landingPagePurpose" data-i18n-html><strong>Finalité :</strong> Ces données sont utilisées à des fins purement statistiques pour mesurer l'efficacité de mes communications professionnelles et ne sont pas croisées avec d'autres données personnelles.</p>
+      <p data-i18n="privacyModal.landingPagePurpose" data-i18n-html><strong>Finalité :</strong> Ces données sont
+        utilisées à des fins purement statistiques pour mesurer l'efficacité de mes communications professionnelles et
+        ne sont pas croisées avec d'autres données personnelles.</p>
       <!-- FIN NOUVELLE SECTION 3 -->
 
       <h4 data-i18n="privacyModal.dataUsageTitle">4. Utilisation des Données</h4>
@@ -523,17 +537,60 @@
     </div>
   </div>
 
-  <!-- SCRIPTS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/TextPlugin.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/SplitText.min.js"></script>
+  <!-- POPUP NOTATION -->
+  <div id="rating-popup-overlay" class="rating-overlay">
+    <div class="rating-modal">
+      <button id="rating-close-btn" class="rating-close">&times;</button>
+      <h3>Votre avis compte !</h3>
+      <p>Combien d'étoiles donneriez-vous à mon portfolio ?</p>
+
+      <!-- Conteneur des étoiles -->
+      <div class="stars-container" id="stars-container">
+        <i class="far fa-star" data-index="1"></i>
+        <i class="far fa-star" data-index="2"></i>
+        <i class="far fa-star" data-index="3"></i>
+        <i class="far fa-star" data-index="4"></i>
+        <i class="far fa-star" data-index="5"></i>
+      </div>
+
+      <div class="rating-score">Note : <span id="rating-value">0</span>/5</div>
+
+      <button id="rating-submit-btn" class="btn btn-primary" disabled>Envoyer</button>
+    </div>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- SCRIPTS : ORDRE DE CHARGEMENT CORRIGÉ ET FINAL          -->
+  <!-- ======================================================= -->
+
+  <!-- 1. Three.js (Moteur 3D) - Version compatible r124 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js"></script>
+
+  <!-- 2. GSAP (Animations) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
+
+  <!-- 2b. PONT DE COMPATIBILITÉ ESSENTIEL -->
+  <!-- Ce script sert de traducteur entre GSAP v3 et l'ancienne librairie -->
+  <script>
+    var TweenMax = gsap;
+  </script>
+
+  <!-- 3. Matter.js (Moteur Physique) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
 
-  <script src="code.js?v=1.0.1" defer></script>
+  <!-- 4. Hover Effect (Effet Liquide) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hover-effect/1.0.2/hover-effect.min.js"></script>
 
+  <!-- 5. Cloudflare Analytics -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
     data-cf-beacon='{"token": "a7f54faff13c4512b0dbbbc62d498028"}'></script>
+
+  <!-- 6. Ton Code Principal (TOUJOURS EN DERNIER) -->
+  <script src="code.js?v=1.0.7" defer></script>
+
 </body>
 
 </html>

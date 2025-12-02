@@ -286,7 +286,7 @@
         "title": "Le Théâtre des Poètes",
         "imageSrc": "assets/img/apercu_TDP.webp",
         "imageAlt": "Preview of the Théâtre des Poètes project",
-        "description": "<strong>The challenge:</strong> to replace an aging, hacked, and unmanageable site for a non-profit with a limited budget. <strong>My solution:</strong> I led a complete overhaul, focusing on security, a modern design, and above all, ease of management for the theater's team. <strong>This project demonstrates my ability to create sustainable and tailored solutions for the needs of non-technical clients.</strong>",
+        "description": "<strong>The challenge:</strong> replace an aging, hacked site for a non-profit on a budget. <strong>My solution:</strong> A complete overhaul focusing on security, modern design, and ease of management. <strong>Website officially launched!</strong>",
         "tech": [
           "PHP",
           "MySQL",
@@ -294,16 +294,16 @@
           "HTML/CSS",
           "Web Security"
         ],
-        "liveLink": "#",
+        "liveLink": "http://letheatredespoetes.be/",
         "codeLink": "#",
         "caseStudy": {
           "title": "C:\\Projects\\Theatre_Poetes_Reboot.exe",
           "briefTitle": "▸ The Challenge (mission.txt)",
-          "brief": "The non-profit 'Le Théâtre des Poètes', operating on a limited budget, was stuck with a website from 2015. Not only was it visually dated and incomplete, but it was also riddled with bugs and, even worse, had been hacked. The mission was to start from scratch to build a reliable and secure online presence.",
+          "brief": "The non-profit needed to replace a hacked, outdated website. The mission: start from scratch to build a reliable online presence.",
           "roleTitle": "▸ My Solution (strategy.doc)",
-          "role": "I took charge of the A-to-Z redesign. The first step was to design a modern and intuitive interface in Figma that reflects the theater's spirit. Then, I developed a secure site with a simple structure, allowing the NPO's team to easily update the program and news.",
-          "resultsTitle": "▸ Results & Learnings (changelog.log)",
-          "results": "The site is in its final development phase. It will provide the theater with a professional, secure showcase protected against future threats and perfectly mobile-friendly. This project was an excellent lesson in the importance of building robust and sustainable solutions, even with budget constraints."
+          "role": "A-to-Z redesign: Modern Figma interface, followed by the development of a secure, easy-to-manage site for the NPO team.",
+          "resultsTitle": "▸ Results (changelog.log)",
+          "results": "The site is live! It provides a professional, secure, and mobile-friendly showcase."
         }
       },
       {

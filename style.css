@@ -1541,17 +1541,17 @@ body.mobile-menu-open .mobile-menu-links a:nth-child(4) {
 
 /* ✅ CORRECTION : Style pour l'infobulle universelle */
 #universal-tooltip {
-    position: fixed;
-    display: none;
-    background-color: #333;
-    color: #fff;
-    padding: 0.6rem 1rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    z-index: 10002;
-    pointer-events: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    white-space: nowrap;
+  position: fixed;
+  display: none;
+  background-color: #333;
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  z-index: 10002;
+  pointer-events: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
 }
 
 :root {
@@ -1931,7 +1931,7 @@ a:not(.btn):not(.social-icon):hover {
 /* On supprime les anciennes règles mobiles qui sont maintenant dans la media query */
 .experience-item-mobile,
 .experience-details-mobile {
-   /* Ces règles sont maintenant gérées dans la media query ci-dessous */
+  /* Ces règles sont maintenant gérées dans la media query ci-dessous */
 }
 
 
@@ -2038,12 +2038,13 @@ a:not(.btn):not(.social-icon):hover {
   .social-icons {
     justify-content: center;
   }
-  
+
   /* ================================================================= */
   /* NOUVELLE PRÉSENTATION MOBILE POUR LES COLLABORATIONS PRO          */
   /* ================================================================= */
   .experience-grid-container {
-    display: block; /* On s'assure que les éléments sont empilés */
+    display: block;
+    /* On s'assure que les éléments sont empilés */
   }
 
   /* On cache définitivement le panneau de détails de la version desktop */
@@ -2053,77 +2054,81 @@ a:not(.btn):not(.social-icon):hover {
 
   /* La carte principale qui contient tout (logo + texte) */
   .experience-item-mobile {
-      background-color: color-mix(in srgb, var(--accent) 85%, transparent);
-      border: 1px solid color-mix(in srgb, var(--primary) 10%, transparent);
-      border-radius: 16px;
-      margin-bottom: 2rem;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    background-color: color-mix(in srgb, var(--accent) 85%, transparent);
+    border: 1px solid color-mix(in srgb, var(--primary) 10%, transparent);
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   /* Le conteneur du logo, maintenant stylisé en cercle */
   .experience-card {
-      /* Annulation des styles desktop */
-      aspect-ratio: unset;
-      cursor: default;
-      border: none;
-      backdrop-filter: none;
-      transform: none !important; /* Force l'annulation du transform */
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
-      border-color: transparent !important;
-      
-      /* Nouveaux styles */
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin-bottom: 1.5rem;
-      background-color: color-mix(in srgb, var(--secondary) 80%, black);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0;
+    /* Annulation des styles desktop */
+    aspect-ratio: unset;
+    cursor: default;
+    border: none;
+    backdrop-filter: none;
+    transform: none !important;
+    /* Force l'annulation du transform */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+    border-color: transparent !important;
+
+    /* Nouveaux styles */
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    background-color: color-mix(in srgb, var(--secondary) 80%, black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
   }
 
   /* On s'assure que les effets de survol sont bien désactivés */
-  .experience-card:hover, .experience-card.active {
-      transform: none;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  .experience-card:hover,
+  .experience-card.active {
+    transform: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
 
   /* Le logo lui-même, à l'intérieur du cercle */
   .experience-card-logo {
-      max-width: 65%;
-      max-height: 65%;
+    max-width: 65%;
+    max-height: 65%;
   }
+
   .experience-card:hover .experience-card-logo {
-      transform: none;
+    transform: none;
   }
 
   /* Le conteneur du texte */
   .experience-details-mobile {
-      padding: 0; /* Le padding est maintenant sur la carte parente */
+    padding: 0;
+    /* Le padding est maintenant sur la carte parente */
   }
 
   .experience-details-mobile h4 {
-      font-size: 1.8rem;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
   }
 
   .experience-details-mobile .role {
-      font-style: italic;
-      opacity: 0.7;
-      margin-bottom: 1rem;
-      display: block;
+    font-style: italic;
+    opacity: 0.7;
+    margin-bottom: 1rem;
+    display: block;
   }
 
   .experience-details-mobile .description {
-      font-size: 1rem;
-      line-height: 1.7;
-      opacity: 0.9;
+    font-size: 1rem;
+    line-height: 1.7;
+    opacity: 0.9;
   }
 
 }
@@ -2242,9 +2247,9 @@ a:not(.btn):not(.social-icon):hover {
 
   /* === CORRECTION POUR LE CENTRAGE DES BOUTONS SUR MOBILE === */
   .project-links .btn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .project-links .btn-case-study {
@@ -2589,31 +2594,37 @@ a:not(.btn):not(.social-icon):hover {
 @media (max-width: 768px) {
 
   /* On cache le switcher de langue central qui était pour le desktop */
-  .nav-container > .language-switcher {
+  .nav-container>.language-switcher {
     display: none;
   }
-  
+
   /* On affiche notre nouveau groupe de contrôles mobiles */
   .nav-mobile-controls {
-    display: flex; /* Utilise flexbox pour aligner les éléments */
-    align-items: center; /* Centre verticalement les icônes et boutons */
-    gap: 1.2rem; /* Espace entre les groupes d'icônes */
+    display: flex;
+    /* Utilise flexbox pour aligner les éléments */
+    align-items: center;
+    /* Centre verticalement les icônes et boutons */
+    gap: 1.2rem;
+    /* Espace entre les groupes d'icônes */
   }
 
   /* On ajuste la taille des icônes pour qu'elles ne soient pas trop grosses */
   .nav-mobile-controls .nav-socials {
-    gap: 1rem; /* Espace entre chaque icône sociale */
+    gap: 1rem;
+    /* Espace entre chaque icône sociale */
   }
 
   .nav-mobile-controls .nav-socials a {
-    font-size: 1.2rem; /* Taille des icônes sociales */
+    font-size: 1.2rem;
+    /* Taille des icônes sociales */
   }
 
   .nav-mobile-controls .theme-btn {
-    font-size: 1.2rem; /* Taille de l'icône de thème */
+    font-size: 1.2rem;
+    /* Taille de l'icône de thème */
     padding: 0;
   }
-  
+
   /*
     MAINTENANT, ON CACHE LES CONTRÔLES DUPLIQUÉS
     EN BAS DU MENU DÉROULANT POUR NE PAS LES AVOIR DEUX FOIS
@@ -2627,11 +2638,13 @@ a:not(.btn):not(.social-icon):hover {
     Les liens seront mieux centrés.
   */
   #mobile-menu {
-    justify-content: center; /* Centre les liens verticalement */
+    justify-content: center;
+    /* Centre les liens verticalement */
   }
 
   .mobile-menu-links {
-     padding-bottom: 15vh; /* Ajoute un peu d'espace en bas pour l'esthétique */
+    padding-bottom: 15vh;
+    /* Ajoute un peu d'espace en bas pour l'esthétique */
   }
 }
 
@@ -2640,6 +2653,7 @@ a:not(.btn):not(.social-icon):hover {
   .nav-mobile-controls {
     gap: 0.8rem;
   }
+
   .nav-mobile-controls .nav-socials {
     gap: 0.8rem;
   }
@@ -2653,189 +2667,201 @@ a:not(.btn):not(.social-icon):hover {
 
 /* Par défaut, on cache le groupe mobile sur les grands écrans */
 .nav-mobile-group {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 768px) {
-    /* On cache le groupe "desktop" sur les petits écrans */
-    .nav-desktop-group {
-        display: none;
-    }
 
-    /* On affiche le groupe "mobile" et on l'aligne */
-    .nav-mobile-group {
-        display: flex;
-        align-items: center;
-        gap: 1.2rem; /* Espace entre les icônes et le bouton hamburger */
-    }
+  /* On cache le groupe "desktop" sur les petits écrans */
+  .nav-desktop-group {
+    display: none;
+  }
+
+  /* On affiche le groupe "mobile" et on l'aligne */
+  .nav-mobile-group {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    /* Espace entre les icônes et le bouton hamburger */
+  }
 }
+
 /* ======================================================= */
 /*    BLOC DE CORRECTIONS CSS À AJOUTER À LA FIN DU FICHIER */
 /* ======================================================= */
 
 /* --- Correction alignement Desktop --- */
-.nav-desktop-group, .nav-right-group {
-    display: flex;
-    align-items: center;
-    margin-left: 1.5rem; /* <-- AJOUTEZ CETTE LIGNE */
+.nav-desktop-group,
+.nav-right-group {
+  display: flex;
+  align-items: center;
+  margin-left: 1.5rem;
+  /* <-- AJOUTEZ CETTE LIGNE */
 }
 
 /* --- Masquage/Affichage des groupes Desktop/Mobile --- */
 .nav-mobile-group {
-    display: none;
+  display: none;
 }
 
 
 /* --- Styles pour le nouveau menu mobile --- */
 #mobile-menu {
-    justify-content: center;
-    text-align: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .mobile-menu-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 70%;
 }
 
 .mobile-menu-footer {
-    margin-top: 4rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2.5rem;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
 }
 
 #mobile-menu .nav-cv-btn {
-    padding: 0.8rem 2rem;
-    font-size: 1.2rem;
+  padding: 0.8rem 2rem;
+  font-size: 1.2rem;
 }
 
 #mobile-menu .nav-socials {
-    gap: 2rem;
+  gap: 2rem;
 }
+
 #mobile-menu .nav-socials a {
-    font-size: 1.8rem;
+  font-size: 1.8rem;
 }
 
 /* --- Média Query pour le passage en mode mobile --- */
 @media (max-width: 768px) {
-    .nav-desktop-group {
-        display: none;
-    }
+  .nav-desktop-group {
+    display: none;
+  }
 
-    .nav-mobile-group {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
+  .nav-mobile-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
 
-    /* On cache les anciens contrôles en bas du menu mobile */
-    #mobile-menu .mobile-menu-bottom {
-        display: none;
-    }
+  /* On cache les anciens contrôles en bas du menu mobile */
+  #mobile-menu .mobile-menu-bottom {
+    display: none;
+  }
 }
 
 /* ======================================================= */
 /*          NOUVEAUX STYLES : SECTION TERMINAL             */
 /* ======================================================= */
 .terminal-section {
-    padding: 6rem 5%;
-    background-color: var(--accent);
+  padding: 6rem 5%;
+  background-color: var(--accent);
 }
 
 .terminal-window {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #1E1E1E;
-    border-radius: 10px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    border: 1px solid #444;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #1E1E1E;
+  border-radius: 10px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  border: 1px solid #444;
 }
 
 .terminal-title-bar {
-    background-color: #333;
-    padding: 0.7rem 1rem;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    display: flex;
-    align-items: center;
-    color: #ccc;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.9rem;
+  background-color: #333;
+  padding: 0.7rem 1rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  align-items: center;
+  color: #ccc;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
 }
 
 .terminal-dots {
-    display: flex;
-    gap: 0.5rem;
-    margin-right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  margin-right: 1rem;
 }
 
 .terminal-body {
-    padding: 1.5rem;
-    height: 450px;
-    overflow-y: auto;
-    font-family: 'VT323', monospace;
-    font-size: 1.4rem;
-    line-height: 1.5;
-    color: #EAEAEA;
-    cursor: text;
+  padding: 1.5rem;
+  height: 450px;
+  overflow-y: auto;
+  font-family: 'VT323', monospace;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: #EAEAEA;
+  cursor: text;
 }
 
 .terminal-body::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
+
 .terminal-body::-webkit-scrollbar-track {
-    background: #1E1E1E;
+  background: #1E1E1E;
 }
+
 .terminal-body::-webkit-scrollbar-thumb {
-    background: #555;
-    border-radius: 4px;
+  background: #555;
+  border-radius: 4px;
 }
 
 .terminal-input-line {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .terminal-prompt {
-    color: #82aaff; /* Bleu */
-    margin-right: 0.5rem;
-    white-space: nowrap;
+  color: #82aaff;
+  /* Bleu */
+  margin-right: 0.5rem;
+  white-space: nowrap;
 }
 
 .terminal-input {
-    flex-grow: 1;
-    background: none;
-    border: none;
-    outline: none;
-    color: #EAEAEA;
-    font-family: 'VT323', monospace;
-    font-size: 1.4rem;
+  flex-grow: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: #EAEAEA;
+  font-family: 'VT323', monospace;
+  font-size: 1.4rem;
 }
 
 .terminal-output p {
-    margin: 0;
-    white-space: pre-wrap; /* Respecte les retours à la ligne */
+  margin: 0;
+  white-space: pre-wrap;
+  /* Respecte les retours à la ligne */
 }
 
 .terminal-output .user-command {
-    color: #EAEAEA;
+  color: #EAEAEA;
 }
 
 .terminal-output .command-output {
-    color: #c3e88d; /* Vert */
-    padding-left: 1rem;
+  color: #c3e88d;
+  /* Vert */
+  padding-left: 1rem;
 }
 
 .terminal-output .command-error {
-    color: #ff5370; /* Rouge */
+  color: #ff5370;
+  /* Rouge */
 }
 
 .terminal-output .command-output strong {
-    color: #89ddff;
+  color: #89ddff;
 }
 
 /* ======================================================= */
@@ -2843,153 +2869,167 @@ a:not(.btn):not(.social-icon):hover {
 /* ======================================================= */
 
 .skills-sandbox-section {
-    padding: 8rem 5%;
-    background-color: var(--secondary);
-    text-align: center;
-    overflow: hidden;
+  padding: 8rem 5%;
+  background-color: var(--secondary);
+  text-align: center;
+  overflow: hidden;
 }
 
 .sandbox-instructions {
-    max-width: 600px;
-    margin: 0 auto 2rem auto;
-    opacity: 0.7;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+  opacity: 0.7;
 }
 
 .sandbox-container {
-    position: relative;
-    max-width: 1000px;
-    width: 100%;
-    height: 600px;
-    margin: 0 auto;
-    border: 1px dashed color-mix(in srgb, var(--primary) 20%, transparent);
-    background-color: color-mix(in srgb, var(--primary) 3%, transparent);
-    user-select: none;
+  position: relative;
+  max-width: 1000px;
+  width: 100%;
+  height: 600px;
+  margin: 0 auto;
+  border: 1px dashed color-mix(in srgb, var(--primary) 20%, transparent);
+  background-color: color-mix(in srgb, var(--primary) 3%, transparent);
+  user-select: none;
 }
 
 .sandbox-skill-item {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    border-radius: 8px;
-    background-color: var(--accent);
-    color: var(--primary);
-    cursor: grab;
-    will-change: transform;
-    text-align: center;
-    font-weight: 500;
-    border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: var(--accent);
+  color: var(--primary);
+  cursor: grab;
+  will-change: transform;
+  text-align: center;
+  font-weight: 500;
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
 }
+
 .sandbox-skill-item:active {
-    cursor: grabbing;
+  cursor: grabbing;
 }
+
 .sandbox-skill-item i {
-    font-size: 1.5rem;
-    margin-right: 0.75rem;
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
 }
 
 .sandbox-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10003;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10003;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .sandbox-modal.visible {
-    opacity: 1;
-    pointer-events: all;
+  opacity: 1;
+  pointer-events: all;
 }
 
 .sandbox-modal-content {
-    background-color: var(--accent);
-    padding: 2.5rem;
-    border-radius: 12px;
-    max-width: 500px;
-    width: 90%;
-    position: relative;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-    text-align: center;
+  background-color: var(--accent);
+  padding: 2.5rem;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  text-align: center;
 }
 
 .sandbox-modal.visible .sandbox-modal-content {
-    transform: scale(1);
+  transform: scale(1);
 }
 
 .sandbox-modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1.2rem;
-    background: none;
-    border: none;
-    font-size: 2rem;
-    color: var(--primary);
-    opacity: 0.7;
-    cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--primary);
+  opacity: 0.7;
+  cursor: pointer;
 }
+
 .sandbox-modal-close:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .sandbox-modal-content h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: var(--color-accent-new);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--color-accent-new);
 }
 
 .sandbox-modal-content p {
-    font-size: 1.1rem;
-    line-height: 1.7;
+  font-size: 1.1rem;
+  line-height: 1.7;
 }
 
 /* ======================================================= */
 /*          STYLE POUR LES RÉPONSES DE L'IA                */
 /* ======================================================= */
 .ai-response {
-    color: #c3e88d; /* La couleur verte que vous aimez */
-    padding-left: 1rem;
-    white-space: pre-wrap; /* Respecte les sauts de ligne de l'IA */
+  color: #c3e88d;
+  /* La couleur verte que vous aimez */
+  padding-left: 1rem;
+  white-space: pre-wrap;
+  /* Respecte les sauts de ligne de l'IA */
 }
 
 .ai-response strong {
-    color: #89ddff; /* Met en évidence les mots en gras */
+  color: #89ddff;
+  /* Met en évidence les mots en gras */
 }
 
 /* AJOUTEZ CECI À LA FIN DE style.css */
 .ai-typing {
-    padding-left: 1rem;
-    color: #888;
+  padding-left: 1rem;
+  color: #888;
 }
 
 .ai-typing span {
-    animation: blink 1.4s infinite both;
-    font-size: 2rem;
-    line-height: 0;
+  animation: blink 1.4s infinite both;
+  font-size: 2rem;
+  line-height: 0;
 }
 
 .ai-typing span:nth-child(2) {
-    animation-delay: 0.2s;
+  animation-delay: 0.2s;
 }
 
 .ai-typing span:nth-child(3) {
-    animation-delay: 0.4s;
+  animation-delay: 0.4s;
 }
 
 @keyframes blink {
-    0% { opacity: 0.2; }
-    20% { opacity: 1; }
-    100% { opacity: 0.2; }
+  0% {
+    opacity: 0.2;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.2;
+  }
 }
 
 
@@ -2997,28 +3037,33 @@ a:not(.btn):not(.social-icon):hover {
 
 /* Style pour le texte en gras dans la réponse de l'IA */
 .ai-response strong {
-    color: #89ddff; /* Un bleu clair pour mettre en évidence, comme dans vos commandes */
-    font-weight: normal; /* La police VT323 est déjà assez épaisse, on évite le double gras */
+  color: #89ddff;
+  /* Un bleu clair pour mettre en évidence, comme dans vos commandes */
+  font-weight: normal;
+  /* La police VT323 est déjà assez épaisse, on évite le double gras */
 }
 
 /* Style pour les liens (adresses e-mail) dans la réponse de l'IA */
 .ai-response a {
-    color: #c3e88d; /* La même couleur verte que le texte normal de l'IA */
-    text-decoration: underline;
-    text-decoration-style: dashed;
-    transition: color 0.3s ease;
+  color: #c3e88d;
+  /* La même couleur verte que le texte normal de l'IA */
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  transition: color 0.3s ease;
 }
 
 .ai-response a:hover {
-    color: #ffffff; /* Le lien devient blanc au survol */
+  color: #ffffff;
+  /* Le lien devient blanc au survol */
 }
 
 .terminal-separator {
-    text-align: center;
-    color: var(--primary);
-    opacity: 0.3;
-    margin: 1rem 0;
-    letter-spacing: 0.5em; /* Espace les tirets */
+  text-align: center;
+  color: var(--primary);
+  opacity: 0.3;
+  margin: 1rem 0;
+  letter-spacing: 0.5em;
+  /* Espace les tirets */
 }
 
 /* ======================================================= */
@@ -3026,75 +3071,83 @@ a:not(.btn):not(.social-icon):hover {
 /* ======================================================= */
 
 .terminal-suggestions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.75rem;
-    margin-top: 1rem;
-    padding-left: 1rem;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-left: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
 }
 
 .terminal-suggestions span {
-    color: #888; /* Couleur du label "Essayez :" */
-    margin-right: 0.25rem;
+  color: #888;
+  /* Couleur du label "Essayez :" */
+  margin-right: 0.25rem;
 }
 
 .terminal-suggestions button {
-    background-color: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #ccc;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ccc;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
 }
 
 .terminal-suggestions button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.3);
-    color: #fff;
-    transform: translateY(-1px);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  transform: translateY(-1px);
 }
 
 /* Styles pour le mode clair */
 body.light-mode .terminal-suggestions span {
-    color: #666;
+  color: #666;
 }
 
 body.light-mode .terminal-suggestions button {
-    background-color: rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.1);
-    color: #444;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #444;
 }
 
 body.light-mode .terminal-suggestions button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    color: #000;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #000;
 }
 
 /* AJOUTER À LA FIN DE style.css */
 body.terminal-cursor-active {
-    cursor: cell;
+  cursor: cell;
 }
 
 /* AJOUTEZ CECI À LA FIN DE style.css */
 
 /* Quand la souris est sur le terminal... */
 body.terminal-hover .cursor {
-    width: 2px; /* Largeur d'un curseur de texte */
-    height: 1.5rem; /* Hauteur adaptée à la police du terminal */
-    border-radius: 0; /* Pour en faire un rectangle */
-    background-color: #c3e88d; /* Couleur verte du terminal */
-    mix-blend-mode: normal; /* Annule l'effet de différence de couleur */
-    margin-left: -1px; /* Centrage parfait */
+  width: 2px;
+  /* Largeur d'un curseur de texte */
+  height: 1.5rem;
+  /* Hauteur adaptée à la police du terminal */
+  border-radius: 0;
+  /* Pour en faire un rectangle */
+  background-color: #c3e88d;
+  /* Couleur verte du terminal */
+  mix-blend-mode: normal;
+  /* Annule l'effet de différence de couleur */
+  margin-left: -1px;
+  /* Centrage parfait */
 }
 
 body.terminal-hover .cursor-follower {
-    opacity: 0; /* On cache le cercle suiveur */
+  opacity: 0;
+  /* On cache le cercle suiveur */
 }
 
 /* ======================================================= */
@@ -3103,152 +3156,613 @@ body.terminal-hover .cursor-follower {
 
 /* --- Styles pour le lien dans le footer --- */
 .footer-links {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }
 
 .footer-links a {
-    color: var(--primary);
-    opacity: 0.7;
-    text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, var(--primary) 40%, transparent);
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
+  color: var(--primary);
+  opacity: 0.7;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--primary) 40%, transparent);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
 }
 
 .footer-links a:hover {
-    opacity: 1;
-    text-decoration-color: var(--primary);
+  opacity: 1;
+  text-decoration-color: var(--primary);
 }
 
 /* --- Styles pour la modale --- */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10005; /* Doit être au-dessus de tout le reste */
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10005;
+  /* Doit être au-dessus de tout le reste */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 
 .modal-overlay.visible {
-    opacity: 1;
-    pointer-events: all;
+  opacity: 1;
+  pointer-events: all;
 }
 
 .modal-content {
-    background-color: var(--accent);
-    color: var(--primary);
-    padding: 2.5rem 3rem;
-    border-radius: 12px;
-    max-width: 700px;
-    width: 90%;
-    max-height: 85vh;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
-    transform: scale(0.95) translateY(20px);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: var(--accent);
+  color: var(--primary);
+  padding: 2.5rem 3rem;
+  border-radius: 12px;
+  max-width: 700px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
+  transform: scale(0.95) translateY(20px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .modal-overlay.visible .modal-content {
-    transform: scale(1) translateY(0);
+  transform: scale(1) translateY(0);
 }
 
 .modal-close-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1.2rem;
-    background: none;
-    border: none;
-    font-size: 2.5rem;
-    font-weight: 300;
-    color: var(--primary);
-    opacity: 0.6;
-    cursor: pointer;
-    line-height: 1;
-    transition: all 0.3s ease;
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--primary);
+  opacity: 0.6;
+  cursor: pointer;
+  line-height: 1;
+  transition: all 0.3s ease;
 }
 
 .modal-close-btn:hover {
-    opacity: 1;
-    transform: rotate(90deg);
+  opacity: 1;
+  transform: rotate(90deg);
 }
 
 .modal-content h3 {
-    font-size: 2rem;
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    text-align: center;
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .modal-content h4 {
-    font-size: 1.2rem;
-    margin-top: 2rem;
-    margin-bottom: 0.8rem;
-    border-bottom: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
-    padding-bottom: 0.5rem;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+  padding-bottom: 0.5rem;
 }
 
 .modal-content p {
-    font-size: 1rem;
-    line-height: 1.8;
-    margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
 }
 
 .modal-content ul {
-    list-style-type: '• ';
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
+  list-style-type: '• ';
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .modal-content li {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Scrollbar personnalisée pour la modale */
 .modal-content::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
+
 .modal-content::-webkit-scrollbar-track {
-    background: transparent;
+  background: transparent;
 }
+
 .modal-content::-webkit-scrollbar-thumb {
-    background: color-mix(in srgb, var(--primary) 40%, transparent);
-    border-radius: 4px;
+  background: color-mix(in srgb, var(--primary) 40%, transparent);
+  border-radius: 4px;
 }
 
 /* AJOUTEZ CECI À LA FIN DE style.css (ou vérifiez sa présence) */
 
 /* Règle pour le texte "Suggestions :" en mode clair */
 body.light-mode .terminal-suggestions span {
-    color: #555;
+  color: #555;
 }
 
 /* Règle pour les boutons en mode clair */
 body.light-mode .terminal-suggestions button {
-    background-color: rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.15);
-    color: #333; /* Texte plus sombre pour une meilleure lisibilité */
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #333;
+  /* Texte plus sombre pour une meilleure lisibilité */
 }
 
 /* Règle pour le survol des boutons en mode clair */
 body.light-mode .terminal-suggestions button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    border-color: rgba(0, 0, 0, 0.2);
-    color: #000;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #000;
 }
 
 /* AJOUTEZ CECI À LA FIN DE VOTRE FICHIER style.css */
 
 .image-miroir {
   transform: scaleX(-1);
+}
+
+/* --- NOUVEAU HERO STYLE (WAW EFFECT) --- */
+
+/* On force le header en mode sombre pour l'immersion */
+#accueil {
+  position: relative;
+  background-color: #050505;
+  overflow: hidden;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Le Canvas 3D en arrière-plan */
+#hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  /* Derrière le texte */
+  opacity: 0;
+  /* Apparaîtra via JS */
+  transition: opacity 1.5s ease;
+}
+
+/* Le contenu passe devant */
+.hero {
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+  /* Laisse la souris interagir avec la 3D si besoin */
+}
+
+.hero-buttons,
+.hero-subtitle {
+  pointer-events: auto;
+}
+
+/* Typographie Moderne "Scanner" */
+.hero-title-modern {
+  font-family: 'Syncopate', 'Space Grotesk', sans-serif;
+  /* Assure-toi d'avoir importé Syncopate ou garde Space Grotesk */
+  font-size: 9vw;
+  line-height: 0.9;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Centré */
+}
+
+.hero-line {
+  display: block;
+  overflow: hidden;
+  /* Pour cacher le texte qui arrive */
+  position: relative;
+}
+
+.outline-text {
+  position: relative;
+  display: block;
+  color: transparent;
+  /* Le contour du texte (Outline) */
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
+}
+
+/* L'effet de remplissage (Fill) */
+.outline-text::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  /* Commence vide */
+  height: 100%;
+  color: #ffffff;
+  /* Couleur pleine */
+  overflow: hidden;
+  border-right: 4px solid #00ff88;
+  /* LA BARRE ! (Couleur accent) */
+  transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+  /* Optionnel: Glow sur la barre */
+  box-shadow: 2px 0 15px rgba(0, 255, 136, 0.5);
+}
+
+/* Classe active déclenchée par JS pour lancer l'anim */
+.hero-title-modern.animated .outline-text::before {
+  width: 100%;
+  border-right-color: transparent;
+  /* La barre disparaît à la fin ou reste, au choix */
+  transition-delay: 0.2s;
+}
+
+/* Retard pour la 2ème ligne */
+.hero-title-modern.animated .hero-line:nth-child(2) .outline-text::before {
+  transition-delay: 0.4s;
+}
+
+/* Ajustement responsive */
+@media (max-width: 768px) {
+  .hero-title-modern {
+    font-size: 13vw;
+  }
+
+  .outline-text {
+    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* ======================================================= */
+/*    CORRECTIF LIGHT MODE POUR LE HERO 3D (À AJOUTER)     */
+/* ======================================================= */
+
+/* 1. On passe le fond de la section en blanc */
+body.light-mode #accueil {
+  background-color: #ffffff;
+}
+
+/* 2. L'astuce magique : on inverse les couleurs du conteneur 3D 
+   Les étoiles blanches (White) deviennent noires (Black) */
+body.light-mode #hero-canvas {
+  filter: invert(1);
+}
+
+/* 3. On adapte aussi le Titre Scanner pour qu'il soit noir sur fond blanc */
+body.light-mode .outline-text {
+  /* Contour gris foncé au lieu de blanc */
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.5);
+}
+
+body.light-mode .outline-text::before {
+  /* Le remplissage du texte devient noir */
+  color: #000000;
+}
+
+/* ======================================================= */
+/*    CORRECTIF LIGHT MODE POUR LA GALAXIE (COMPÉTENCES)   */
+/* ======================================================= */
+
+/* 1. On inverse le canvas des étoiles de la section compétences */
+/* Les points blancs deviennent noirs */
+body.light-mode #starfield-canvas {
+  filter: invert(1);
+  opacity: 0.7;
+  /* On réduit un peu l'opacité car le noir tape plus fort à l'œil */
+}
+
+/* 2. Petit correctif pour le texte "AM." au centre du soleil */
+/* En light mode, ta variable --secondary devient blanche. */
+/* Blanc sur Jaune = Illisible. On force le noir ici. */
+body.light-mode .sun-core {
+  color: #000000;
+  text-shadow: none;
+}
+
+
+/* ======================================================= */
+/*          EFFET DE DISTORSION LIQUIDE (PORTFOLIO)        */
+/* ======================================================= */
+
+.project-image-liquid {
+  width: 100%;
+  /* On force un ratio standard pour éviter les déformations */
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  /* Contexte de positionnement pour le canvas */
+}
+
+/* Le canvas généré par la librairie doit prendre toute la place */
+.project-image-liquid canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ======================================================= */
+/*    CORRECTIF NAVBAR MOBILE (ICÔNES TROP ESPACÉES)     */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  .nav-mobile-group {
+    display: flex;
+    align-items: center;
+    /* LA RÈGLE CLÉ : Définit un espace fixe de 1rem entre chaque icône */
+    gap: 1rem;
+  }
+
+  /* Optionnel mais recommandé : Réduire légèrement la taille des icônes sur mobile */
+  .nav-mobile-group .nav-socials a,
+  .nav-mobile-group .theme-btn {
+    font-size: 1.1rem;
+  }
+
+  .nav-mobile-group .nav-cv-btn {
+    padding: 0.5rem 0.6rem;
+    /* Rendre le bouton CV un peu plus compact */
+  }
+}
+
+/* Pour les écrans très étroits, on resserre encore un peu plus */
+@media (max-width: 380px) {
+  .nav-mobile-group {
+    gap: 0.7rem;
+  }
+}
+
+/* ======================================================= */
+/*    CORRECTIF RESPONSIVE GALAXIE 3D (HERO)             */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  #hero-canvas {
+    /* Fait un "zoom" de 40% dans l'animation. */
+    /* Les étoiles paraîtront plus espacées et le mouvement plus ample. */
+    transform: scale(1.4);
+  }
+}
+
+/* ======================================================= */
+/*    STYLES AMÉLIORÉS POUR LE MODE GRAVITÉ (COMPÉTENCES)   */
+/* ======================================================= */
+
+#gravity-btn {
+  position: absolute;
+  top: 2rem;
+  right: 5%;
+  z-index: 100;
+  backdrop-filter: blur(5px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+#gravity-btn:hover {
+  transform: scale(1.05);
+}
+
+#physics-skills-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Style de base pour TOUTES les planètes physiques */
+.physics-skill-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  /* Taille fixe */
+  height: 100px;
+  /* Taille fixe */
+  border-radius: 50%;
+  /* Transformation en cercle */
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.2);
+
+  /* Centrer le texte à l'intérieur du cercle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  will-change: transform;
+  cursor: grab;
+  pointer-events: auto;
+}
+
+.physics-skill-item:active {
+  cursor: grabbing;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* On réplique les couleurs des planètes originales */
+.physics-skill-item.frontend {
+  background: radial-gradient(circle, #61DAFB, #007B9E);
+}
+
+.physics-skill-item.backend {
+  background: radial-gradient(circle, #8993be, #3B4368);
+}
+
+.physics-skill-item.design {
+  background: radial-gradient(circle, #f24e1e, #A259FF);
+}
+
+.physics-skill-item.shopify {
+  background: radial-gradient(circle, #95BF47, #5E8E3E);
+}
+
+.physics-skill-item.tools {
+  background: radial-gradient(circle, #a7a7a7, #5A5A5A);
+}
+
+/* ======================================================= */
+/*    CORRECTIF FINAL MODE GRAVITÉ (Interaction Souris)    */
+/* ======================================================= */
+
+#skills-scene-container {
+  position: relative;
+  /* Contexte pour les calques */
+}
+
+/* 1. Le fond étoilé : on le force à rester derrière ET à être "traversable" par la souris */
+#starfield-canvas {
+  z-index: 1;
+  /* LA CORRECTION MAGIQUE EST ICI : */
+  /* Cet élément n'interceptera plus jamais la souris (clics, scroll, etc.) */
+  pointer-events: none;
+}
+
+/* 2. Le canvas de Matter.js (qui écoute la souris) : on le met au-dessus des étoiles */
+/* On cible le DEUXIÈME canvas, celui de Matter.js */
+#skills-scene-container>canvas:nth-of-type(2) {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
+/* 3. Le conteneur des planètes visibles : on le met tout devant */
+#physics-skills-container {
+  z-index: 10;
+}
+
+/* FIX: Active Language Button Style */
+.language-switcher button.active,
+#lang-fr.active,
+#lang-en.active,
+#lang-fr-topnav.active,
+#lang-en-topnav.active {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+  opacity: 1 !important;
+  font-weight: 700;
+}
+
+/* Ensure inactive buttons are visible but less prominent */
+.language-switcher button,
+#lang-fr,
+#lang-en,
+#lang-fr-topnav,
+#lang-en-topnav {
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.language-switcher button:hover,
+#lang-fr:hover,
+#lang-en:hover,
+#lang-fr-topnav:hover,
+#lang-en-topnav:hover {
+  opacity: 1;
+}
+
+
+/* --- POPUP NOTATION --- */
+.rating-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  display: none;
+  /* Caché par défaut */
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.rating-overlay.visible {
+  opacity: 1;
+}
+
+.rating-modal {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.2);
+  /* Lueur violette */
+  transform: scale(0.8);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.rating-overlay.visible .rating-modal {
+  transform: scale(1);
+}
+
+.rating-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.rating-close:hover {
+  opacity: 1;
+}
+
+.stars-container {
+  margin: 20px 0;
+  font-size: 32px;
+  color: #ffd700;
+  /* Or */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.stars-container i {
+  transition: transform 0.2s;
+}
+
+.stars-container i:hover {
+  transform: scale(1.2);
+}
+
+.rating-score {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: #ccc;
+  font-weight: bold;
+}
+
+#rating-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(1);
 }

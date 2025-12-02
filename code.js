@@ -1,21 +1,19 @@
 // =========================================================================
-//                  SCRIPT.JS - VERSION FINALE ET CORRIGÉE
+//                  SCRIPT.JS - VERSION COMPLETE (GRAVITY + RATING)
 // =========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
   let jsonAnimated = false; // Pour l'animation JSON
   let wavesAnimated = false; // Pour les vagues
 
-  // --- AJOUT --- : On déclare le journal de la conversation ici pour qu'il soit accessible
-  // à la fois par le terminal et par l'événement de fermeture de la page.
+  // Journal de la conversation
   let conversationLog = [];
 
   const universalTooltip = document.createElement('div');
   universalTooltip.id = 'universal-tooltip';
   document.body.appendChild(universalTooltip);
 
-
-  // Sélectionne TOUS les boutons de thème et l'élément body
+  // --- GESTION DU THÈME ---
   const themeSwitchers = document.querySelectorAll("#theme-switcher, #theme-switcher-mobile, #theme-switcher-mobile-nav");
   const body = document.body;
 
@@ -44,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // --- GESTION DES LANGUES & TRADUCTIONS ---
   const translations = {};
   let currentLang = localStorage.getItem("language") || "fr";
 
@@ -54,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function fetchTranslations(lang) {
     try {
-      // ✅ MODIFICATION : Ajout du "cache busting" pour les fichiers de traduction
       const response = await fetch(`${lang}.json?v=${new Date().getTime()}`);
       if (!response.ok) throw new Error(`Failed to load ${lang}.json`);
       translations[lang] = await response.json();
@@ -77,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.documentElement.lang = lang;
 
+    // Traduction textes simples
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
       const translation = getNestedTranslation(langData, key);
@@ -86,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    // Traduction attributs (content, alt, placeholder)
     document.querySelectorAll("[data-i18n-attr-content]").forEach((el) => {
       const key = el.getAttribute("data-i18n-attr-content");
       const translation = getNestedTranslation(langData, key);
@@ -105,26 +105,25 @@ document.addEventListener("DOMContentLoaded", () => {
         el.setAttribute("placeholder", translation);
     });
 
+    // Mise à jour liens CV
     const cvLinks = document.querySelectorAll('.cv-link');
     if (cvLinks.length > 0) {
       const cvFileNameFR = 'CV-Arnaud-Martiny-FR.pdf';
       const cvFileNameEN = 'CV-Arnaud-Martiny-EN.pdf';
-      const filePath = lang === 'fr'
-        ? `assets/CV/${cvFileNameFR}`
-        : `assets/CV/${cvFileNameEN}`;
+      const filePath = lang === 'fr' ? `assets/CV/${cvFileNameFR}` : `assets/CV/${cvFileNameEN}`;
       cvLinks.forEach(link => link.setAttribute('href', filePath));
     }
 
+    // Mise à jour JSON Skills
     const jsonContentEl = document.getElementById("language-json-content");
     if (jsonContentEl && langData.skillsSection && langData.skillsSection.languages) {
       jsonContentEl.innerHTML = "";
       jsonContentEl.dataset.languages = JSON.stringify(langData.skillsSection.languages);
       const codeBlockTitle = document.getElementById("code-block-title");
-      if (codeBlockTitle) {
-        codeBlockTitle.textContent = "language.json";
-      }
+      if (codeBlockTitle) codeBlockTitle.textContent = "language.json";
     }
 
+    // Mise à jour Waves
     const wavesContainer = document.querySelector(".waves-container");
     if (wavesContainer && langData.skillsSection && langData.skillsSection.languages) {
       wavesContainer.innerHTML = "";
@@ -140,6 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
+    // Mise à jour Skills Tags
     const aboutSkillsContainer = document.getElementById("about-skills-tags");
     if (aboutSkillsContainer && langData.about && langData.about.skillsTags) {
       aboutSkillsContainer.innerHTML = "";
@@ -151,22 +151,35 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
+    // Gestion navbar scroll
     const navContainer = document.querySelector(".nav-container");
     if (navContainer) {
       window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-          navContainer.classList.add("scrolled");
-        } else {
-          navContainer.classList.remove("scrolled");
-        }
+        if (window.scrollY > 50) navContainer.classList.add("scrolled");
+        else navContainer.classList.remove("scrolled");
       });
     }
 
+    // Système solaire / Compétences
     const sceneContainer = document.getElementById("skills-scene-container");
     const solarSystem = document.getElementById("skills-solar-system");
     const infobox = document.getElementById("skills-infobox");
     const canvas = document.getElementById("starfield-canvas");
     if (sceneContainer && solarSystem && infobox && canvas && langData.skillsSection && langData.skillsSection.planets) {
+      // Réinitialisation au cas où le mode gravité a été activé précédemment
+      solarSystem.style.opacity = '1';
+      solarSystem.style.pointerEvents = 'all';
+      const gravityBtn = document.getElementById('gravity-btn');
+      if (gravityBtn) {
+        gravityBtn.style.display = 'flex';
+        gravityBtn.style.opacity = '1';
+        gravityBtn.style.transform = 'scale(1)';
+      }
+
+      // Nettoyage éventuel du conteneur physique s'il existe
+      const existingPhysicsContainer = document.getElementById('physics-skills-container');
+      if (existingPhysicsContainer) existingPhysicsContainer.remove();
+
       solarSystem.innerHTML = `<div id="skill-sun"><div class="sun-flare"></div><div class="sun-core">AM.</div></div>`;
       const ctx = canvas.getContext("2d");
       canvas.width = sceneContainer.offsetWidth;
@@ -182,6 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
             speed: Math.random() * 0.5 + 0.1,
           });
         }
+
         function drawStars() {
           if (!document.contains(canvas)) return;
           ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -233,6 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
+    // Timeline Expérience
     const timelineContainer = document.getElementById("timeline-content");
     if (timelineContainer && langData.experienceSection && langData.experienceSection.items) {
       timelineContainer.innerHTML = "";
@@ -254,33 +269,64 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
+    // --- Projets Portfolio (Mise à jour Liquide) ---
     const projectsContainer = document.getElementById("featured-projects-container");
     if (projectsContainer && langData.featuredProjects && langData.featuredProjects.items) {
-      projectsContainer.innerHTML = "";
+      projectsContainer.innerHTML = ""; // On vide le conteneur
+
       langData.featuredProjects.items.forEach((project) => {
         const projectCard = document.createElement("div");
         projectCard.className = "project-card reveal";
-        let techHtml = "";
-        project.tech.forEach((tech) => {
-          techHtml += `<div class="project-tech-item">${tech}</div>`;
-        });
+
+        // Génération des éléments dynamiques (tech, boutons, etc.)
+        const techHtml = project.tech.map(t => `<div class="project-tech-item">${t}</div>`).join('');
         const caseStudyButtonText = getNestedTranslation(langData, "featuredProjects.caseStudyButton") || "View Case Study";
-        let liveLinkTooltip = '';
-        if (project.id === 'theatre-des-poetes') {
-          liveLinkTooltip = 'data-tooltip-key="featuredProjects.poetesTooltip"';
-        }
-        let codeLinkTooltip = '';
-        if (project.id === 'nowa-logistics') {
-          codeLinkTooltip = 'data-tooltip-key="featuredProjects.noCodeTooltip"';
-        } else if (project.id === 'theatre-des-poetes') {
-          codeLinkTooltip = 'data-tooltip-key="featuredProjects.poetesCodeTooltip"';
-        }
-        const disabledState = 'style="opacity: 0.5; cursor: not-allowed;" onclick="event.preventDefault();"';
-        projectCard.innerHTML = `<div class="project-image"><a href="${project.liveLink}" target="_blank" ${project.liveLink === "#" ? disabledState : ''}><img src="${project.imageSrc}" alt="${project.imageAlt}" loading="lazy"></a></div><div class="project-content"><p class="project-category">${project.category}</p><h3 class="project-title">${project.title}</h3><p class="project-description">${project.description}</p><div class="project-tech-list">${techHtml}</div><div class="project-links"><a href="${project.liveLink}" class="btn" target="_blank" ${liveLinkTooltip} ${project.liveLink === "#" ? disabledState : ''}>Voir le site</a><a href="${project.codeLink}" class="btn btn-outline" target="_blank" ${codeLinkTooltip} ${project.codeLink === "#" ? disabledState : ''}>Voir le code</a><button class="btn btn-case-study" data-project-id="${project.id}" data-tooltip-key="featuredProjects.caseStudyTooltip"><span>${caseStudyButtonText}</span></button></div></div>`;
+
+        // Structure HTML de la carte
+        projectCard.innerHTML = `
+            <div class="project-image">
+                <a href="${project.liveLink}" target="_blank">
+                    <!-- Ici, on utilise notre div spécial pour l'effet liquide -->
+                    <div class="project-image-liquid"></div>
+                </a>
+            </div>
+            <div class="project-content">
+                <p class="project-category">${project.category}</p>
+                <h3 class="project-title">${project.title}</h3>
+                <p class="project-description" data-i18n-html>${project.description}</p>
+                <div class="project-tech-list">${techHtml}</div>
+                <div class="project-links">
+                    <a href="${project.liveLink}" class="btn" target="_blank">Voir le site</a>
+                    <a href="${project.codeLink}" class="btn btn-outline" target="_blank">Voir le code</a>
+                    <button class="btn btn-case-study" data-project-id="${project.id}"><span>${caseStudyButtonText}</span></button>
+                </div>
+            </div>`;
+
         projectsContainer.appendChild(projectCard);
+
+        // Activation de l'effet liquide
+        const liquidContainer = projectCard.querySelector('.project-image-liquid');
+        if (typeof hoverEffect !== 'undefined') {
+          try {
+            new hoverEffect({
+              parent: liquidContainer,
+              intensity: 0.3,
+              image1: project.imageSrc,
+              image2: project.imageSrc,
+              displacementImage: 'https://raw.githubusercontent.com/robin-dela/hover-effect/master/images/fluid.jpg',
+              imagesRatio: 10 / 16
+            });
+          } catch (e) {
+            console.warn(`Erreur durant l'initialisation de l'effet liquide pour '${project.title}'. Fallback.`, e);
+            liquidContainer.innerHTML = `<img src="${project.imageSrc}" style="width:100%; height:100%; object-fit:cover; border-radius: 10px;" alt="${project.imageAlt}">`;
+          }
+        } else {
+          liquidContainer.innerHTML = `<img src="${project.imageSrc}" style="width:100%; height:100%; object-fit:cover; border-radius: 10px;" alt="${project.imageAlt}">`;
+        }
       });
     }
 
+    // Tooltips Universels
     function moveTooltip(e) {
       if (universalTooltip.style.display === 'block') {
         universalTooltip.style.left = `${e.clientX + 20}px`;
@@ -304,6 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
       button.addEventListener('mousemove', moveTooltip);
     });
 
+    // Initialisation des autres composants
     initializeRetroAnimation(langData);
     initializeTestimonialsTerminal(langData);
     initializeSlotMachine(langData);
@@ -319,13 +366,12 @@ document.addEventListener("DOMContentLoaded", () => {
       evolutionPopupMessage.innerHTML = messageTemplate.replace('{{date}}', `<b>${lastUpdatedDate}</b>`);
     }
 
-    // ✅ NOUVEAU BLOC À AJOUTER À LA FIN DE applyTranslations
-    // Génération des listes pour la modale de confidentialité
+    // Listes confidentialité
     function generateList(listId, pointsKey) {
       const listElement = document.getElementById(listId);
       const listPoints = getNestedTranslation(langData, pointsKey);
       if (listElement && Array.isArray(listPoints)) {
-        listElement.innerHTML = ''; // On vide la liste
+        listElement.innerHTML = '';
         listPoints.forEach(point => {
           const li = document.createElement('li');
           li.textContent = point;
@@ -335,6 +381,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     generateList('privacy-contact-points', 'privacyModal.contactFormPoints');
     generateList('privacy-ai-points', 'privacyModal.aiAssistantPoints');
+
+    // === INTEGRATION MATTER.JS (GRAVITY MODE FIX) ===
+    initializeGravityMode(langData);
 
     updateLangButtons();
     if (typeof reveal === "function") reveal();
@@ -373,6 +422,7 @@ document.addEventListener("DOMContentLoaded", () => {
     reveal();
   })();
 
+  // --- FORMULAIRE DE CONTACT ---
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
@@ -409,19 +459,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // --- CURSEUR ---
   const cursor = document.querySelector(".cursor");
   const cursorFollower = document.querySelector(".cursor-follower");
   if (cursor && cursorFollower) {
     document.addEventListener("mousemove", (e) => {
-      gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
-      gsap.to(cursorFollower, { x: e.clientX, y: e.clientY, duration: 0.3 });
+      gsap.to(cursor, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.1
+      });
+      gsap.to(cursorFollower, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.3
+      });
     });
     const interactableElements = "a, button, input, textarea, .skill-card, #slot-lever";
     document.addEventListener("mouseover", (e) => {
       const target = e.target.closest(interactableElements);
       if (target) {
-        gsap.to(cursor, { scale: 1.5 });
-        gsap.to(cursorFollower, { scale: 0.7 });
+        gsap.to(cursor, {
+          scale: 1.5
+        });
+        gsap.to(cursorFollower, {
+          scale: 0.7
+        });
         if (body.classList.contains("light-mode")) {
           cursor.style.mixBlendMode = "difference";
         }
@@ -430,8 +493,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("mouseout", (e) => {
       const target = e.target.closest(interactableElements);
       if (target) {
-        gsap.to(cursor, { scale: 1 });
-        gsap.to(cursorFollower, { scale: 1 });
+        gsap.to(cursor, {
+          scale: 1
+        });
+        gsap.to(cursorFollower, {
+          scale: 1
+        });
         if (body.classList.contains("light-mode")) {
           cursor.style.mixBlendMode = "normal";
         }
@@ -453,6 +520,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // --- ANIMATIONS ---
   let skillsAnimated = false;
   let countersAnimated = false;
   const skillsSection = document.querySelector(".skills-section");
@@ -481,6 +549,7 @@ document.addEventListener("DOMContentLoaded", () => {
         await pause(baseTypingSpeed + (Math.random() - 0.5) * 20);
       }
     }
+
     function addHtml(html) {
       currentContent += html;
       render();
@@ -558,6 +627,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const waveColor = "#8A2BE2";
       const waveColorEnd = "#5eead4";
       let time = 0;
+
       function animateWave() {
         if (!document.body.contains(canvas)) return;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -655,7 +725,9 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
-          targetElement.scrollIntoView({ behavior: "smooth" });
+          targetElement.scrollIntoView({
+            behavior: "smooth"
+          });
         }
       } catch (error) {
         console.error("Smooth scroll target not found:", targetId, error);
@@ -693,7 +765,9 @@ document.addEventListener("DOMContentLoaded", () => {
       evolutionPopup.addEventListener('animationend', () => {
         evolutionPopupOverlay.classList.remove('visible');
         evolutionPopup.classList.remove('exploding');
-      }, { once: true });
+      }, {
+        once: true
+      });
     };
     if (!sessionStorage.getItem('evolutionPopupShown')) {
       setTimeout(() => {
@@ -747,6 +821,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // --- CASE STUDY POPUP ---
   const caseStudyOverlay = document.getElementById('case-study-overlay');
   if (caseStudyOverlay) {
     const bootSequenceEl = document.getElementById('boot-sequence');
@@ -768,7 +843,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const characters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン01';
       const fontSize = 16;
       const columns = binaryRainCanvas.width / fontSize;
-      const rainDrops = Array.from({ length: Math.floor(columns) }).map(() => 1);
+      const rainDrops = Array.from({
+        length: Math.floor(columns)
+      }).map(() => 1);
       const drawRain = () => {
         ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
         ctx.fillRect(0, 0, binaryRainCanvas.width, binaryRainCanvas.height);
@@ -851,7 +928,9 @@ document.addEventListener("DOMContentLoaded", () => {
       closeCaseStudy();
       const contactSection = document.getElementById('contact');
       if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
+        contactSection.scrollIntoView({
+          behavior: 'smooth'
+        });
       }
     });
     document.addEventListener('keydown', (e) => {
@@ -859,7 +938,8 @@ document.addEventListener("DOMContentLoaded", () => {
         closeCaseStudy();
       }
     });
-    let isDragging = false, offsetX, offsetY;
+    let isDragging = false,
+      offsetX, offsetY;
     windowTitleBar.addEventListener('mousedown', (e) => {
       isDragging = true;
       offsetX = e.clientX - caseStudyWindowEl.offsetLeft;
@@ -879,6 +959,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   gsap.registerPlugin(ScrollTrigger, TextPlugin);
   let retroTimeline;
+
   function initializeRetroAnimation(langData) {
     if (retroTimeline) {
       retroTimeline.kill();
@@ -891,9 +972,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const resultsWindow = document.getElementById('search-results-window');
     const downloadWindow = document.getElementById('download-box-window');
     const finalWindow = document.getElementById('final-report-window');
-    gsap.set([searchWindow, resultsWindow, downloadWindow, finalWindow], { display: 'none', opacity: 0 });
-    gsap.set('#typing-caret', { display: 'inline' });
-    gsap.set('#retro-search-input', { text: "" });
+    gsap.set([searchWindow, resultsWindow, downloadWindow, finalWindow], {
+      display: 'none',
+      opacity: 0
+    });
+    gsap.set('#typing-caret', {
+      display: 'inline'
+    });
+    gsap.set('#retro-search-input', {
+      text: ""
+    });
     retroTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: retroSection,
@@ -903,7 +991,11 @@ document.addEventListener("DOMContentLoaded", () => {
         scrub: 1.5,
       }
     });
-    retroTimeline.to(searchWindow, { display: 'block', opacity: 1, duration: 0.5 })
+    retroTimeline.to(searchWindow, {
+      display: 'block',
+      opacity: 1,
+      duration: 0.5
+    })
       .to('#retro-search-input', {
         duration: 2,
         text: {
@@ -911,28 +1003,67 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         ease: "none"
       })
-      .set('#typing-caret', { display: 'none' })
-      .to('#retro-search-btn', { scale: 0.95, duration: 0.1, repeat: 1, yoyo: true })
-      .to(searchWindow, { opacity: 0, display: 'none', duration: 0.5, delay: 0.5 })
+      .set('#typing-caret', {
+        display: 'none'
+      })
+      .to('#retro-search-btn', {
+        scale: 0.95,
+        duration: 0.1,
+        repeat: 1,
+        yoyo: true
+      })
+      .to(searchWindow, {
+        opacity: 0,
+        display: 'none',
+        duration: 0.5,
+        delay: 0.5
+      })
       .call(() => {
         const resultsData = langData.retroMethodologySection.results;
         const resultsContainer = resultsWindow.querySelector('.retro-window-body');
         resultsContainer.innerHTML = resultsData.map(r => `<div class="search-result"><a href="#">${r.title}</a><p>${r.description}</p><span>${r.url}</span></div>`).join('');
       })
-      .to(resultsWindow, { display: 'block', opacity: 1, duration: 0.5 });
+      .to(resultsWindow, {
+        display: 'block',
+        opacity: 1,
+        duration: 0.5
+      });
     const downloadsData = langData.retroMethodologySection.downloads;
     downloadsData.forEach((download, index) => {
-      retroTimeline.to(downloadWindow, { display: 'block', opacity: 1, duration: 0.5, delay: 1 })
+      retroTimeline.to(downloadWindow, {
+        display: 'block',
+        opacity: 1,
+        duration: 0.5,
+        delay: 1
+      })
         .call(() => {
           document.getElementById('download-filename').textContent = download.filename;
           document.getElementById('time-left').textContent = download.time;
-          gsap.set('#download-progress-fill', { width: '0%' });
+          gsap.set('#download-progress-fill', {
+            width: '0%'
+          });
         })
-        .to('#download-progress-fill', { width: '100%', duration: 2, ease: "power1.inOut" })
-        .to(downloadWindow, { opacity: 0, display: 'none', duration: 0.5 });
+        .to('#download-progress-fill', {
+          width: '100%',
+          duration: 2,
+          ease: "power1.inOut"
+        })
+        .to(downloadWindow, {
+          opacity: 0,
+          display: 'none',
+          duration: 0.5
+        });
     });
-    retroTimeline.to(resultsWindow, { opacity: 0, display: 'none', duration: 0.5 })
-      .to(finalWindow, { display: 'block', opacity: 1, duration: 1 });
+    retroTimeline.to(resultsWindow, {
+      opacity: 0,
+      display: 'none',
+      duration: 0.5
+    })
+      .to(finalWindow, {
+        display: 'block',
+        opacity: 1,
+        duration: 1
+      });
   }
 
   function initializeExperienceGrid(langData) {
@@ -1151,7 +1282,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // --- MODIFICATION --- : On réinitialise le log à chaque chargement du terminal.
     conversationLog = [];
 
     if (terminalWindow) {
@@ -1177,18 +1307,22 @@ document.addEventListener("DOMContentLoaded", () => {
       suggestionsContainer.addEventListener('click', (e) => {
         if (e.target.tagName === 'BUTTON' && !isWaitingForAi) {
           terminalInput.value = e.target.dataset.command;
-          terminalForm.dispatchEvent(new Event('submit', { cancelable: true }));
+          terminalForm.dispatchEvent(new Event('submit', {
+            cancelable: true
+          }));
         }
       });
     }
 
     const conversationId = 'user-' + Date.now();
-    let commandHistory = [], historyIndex = -1, isWaitingForAi = false, hasAiStarted = false;
+    let commandHistory = [],
+      historyIndex = -1,
+      isWaitingForAi = false,
+      hasAiStarted = false;
 
     const promptText = getNestedTranslation(langData, "terminal.prompt") || "user@arnaud-martiny.be:~$";
     document.querySelector('.terminal-prompt').textContent = promptText;
 
-    // GESTIONNAIRE DE CLICS FUSIONNÉ ET CORRIGÉ
     if (terminalBody) {
       terminalBody.addEventListener('click', (e) => {
         const link = e.target.closest('a');
@@ -1205,25 +1339,25 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // =========================================================================
-    //         NOUVELLE FONCTION CORRIGÉE POUR VOTRE SCRIPT.JS
-    // =========================================================================
-
-    async function sendToAi(userInput) { // <-- Nom plus logique
+    async function sendToAi(userInput) {
       isWaitingForAi = true;
       terminalInput.disabled = true;
       showAiTyping(true);
 
       const lastMessage = conversationLog[conversationLog.length - 1];
       if (!lastMessage || lastMessage.author !== 'User' || lastMessage.message !== userInput) {
-        conversationLog.push({ author: 'User', message: userInput });
+        conversationLog.push({
+          author: 'User',
+          message: userInput
+        });
       }
 
       try {
-        // CORRECTION CRUCIALE : On appelle le bon fichier PHP !
-        const response = await fetch('proxy-groq-ai.php', { // <-- MODIFIÉ
+        const response = await fetch('proxy-groq-ai.php', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({
             history: conversationLog,
             locale: currentLang
@@ -1232,7 +1366,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!response.ok) {
           const errorData = await response.json();
-          // On essaie d'afficher un message d'erreur plus clair de Groq
           const errorMessage = errorData.error ? errorData.error.message : `Erreur du serveur: ${response.statusText}`;
           throw new Error(errorMessage);
         }
@@ -1243,7 +1376,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.response) {
           const formattedMessage = formatMessage(data.response);
           await typeAiResponse(formattedMessage);
-          conversationLog.push({ author: 'AI', message: data.response });
+          conversationLog.push({
+            author: 'AI',
+            message: data.response
+          });
         } else {
           throw new Error("La réponse de l'IA est vide.");
         }
@@ -1251,7 +1387,6 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (error) {
         console.error("Erreur de communication avec l'IA:", error);
         showAiTyping(false);
-        // On affiche l'erreur détaillée dans le terminal, c'est très utile !
         await typeAiResponse("Oups... Erreur de connexion avec le modèle d'IA. Détail : " + error.message);
       } finally {
         const separator = document.createElement('p');
@@ -1265,12 +1400,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // === BLOC 1 CORRIGÉ ===
     const startAiConversation = () => {
       if (hasAiStarted) return;
       hasAiStarted = true;
-      // On appelle la bonne fonction
-      sendToAi(getNestedTranslation(langData, "terminal.initialGreeting") || "Bonjour"); // <-- MODIFIÉ
+      sendToAi(getNestedTranslation(langData, "terminal.initialGreeting") || "Bonjour");
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -1278,7 +1411,9 @@ document.addEventListener("DOMContentLoaded", () => {
         startAiConversation();
         observer.disconnect();
       }
-    }, { threshold: 0.5 });
+    }, {
+      threshold: 0.5
+    });
     observer.observe(terminalSection);
 
     terminalForm.addEventListener('submit', (e) => {
@@ -1350,9 +1485,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return formattedMessage;
     }
 
-    // === BLOC 2 SUPPRIMÉ (l'ancienne fonction sendToGoogleAI a été retirée) ===
-
-    // === BLOC 4 VÉRIFIÉ ET CORRIGÉ ===
     function processUserInput(input) {
       const prompt = `<span class="terminal-prompt">${promptText}</span>`;
       const commandLine = `<p class="user-command">${prompt} ${input}</p>`;
@@ -1360,19 +1492,16 @@ document.addEventListener("DOMContentLoaded", () => {
       terminalBody.scrollTop = terminalBody.scrollHeight;
 
       if (input.toLowerCase() === 'clear') {
-        terminalOutput.innerHTML = ''; // Vide l'affichage
-        conversationLog = []; // Vide la mémoire de la conversation
-        // On relance une nouvelle conversation pour que l'IA se présente à nouveau
+        terminalOutput.innerHTML = '';
+        conversationLog = [];
         startAiConversation();
       } else {
-        // On appelle notre NOUVELLE fonction
-        sendToAi(input); // <-- MODIFIÉ
+        sendToAi(input);
       }
     }
   }
 
-
-  // ✅ AJOUTEZ CE BLOC COMPLET POUR LA GESTION DE LA MODALE
+  // --- MODALE CONFIDENTIALITÉ ---
   const privacyModal = document.getElementById('privacy-modal');
   const openModalBtn = document.getElementById('open-privacy-modal-btn');
   const closeModalBtn = document.getElementById('close-privacy-modal-btn');
@@ -1383,7 +1512,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.overflow = 'hidden';
     }
   };
-  // On rend la fonction accessible globalement pour que le terminal puisse l'appeler
   window.openPrivacyModal = openPrivacyModal;
 
   const closePrivacyModal = () => {
@@ -1415,7 +1543,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // --- SANDBOX (MATTER.JS) ---
   let matterInstance = null;
+
   function initializeSkillsSandbox(langData) {
     if (typeof Matter === 'undefined') {
       console.error("Matter.js is not loaded.");
@@ -1436,9 +1566,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const skills = langData.skillsSandbox.skills;
 
-    const { Engine, Render, Runner, World, Bodies, Mouse, MouseConstraint } = Matter;
+    const {
+      Engine,
+      Render,
+      Runner,
+      World,
+      Bodies,
+      Mouse,
+      MouseConstraint
+    } = Matter;
 
-    const engine = Engine.create({ gravity: { y: 0.4 } });
+    const engine = Engine.create({
+      gravity: {
+        y: 0.4
+      }
+    });
     const render = Render.create({
       element: container,
       engine: engine,
@@ -1450,12 +1592,35 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    matterInstance = { engine, render };
+    matterInstance = {
+      engine,
+      render
+    };
 
-    const ground = Bodies.rectangle(container.clientWidth / 2, container.clientHeight + 25, container.clientWidth, 50, { isStatic: true, render: { visible: false } });
-    const wallLeft = Bodies.rectangle(-25, container.clientHeight / 2, 50, container.clientHeight, { isStatic: true, render: { visible: false } });
-    const wallRight = Bodies.rectangle(container.clientWidth + 25, container.clientHeight / 2, 50, container.clientHeight, { isStatic: true, render: { visible: false } });
-    const roof = Bodies.rectangle(container.clientWidth / 2, -25, container.clientWidth, 50, { isStatic: true, render: { visible: false } });
+    const ground = Bodies.rectangle(container.clientWidth / 2, container.clientHeight + 25, container.clientWidth, 50, {
+      isStatic: true,
+      render: {
+        visible: false
+      }
+    });
+    const wallLeft = Bodies.rectangle(-25, container.clientHeight / 2, 50, container.clientHeight, {
+      isStatic: true,
+      render: {
+        visible: false
+      }
+    });
+    const wallRight = Bodies.rectangle(container.clientWidth + 25, container.clientHeight / 2, 50, container.clientHeight, {
+      isStatic: true,
+      render: {
+        visible: false
+      }
+    });
+    const roof = Bodies.rectangle(container.clientWidth / 2, -25, container.clientWidth, 50, {
+      isStatic: true,
+      render: {
+        visible: false
+      }
+    });
 
     World.add(engine.world, [ground, wallLeft, wallRight, roof]);
 
@@ -1465,15 +1630,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const body = Bodies.rectangle(
         Math.random() * (container.clientWidth - width) + width / 2,
         Math.random() * (container.clientHeight / 2),
-        width, height,
-        {
-          restitution: 0.5,
-          friction: 0.3,
-          render: {
-            fillStyle: 'transparent',
-            strokeStyle: 'transparent'
-          }
+        width, height, {
+        restitution: 0.5,
+        friction: 0.3,
+        render: {
+          fillStyle: 'transparent',
+          strokeStyle: 'transparent'
         }
+      }
       );
       body.skillData = skill;
       return body;
@@ -1536,21 +1700,429 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- AJOUT --- : Cet événement s'exécutera lorsque l'utilisateur quitte la page.
-  window.addEventListener('unload', function () {
-    // On vérifie s'il y a eu une conversation (au moins une question et une réponse).
-    if (conversationLog.length > 1) {
-      // On prépare les données à envoyer. C'est plus robuste d'utiliser un Blob.
-      const dataToSend = new Blob([JSON.stringify(conversationLog)], { type: 'application/json' });
+  // =========================================================================
+  //                  GRAVITY MODE (FIX INTERACTION & PLAFOND)
+  // =========================================================================
+  function initializeGravityMode(langData) {
+    const btn = document.getElementById('gravity-btn');
+    const sceneContainer = document.getElementById('skills-scene-container');
+    const solarSystem = document.getElementById('skills-solar-system');
+    const infobox = document.getElementById('skills-infobox');
 
-      // On envoie les données à un nouveau script PHP de manière asynchrone et fiable,
-      // sans retarder la fermeture de la page.
+    if (!btn || !sceneContainer || !solarSystem || !infobox || typeof Matter === 'undefined') {
+      if (btn) btn.style.display = 'none';
+      return;
+    }
+
+    btn.addEventListener('click', () => {
+      // 1. Cacher le système solaire et l'interface classique
+      solarSystem.style.transition = 'opacity 0.5s ease';
+      solarSystem.style.opacity = '0';
+      solarSystem.style.pointerEvents = 'none';
+      infobox.style.display = 'none';
+      btn.style.opacity = '0';
+      btn.style.transform = 'scale(0.8)';
+      setTimeout(() => {
+        btn.style.display = 'none';
+      }, 500);
+
+      // 2. Initialiser le moteur physique
+      const {
+        Engine,
+        Render,
+        Runner,
+        World,
+        Bodies,
+        Mouse,
+        MouseConstraint
+      } = Matter;
+
+      const engine = Engine.create({
+        gravity: { y: 1 } // Gravité normale
+      });
+      const render = Render.create({
+        element: sceneContainer,
+        engine: engine,
+        options: {
+          width: sceneContainer.offsetWidth,
+          height: sceneContainer.offsetHeight,
+          wireframes: false,
+          background: 'transparent',
+          pixelRatio: window.devicePixelRatio
+        }
+      });
+
+      const w = sceneContainer.offsetWidth;
+      const h = sceneContainer.offsetHeight;
+      const wallThickness = 100;
+
+      // Murs invisibles (Cage)
+      const wallOptions = {
+        isStatic: true,
+        render: { visible: false }
+      };
+
+      World.add(engine.world, [
+        Bodies.rectangle(w / 2, h + wallThickness / 2, w, wallThickness, wallOptions), // Sol
+        Bodies.rectangle(-wallThickness / 2, h / 2, wallThickness, h * 4, wallOptions), // Gauche
+        Bodies.rectangle(w + wallThickness / 2, h / 2, wallThickness, h * 4, wallOptions), // Droite
+
+        // --- PLAFOND FIXÉ À -400px (Les balles retombent vite) ---
+        Bodies.rectangle(w / 2, -400, w, wallThickness, wallOptions)
+      ]);
+
+      // 3. Créer les planètes physiques et visuelles
+      const planetsData = langData.skillsSection.planets;
+      const bodies = [];
+      const domElements = [];
+
+      const physicsContainer = document.createElement('div');
+      physicsContainer.id = 'physics-skills-container';
+      physicsContainer.style.position = 'absolute';
+      physicsContainer.style.top = '0';
+      physicsContainer.style.left = '0';
+      physicsContainer.style.width = '100%';
+      physicsContainer.style.height = '100%';
+      physicsContainer.style.pointerEvents = 'none'; // CRUCIAL : Laisse passer les clics vers le Canvas
+      sceneContainer.appendChild(physicsContainer);
+
+      planetsData.forEach(planet => {
+        const domElement = document.createElement('div');
+        domElement.classList.add('physics-skill-item', planet.id);
+        domElement.textContent = planet.name;
+        domElement.style.pointerEvents = 'none'; // CRUCIAL : L'élément visuel ne bloque pas la souris
+        domElement.style.userSelect = 'none';
+
+        physicsContainer.appendChild(domElement);
+        domElements.push(domElement);
+
+        const radius = 55;
+        const body = Bodies.circle(
+          Math.random() * (w - radius * 2) + radius,
+          -Math.random() * 500 - 100, // Apparition aléatoire en hauteur
+          radius, {
+          restitution: 0.9,  // Effet rebondissant (Superball)
+          friction: 0.001,
+          frictionAir: 0.005,
+          density: 0.04,
+          angle: (Math.random() - 0.5) * Math.PI
+        }
+        );
+        bodies.push(body);
+      });
+      World.add(engine.world, bodies);
+
+      // 4. Interaction Souris (Drag & Throw)
+      const mouse = Mouse.create(render.canvas);
+      const mouseConstraint = MouseConstraint.create(engine, {
+        mouse: mouse,
+        constraint: {
+          stiffness: 0.1,
+          render: {
+            visible: false
+          }
+        }
+      });
+
+      // Désactiver la capture du scroll par Matter.js
+      mouseConstraint.mouse.element.removeEventListener("mousewheel", mouseConstraint.mouse.mousewheel);
+      mouseConstraint.mouse.element.removeEventListener("DOMMouseScroll", mouseConstraint.mouse.mousewheel);
+
+      World.add(engine.world, mouseConstraint);
+      render.mouse = mouse; // Sync souris render
+
+      // 5. Boucle de synchronisation (DOM suit la Physique)
+      (function syncLoop() {
+        if (!document.body.contains(sceneContainer)) return;
+        requestAnimationFrame(syncLoop);
+        for (let i = 0; i < bodies.length; i++) {
+          const pos = bodies[i].position;
+          domElements[i].style.transform =
+            `translate(${pos.x - domElements[i].offsetWidth / 2}px, ${pos.y - domElements[i].offsetHeight / 2}px) 
+             rotate(${bodies[i].angle}rad)`;
+        }
+      })();
+
+      Runner.run(engine);
+      Render.run(render);
+
+    }, {
+      once: true
+    });
+  }
+
+  // --- HERO 3D (THREE.JS) - REAL SNOWFLAKE UPDATE ---
+  function initHero3D() {
+    const container = document.getElementById('hero-canvas');
+    if (!container) return;
+
+    // --- CHARGEMENT D'UNE IMAGE LOCALE ET CONVERSION EN BLANC ---
+    // Cette partie crée une texture blanche à partir de votre SVG noir.
+    const imageLoader = new THREE.ImageLoader();
+    imageLoader.load('assets/img/flocon-neige.svg', (image) => {
+
+      const size = 128;
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+
+      // Calculate aspect ratio to fit within 128x128 square without stretching
+      const aspect = image.width / image.height;
+      let drawWidth, drawHeight, offsetX, offsetY;
+
+      if (aspect > 1) {
+        // Wider than tall
+        drawWidth = size;
+        drawHeight = size / aspect;
+        offsetX = 0;
+        offsetY = (size - drawHeight) / 2;
+      } else {
+        // Taller than wide
+        drawWidth = size * aspect;
+        drawHeight = size;
+        offsetX = (size - drawWidth) / 2;
+        offsetY = 0;
+      }
+
+      // 1. Dessiner l'image originale avec le bon ratio et centrée
+      ctx.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
+
+      // 2. Appliquer un filtre pour remplir la forme en blanc
+      ctx.globalCompositeOperation = 'source-in';
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, size, size);
+
+      // 3. Créer la texture Three.js à partir du canvas modifié
+      const texture = new THREE.CanvasTexture(canvas);
+
+      // --- SUITE DE L'INITIALISATION THREE.JS ---
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x000000, 0.002);
+
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 100;
+
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      container.innerHTML = ''; // Nettoyer si besoin
+      container.appendChild(renderer.domElement);
+
+      const geometry = new THREE.BufferGeometry();
+      const count = 1500;
+      const positions = new Float32Array(count * 3);
+      const velocities = new Float32Array(count);
+      const rotations = new Float32Array(count);
+
+      for (let i = 0; i < count; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 400;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 400;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 400;
+        velocities[i] = 0.05 + Math.random() * 0.15;
+        rotations[i] = Math.random() * Math.PI * 2;
+      }
+
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 1));
+      geometry.setAttribute('rotation', new THREE.BufferAttribute(rotations, 1));
+
+      const material = new THREE.PointsMaterial({
+        size: 3, // TAILLE RÉDUITE (était 8)
+        map: texture,
+        transparent: true,
+        opacity: 0.9,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+        color: 0xffffff
+      });
+
+      const particles = new THREE.Points(geometry, material);
+      scene.add(particles);
+
+      const animate = () => {
+        requestAnimationFrame(animate);
+        const positions = particles.geometry.attributes.position.array;
+        const velocities = particles.geometry.attributes.velocity.array;
+        for (let i = 0; i < count; i++) {
+          positions[i * 3 + 1] -= velocities[i]; // Chute Y
+          // Petit mouvement sinusoïdal sur X pour effet "feuille morte"
+          positions[i * 3] -= 0.02 + Math.sin(positions[i * 3 + 1] * 0.05) * 0.05;
+
+          // Reset si hors champ
+          if (positions[i * 3 + 1] < -200) {
+            positions[i * 3 + 1] = 200;
+            positions[i * 3] = (Math.random() - 0.5) * 400;
+          }
+          if (positions[i * 3] < -200) positions[i * 3] = 200;
+          if (positions[i * 3] > 200) positions[i * 3] = -200;
+        }
+        particles.geometry.attributes.position.needsUpdate = true;
+
+        // Rotation globale lente
+        particles.rotation.y += 0.001;
+        particles.rotation.z += 0.0005;
+
+        renderer.render(scene, camera);
+      };
+
+      animate();
+      setTimeout(() => { container.style.opacity = '1'; }, 500);
+      setTimeout(() => {
+        const heroTitle = document.querySelector('.hero-title-modern');
+        if (heroTitle) heroTitle.classList.add('animated');
+      }, 1000);
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+    }); // Fin du loader
+  }
+
+  // --- SYSTÈME DE NOTATION (POPUP 20 SECONDES) ---
+  function initRatingSystem() {
+    const overlay = document.getElementById('rating-popup-overlay');
+    const closeBtn = document.getElementById('rating-close-btn');
+    const starsContainer = document.getElementById('stars-container');
+    const stars = starsContainer ? starsContainer.querySelectorAll('i') : [];
+    const ratingValueDisplay = document.getElementById('rating-value');
+    const submitBtn = document.getElementById('rating-submit-btn');
+
+    // Sécurité si le HTML n'est pas présent
+    if (!overlay || !starsContainer) return;
+
+    let currentRating = 0;
+    let isLocked = false; // Pour savoir si l'utilisateur a cliqué
+
+    // 1. Afficher le popup après 20 secondes (si pas déjà voté)
+    if (!localStorage.getItem('userHasRated')) {
+      setTimeout(() => {
+        overlay.style.display = 'flex';
+        // Petit délai pour l'animation CSS
+        setTimeout(() => overlay.classList.add('visible'), 10);
+      }, 20000); // 20000 ms = 20 secondes
+    }
+
+    // Fonction pour fermer
+    const closePopup = () => {
+      overlay.classList.remove('visible');
+      setTimeout(() => {
+        overlay.style.display = 'none';
+      }, 300);
+      // On note que l'utilisateur a vu le popup
+      localStorage.setItem('userHasRated', 'true');
+    };
+
+    closeBtn.addEventListener('click', closePopup);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closePopup();
+    });
+
+    // 2. Gestion du survol et du clic (demi-étoiles)
+    stars.forEach((star, index) => {
+      // MOUSE MOVE (Prévisualisation)
+      star.addEventListener('mousemove', (e) => {
+        if (isLocked) return;
+
+        const rect = star.getBoundingClientRect();
+        const isLeftHalf = (e.clientX - rect.left) < (rect.width / 2);
+        let hoverValue = (index + 1);
+        if (isLeftHalf) hoverValue -= 0.5;
+
+        updateStarsVisual(hoverValue);
+        ratingValueDisplay.textContent = hoverValue;
+      });
+
+      // CLICK (Validation)
+      star.addEventListener('click', (e) => {
+        const rect = star.getBoundingClientRect();
+        const isLeftHalf = (e.clientX - rect.left) < (rect.width / 2);
+        currentRating = (index + 1);
+        if (isLeftHalf) currentRating -= 0.5;
+
+        isLocked = true;
+        updateStarsVisual(currentRating);
+        ratingValueDisplay.textContent = currentRating;
+        submitBtn.disabled = false; // On active le bouton
+
+        // Animation de confirmation visuelle
+        starsContainer.style.transform = "scale(1.1)";
+        setTimeout(() => starsContainer.style.transform = "scale(1)", 200);
+      });
+    });
+
+    // Reset si la souris quitte le conteneur (si pas bloqué)
+    starsContainer.addEventListener('mouseleave', () => {
+      if (!isLocked) {
+        updateStarsVisual(0);
+        ratingValueDisplay.textContent = "0";
+      }
+    });
+
+    // Fonction d'affichage des icônes FontAwesome
+    function updateStarsVisual(value) {
+      stars.forEach((s, i) => {
+        s.className = ''; // Reset classes
+        if (value >= i + 1) {
+          s.className = 'fas fa-star'; // Étoile pleine
+        } else if (value > i && value < i + 1) {
+          s.className = 'fas fa-star-half-alt'; // Demi-étoile
+        } else {
+          s.className = 'far fa-star'; // Étoile vide
+        }
+      });
+    }
+
+    // 3. Envoi du formulaire via AJAX
+    submitBtn.addEventListener('click', () => {
+      submitBtn.textContent = "Envoi...";
+      submitBtn.disabled = true;
+
+      const formData = new FormData();
+      formData.append('rating', currentRating);
+
+      fetch('send-rating.php', {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => response.text())
+        .then(data => {
+          // Succès
+          document.querySelector('.rating-modal h3').textContent = "Merci !";
+          document.querySelector('.rating-modal p').textContent = "Votre note a bien été envoyée.";
+          starsContainer.style.display = 'none';
+          document.querySelector('.rating-score').style.display = 'none';
+          submitBtn.style.display = 'none';
+
+          // Fermeture automatique après 2s
+          setTimeout(closePopup, 2000);
+        })
+        .catch(error => {
+          console.error('Erreur:', error);
+          submitBtn.textContent = "Erreur";
+        });
+    });
+  }
+
+  // --- INITIALISATION FINALE ---
+  initHero3D();
+  initRatingSystem(); // <-- Lancement du système de notation
+
+  window.addEventListener('unload', function () {
+    if (conversationLog.length > 1) {
+      const dataToSend = new Blob([JSON.stringify(conversationLog)], {
+        type: 'application/json'
+      });
       navigator.sendBeacon('send-conversation-summary.php', dataToSend);
     }
   });
 
-}); // Fin de document.addEventListener("DOMContentLoaded")
+}); // Fin de DOMContentLoaded
 
+// Fonction globale pour les notifications
 function showPopupNotification(message, type) {
   const existingPopup = document.querySelector('.popup-notification');
   if (existingPopup) {
@@ -1571,6 +2143,8 @@ function showPopupNotification(message, type) {
     popup.classList.remove('show');
     popup.addEventListener('transitionend', () => {
       popup.remove();
-    }, { once: true });
+    }, {
+      once: true
+    });
   }, 5000);
 }

@@ -286,7 +286,7 @@
         "title": "Le Théâtre des Poètes",
         "imageSrc": "assets/img/apercu_TDP.webp",
         "imageAlt": "Aperçu du projet Théâtre des Poètes",
-        "description": "<strong>Le défi :</strong> remplacer un site vieillissant, hacké et non-administrable pour une ASBL à budget limité. <strong>Ma solution :</strong> j'ai mené une refonte complète en me concentrant sur la sécurité, la modernité et surtout, la simplicité de gestion pour l'équipe du théâtre. <strong>Ce projet démontre ma capacité à créer des solutions durables et adaptées aux besoins de clients non-techniques.</strong>",
+        "description": "<strong>Le défi :</strong> remplacer un site vieillissant, hacké et non-administrable pour une ASBL à budget limité. <strong>Ma solution :</strong> j'ai mené une refonte complète en me concentrant sur la sécurité, la modernité et surtout, la simplicité de gestion pour l'équipe du théâtre. <strong>Site officiellement lancé !</strong>",
         "tech": [
           "PHP",
           "MySQL",
@@ -294,16 +294,16 @@
           "HTML/CSS",
           "Sécurité Web"
         ],
-        "liveLink": "#",
+        "liveLink": "http://letheatredespoetes.be/",
         "codeLink": "#",
         "caseStudy": {
           "title": "C:\\Projects\\Theatre_Poetes_Reboot.exe",
           "briefTitle": "▸ Le Défi (la_mission.txt)",
-          "brief": "L'ASBL 'Le Théâtre des Poètes', disposant d'un budget limité, se retrouvait avec un site de 2015. Non seulement il était visuellement daté et incomplet, mais il était également truffé de bugs et, pire encore, avait été hacké. La mission était de repartir de zéro pour construire une présence en ligne fiable et sécurisée.",
+          "brief": "L'ASBL 'Le Théâtre des Poètes', disposant d'un budget limité, se retrouvait avec un site de 2015 obsolète et hacké. La mission était de repartir de zéro pour construire une présence en ligne fiable.",
           "roleTitle": "▸ Ma Solution (strategie.doc)",
-          "role": "J'ai pris en charge la refonte de A à Z. La première étape a été de concevoir sur Figma une interface moderne et intuitive, qui reflète l'âme du théâtre. Ensuite, j'ai développé un site sécurisé avec une structure simple, permettant à l'équipe de l'ASBL de mettre à jour le programme et les actualités sans difficulté.",
-          "resultsTitle": "▸ Résultats & Apprentissages (changelog.log)",
-          "results": "Le site est en phase finale de développement. Il apportera au théâtre une vitrine professionnelle, sécurisée contre les menaces futures et parfaitement adaptée aux mobiles. Ce projet a été une excellente leçon sur l'importance de construire des solutions robustes et durables, même avec des contraintes budgétaires."
+          "role": "Refonte de A à Z : Design Figma moderne reflétant l'âme du théâtre, puis développement d'un site sécurisé avec une structure simple pour une administration facile par l'équipe.",
+          "resultsTitle": "▸ Résultats (changelog.log)",
+          "results": "Le site est en ligne ! Il offre une vitrine professionnelle, sécurisée et responsive. Une belle démonstration de robustesse avec des contraintes budgétaires."
         }
       },
       {
