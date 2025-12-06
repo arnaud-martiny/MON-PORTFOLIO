@@ -16,7 +16,12 @@
     "contact": "Contact",
     "cvLink": "My CV",
     "wtfButton": "Don't click",
-    "wtfButtonHelp": "HELP ME!"
+    "wtfButtonHelp": "HELP ME!",
+    "cursor": {
+      "modern": "Modern",
+      "retro": "Retro",
+      "windows98": "Windows 98"
+    }
   },
   "hero": {
     "title": "ARNAUD MARTINY",
@@ -48,14 +53,38 @@
     "prompt": "user@arnaud-martiny.be:~$",
     "suggestionsLabel": "Suggestions:",
     "suggestions": [
-      { "display": "His skills?", "command": "What are his technical skills?" },
-      { "display": "His projects?", "command": "Tell me about his most important projects." },
-      { "display": "Nowa experience?", "command": "What was his role during his internship at Nowa Market?" },
-      { "display": "Philosophy?", "command": "What is his work philosophy?" },
-      { "display": "Figma skills?", "command": "What is his proficiency in Figma?" },
-      { "display": "Education?", "command": "What is his educational background?" },
-      { "display": "Availability?", "command": "Is he available in Brussels?" },
-      { "display": "Contact him?", "command": "How can I contact him?" }
+      {
+        "display": "His skills?",
+        "command": "What are his technical skills?"
+      },
+      {
+        "display": "His projects?",
+        "command": "Tell me about his most important projects."
+      },
+      {
+        "display": "Nowa experience?",
+        "command": "What was his role during his internship at Nowa Market?"
+      },
+      {
+        "display": "Philosophy?",
+        "command": "What is his work philosophy?"
+      },
+      {
+        "display": "Figma skills?",
+        "command": "What is his proficiency in Figma?"
+      },
+      {
+        "display": "Education?",
+        "command": "What is his educational background?"
+      },
+      {
+        "display": "Availability?",
+        "command": "Is he available in Brussels?"
+      },
+      {
+        "display": "Contact him?",
+        "command": "How can I contact him?"
+      }
     ]
   },
   "professionalExperiences": {

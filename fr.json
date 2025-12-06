@@ -16,7 +16,12 @@
     "contact": "Contact",
     "cvLink": "Mon CV",
     "wtfButton": "Ne pas cliquer",
-    "wtfButtonHelp": "AU SECOURS !"
+    "wtfButtonHelp": "AU SECOURS !",
+    "cursor": {
+      "modern": "Moderne",
+      "retro": "Rétro",
+      "windows98": "Windows 98"
+    }
   },
   "hero": {
     "title": "ARNAUD MARTINY",
@@ -48,14 +53,38 @@
     "prompt": "user@arnaud-martiny.be:~$",
     "suggestionsLabel": "Suggestions :",
     "suggestions": [
-      { "display": "Compétences ?", "command": "Quelles sont ses compétences techniques ?" },
-      { "display": "Ses projets ?", "command": "Parle-moi de ses projets les plus importants." },
-      { "display": "Expérience Nowa ?", "command": "Quel a été son rôle durant son stage chez Nowa Market ?" },
-      { "display": "Philosophie ?", "command": "Quelle est sa philosophie de travail ?" },
-      { "display": "Maîtrise Figma ?", "command": "Quel est son niveau sur Figma ?" },
-      { "display": "Formation ?", "command": "Quelle formation suit-il ?" },
-      { "display": "Disponibilité ?", "command": "Est-il disponible à Bruxelles ?" },
-      { "display": "Le contacter ?", "command": "Comment puis-je le contacter ?" }
+      {
+        "display": "Compétences ?",
+        "command": "Quelles sont ses compétences techniques ?"
+      },
+      {
+        "display": "Ses projets ?",
+        "command": "Parle-moi de ses projets les plus importants."
+      },
+      {
+        "display": "Expérience Nowa ?",
+        "command": "Quel a été son rôle durant son stage chez Nowa Market ?"
+      },
+      {
+        "display": "Philosophie ?",
+        "command": "Quelle est sa philosophie de travail ?"
+      },
+      {
+        "display": "Maîtrise Figma ?",
+        "command": "Quel est son niveau sur Figma ?"
+      },
+      {
+        "display": "Formation ?",
+        "command": "Quelle formation suit-il ?"
+      },
+      {
+        "display": "Disponibilité ?",
+        "command": "Est-il disponible à Bruxelles ?"
+      },
+      {
+        "display": "Le contacter ?",
+        "command": "Comment puis-je le contacter ?"
+      }
     ]
   },
   "professionalExperiences": {
