@@ -398,7 +398,6 @@ section {
   background-color: var(--primary);
 }
 
-/* LA CORRECTION EST ICI */
 .about-content .section-heading {
   text-align: left;
 }
@@ -954,23 +953,50 @@ section {
   transition: var(--theme-transition);
 }
 
+/* ======================================================= */
+/*    CORRECTIF ROBUSTE GRAVITÉ ET SCÈNE COMPÉTENCES       */
+/* ======================================================= */
+
 #skills-scene-container {
   position: relative;
   width: 100%;
   height: 80vh;
   min-height: 600px;
   max-height: 750px;
+  /* 'none' bloque tout. 'pan-y' autorise le scroll vertical ! */
+  touch-action: pan-y;
 }
 
+/* 1. Le fond étoilé DOIT rester visible et derrière */
 #starfield-canvas {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 1 !important;
+  opacity: 1 !important;
+  /* On force la visibilité des étoiles */
+  pointer-events: none;
+  /* Les clics passent à travers les étoiles */
 }
 
+/* 2. Le canvas de Matter.js (Physique) */
+/* C'est LUI qui doit être invisible (opacity: 0) mais capter la souris (z-index: 50) */
+/* La règle :not(#starfield-canvas) protège tes étoiles */
+#skills-scene-container canvas:not(#starfield-canvas) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 50 !important;
+  /* Priorité absolue à la souris */
+  opacity: 0;
+  /* Invisible (on voit les éléments DOM à travers) */
+}
+
+/* Le système solaire reste sur le plan standard */
 #skills-solar-system {
   position: absolute;
   top: 50%;
@@ -978,6 +1004,60 @@ section {
   width: 1px;
   height: 1px;
   z-index: 10;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  /* Ajout pour fluidité */
+}
+
+/* Les éléments visuels (boules physiques) sont en-dessous du canvas physique */
+#physics-skills-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 40;
+  pointer-events: none;
+  /* Clics passent au travers vers le canvas */
+}
+
+.physics-skill-item {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 50%;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.2);
+
+  will-change: transform;
+  pointer-events: none;
+  /* Important pour que la souris atteigne le canvas au-dessus */
+  user-select: none;
+}
+
+/* Couleurs des planètes */
+.physics-skill-item.frontend {
+  background: radial-gradient(circle, #61DAFB, #007B9E);
+}
+
+.physics-skill-item.backend {
+  background: radial-gradient(circle, #8993be, #3B4368);
+}
+
+.physics-skill-item.design {
+  background: radial-gradient(circle, #f24e1e, #A259FF);
+}
+
+.physics-skill-item.shopify {
+  background: radial-gradient(circle, #95BF47, #5E8E3E);
+}
+
+.physics-skill-item.tools {
+  background: radial-gradient(circle, #a7a7a7, #5A5A5A);
 }
 
 #skill-sun {
@@ -1539,7 +1619,6 @@ body.mobile-menu-open .mobile-menu-links a:nth-child(4) {
   transform: scale(1.2) translateY(-2px);
 }
 
-/* ✅ CORRECTION : Style pour l'infobulle universelle */
 #universal-tooltip {
   position: fixed;
   display: none;
@@ -2348,127 +2427,6 @@ a:not(.btn):not(.social-icon):hover {
   transform: scale(1.1) rotate(-5deg);
   box-shadow: 0 0 20px rgba(255, 69, 0, 0.8);
 }
-
-/* ============================================= */
-/*          STYLES POUR LA SECTION TAROT         */
-/*          MIS EN COMMENTAIRE TEMPORAIREMENT    */
-/* ============================================= */
-/*
-.tarot-skills-section {
-  padding: 8rem 5%;
-  background-color: var(--accent);
-  overflow: hidden;
-  position: relative;
-}
-
-.tarot-skills-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.07"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
-  opacity: 0.3;
-  z-index: 0;
-}
-
-.tarot-container {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 3rem;
-  perspective: 1500px;
-}
-
-.tarot-card {
-  background-color: transparent;
-  width: 210px;
-  height: 368px;
-  perspective: 1000px;
-  cursor: pointer;
-}
-
-.tarot-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
-  transform-style: preserve-3d;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
-}
-
-.tarot-card:hover .tarot-card-inner {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
-}
-
-.tarot-card.is-flipped .tarot-card-inner {
-  transform: rotateY(180deg);
-}
-
-.tarot-card.is-flipped:hover .tarot-card-inner {
-  transform: rotateY(180deg) translateY(-10px) scale(1.03);
-}
-
-.tarot-card-front,
-.tarot-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.tarot-card-front {
-  background-color: #1a1a1a;
-}
-
-.tarot-card-front img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.tarot-card-back {
-  transform: rotateY(180deg);
-  background-color: #f3eadd;
-  color: #3a3a3a;
-  border: 1px solid rgba(58, 58, 58, 0.2);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 1.8rem;
-}
-
-.card-number-back {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 1.1rem;
-  font-weight: bold;
-  position: absolute;
-  top: 1.5rem;
-}
-
-.card-skill-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 1.2rem;
-}
-
-.card-skill-description {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-*/
 
 .projects-update-popup-overlay {
   position: fixed;
@@ -3552,49 +3510,53 @@ body.light-mode .sun-core {
   transform: scale(1.05);
 }
 
+/* FIX ROBUSTE GRAVITÉ : Le Canvas est au-dessus pour la souris */
+
+#skills-scene-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 50 !important;
+  /* Priorité absolue à la souris */
+  opacity: 0;
+  /* Invisible (on voit les éléments DOM à travers) */
+}
+
+/* Les éléments visuels sont en-dessous */
 #physics-skills-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 40;
   pointer-events: none;
+  /* Clics passent au travers vers le canvas */
 }
 
-/* Style de base pour TOUTES les planètes physiques */
 .physics-skill-item {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100px;
-  /* Taille fixe */
-  height: 100px;
-  /* Taille fixe */
+  /* Styles visuels conservés */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   border-radius: 50%;
-  /* Transformation en cercle */
   color: white;
   font-weight: 600;
   font-size: 0.9rem;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.2);
 
-  /* Centrer le texte à l'intérieur du cercle */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
   will-change: transform;
-  cursor: grab;
-  pointer-events: auto;
+  pointer-events: none;
+  /* Important pour que la souris atteigne le canvas */
+  user-select: none;
 }
 
-.physics-skill-item:active {
-  cursor: grabbing;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
-
-/* On réplique les couleurs des planètes originales */
+/* On garde les couleurs spécifiques */
 .physics-skill-item.frontend {
   background: radial-gradient(circle, #61DAFB, #007B9E);
 }
@@ -3615,36 +3577,6 @@ body.light-mode .sun-core {
   background: radial-gradient(circle, #a7a7a7, #5A5A5A);
 }
 
-/* ======================================================= */
-/*    CORRECTIF FINAL MODE GRAVITÉ (Interaction Souris)    */
-/* ======================================================= */
-
-#skills-scene-container {
-  position: relative;
-  /* Contexte pour les calques */
-}
-
-/* 1. Le fond étoilé : on le force à rester derrière ET à être "traversable" par la souris */
-#starfield-canvas {
-  z-index: 1;
-  /* LA CORRECTION MAGIQUE EST ICI : */
-  /* Cet élément n'interceptera plus jamais la souris (clics, scroll, etc.) */
-  pointer-events: none;
-}
-
-/* 2. Le canvas de Matter.js (qui écoute la souris) : on le met au-dessus des étoiles */
-/* On cible le DEUXIÈME canvas, celui de Matter.js */
-#skills-scene-container>canvas:nth-of-type(2) {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  z-index: 5;
-}
-
-/* 3. Le conteneur des planètes visibles : on le met tout devant */
-#physics-skills-container {
-  z-index: 10;
-}
 
 /* FIX: Active Language Button Style */
 .language-switcher button.active,
@@ -3765,4 +3697,139 @@ body.light-mode .sun-core {
   opacity: 0.5;
   cursor: not-allowed;
   filter: grayscale(1);
+}
+
+/* ========================================= */
+/*       SÉLECTEUR DE CURSEUR (DESKTOP)      */
+/* ========================================= */
+
+.cursor-selector-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-icon-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.nav-icon-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Le Menu Déroulant */
+.cursor-dropdown {
+  position: absolute;
+  top: 100%;
+  right: -50%;
+  /* Centré par rapport au bouton */
+  transform: translateX(10%) translateY(10px);
+  background-color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Affichage au survol du conteneur */
+.cursor-selector-container:hover .cursor-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(10%) translateY(0);
+}
+
+/* Options du menu */
+.cursor-option {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: none;
+  border: none;
+  color: var(--primary);
+  padding: 0.6rem;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+  opacity: 0.7;
+}
+
+.cursor-option:hover,
+.cursor-option.active {
+  background-color: color-mix(in srgb, var(--primary) 10%, transparent);
+  opacity: 1;
+}
+
+.cursor-option.active {
+  font-weight: 700;
+  border-left: 2px solid var(--primary);
+}
+
+/* Prévisualisations dans le menu */
+.dot-preview.modern {
+  width: 12px;
+  height: 12px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.img-preview {
+  width: 16px;
+  height: auto;
+  image-rendering: pixelated;
+  /* Pour garder le look rétro net */
+}
+
+/* ========================================= */
+/* LOGIQUE DU CHANGEMENT DE CURSEUR (BODY)   */
+/* ========================================= */
+
+/* 1. Mode WINDOWS 98 */
+body.cursor-mode-windows98,
+body.cursor-mode-windows98 a,
+body.cursor-mode-windows98 button,
+body.cursor-mode-windows98 input {
+  cursor: url('assets/img/curseur/curseur-windows-98.png'), auto !important;
+}
+
+/* 2. Mode RETRO / VINTAGE */
+body.cursor-mode-retro,
+body.cursor-mode-retro a,
+body.cursor-mode-retro button,
+body.cursor-mode-retro input {
+  cursor: url('assets/img/curseur/curseur-vintage.png'), auto !important;
+}
+
+/* CACHER LE CURSEUR GSAP SI ON EST EN MODE RETRO OU WIN98 */
+body.cursor-mode-windows98 .cursor,
+body.cursor-mode-windows98 .cursor-follower,
+body.cursor-mode-retro .cursor,
+body.cursor-mode-retro .cursor-follower {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+/* MASQUER SUR MOBILE (Sécurité supplémentaire) */
+@media (max-width: 992px) {
+  .cursor-selector-container {
+    display: none !important;
+  }
 }

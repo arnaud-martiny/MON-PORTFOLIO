@@ -1,5 +1,5 @@
 // =========================================================================
-//                  SCRIPT.JS - VERSION COMPLETE (GRAVITY + RATING)
+//                  SCRIPT.JS - VERSION FINALE (AVEC CURSOR SWITCHER)
 // =========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -168,17 +168,23 @@ document.addEventListener("DOMContentLoaded", () => {
     if (sceneContainer && solarSystem && infobox && canvas && langData.skillsSection && langData.skillsSection.planets) {
       // Réinitialisation au cas où le mode gravité a été activé précédemment
       solarSystem.style.opacity = '1';
+      solarSystem.style.transform = 'scale(1)';
       solarSystem.style.pointerEvents = 'all';
       const gravityBtn = document.getElementById('gravity-btn');
       if (gravityBtn) {
         gravityBtn.style.display = 'flex';
         gravityBtn.style.opacity = '1';
         gravityBtn.style.transform = 'scale(1)';
+        gravityBtn.style.pointerEvents = 'all';
       }
 
       // Nettoyage éventuel du conteneur physique s'il existe
       const existingPhysicsContainer = document.getElementById('physics-skills-container');
       if (existingPhysicsContainer) existingPhysicsContainer.remove();
+
+      // Nettoyage éventuel des canvas Matter.js (pour éviter les doublons si changement de langue)
+      const oldMatterCanvas = sceneContainer.querySelector('canvas:not(#starfield-canvas)');
+      if (oldMatterCanvas) oldMatterCanvas.remove();
 
       solarSystem.innerHTML = `<div id="skill-sun"><div class="sun-flare"></div><div class="sun-core">AM.</div></div>`;
       const ctx = canvas.getContext("2d");
@@ -284,23 +290,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Structure HTML de la carte
         projectCard.innerHTML = `
-            <div class="project-image">
-                <a href="${project.liveLink}" target="_blank">
-                    <!-- Ici, on utilise notre div spécial pour l'effet liquide -->
-                    <div class="project-image-liquid"></div>
-                </a>
-            </div>
-            <div class="project-content">
-                <p class="project-category">${project.category}</p>
-                <h3 class="project-title">${project.title}</h3>
-                <p class="project-description" data-i18n-html>${project.description}</p>
-                <div class="project-tech-list">${techHtml}</div>
-                <div class="project-links">
-                    <a href="${project.liveLink}" class="btn" target="_blank">Voir le site</a>
-                    <a href="${project.codeLink}" class="btn btn-outline" target="_blank">Voir le code</a>
-                    <button class="btn btn-case-study" data-project-id="${project.id}"><span>${caseStudyButtonText}</span></button>
-                </div>
-            </div>`;
+              <div class="project-image">
+                  <a href="${project.liveLink}" target="_blank">
+                      <!-- Ici, on utilise notre div spécial pour l'effet liquide -->
+                      <div class="project-image-liquid"></div>
+                  </a>
+              </div>
+              <div class="project-content">
+                  <p class="project-category">${project.category}</p>
+                  <h3 class="project-title">${project.title}</h3>
+                  <p class="project-description" data-i18n-html>${project.description}</p>
+                  <div class="project-tech-list">${techHtml}</div>
+                  <div class="project-links">
+                      <a href="${project.liveLink}" class="btn" target="_blank">Voir le site</a>
+                      <a href="${project.codeLink}" class="btn btn-outline" target="_blank">Voir le code</a>
+                      <button class="btn btn-case-study" data-project-id="${project.id}"><span>${caseStudyButtonText}</span></button>
+                  </div>
+              </div>`;
 
         projectsContainer.appendChild(projectCard);
 
@@ -382,7 +388,7 @@ document.addEventListener("DOMContentLoaded", () => {
     generateList('privacy-contact-points', 'privacyModal.contactFormPoints');
     generateList('privacy-ai-points', 'privacyModal.aiAssistantPoints');
 
-    // === INTEGRATION MATTER.JS (GRAVITY MODE FIX) ===
+    // === INTEGRATION MATTER.JS (GRAVITY MODE FIX V2) ===
     initializeGravityMode(langData);
 
     updateLangButtons();
@@ -459,7 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- CURSEUR ---
+  // --- CURSEUR (GSAP) ---
   const cursor = document.querySelector(".cursor");
   const cursorFollower = document.querySelector(".cursor-follower");
   if (cursor && cursorFollower) {
@@ -1543,7 +1549,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- SANDBOX (MATTER.JS) ---
+  // --- SANDBOX (MATTER.JS - BOÎTE COMPÉTENCES) ---
   let matterInstance = null;
 
   function initializeSkillsSandbox(langData) {
@@ -1701,7 +1707,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================================================================
-  //                  GRAVITY MODE (FIX INTERACTION & PLAFOND)
+  //                  GRAVITY MODE ROBUSTE (V2 + SCROLL FIX)
   // =========================================================================
   function initializeGravityMode(langData) {
     const btn = document.getElementById('gravity-btn');
@@ -1709,146 +1715,158 @@ document.addEventListener("DOMContentLoaded", () => {
     const solarSystem = document.getElementById('skills-solar-system');
     const infobox = document.getElementById('skills-infobox');
 
-    if (!btn || !sceneContainer || !solarSystem || !infobox || typeof Matter === 'undefined') {
-      if (btn) btn.style.display = 'none';
-      return;
-    }
+    if (!btn || !sceneContainer || !solarSystem || typeof Matter === 'undefined') return;
 
     btn.addEventListener('click', () => {
-      // 1. Cacher le système solaire et l'interface classique
-      solarSystem.style.transition = 'opacity 0.5s ease';
+      // 1. UI Transition : On cache l'ancien système
+      solarSystem.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
       solarSystem.style.opacity = '0';
+      solarSystem.style.transform = 'scale(0.5)';
       solarSystem.style.pointerEvents = 'none';
-      infobox.style.display = 'none';
+
+      if (infobox) infobox.style.display = 'none';
+
       btn.style.opacity = '0';
-      btn.style.transform = 'scale(0.8)';
-      setTimeout(() => {
-        btn.style.display = 'none';
-      }, 500);
+      btn.style.pointerEvents = 'none';
 
-      // 2. Initialiser le moteur physique
-      const {
-        Engine,
-        Render,
-        Runner,
-        World,
-        Bodies,
-        Mouse,
-        MouseConstraint
-      } = Matter;
+      // 2. Setup Matter.js
+      const { Engine, Render, Runner, World, Bodies, Mouse, MouseConstraint, Events } = Matter;
 
-      const engine = Engine.create({
-        gravity: { y: 1 } // Gravité normale
-      });
+      // Création du moteur
+      const engine = Engine.create();
+      const world = engine.world;
+
+      // Création du Rendu (Canvas)
       const render = Render.create({
         element: sceneContainer,
         engine: engine,
         options: {
-          width: sceneContainer.offsetWidth,
-          height: sceneContainer.offsetHeight,
-          wireframes: false,
+          width: sceneContainer.clientWidth,
+          height: sceneContainer.clientHeight,
+          wireframes: false, // Debug: mettre true pour voir la "vraie" physique
           background: 'transparent',
-          pixelRatio: window.devicePixelRatio
+          pixelRatio: window.devicePixelRatio || 1
         }
       });
 
-      const w = sceneContainer.offsetWidth;
-      const h = sceneContainer.offsetHeight;
-      const wallThickness = 100;
+      // 3. Création des murs (limites de l'écran)
+      const wallThickness = 200; // Épais pour éviter que les balles rapides traversent
+      const width = sceneContainer.clientWidth;
+      const height = sceneContainer.clientHeight;
 
-      // Murs invisibles (Cage)
-      const wallOptions = {
-        isStatic: true,
-        render: { visible: false }
-      };
+      const ground = Bodies.rectangle(width / 2, height + wallThickness / 2, width * 2, wallThickness, { isStatic: true, friction: 0.5 });
+      const leftWall = Bodies.rectangle(0 - wallThickness / 2, height / 2, wallThickness, height * 2, { isStatic: true, friction: 0 });
+      const rightWall = Bodies.rectangle(width + wallThickness / 2, height / 2, wallThickness, height * 2, { isStatic: true, friction: 0 });
+      const ceiling = Bodies.rectangle(width / 2, -wallThickness * 2, width * 2, wallThickness, { isStatic: true }); // Plafond haut pour laisser tomber
 
-      World.add(engine.world, [
-        Bodies.rectangle(w / 2, h + wallThickness / 2, w, wallThickness, wallOptions), // Sol
-        Bodies.rectangle(-wallThickness / 2, h / 2, wallThickness, h * 4, wallOptions), // Gauche
-        Bodies.rectangle(w + wallThickness / 2, h / 2, wallThickness, h * 4, wallOptions), // Droite
+      World.add(world, [ground, leftWall, rightWall, ceiling]);
 
-        // --- PLAFOND FIXÉ À -400px (Les balles retombent vite) ---
-        Bodies.rectangle(w / 2, -400, w, wallThickness, wallOptions)
-      ]);
-
-      // 3. Créer les planètes physiques et visuelles
+      // 4. Création des planètes (Corps Physique + Élément DOM)
       const planetsData = langData.skillsSection.planets;
-      const bodies = [];
       const domElements = [];
+      const bodies = [];
 
+      // Conteneur DOM dédié
       const physicsContainer = document.createElement('div');
       physicsContainer.id = 'physics-skills-container';
-      physicsContainer.style.position = 'absolute';
-      physicsContainer.style.top = '0';
-      physicsContainer.style.left = '0';
-      physicsContainer.style.width = '100%';
-      physicsContainer.style.height = '100%';
-      physicsContainer.style.pointerEvents = 'none'; // CRUCIAL : Laisse passer les clics vers le Canvas
       sceneContainer.appendChild(physicsContainer);
 
-      planetsData.forEach(planet => {
-        const domElement = document.createElement('div');
-        domElement.classList.add('physics-skill-item', planet.id);
-        domElement.textContent = planet.name;
-        domElement.style.pointerEvents = 'none'; // CRUCIAL : L'élément visuel ne bloque pas la souris
-        domElement.style.userSelect = 'none';
+      planetsData.forEach((planet, index) => {
+        const planetRadius = window.innerWidth < 768 ? 45 : 60; // Plus petit sur mobile
 
-        physicsContainer.appendChild(domElement);
-        domElements.push(domElement);
+        // A. Élément Visuel (DOM)
+        const el = document.createElement('div');
+        el.classList.add('physics-skill-item', planet.id);
+        el.textContent = planet.name;
+        el.style.width = `${planetRadius * 2}px`;
+        el.style.height = `${planetRadius * 2}px`;
+        physicsContainer.appendChild(el);
+        domElements.push(el);
 
-        const radius = 55;
+        // B. Corps Physique
         const body = Bodies.circle(
-          Math.random() * (w - radius * 2) + radius,
-          -Math.random() * 500 - 100, // Apparition aléatoire en hauteur
-          radius, {
-          restitution: 0.9,  // Effet rebondissant (Superball)
-          friction: 0.001,
-          frictionAir: 0.005,
-          density: 0.04,
-          angle: (Math.random() - 0.5) * Math.PI
-        }
+          Math.random() * (width - 100) + 50, // Position X aléatoire
+          -Math.random() * 500 - 100,         // Position Y (tombent du ciel)
+          planetRadius,
+          {
+            restitution: 0.8, // Rebondissant (0-1)
+            friction: 0.005,  // Glisse bien
+            density: 0.04,    // Poids
+            frictionAir: 0.01 // Résistance air
+          }
         );
         bodies.push(body);
       });
-      World.add(engine.world, bodies);
 
-      // 4. Interaction Souris (Drag & Throw)
+      World.add(world, bodies);
+
+      // 5. GESTION DE LA SOURIS (LE FIX CRUCIAL)
       const mouse = Mouse.create(render.canvas);
+
+      // --- FIX SCROLL MOLETTE ---
+      // Empêche Matter.js de capturer le scroll pour qu'on puisse descendre dans la page
+      mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
+      mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+
+      // CORRECTION DU DÉCALAGE (SCALING/OFFSET)
+      // Matter.js ne gère pas nativement le CSS transform scale() sur le parent.
+      // On doit remapper les coordonnées.
+      Mouse.setScale(mouse, {
+        x: 1,
+        y: 1
+      });
+
+      // Si tu utilises CSS transform scale(), il faut compenser ici manuellement si besoin,
+      // Mais la méthode la plus robuste est de ne pas se fier aux coordonnées brutes.
+      // On force le pixelRatio pour la netteté et la précision.
+      mouse.pixelRatio = window.devicePixelRatio || 1;
+
       const mouseConstraint = MouseConstraint.create(engine, {
         mouse: mouse,
         constraint: {
-          stiffness: 0.1,
-          render: {
-            visible: false
-          }
+          stiffness: 0.2, // Rigidité de la prise (plus haut = plus réactif)
+          damping: 0.05,
+          render: { visible: false }
         }
       });
 
-      // Désactiver la capture du scroll par Matter.js
-      mouseConstraint.mouse.element.removeEventListener("mousewheel", mouseConstraint.mouse.mousewheel);
-      mouseConstraint.mouse.element.removeEventListener("DOMMouseScroll", mouseConstraint.mouse.mousewheel);
+      World.add(world, mouseConstraint);
+      render.mouse = mouse;
 
-      World.add(engine.world, mouseConstraint);
-      render.mouse = mouse; // Sync souris render
+      // 6. Boucle de Synchro (Physics -> DOM)
+      Events.on(engine, 'afterUpdate', () => {
+        bodies.forEach((body, i) => {
+          const el = domElements[i];
+          if (!el) return;
 
-      // 5. Boucle de synchronisation (DOM suit la Physique)
-      (function syncLoop() {
-        if (!document.body.contains(sceneContainer)) return;
-        requestAnimationFrame(syncLoop);
-        for (let i = 0; i < bodies.length; i++) {
-          const pos = bodies[i].position;
-          domElements[i].style.transform =
-            `translate(${pos.x - domElements[i].offsetWidth / 2}px, ${pos.y - domElements[i].offsetHeight / 2}px) 
-             rotate(${bodies[i].angle}rad)`;
-        }
-      })();
+          // On synchronise la position du DOM sur celle du corps physique
+          const x = body.position.x - el.offsetWidth / 2;
+          const y = body.position.y - el.offsetHeight / 2;
+          const angle = body.angle;
 
-      Runner.run(engine);
+          el.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${angle}rad)`;
+        });
+      });
+
+      // 7. Lancement
+      Runner.run(Runner.create(), engine);
       Render.run(render);
 
-    }, {
-      once: true
-    });
+      // 8. Gestion du Resize (Pour que les murs suivent la fenêtre)
+      window.addEventListener('resize', () => {
+        render.canvas.width = sceneContainer.clientWidth;
+        render.canvas.height = sceneContainer.clientHeight;
+
+        // Repositionner les murs
+        const newW = sceneContainer.clientWidth;
+        const newH = sceneContainer.clientHeight;
+
+        Matter.Body.setPosition(ground, { x: newW / 2, y: newH + wallThickness / 2 });
+        Matter.Body.setPosition(leftWall, { x: 0 - wallThickness / 2, y: newH / 2 });
+        Matter.Body.setPosition(rightWall, { x: newW + wallThickness / 2, y: newH / 2 });
+      });
+
+    }, { once: true });
   }
 
   // --- HERO 3D (THREE.JS) - REAL SNOWFLAKE UPDATE ---
@@ -2107,7 +2125,51 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // --- GESTION DU CURSEUR (MODERNE / WIN98 / RETRO) ---
+  function initCursorSwitcher() {
+    const cursorOptions = document.querySelectorAll('.cursor-option');
+    const body = document.body;
+
+    // Fonction pour appliquer le curseur
+    const applyCursor = (mode) => {
+      // 1. Nettoyer les classes du body
+      body.classList.remove('cursor-mode-windows98', 'cursor-mode-retro');
+
+      // 2. Gérer l'état des boutons du menu
+      cursorOptions.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.cursor === mode);
+      });
+
+      // 3. Appliquer le nouveau mode
+      if (mode === 'windows98') {
+        body.classList.add('cursor-mode-windows98');
+      } else if (mode === 'retro') {
+        body.classList.add('cursor-mode-retro');
+      }
+      // Si 'modern', on ne met pas de classe, le CSS par défaut (GSAP) reprend le dessus
+
+      // 4. Sauvegarder la préférence
+      localStorage.setItem('cursorMode', mode);
+    };
+
+    // Initialisation au chargement
+    const savedCursor = localStorage.getItem('cursorMode') || 'modern';
+    // Sécurité : on n'active pas les curseurs custom sur mobile
+    if (window.matchMedia("(min-width: 993px)").matches) {
+      applyCursor(savedCursor);
+    }
+
+    // Écouteurs d'événements
+    cursorOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        const mode = option.dataset.cursor;
+        applyCursor(mode);
+      });
+    });
+  }
+
   // --- INITIALISATION FINALE ---
+  initCursorSwitcher(); // <-- Lancement du sélecteur de curseur
   initHero3D();
   initRatingSystem(); // <-- Lancement du système de notation
 

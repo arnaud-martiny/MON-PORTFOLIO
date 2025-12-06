@@ -96,6 +96,27 @@
         <button id="lang-en" class="lang-btn" data-lang="en">EN</button>
       </div>
       <div class="nav-right-group">
+        <!-- DEBUT AJOUT : SÉLECTEUR DE CURSEUR -->
+        <div class="cursor-selector-container">
+          <button id="cursor-menu-btn" class="nav-icon-btn" aria-label="Choisir le curseur">
+            <i class="fas fa-mouse-pointer"></i>
+          </button>
+          <div class="cursor-dropdown">
+            <button class="cursor-option active" data-cursor="modern">
+              <span class="dot-preview modern"></span>
+              <span data-i18n="nav.cursor.modern">Moderne</span>
+            </button>
+            <button class="cursor-option" data-cursor="windows98">
+              <img src="assets/img/curseur/curseur-windows-98.png" alt="" class="img-preview">
+              <span data-i18n="nav.cursor.windows98">Windows 98</span>
+            </button>
+            <button class="cursor-option" data-cursor="retro">
+              <img src="assets/img/curseur/curseur-vintage.png" alt="" class="img-preview">
+              <span data-i18n="nav.cursor.retro">Rétro</span>
+            </button>
+          </div>
+        </div>
+        <!-- FIN AJOUT -->
         <button id="wtf-btn" class="nav-wtf-btn" aria-label="Rebelle va" data-i18n="nav.wtfButton">Ne pas
           cliquer</button>
         <a href="assets/CV/CV-Arnaud-Martiny-FR.pdf" id="nav-cv-link" target="_blank" class="nav-cv-btn cv-link">
@@ -427,7 +448,7 @@
     <i class="fas fa-arrow-up"></i>
   </a>
   <div id="evolution-popup-overlay" class="evolution-popup-overlay">
-    <div id="evolution-popup" class="evolution-popup" data-last-updated="02/12/2025">
+    <div id="evolution-popup" class="evolution-popup" data-last-updated="06/12/2025">
       <button id="evolution-popup-close" class="evolution-popup-close">×</button>
       <h4 data-i18n="evolutionPopup.title">Site en constante évolution</h4>
       <p data-i18n="evolutionPopup.message" data-i18n-html>
