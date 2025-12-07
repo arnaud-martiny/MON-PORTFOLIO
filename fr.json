@@ -195,7 +195,7 @@
       {
         "title": "Création du site Fast 'N Friends",
         "date": "2024",
-        "link": "https://fastnfriends.emu.isfsc.be/",
+        "link": "https://www.arnaud-martiny.be/beta/fast-n-friends/home/",
         "description": "Conception et développement d'un site de covoiturage étudiant. Ce projet académique, réalisé en PHP et WordPress, m'a permis de pratiquer la gestion de profils utilisateurs et la création d'interfaces responsives."
       },
       {
@@ -349,7 +349,7 @@
           "MySQL",
           "Git & GitHub"
         ],
-        "liveLink": "https://fastnfriends.emu.isfsc.be/home/",
+        "liveLink": "https://www.arnaud-martiny.be/beta/fast-n-friends/home/",
         "codeLink": "https://github.com/arnaud-martiny/Fast-N-Friends",
         "caseStudy": {
           "title": "C:\\Projects\\FastNFriends_Platform.exe",
