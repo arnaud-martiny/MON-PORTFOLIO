@@ -175,8 +175,8 @@
     "message": "This portfolio is a living project! New features and animations are added regularly. Last update on {{date}}. Check back soon!"
   },
   "projectsUpdatePopup": {
-    "title": "Projects Update",
-    "message": "The <strong>Nowa Logistics</strong> website is now published and accessible in beta! The <strong>Théâtre des Poètes</strong> site will also be launched soon."
+    "title": "",
+    "message": ""
   },
   "experienceSection": {
     "title": "EXPERIENCE & EDUCATION",
@@ -250,9 +250,9 @@
   },
   "featuredProjects": {
     "title": "My Web Creations",
-    "poetesTooltip": "Site under development, scheduled for launch soon!",
+    "poetesTooltip": "Website is live!",
     "noCodeTooltip": "Unfortunately, no GitHub repository was created for this project.",
-    "poetesCodeTooltip": "The GitHub repository will be published soon. Patience is a virtue, especially in development!",
+    "poetesCodeTooltip": "No GitHub repository available (No public versioning).",
     "caseStudyButton": "View Case Study",
     "caseStudyTooltip": "You won't regret the trip ;-)",
     "items": [

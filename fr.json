@@ -175,8 +175,8 @@
     "message": "Ce portfolio est un projet vivant ! De nouvelles fonctionnalités et animations sont ajoutées régulièrement. Dernière mise à jour le {{date}}. Revenez bientôt !"
   },
   "projectsUpdatePopup": {
-    "title": "Mise à Jour des Projets",
-    "message": "Le site de <strong>Nowa Logistics</strong> est désormais publié et accessible en version bêta ! Celui du <strong>Théâtre des Poètes</strong> sera également mis en ligne prochainement."
+    "title": "",
+    "message": ""
   },
   "experienceSection": {
     "title": "EXPÉRIENCE & FORMATION",
@@ -195,7 +195,7 @@
       {
         "title": "Création du site Fast 'N Friends",
         "date": "2024",
-        "link": "https://fastnfriends.emu.isfsc.be/",
+        "link": "https://arnaud-martiny.be/beta/fast-n-friends/",
         "description": "Conception et développement d'un site de covoiturage étudiant. Ce projet académique, réalisé en PHP et WordPress, m'a permis de pratiquer la gestion de profils utilisateurs et la création d'interfaces responsives."
       },
       {
@@ -250,9 +250,9 @@
   },
   "featuredProjects": {
     "title": "Mes Réalisations Web",
-    "poetesTooltip": "Site en développement, lancement prévu prochainement !",
+    "poetesTooltip": "Site en ligne !",
     "noCodeTooltip": "Malheureusement, aucun dépôt GitHub n'a été créé pour ce projet.",
-    "poetesCodeTooltip": "Le dépôt GitHub sera publié prochainement. La patience est une vertu, surtout en développement !",
+    "poetesCodeTooltip": "Aucun dépôt GitHub disponible (Projet sans versioning public).",
     "caseStudyButton": "Voir le Case Study",
     "caseStudyTooltip": "Vous n'allez pas regretter le voyage ;-)",
     "items": [
@@ -315,7 +315,7 @@
         "title": "Le Théâtre des Poètes",
         "imageSrc": "assets/img/apercu_TDP.webp",
         "imageAlt": "Aperçu du projet Théâtre des Poètes",
-        "description": "<strong>Le défi :</strong> remplacer un site vieillissant, hacké et non-administrable pour une ASBL à budget limité. <strong>Ma solution :</strong> j'ai mené une refonte complète en me concentrant sur la sécurité, la modernité et surtout, la simplicité de gestion pour l'équipe du théâtre. <strong>Site officiellement lancé !</strong>",
+        "description": "<strong>Le défi :</strong> remplacer un site vieillissant, hacké et non-administrable pour une ASBL à budget limité. <strong>Ma solution :</strong> j'ai mené une refonte complète en me concentrant sur la sécurité, la modernité et surtout, la simplicité de gestion pour l'équipe du théâtre. <strong>Site officiellement publié et fonctionnel !</strong>",
         "tech": [
           "PHP",
           "MySQL",
