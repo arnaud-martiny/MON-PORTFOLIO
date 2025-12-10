@@ -420,6 +420,10 @@
             <textarea name="message" required placeholder="Message"
               data-i18n-attr-placeholder="contactSection.form.messagePlaceholder"></textarea>
           </div>
+<div style="display:none;">
+       <label for="honeypot">Ne pas remplir ce champ :</label>
+       <input type="text" id="honeypot" name="website_url" value="">
+   </div>
           <div class="h-captcha" data-captcha="true"></div>
           <button type="submit" class="btn" data-i18n="contactSection.form.submitButton">
             Envoyer

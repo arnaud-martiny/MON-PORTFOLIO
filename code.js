@@ -1,5 +1,5 @@
 // =========================================================================
-//                  SCRIPT.JS - VERSION FINALE (AVEC CURSOR SWITCHER)
+//                  SCRIPT.JS - VERSION SÉCURISÉE (XSS FIX)
 // =========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1276,6 +1276,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function initializeTerminal(langData) {
+    // === FIX XSS: FONCTION UTILITAIRE POUR ÉCHAPPER LE HTML ===
+    function escapeHtml(text) {
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+      return text.replace(/[&<>"']/g, function(m) {
+        return map[m];
+      });
+    }
+
     const terminalSection = document.getElementById('terminal-section');
     const terminalBody = document.getElementById('terminal-body');
     const terminalOutput = document.getElementById('terminal-output');
@@ -1493,7 +1507,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function processUserInput(input) {
       const prompt = `<span class="terminal-prompt">${promptText}</span>`;
-      const commandLine = `<p class="user-command">${prompt} ${input}</p>`;
+      // === FIX XSS: Échapper l'entrée avant l'affichage ===
+      const safeInput = escapeHtml(input);
+      const commandLine = `<p class="user-command">${prompt} ${safeInput}</p>`;
       terminalOutput.innerHTML += commandLine;
       terminalBody.scrollTop = terminalBody.scrollHeight;
 
@@ -1637,13 +1653,13 @@ document.addEventListener("DOMContentLoaded", () => {
         Math.random() * (container.clientWidth - width) + width / 2,
         Math.random() * (container.clientHeight / 2),
         width, height, {
-        restitution: 0.5,
-        friction: 0.3,
-        render: {
-          fillStyle: 'transparent',
-          strokeStyle: 'transparent'
+          restitution: 0.5,
+          friction: 0.3,
+          render: {
+            fillStyle: 'transparent',
+            strokeStyle: 'transparent'
+          }
         }
-      }
       );
       body.skillData = skill;
       return body;
@@ -1730,7 +1746,16 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.style.pointerEvents = 'none';
 
       // 2. Setup Matter.js
-      const { Engine, Render, Runner, World, Bodies, Mouse, MouseConstraint, Events } = Matter;
+      const {
+        Engine,
+        Render,
+        Runner,
+        World,
+        Bodies,
+        Mouse,
+        MouseConstraint,
+        Events
+      } = Matter;
 
       // Création du moteur
       const engine = Engine.create();
@@ -1754,10 +1779,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const width = sceneContainer.clientWidth;
       const height = sceneContainer.clientHeight;
 
-      const ground = Bodies.rectangle(width / 2, height + wallThickness / 2, width * 2, wallThickness, { isStatic: true, friction: 0.5 });
-      const leftWall = Bodies.rectangle(0 - wallThickness / 2, height / 2, wallThickness, height * 2, { isStatic: true, friction: 0 });
-      const rightWall = Bodies.rectangle(width + wallThickness / 2, height / 2, wallThickness, height * 2, { isStatic: true, friction: 0 });
-      const ceiling = Bodies.rectangle(width / 2, -wallThickness * 2, width * 2, wallThickness, { isStatic: true }); // Plafond haut pour laisser tomber
+      const ground = Bodies.rectangle(width / 2, height + wallThickness / 2, width * 2, wallThickness, {
+        isStatic: true,
+        friction: 0.5
+      });
+      const leftWall = Bodies.rectangle(0 - wallThickness / 2, height / 2, wallThickness, height * 2, {
+        isStatic: true,
+        friction: 0
+      });
+      const rightWall = Bodies.rectangle(width + wallThickness / 2, height / 2, wallThickness, height * 2, {
+        isStatic: true,
+        friction: 0
+      });
+      const ceiling = Bodies.rectangle(width / 2, -wallThickness * 2, width * 2, wallThickness, {
+        isStatic: true
+      }); // Plafond haut pour laisser tomber
 
       World.add(world, [ground, leftWall, rightWall, ceiling]);
 
@@ -1786,12 +1822,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // B. Corps Physique
         const body = Bodies.circle(
           Math.random() * (width - 100) + 50, // Position X aléatoire
-          -Math.random() * 500 - 100,         // Position Y (tombent du ciel)
-          planetRadius,
-          {
+          -Math.random() * 500 - 100, // Position Y (tombent du ciel)
+          planetRadius, {
             restitution: 0.8, // Rebondissant (0-1)
-            friction: 0.005,  // Glisse bien
-            density: 0.04,    // Poids
+            friction: 0.005, // Glisse bien
+            density: 0.04, // Poids
             frictionAir: 0.01 // Résistance air
           }
         );
@@ -1826,7 +1861,9 @@ document.addEventListener("DOMContentLoaded", () => {
         constraint: {
           stiffness: 0.2, // Rigidité de la prise (plus haut = plus réactif)
           damping: 0.05,
-          render: { visible: false }
+          render: {
+            visible: false
+          }
         }
       });
 
@@ -1861,12 +1898,23 @@ document.addEventListener("DOMContentLoaded", () => {
         const newW = sceneContainer.clientWidth;
         const newH = sceneContainer.clientHeight;
 
-        Matter.Body.setPosition(ground, { x: newW / 2, y: newH + wallThickness / 2 });
-        Matter.Body.setPosition(leftWall, { x: 0 - wallThickness / 2, y: newH / 2 });
-        Matter.Body.setPosition(rightWall, { x: newW + wallThickness / 2, y: newH / 2 });
+        Matter.Body.setPosition(ground, {
+          x: newW / 2,
+          y: newH + wallThickness / 2
+        });
+        Matter.Body.setPosition(leftWall, {
+          x: 0 - wallThickness / 2,
+          y: newH / 2
+        });
+        Matter.Body.setPosition(rightWall, {
+          x: newW + wallThickness / 2,
+          y: newH / 2
+        });
       });
 
-    }, { once: true });
+    }, {
+      once: true
+    });
   }
 
   // --- HERO 3D (THREE.JS) - REAL SNOWFLAKE UPDATE ---
@@ -1921,7 +1969,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
       camera.position.z = 100;
 
-      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      const renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: true
+      });
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(window.devicePixelRatio);
       container.innerHTML = ''; // Nettoyer si besoin
@@ -1985,7 +2036,9 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       animate();
-      setTimeout(() => { container.style.opacity = '1'; }, 500);
+      setTimeout(() => {
+        container.style.opacity = '1';
+      }, 500);
       setTimeout(() => {
         const heroTitle = document.querySelector('.hero-title-modern');
         if (heroTitle) heroTitle.classList.add('animated');
@@ -2103,9 +2156,9 @@ document.addEventListener("DOMContentLoaded", () => {
       formData.append('rating', currentRating);
 
       fetch('send-rating.php', {
-        method: 'POST',
-        body: formData
-      })
+          method: 'POST',
+          body: formData
+        })
         .then(response => response.text())
         .then(data => {
           // Succès
@@ -2173,7 +2226,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initHero3D();
   initRatingSystem(); // <-- Lancement du système de notation
 
-  window.addEventListener('unload', function () {
+  window.addEventListener('unload', function() {
     if (conversationLog.length > 1) {
       const dataToSend = new Blob([JSON.stringify(conversationLog)], {
         type: 'application/json'
