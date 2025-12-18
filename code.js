@@ -1,6 +1,37 @@
 // =========================================================================
-//                  SCRIPT.JS - VERSION SÉCURISÉE (XSS FIX)
+//                  SCRIPT.JS - VERSION OPTIMISÉE & SÉCURISÉE
 // =========================================================================
+
+// Pont de compatibilité pour les anciens scripts utilisant TweenMax
+if (typeof gsap !== 'undefined') {
+  window.TweenMax = gsap;
+}
+
+// Fonction globale pour les notifications (utilisée par le HTML parfois)
+window.showPopupNotification = function (message, type) {
+  const existingPopup = document.querySelector('.popup-notification');
+  if (existingPopup) {
+    existingPopup.remove();
+  }
+
+  const popup = document.createElement('div');
+  popup.className = `popup-notification ${type}`;
+  popup.textContent = message;
+
+  document.body.appendChild(popup);
+
+  // Force reflow pour l'animation
+  void popup.offsetWidth;
+
+  popup.classList.add('show');
+
+  setTimeout(() => {
+    popup.classList.remove('show');
+    popup.addEventListener('transitionend', () => {
+      popup.remove();
+    }, { once: true });
+  }, 5000);
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   let jsonAnimated = false; // Pour l'animation JSON
@@ -182,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const existingPhysicsContainer = document.getElementById('physics-skills-container');
       if (existingPhysicsContainer) existingPhysicsContainer.remove();
 
-      // Nettoyage éventuel des canvas Matter.js (pour éviter les doublons si changement de langue)
+      // Nettoyage éventuel des canvas Matter.js
       const oldMatterCanvas = sceneContainer.querySelector('canvas:not(#starfield-canvas)');
       if (oldMatterCanvas) oldMatterCanvas.remove();
 
@@ -387,6 +418,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     generateList('privacy-contact-points', 'privacyModal.contactFormPoints');
     generateList('privacy-ai-points', 'privacyModal.aiAssistantPoints');
+    generateList('privacy-landing-page-points', 'privacyModal.landingPagePoints');
 
     // === INTEGRATION MATTER.JS (GRAVITY MODE FIX V2) ===
     initializeGravityMode(langData);
@@ -1285,7 +1317,7 @@ document.addEventListener("DOMContentLoaded", () => {
         '"': '&quot;',
         "'": '&#039;'
       };
-      return text.replace(/[&<>"']/g, function(m) {
+      return text.replace(/[&<>"']/g, function (m) {
         return map[m];
       });
     }
@@ -1653,13 +1685,13 @@ document.addEventListener("DOMContentLoaded", () => {
         Math.random() * (container.clientWidth - width) + width / 2,
         Math.random() * (container.clientHeight / 2),
         width, height, {
-          restitution: 0.5,
-          friction: 0.3,
-          render: {
-            fillStyle: 'transparent',
-            strokeStyle: 'transparent'
-          }
+        restitution: 0.5,
+        friction: 0.3,
+        render: {
+          fillStyle: 'transparent',
+          strokeStyle: 'transparent'
         }
+      }
       );
       body.skillData = skill;
       return body;
@@ -1824,11 +1856,11 @@ document.addEventListener("DOMContentLoaded", () => {
           Math.random() * (width - 100) + 50, // Position X aléatoire
           -Math.random() * 500 - 100, // Position Y (tombent du ciel)
           planetRadius, {
-            restitution: 0.8, // Rebondissant (0-1)
-            friction: 0.005, // Glisse bien
-            density: 0.04, // Poids
-            frictionAir: 0.01 // Résistance air
-          }
+          restitution: 0.8, // Rebondissant (0-1)
+          friction: 0.005, // Glisse bien
+          density: 0.04, // Poids
+          frictionAir: 0.01 // Résistance air
+        }
         );
         bodies.push(body);
       });
@@ -1917,140 +1949,150 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- HERO 3D (THREE.JS) - REAL SNOWFLAKE UPDATE ---
+  // --- HERO 3D (THREE.JS) - LAZY LOADED ---
   function initHero3D() {
     const container = document.getElementById('hero-canvas');
     if (!container) return;
 
-    // --- CHARGEMENT D'UNE IMAGE LOCALE ET CONVERSION EN BLANC ---
-    // Cette partie crée une texture blanche à partir de votre SVG noir.
-    const imageLoader = new THREE.ImageLoader();
-    imageLoader.load('assets/img/flocon-neige.svg', (image) => {
+    const runThreeLogic = () => {
+      // --- CHARGEMENT D'UNE IMAGE LOCALE ET CONVERSION EN BLANC ---
+      const imageLoader = new THREE.ImageLoader();
+      imageLoader.load('assets/img/flocon-neige.svg', (image) => {
 
-      const size = 128;
-      const canvas = document.createElement('canvas');
-      canvas.width = size;
-      canvas.height = size;
-      const ctx = canvas.getContext('2d');
+        const size = 128;
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
 
-      // Calculate aspect ratio to fit within 128x128 square without stretching
-      const aspect = image.width / image.height;
-      let drawWidth, drawHeight, offsetX, offsetY;
+        // Calculate aspect ratio to fit within 128x128 square without stretching
+        const aspect = image.width / image.height;
+        let drawWidth, drawHeight, offsetX, offsetY;
 
-      if (aspect > 1) {
-        // Wider than tall
-        drawWidth = size;
-        drawHeight = size / aspect;
-        offsetX = 0;
-        offsetY = (size - drawHeight) / 2;
-      } else {
-        // Taller than wide
-        drawWidth = size * aspect;
-        drawHeight = size;
-        offsetX = (size - drawWidth) / 2;
-        offsetY = 0;
-      }
-
-      // 1. Dessiner l'image originale avec le bon ratio et centrée
-      ctx.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
-
-      // 2. Appliquer un filtre pour remplir la forme en blanc
-      ctx.globalCompositeOperation = 'source-in';
-      ctx.fillStyle = 'white';
-      ctx.fillRect(0, 0, size, size);
-
-      // 3. Créer la texture Three.js à partir du canvas modifié
-      const texture = new THREE.CanvasTexture(canvas);
-
-      // --- SUITE DE L'INITIALISATION THREE.JS ---
-      const scene = new THREE.Scene();
-      scene.fog = new THREE.FogExp2(0x000000, 0.002);
-
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      camera.position.z = 100;
-
-      const renderer = new THREE.WebGLRenderer({
-        alpha: true,
-        antialias: true
-      });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(window.devicePixelRatio);
-      container.innerHTML = ''; // Nettoyer si besoin
-      container.appendChild(renderer.domElement);
-
-      const geometry = new THREE.BufferGeometry();
-      const count = 1500;
-      const positions = new Float32Array(count * 3);
-      const velocities = new Float32Array(count);
-      const rotations = new Float32Array(count);
-
-      for (let i = 0; i < count; i++) {
-        positions[i * 3] = (Math.random() - 0.5) * 400;
-        positions[i * 3 + 1] = (Math.random() - 0.5) * 400;
-        positions[i * 3 + 2] = (Math.random() - 0.5) * 400;
-        velocities[i] = 0.05 + Math.random() * 0.15;
-        rotations[i] = Math.random() * Math.PI * 2;
-      }
-
-      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 1));
-      geometry.setAttribute('rotation', new THREE.BufferAttribute(rotations, 1));
-
-      const material = new THREE.PointsMaterial({
-        size: 3, // TAILLE RÉDUITE (était 8)
-        map: texture,
-        transparent: true,
-        opacity: 0.9,
-        depthWrite: false,
-        blending: THREE.AdditiveBlending,
-        color: 0xffffff
-      });
-
-      const particles = new THREE.Points(geometry, material);
-      scene.add(particles);
-
-      const animate = () => {
-        requestAnimationFrame(animate);
-        const positions = particles.geometry.attributes.position.array;
-        const velocities = particles.geometry.attributes.velocity.array;
-        for (let i = 0; i < count; i++) {
-          positions[i * 3 + 1] -= velocities[i]; // Chute Y
-          // Petit mouvement sinusoïdal sur X pour effet "feuille morte"
-          positions[i * 3] -= 0.02 + Math.sin(positions[i * 3 + 1] * 0.05) * 0.05;
-
-          // Reset si hors champ
-          if (positions[i * 3 + 1] < -200) {
-            positions[i * 3 + 1] = 200;
-            positions[i * 3] = (Math.random() - 0.5) * 400;
-          }
-          if (positions[i * 3] < -200) positions[i * 3] = 200;
-          if (positions[i * 3] > 200) positions[i * 3] = -200;
+        if (aspect > 1) {
+          // Wider than tall
+          drawWidth = size;
+          drawHeight = size / aspect;
+          offsetX = 0;
+          offsetY = (size - drawHeight) / 2;
+        } else {
+          // Taller than wide
+          drawWidth = size * aspect;
+          drawHeight = size;
+          offsetX = (size - drawWidth) / 2;
+          offsetY = 0;
         }
-        particles.geometry.attributes.position.needsUpdate = true;
 
-        // Rotation globale lente
-        particles.rotation.y += 0.001;
-        particles.rotation.z += 0.0005;
+        // 1. Dessiner l'image originale avec le bon ratio et centrée
+        ctx.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
 
-        renderer.render(scene, camera);
-      };
+        // 2. Appliquer un filtre pour remplir la forme en blanc
+        ctx.globalCompositeOperation = 'source-in';
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, size, size);
 
-      animate();
-      setTimeout(() => {
-        container.style.opacity = '1';
-      }, 500);
-      setTimeout(() => {
-        const heroTitle = document.querySelector('.hero-title-modern');
-        if (heroTitle) heroTitle.classList.add('animated');
-      }, 1000);
+        // 3. Créer la texture Three.js à partir du canvas modifié
+        const texture = new THREE.CanvasTexture(canvas);
 
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
+        // --- SUITE DE L'INITIALISATION THREE.JS ---
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x000000, 0.002);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 100;
+
+        const renderer = new THREE.WebGLRenderer({
+          alpha: true,
+          antialias: true
+        });
         renderer.setSize(window.innerWidth, window.innerHeight);
-      });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.innerHTML = ''; // Nettoyer si besoin
+        container.appendChild(renderer.domElement);
 
-    }); // Fin du loader
+        const geometry = new THREE.BufferGeometry();
+        const count = 1500;
+        const positions = new Float32Array(count * 3);
+        const velocities = new Float32Array(count);
+        const rotations = new Float32Array(count);
+
+        for (let i = 0; i < count; i++) {
+          positions[i * 3] = (Math.random() - 0.5) * 400;
+          positions[i * 3 + 1] = (Math.random() - 0.5) * 400;
+          positions[i * 3 + 2] = (Math.random() - 0.5) * 400;
+          velocities[i] = 0.05 + Math.random() * 0.15;
+          rotations[i] = Math.random() * Math.PI * 2;
+        }
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 1));
+        geometry.setAttribute('rotation', new THREE.BufferAttribute(rotations, 1));
+
+        const material = new THREE.PointsMaterial({
+          size: 3, // TAILLE RÉDUITE (était 8)
+          map: texture,
+          transparent: true,
+          opacity: 0.9,
+          depthWrite: false,
+          blending: THREE.AdditiveBlending,
+          color: 0xffffff
+        });
+
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        const animate = () => {
+          requestAnimationFrame(animate);
+          const positions = particles.geometry.attributes.position.array;
+          const velocities = particles.geometry.attributes.velocity.array;
+          for (let i = 0; i < count; i++) {
+            positions[i * 3 + 1] -= velocities[i]; // Chute Y
+            // Petit mouvement sinusoïdal sur X pour effet "feuille morte"
+            positions[i * 3] -= 0.02 + Math.sin(positions[i * 3 + 1] * 0.05) * 0.05;
+
+            // Reset si hors champ
+            if (positions[i * 3 + 1] < -200) {
+              positions[i * 3 + 1] = 200;
+              positions[i * 3] = (Math.random() - 0.5) * 400;
+            }
+            if (positions[i * 3] < -200) positions[i * 3] = 200;
+            if (positions[i * 3] > 200) positions[i * 3] = -200;
+          }
+          particles.geometry.attributes.position.needsUpdate = true;
+
+          // Rotation globale lente
+          particles.rotation.y += 0.001;
+          particles.rotation.z += 0.0005;
+
+          renderer.render(scene, camera);
+        };
+
+        animate();
+        setTimeout(() => {
+          container.style.opacity = '1';
+        }, 500);
+        setTimeout(() => {
+          const heroTitle = document.querySelector('.hero-title-modern');
+          if (heroTitle) heroTitle.classList.add('animated');
+        }, 1000);
+
+        window.addEventListener('resize', () => {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+      });
+    };
+
+    // Lazy load de Three.js
+    if (typeof THREE === 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js';
+      script.onload = runThreeLogic;
+      document.body.appendChild(script);
+    } else {
+      runThreeLogic();
+    }
   }
 
   // --- SYSTÈME DE NOTATION (POPUP 20 SECONDES) ---
@@ -2156,9 +2198,9 @@ document.addEventListener("DOMContentLoaded", () => {
       formData.append('rating', currentRating);
 
       fetch('send-rating.php', {
-          method: 'POST',
-          body: formData
-        })
+        method: 'POST',
+        body: formData
+      })
         .then(response => response.text())
         .then(data => {
           // Succès
@@ -2226,40 +2268,18 @@ document.addEventListener("DOMContentLoaded", () => {
   initHero3D();
   initRatingSystem(); // <-- Lancement du système de notation
 
-  window.addEventListener('unload', function() {
-    if (conversationLog.length > 1) {
+  // Remplacement de l'événement 'unload' par 'visibilitychange' pour éviter les warnings
+  // et améliorer la performance de navigation (bfcache)
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === 'hidden' && conversationLog.length > 1) {
       const dataToSend = new Blob([JSON.stringify(conversationLog)], {
         type: 'application/json'
       });
-      navigator.sendBeacon('send-conversation-summary.php', dataToSend);
+      // sendBeacon est plus fiable lors de la fermeture de page
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon('send-conversation-summary.php', dataToSend);
+      }
     }
   });
 
 }); // Fin de DOMContentLoaded
-
-// Fonction globale pour les notifications
-function showPopupNotification(message, type) {
-  const existingPopup = document.querySelector('.popup-notification');
-  if (existingPopup) {
-    existingPopup.remove();
-  }
-
-  const popup = document.createElement('div');
-  popup.className = `popup-notification ${type}`;
-  popup.textContent = message;
-
-  document.body.appendChild(popup);
-
-  setTimeout(() => {
-    popup.classList.add('show');
-  }, 10);
-
-  setTimeout(() => {
-    popup.classList.remove('show');
-    popup.addEventListener('transitionend', () => {
-      popup.remove();
-    }, {
-      once: true
-    });
-  }, 5000);
-}
