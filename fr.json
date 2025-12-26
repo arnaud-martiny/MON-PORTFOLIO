@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Arnaud Martiny | Développeur web Full-Stack – Portfolio & Créations sur mesure",
-    "description": "Développeur Full-Stack passionné basé à Bruxelles. Je transforme vos idées en applications web modernes, du design UX/UI sur Figma au développement. Découvrez mes projets et parlons-en !"
+    "description": "Développeur Full-Stack passionné basé à Bruxelles. Je transforme vos idées en applications web modernes, du design UX/UI sur Figma au développement."
   },
   "loader": {
     "welcome": "BIENVENUE DANS MON UNIVERS"
@@ -257,6 +257,31 @@
     "caseStudyTooltip": "Vous n'allez pas regretter le voyage ;-)",
     "items": [
       {
+        "id": "snoussi-studio",
+        "category": "Portfolio Studio Créatif & Branding",
+        "title": "Snoussi Studio",
+        "imageSrc": "assets/img/preview-snoussi-studio.webp",
+        "imageAlt": "Aperçu du site Snoussi Studio",
+        "description": "<strong>Le défi :</strong> Créer une vitrine digitale premium qui segmente trois activités distinctes (Photo, Branding, Social) sans fragmenter l'identité. <strong>Ma solution :</strong> Une navigation innovante en triptique vertical, un design 'Dark Mode' immersif aux accents violets électriques et une optimisation totale pour les médias haute résolution.",
+        "tech": [
+          "WordPress",
+          "Elementor Pro",
+          "CSS Custom (Glassmorphism)",
+          "Performance (Lazy Loading)"
+        ],
+        "liveLink": "https://snoussi-studio.be/",
+        "codeLink": "#",
+        "caseStudy": {
+          "title": "C:\\Projects\\Snoussi_Studio_V1.exe",
+          "briefTitle": "▸ Le Brief (concept.txt)",
+          "brief": "Le studio avait besoin d'un site qui reflète son positionnement haut de gamme et son expertise en création de contenu vertical (Reels/TikTok). L'objectif était de casser les codes classiques du portfolio.",
+          "roleTitle": "▸ Mon Rôle (execution.doc)",
+          "role": "Direction Technique & Artistique. J'ai conçu l'architecture 'One-Page Multi-Sections' et développé les interactions spécifiques (tuiles verticales interactives). J'ai également géré l'optimisation des assets pour garantir un chargement rapide malgré la lourdeur des visuels 4K.",
+          "resultsTitle": "▸ Résultat (analytics.log)",
+          "results": "Une plateforme fluide et impactante qui sert aujourd'hui de pilier central pour l'acquisition de clients Corporate et Événementiel."
+        }
+      },
+      {
         "id": "portfolio",
         "category": "Portfolio Personnel",
         "title": "Arnaud Martiny - Portfolio",
@@ -266,10 +291,8 @@
         "tech": [
           "HTML5",
           "CSS3",
-          "JavaScript (ES6+)",
-          "GSAP",
-          "i18n",
-          "Figma"
+          "JavaScript",
+          "GSAP"
         ],
         "liveLink": "https://www.arnaud-martiny.be/",
         "codeLink": "https://github.com/arnaud-martiny/MON-PORTFOLIO",
@@ -418,43 +441,34 @@
     ]
   },
   "privacyModal": {
-    "title": "Politique de Confidentialité",
-    "lastUpdated": "Dernière mise à jour : 22/11/2025",
-    "intro": "Le respect de votre vie privée est important pour moi. Cette politique de confidentialité explique quelles données sont collectées lorsque vous interagissez avec ce site web (arnaud-martiny.be) et comment elles sont utilisées.",
-    "contactFormTitle": "1. Données collectées via le Formulaire de Contact",
-    "contactFormIntro": "Lorsque vous utilisez le formulaire de contact, les informations suivantes sont collectées et stockées dans un fichier sécurisé sur le serveur, et me sont également envoyées par e-mail :",
+    "title": "Politique de Confidentialité et RGPD",
+    "lastUpdated": "Dernière mise à jour : Janvier 2025",
+    "intro": "Conformément au Règlement Général sur la Protection des Données (RGPD), cette politique vise à vous informer en toute transparence sur la manière dont vos données personnelles sont traitées lors de votre navigation sur ce portfolio.",
+    "contactFormTitle": "1. Responsable du Traitement",
+    "contactFormIntro": "Le responsable du traitement des données est Arnaud Martiny (arnaudmartiny0@gmail.com). Aucune donnée n'est vendue, louée ou cédée à des tiers.",
     "contactFormPoints": [
-      "Votre nom",
-      "Votre adresse e-mail",
-      "Le sujet et le contenu de votre message",
-      "Votre adresse IP"
+      "Base légale : Consentement (via l'envoi volontaire du formulaire)",
+      "Base légale : Intérêt légitime (protection contre le spam)"
     ],
-    "contactFormPurpose": "<strong>Finalité :</strong> Ces données sont collectées uniquement dans le but de pouvoir répondre à votre demande et d'assurer le suivi de nos échanges.",
-    "aiAssistantTitle": "2. Données collectées via l'Assistant IA (Terminal)",
-    "aiAssistantIntro": "Lorsque vous interagissez avec l'assistant IA disponible sur ce site, les données suivantes sont enregistrées pour chaque message que vous envoyez :",
+    "contactFormPurpose": "<strong>Finalité du traitement :</strong> Répondre aux demandes de contact, propositions de projets ou offres d'emploi transmises via le formulaire.",
+    "aiAssistantTitle": "2. Données Collectées (Formulaire)",
+    "aiAssistantIntro": "Les données suivantes sont collectées lors de l'utilisation du formulaire de contact :",
     "aiAssistantPoints": [
-      "Votre message (prompt)",
-      "La réponse fournie par l'IA",
-      "Votre adresse IP (pour gérer les limites d'utilisation)",
-      "La langue de la conversation",
-      "Un horodatage (timestamp) de l'échange"
+      "Nom et Prénom",
+      "Adresse Email",
+      "Contenu du message",
+      "Adresse IP (conservée temporairement pour la sécurité technique)"
     ],
-    "aiAssistantPurpose": "<strong>Finalité :</strong> Ces données sont collectées à des fins d'analyse pour améliorer la qualité et la pertinence des réponses de l'IA, ainsi que pour prévenir les abus du service (limitation des requêtes).",
-    "landingPageTitle": "3. Données collectées via les Liens de Redirection",
-    "landingPageIntro": "Dans le cadre de campagnes de communication spécifiques (ex: LinkedIn), j'utilise des liens de redirection pour analyser l'origine du trafic. Lorsqu'un visiteur clique sur ces liens, les données techniques suivantes sont collectées automatiquement avant la redirection :",
+    "aiAssistantPurpose": "<strong>Durée de conservation :</strong> Les emails sont conservés pour la durée nécessaire au traitement de la demande, puis archivés ou supprimés au bout de 2 ans maximum sans activité.",
+    "landingPageTitle": "3. Cookies et Analyse d'Audience",
+    "landingPageIntro": "Ce site utilise Google Analytics 4 (GA4) configuré en mode confidentialité (anonymisation des IP).",
     "landingPagePoints": [
-      "Adresse IP",
-      "Localisation approximative (Ville, Région, Pays)",
-      "Fournisseur d'accès à Internet (FAI)",
-      "Type de navigateur et appareil utilisé",
-      "Date et heure du clic"
+      "Type de données : Statistiques anonymes de visite, type d'appareil, pays d'origine.",
+      "Finalité : Améliorer l'expérience utilisateur et les performances techniques du site.",
+      "Gestion : Vous pouvez refuser le suivi via les paramètres de votre navigateur."
     ],
-    "landingPagePurpose": "<strong>Finalité :</strong> Ces données sont utilisées à des fins purement statistiques pour mesurer l'efficacité de mes communications professionnelles et ne sont pas croisées avec d'autres données personnelles.",
-    "dataUsageTitle": "4. Utilisation des Données",
-    "dataUsageText": "Vos données personnelles ne sont jamais partagées, vendues ou louées à des tiers. Elles sont utilisées exclusivement dans le cadre des finalités décrites ci-dessus.",
-    "retentionTitle": "5. Durée de Conservation",
-    "retentionText": "Les données du formulaire de contact et de l'assistant IA sont conservées pour une durée n'excédant pas ce qui est nécessaire aux finalités pour lesquelles elles sont traitées, généralement pour une durée maximale de 3 ans après notre dernier contact.",
-    "yourRightsTitle": "6. Vos Droits",
-    "yourRightsText": "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, vous pouvez me contacter directement à l'adresse <strong>arnaudmartiny0@gmail.com</strong>."
+    "landingPagePurpose": "<strong>Local Storage :</strong> Ce site utilise le stockage local de votre navigateur uniquement pour enregistrer vos préférences d'interface (Thème Clair/Sombre, Langue FR/EN, choix du curseur).",
+    "yourRightsTitle": "4. Vos Droits (RGPD)",
+    "yourRightsText": "Conformément aux articles 15 à 22 du RGPD, vous disposez des droits suivants concernant vos données :<br><br>• Droit d'accès et de rectification.<br>• Droit à l'effacement (droit à l'oubli).<br>• Droit à la limitation du traitement.<br>• Droit à la portabilité des données.<br><br>Pour exercer ces droits, contactez-moi directement à : <strong>arnaudmartiny0@gmail.com</strong>. Une réponse vous sera fournie sous 30 jours."
   }
 }

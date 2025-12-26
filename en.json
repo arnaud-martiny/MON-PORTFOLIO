@@ -257,6 +257,31 @@
     "caseStudyTooltip": "You won't regret the trip ;-)",
     "items": [
       {
+        "id": "snoussi-studio",
+        "category": "Creative Studio & Branding Portfolio",
+        "title": "Snoussi Studio",
+        "imageSrc": "assets/img/preview-snoussi-studio.webp",
+        "imageAlt": "Snoussi Studio Preview",
+        "description": "<strong>The challenge:</strong> Create a premium digital showcase segmenting three distinct activities (Photo, Branding, Social) without breaking brand unity. <strong>My solution:</strong> An innovative vertical triptych navigation, an immersive 'Dark Mode' design with electric violet accents, and full optimization for high-res media.",
+        "tech": [
+          "WordPress",
+          "Elementor Pro",
+          "Custom CSS (Glassmorphism)",
+          "Performance (Lazy Loading)"
+        ],
+        "liveLink": "https://snoussi-studio.be/",
+        "codeLink": "#",
+        "caseStudy": {
+          "title": "C:\\Projects\\Snoussi_Studio_V1.exe",
+          "briefTitle": "▸ The Brief (concept.txt)",
+          "brief": "The studio needed a site reflecting its high-end positioning and expertise in vertical content creation (Reels/TikTok). The goal was to break away from classic portfolio codes.",
+          "roleTitle": "▸ My Role (execution.doc)",
+          "role": "Technical & Art Direction. I designed the 'One-Page Multi-Section' architecture and coded specific interactions (interactive vertical tiles). I also managed asset optimization to ensure fast loading despite heavy 4K visuals.",
+          "resultsTitle": "▸ Outcome (analytics.log)",
+          "results": "A fluid, impactful platform that now serves as a central pillar for Corporate and Event client acquisition."
+        }
+      },
+      {
         "id": "portfolio",
         "category": "Personal Portfolio",
         "title": "Arnaud Martiny - Portfolio",
@@ -310,7 +335,7 @@
         }
       },
       {
-        "id": "theatre-des-poetes",
+        "id": "theatre-poetes",
         "category": "Showcase Site for NPO",
         "title": "Le Théâtre des Poètes",
         "imageSrc": "assets/img/apercu_TDP.webp",
@@ -418,43 +443,34 @@
     ]
   },
   "privacyModal": {
-    "title": "Privacy Policy",
-    "lastUpdated": "Last updated: November 22, 2025",
-    "intro": "Respecting your privacy is important to me. This privacy policy explains what data is collected when you interact with this website (arnaud-martiny.be) and how it is used.",
-    "contactFormTitle": "1. Data Collected via the Contact Form",
-    "contactFormIntro": "When you use the contact form, the following information is collected and stored in a secure file on the server, and is also sent to me by email:",
+    "title": "Privacy Policy & GDPR",
+    "lastUpdated": "Last Updated: January 2025",
+    "intro": "In accordance with the General Data Protection Regulation (GDPR), this policy aims to inform you transparently about how your personal data is handled when you browse this portfolio.",
+    "contactFormTitle": "1. Data Controller",
+    "contactFormIntro": "The data controller is Arnaud Martiny (arnaudmartiny0@gmail.com). No data is sold, rented, or transferred to third parties.",
     "contactFormPoints": [
-      "Your name",
-      "Your email address",
-      "The subject and content of your message",
-      "Your IP address"
+      "Legal Basis: Consent (via voluntary submission of the form)",
+      "Legal Basis: Legitimate Interest (spam protection)"
     ],
-    "contactFormPurpose": "<strong>Purpose:</strong> This data is collected solely for the purpose of responding to your request and ensuring follow-up on our communications.",
-    "aiAssistantTitle": "2. Data Collected via the AI Assistant (Terminal)",
-    "aiAssistantIntro": "When you interact with the AI assistant available on this site, the following data is recorded for each message you send:",
+    "contactFormPurpose": "<strong>Purpose of Processing:</strong> To respond to contact requests, project proposals, or job offers submitted via the form.",
+    "aiAssistantTitle": "2. Collected Data (Form)",
+    "aiAssistantIntro": "The following data is collected when using the contact form:",
     "aiAssistantPoints": [
-      "Your message (prompt)",
-      "The response provided by the AI",
-      "Your IP address (to manage usage limits)",
-      "The language of the conversation",
-      "A timestamp of the exchange"
+      "Name and Surname",
+      "Email Address",
+      "Message Content",
+      "IP Address (temporarily retained for technical security)"
     ],
-    "aiAssistantPurpose": "<strong>Purpose:</strong> This data is collected for analytical purposes to improve the quality and relevance of the AI's responses, as well as to prevent abuse of the service (rate limiting).",
-    "landingPageTitle": "3. Data Collected via Redirection Links",
-    "landingPageIntro": "As part of specific communication campaigns (e.g., LinkedIn), I use redirection links to analyze traffic sources. When a visitor clicks on these links, the following technical data is automatically collected before redirection:",
+    "aiAssistantPurpose": "<strong>Retention Period:</strong> Emails are kept for the duration necessary to process the request, then archived or deleted after a maximum of 2 years of inactivity.",
+    "landingPageTitle": "3. Cookies & Audience Analysis",
+    "landingPageIntro": "This site uses Google Analytics 4 (GA4) configured in privacy mode (IP anonymization).",
     "landingPagePoints": [
-      "IP address",
-      "Approximate location (City, Region, Country)",
-      "Internet Service Provider (ISP)",
-      "Browser type and device used",
-      "Date and time of the click"
+      "Data Type: Anonymous visit statistics, device type, country of origin.",
+      "Purpose: To improve user experience and technical site performance.",
+      "Management: You can refuse tracking via your browser settings."
     ],
-    "landingPagePurpose": "<strong>Purpose:</strong> This data is used for purely statistical purposes to measure the effectiveness of my professional communications and is not cross-referenced with other personal data.",
-    "dataUsageTitle": "4. Use of Data",
-    "dataUsageText": "Your personal data is never shared, sold, or rented to third parties. It is used exclusively for the purposes described above.",
-    "retentionTitle": "5. Data Retention",
-    "retentionText": "Data from the contact form and the AI assistant is kept for a period not exceeding what is necessary for the purposes for which it is processed, generally for a maximum of 3 years after our last contact.",
-    "yourRightsTitle": "6. Your Rights",
-    "yourRightsText": "In accordance with the GDPR, you have the right to access, rectify, and delete your data. To exercise these rights, you can contact me directly at <strong>arnaudmartiny0@gmail.com</strong>."
+    "landingPagePurpose": "<strong>Local Storage:</strong> This site uses your browser's local storage solely to save your interface preferences (Light/Dark Theme, EN/FR Language, cursor choice).",
+    "yourRightsTitle": "4. Your Rights (GDPR)",
+    "yourRightsText": "In accordance with Articles 15 to 22 of the GDPR, you have the following rights regarding your data:<br><br>• Right of access and rectification.<br>• Right to erasure (right to be forgotten).<br>• Right to restriction of processing.<br>• Right to data portability.<br><br>To exercise these rights, contact me directly at: <strong>arnaudmartiny0@gmail.com</strong>. A response will be provided within 30 days."
   }
 }
