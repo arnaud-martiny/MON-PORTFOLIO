@@ -105,6 +105,13 @@
         "description": "Mission de conseil IT pour structurer et développer l'écosystème digital de l'entreprise. Mes responsabilités incluent l'analyse concurrentielle (benchmarks), la création et la gestion technique des boutiques en ligne ('print shops'), ainsi que l'intégration des catalogues produits."
       },
       {
+        "id": "degrif-shoes",
+        "companyName": "Degrif Shoes",
+        "logoSrc": "assets/img/logo-degrif.webp",
+        "role": "Gestion & Développement Shopify",
+        "description": "Gestion complète de la boutique en ligne Shopify (produits, optimisation et catalogue). Amélioration de l'UX et du parcours client via ajustements Front-end."
+      },
+      {
         "id": "chouia-maison",
         "companyName": "Chouia Maison",
         "logoSrc": "assets/logos/chouia-maison-logo.png",
@@ -178,50 +185,34 @@
     "title": "",
     "message": ""
   },
-  "experienceSection": {
-    "title": "EXPÉRIENCE & FORMATION",
+"experienceSection": {
+    "title": "PARCOURS & EXPERTISES",
     "items": [
       {
-        "title": "Obtention du CESS - École Plurielle Maritime",
-        "date": "2023",
-        "description": "Diplôme d'enseignement secondaire supérieur, marquant la fin de mon parcours pré-supérieur et le début de ma spécialisation dans le digital."
+        "title": "Freelance & Consulting IT (Oxxoprint / Théâtre des Poètes)",
+        "date": "2025 - Présent",
+        "description": "Interventions techniques sur mesure. Mes missions vont de la <strong>refonte de sécurité critique</strong> (nettoyage de sites hackés, sécurisation DB) à l'<strong>audit d'écosystèmes digitaux</strong> pour optimiser les processus de vente en ligne. Je transforme des dettes techniques en architectures pérennes."
       },
       {
-        "title": "Études en Écriture Multimédia à L'ISFSC",
+        "title": "Stage : Bras Droit Digital & Dév Full-Stack (Nowa Market)",
+        "date": "Janv. 2025 - Avril 2025",
+        "description": "Immersion complète en startup avec une double casquette. <strong>Technique :</strong> Conception de A à Z du portail 'Nowa Logistics' (Maquettage Figma, Dév Front-End). <strong>Stratégique :</strong> Élaboration de Pitch Decks pour investisseurs et analyse de Business Plan."
+      },
+      {
+        "title": "Spécialiste E-commerce & SEO (Degrif Shoes / Chouia Maison)",
+        "date": "Sept. 2024 - 2025",
+        "description": "Optimisation de la performance commerciale sur <strong>Shopify</strong> et <strong>WordPress/WooCommerce</strong>. Gestion de catalogues complexes, amélioration de l'UX pour maximiser le taux de conversion et mise en place de stratégies <strong>SEO</strong> pour accroître la visibilité."
+      },
+      {
+        "title": "Bachelor en Écriture Multimédia (ISFSC)",
         "date": "2023 - Présent",
         "link": "https://isfsc.be/ecriture-multimedia/",
-        "description": "Formation intensive axée sur la création de contenu numérique : développement web, design d'interface (UX/UI), gestion de projet et stratégies de communication digitale."
+        "description": "Formation polyvalente axée sur la réalité du marché : Développement Web (JS, PHP, SQL), Design d'Interface (UX/UI), et Stratégie de Communication Digitale."
       },
       {
-        "title": "Création du site Fast 'N Friends",
-        "date": "2024",
-        "link": "https://arnaud-martiny.be/beta/fast-n-friends/",
-        "description": "Conception et développement d'un site de covoiturage étudiant. Ce projet académique, réalisé en PHP et WordPress, m'a permis de pratiquer la gestion de profils utilisateurs et la création d'interfaces responsives."
-      },
-      {
-        "title": "Création de mon Portfolio Personnel",
-        "date": "2025",
-        "description": "Conception et développement de ce portfolio. Ce projet, codé en HTML, CSS et JavaScript vanilla, est une vitrine de mes compétences en développement front-end, design interactif et intégration d'un système de traduction (i18n)."
-      },
-      {
-        "title": "Stage | Assistant Chef de Projets Digitaux chez Nowa Market",
-        "date": "2025",
-        "description": "Conception de A à Z (UX/UI sur Figma, développement front-end) du site vitrine pour Nowa Logistics. Contribution à des projets stratégiques : business plans, pitch decks, et amélioration de l'ERP interne."
-      },
-      {
-        "title": "Développeur WordPress & SEO | Chouia Maison",
-        "date": "2024 - 2025",
-        "description": "Modernisation d'une boutique WordPress (thème Flatsome), avec un focus sur l'optimisation continue du SEO, l'assainissement du code, l'intégration de produits et l'animation du blog."
-      },
-      {
-        "title": "Développeur Full-Stack | Le Théâtre des Poètes (ASBL)",
-        "date": "2025",
-        "description": "Refonte complète d'un site web vieillissant et hacké. Conception d'une interface moderne et développement d'une solution sécurisée et administrable pour un client non-technique à budget limité."
-      },
-      {
-        "title": "Consultant & Développeur IT | Oxxoprint",
-        "date": "2025",
-        "description": "Mission de conseil pour structurer l'écosystème digital de l'entreprise, incluant benchmarks, création et gestion technique de boutiques en ligne et intégration de catalogues produits."
+        "title": "Obtention du CESS (École Plurielle Maritime)",
+        "date": "2023",
+        "description": "Diplôme d'enseignement secondaire supérieur. Fin du parcours général et début de ma spécialisation technique dans le digital."
       }
     ]
   },
@@ -440,35 +431,35 @@
       }
     ]
   },
-  "privacyModal": {
-    "title": "Politique de Confidentialité et RGPD",
-    "lastUpdated": "Dernière mise à jour : Janvier 2025",
-    "intro": "Conformément au Règlement Général sur la Protection des Données (RGPD), cette politique vise à vous informer en toute transparence sur la manière dont vos données personnelles sont traitées lors de votre navigation sur ce portfolio.",
-    "contactFormTitle": "1. Responsable du Traitement",
-    "contactFormIntro": "Le responsable du traitement des données est Arnaud Martiny (arnaudmartiny0@gmail.com). Aucune donnée n'est vendue, louée ou cédée à des tiers.",
+"privacyModal": {
+    "title": "Politique de Confidentialité",
+    "lastUpdated": "Dernière mise à jour : 28 Décembre 2025",
+    "intro": "La transparence est essentielle. En tant que Développeur Web, je m'engage à protéger votre vie privée conformément au Règlement Général sur la Protection des Données (RGPD). Voici comment vos données sont gérées.",
+    "contactFormTitle": "1. Collecte de Données (Formulaire)",
+    "contactFormIntro": "Lorsque vous utilisez le formulaire de contact, je collecte uniquement les données strictement nécessaires pour vous répondre :",
     "contactFormPoints": [
-      "Base légale : Consentement (via l'envoi volontaire du formulaire)",
-      "Base légale : Intérêt légitime (protection contre le spam)"
+      "Données : Nom, Email, Sujet, Message.",
+      "Base Légale : Article 6(1)(b) du RGPD (Exécution de mesures précontractuelles à votre demande).",
+      "Durée : Supprimées après 2 ans sans activité commerciale, ou sur demande immédiate."
     ],
-    "contactFormPurpose": "<strong>Finalité du traitement :</strong> Répondre aux demandes de contact, propositions de projets ou offres d'emploi transmises via le formulaire.",
-    "aiAssistantTitle": "2. Données Collectées (Formulaire)",
-    "aiAssistantIntro": "Les données suivantes sont collectées lors de l'utilisation du formulaire de contact :",
+    "contactFormPurpose": "Ces données ne sont <strong>jamais revendues</strong>. Elles servent uniquement à établir une correspondance professionnelle.",
+    "aiAssistantTitle": "2. Terminal & Intelligence Artificielle",
+    "aiAssistantIntro": "Ce site utilise un module d'IA (via l'API Groq) pour animer le terminal interactif.",
     "aiAssistantPoints": [
-      "Nom et Prénom",
-      "Adresse Email",
-      "Contenu du message",
-      "Adresse IP (conservée temporairement pour la sécurité technique)"
+      "Fonctionnement : Le texte que vous tapez est envoyé à un fournisseur tiers (Groq) pour générer une réponse.",
+      "Avertissement : Ne partagez aucune donnée personnelle (nom, téléphone, mots de passe) dans le terminal.",
+      "Historique : Les conversations sont anonymisées et ne sont pas stockées de manière permanente sur mes serveurs."
     ],
-    "aiAssistantPurpose": "<strong>Durée de conservation :</strong> Les emails sont conservés pour la durée nécessaire au traitement de la demande, puis archivés ou supprimés au bout de 2 ans maximum sans activité.",
-    "landingPageTitle": "3. Cookies et Analyse d'Audience",
-    "landingPageIntro": "Ce site utilise Google Analytics 4 (GA4) configuré en mode confidentialité (anonymisation des IP).",
+    "aiAssistantPurpose": "L'utilisation du terminal vaut consentement à ce traitement technique spécifique.",
+    "landingPageTitle": "3. Cookies & Analytics",
+    "landingPageIntro": "Ce site utilise Google Analytics 4 (GA4) avec anonymisation des IP configurée par défaut.",
     "landingPagePoints": [
-      "Type de données : Statistiques anonymes de visite, type d'appareil, pays d'origine.",
-      "Finalité : Améliorer l'expérience utilisateur et les performances techniques du site.",
-      "Gestion : Vous pouvez refuser le suivi via les paramètres de votre navigateur."
+      "Cookies Tiers (GA4) : Analysent le trafic de manière anonyme (pays, type d'appareil, pages vues).",
+      "Local Storage : Stocke vos préférences (Thème Sombre/Clair, Langue, Choix du curseur). Ces données restent sur votre appareil.",
+      "Refus : Vous pouvez bloquer les cookies via les paramètres de votre navigateur."
     ],
-    "landingPagePurpose": "<strong>Local Storage :</strong> Ce site utilise le stockage local de votre navigateur uniquement pour enregistrer vos préférences d'interface (Thème Clair/Sombre, Langue FR/EN, choix du curseur).",
-    "yourRightsTitle": "4. Vos Droits (RGPD)",
-    "yourRightsText": "Conformément aux articles 15 à 22 du RGPD, vous disposez des droits suivants concernant vos données :<br><br>• Droit d'accès et de rectification.<br>• Droit à l'effacement (droit à l'oubli).<br>• Droit à la limitation du traitement.<br>• Droit à la portabilité des données.<br><br>Pour exercer ces droits, contactez-moi directement à : <strong>arnaudmartiny0@gmail.com</strong>. Une réponse vous sera fournie sous 30 jours."
+    "landingPagePurpose": "Les données de préférence (Local Storage) sont exemptées de consentement car elles sont strictement nécessaires au fonctionnement de l'interface (Art. 82 RGPD).",
+    "yourRightsTitle": "4. Vos Droits",
+    "yourRightsText": "Conformément à la réglementation, vous disposez d'un contrôle total sur vos données :<br><br><strong>• Droit d'accès et de rectification :</strong> Vous pouvez demander à voir les données que je détiens sur vous et les corriger.<br><strong>• Droit à l'effacement (« Droit à l'oubli ») :</strong> Vous pouvez demander la suppression immédiate de vos emails et échanges.<br><strong>• Droit à la limitation :</strong> Vous pouvez demander de geler temporairement l'utilisation de vos données.<br><strong>• Droit d'opposition :</strong> Vous pouvez refuser que vos données soient utilisées (ex: suppression des stats Analytics).<br><br>Pour exercer ces droits, envoyez un simple email à <strong>arnaudmartiny0@gmail.com</strong>. Je m'engage à répondre sous 30 jours."
   }
 }

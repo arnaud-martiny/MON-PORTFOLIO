@@ -1031,16 +1031,18 @@ body.light-mode .terminal-suggestions span {
   color: #555
 }
 
+/* --- FIX TERMINAL MODE CLAIR --- */
 body.light-mode .terminal-suggestions button {
-  background-color: rgba(0, 0, 0, .05);
-  border-color: rgba(0, 0, 0, .15);
-  color: #333
+  background-color: #e0e0e0; /* Gris clair */
+  border-color: #ccc;
+  color: #000; /* Texte noir */
+  font-weight: 500;
 }
 
 body.light-mode .terminal-suggestions button:hover {
-  background-color: rgba(0, 0, 0, .1);
-  border-color: rgba(0, 0, 0, .2);
-  color: #000
+  background-color: #d0d0d0;
+  border-color: #000;
+  transform: translateY(-1px);
 }
 
 .ai-typing {
@@ -1091,106 +1093,189 @@ body.terminal-hover .cursor-follower {
   opacity: 0
 }
 
+/* --- SECTION COLLABORATIONS (Refonte Moderne) --- */
+
 .professional-experiences-section {
-  padding: 8rem 5%;
+  padding: 6rem 5%;
   background-color: var(--secondary);
   position: relative;
-  overflow: hidden
-}
-
-.professional-experiences-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(circle at center, rgba(255, 255, 255, .05) 0, transparent 40%), linear-gradient(to right, color-mix(in srgb, var(--primary) 4%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in srgb, var(--primary) 4%, transparent) 1px, transparent 1px);
-  background-size: 100% 100%, 40px 40px, 40px 40px;
-  z-index: 0;
-  opacity: .8
-}
-
-#frontend,
-.physics-skill-item.frontend {
-  background: radial-gradient(circle, #61dafb, #007b9e)
-}
-
-.experience-grid-container {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  max-width: 1200px;
-  margin: 3rem auto 0
-}
-
-.experience-card {
-  aspect-ratio: 16/10;
-  background-color: rgba(20, 20, 20, .5);
-  border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
-  border-radius: 12px;
-  padding: 1.5rem;
   overflow: hidden;
-  transition: transform .4s, box-shadow .4s, border-color .4s;
-  backdrop-filter: blur(5px);
+  min-height: 80vh; /* Donne de l'espace */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Le conteneur flexible qui gère l'animation */
+.experience-layout-wrapper {
+  display: flex;
+  align-items: center; /* Centrage vertical */
+  justify-content: center; /* Centrage horizontal par défaut */
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  gap: 0; /* Pas d'espace par défaut pour l'animation */
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- 1. GRILLE DE LOGOS (Gauche) --- */
+.experience-grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Tout centré par défaut */
+  align-content: center;
+  gap: 2rem;
+  width: 100%; /* Prend toute la largeur au début */
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  padding: 2rem;
+}
+
+/* État activé : La grille se serre à gauche */
+.experience-layout-wrapper.active .experience-grid-container {
+  width: 50%; /* Se réduit à la moitié */
+  justify-content: flex-end; /* Colle les logos vers le centre/droite de sa zone */
+  padding-right: 3rem;
+}
+
+/* Style des Cartes Logos */
+.experience-card {
+  width: 280px;
+  height: 180px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.experience-card.active,
-.experience-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, .4);
-  border-color: var(--color-accent-new)
-}
-
+/* Logo dans la carte */
 .experience-card-logo {
-  max-width: 80%;
-  max-height: 70%;
+  max-width: 60%;
+  max-height: 60%;
   object-fit: contain;
-  transition: transform .4s
+  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: grayscale(100%) opacity(0.7); /* Grisé par défaut pour le style */
+}
+
+/* Hover sur une carte individuelle */
+.experience-card:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--primary);
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
 
 .experience-card:hover .experience-card-logo,
-.nav-icon-btn:hover {
-  transform: scale(1.1)
+.experience-card.active-card .experience-card-logo {
+  filter: grayscale(0%) opacity(1); /* Couleur au survol */
+  transform: scale(1.1);
 }
 
+/* --- 2. DÉTAILS TEXTE (Droite) --- */
 .experience-details-display {
-  max-width: 800px;
-  margin: 4rem auto 0;
-  text-align: center;
-  min-height: 150px;
-  color: var(--primary);
-  transition: opacity .5s
-}
-
-.experience-details-display.hidden {
+  width: 0%; /* Caché par défaut */
   opacity: 0;
-  pointer-events: none
+  overflow: hidden;
+  height: auto;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* État activé : Le texte apparaît */
+.experience-layout-wrapper.active .experience-details-display {
+  width: 50%; /* Prend l'autre moitié */
+  opacity: 1;
+  padding-left: 3rem;
+}
+
+.details-content {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.4s ease;
+  transition-delay: 0.1s;
+  text-align: left;
+}
+
+.experience-layout-wrapper.active .details-content {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Typographie du texte */
 .experience-details-display h4 {
-  font-size: 2.2rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3rem;
   font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--color-accent-new)
+  margin: 0 0 0.5rem 0;
+  color: var(--primary);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.details-role-tag {
+  display: inline-block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: var(--secondary);
+  background-color: var(--primary);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.details-divider {
+  width: 50px;
+  height: 2px;
+  background-color: rgba(255,255,255,0.2);
+  margin-bottom: 1.5rem;
 }
 
 .experience-details-display p {
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.1rem;
-  line-height: 1.7;
-  opacity: .9
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 500px;
 }
 
-.experience-details-display p:first-of-type {
-  font-style: italic;
-  margin-bottom: 1.5rem;
-  opacity: .7
+/* Mode Clair ajustements */
+body.light-mode .experience-card {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+body.light-mode .experience-details-display p {
+  color: rgba(0, 0, 0, 0.8);
+}
+body.light-mode .details-divider {
+    background-color: rgba(0,0,0,0.1);
+}
+
+/* RESPONSIVE : Sur mobile, on empile tout simplement */
+@media (max-width: 992px) {
+  .experience-layout-wrapper {
+    flex-direction: column;
+  }
+  .experience-grid-container, 
+  .experience-layout-wrapper.active .experience-grid-container {
+    width: 100%;
+    justify-content: center;
+    padding: 0;
+  }
+  .experience-details-display {
+    display: none !important; /* On cache le panel desktop sur mobile */
+  }
+  /* On réactive le style mobile que tu avais avant si nécessaire via JS */
 }
 
 #theatre-poetes .experience-card-logo {
@@ -1917,7 +2002,9 @@ body.light-mode .json-comment {
 .social-icons {
   display: flex;
   gap: 1.5rem;
-  margin-top: 2rem
+  margin-top: 2rem;
+  position: relative; /* Ajout */
+  z-index: 10; /* Force les boutons à être au-dessus du fond */
 }
 
 .social-icon {
@@ -3313,13 +3400,14 @@ body.cursor-mode-windows98 .cursor-follower {
 }
 
 .loader-text {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--primary);
-  overflow: hidden;
-  position: relative;
-}
+      font-size: 3rem; 
+      font-weight: 900; 
+      font-family: 'Space Grotesk', sans-serif; /* Force la police épaisse */
+      text-transform: uppercase; /* Les majuscules renforcent l'effet "bloc" */
+      overflow: hidden;
+      color: var(--primary);
+      letter-spacing: 2px; /* Un peu d'espacement pour le style */
+    }
 
 .loader-text span {
   display: inline-block;
@@ -3373,38 +3461,31 @@ body.cursor-mode-windows98 .cursor-follower {
   border-bottom: none;
 }
 
+/* --- FIX MODALE CONFIDENTIALITÉ (NOIR & BLANC) --- */
 .privacy-section h4 {
-  color: #8A2BE2;
-  /* Violet électrique pour la hiérarchie */
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  color: var(--primary); /* Prend la couleur du texte principal (Blanc ou Noir selon le mode) */
+  border-bottom: 1px solid var(--primary); /* Ligne soulignée simple */
+  padding-bottom: 0.5rem;
 }
 
-/* Listes de données collectées */
 .privacy-section ul {
-  background-color: color-mix(in srgb, var(--primary) 3%, transparent);
-  padding: 1.5rem 1.5rem 1.5rem 2.5rem;
-  border-radius: 8px;
-  margin: 1rem 0;
-  border-left: 3px solid #8A2BE2;
-  /* Ligne violette sur le côté */
+  background-color: transparent; /* Plus de fond coloré */
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent); /* Bordure subtile */
+  border-left: 4px solid var(--primary); /* Bordure gauche épaisse standard */
 }
 
-.privacy-section li {
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-/* Texte "Finalité" */
 .privacy-purpose {
-  font-size: 0.9rem;
+  opacity: 0.7;
   font-style: italic;
-  opacity: 0.8;
-  margin-top: 1rem;
+  border-left: none; /* On retire la ligne colorée */
+  padding-left: 0;
+  margin-top: 0.5rem;
+}
+
+/* Si vous trouvez la modale "vide", on augmente l'interligne et la taille */
+.privacy-content p, .privacy-content li {
+  line-height: 1.8;
+  font-size: 1.05rem;
 }
 
 .privacy-purpose strong {
@@ -3436,4 +3517,83 @@ body.cursor-mode-windows98 .cursor-follower {
   .privacy-section h4 {
     font-size: 1.1rem;
   }
+}
+
+/* --- BOUTON CONTACT MODERNE (Arrondi & Fixe) --- */
+.liquid-contact-btn {
+  /* Positionnement */
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 999;
+
+  /* Forme & Taille */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border-radius: 50px; /* Arrondi parfait type "pilule" */
+
+  /* Style Visuel */
+  background-color: var(--primary); /* Blanc ou Noir selon le thème */
+  color: var(--secondary); /* Texte contrasté */
+  border: 1px solid var(--primary); /* Bordure propre */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); /* Ombre douce */
+  backdrop-filter: blur(5px); /* Légère transparence moderne */
+
+  /* Typographie */
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  /* Transition fluide (Interaction uniquement) */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+  cursor: pointer;
+
+  /* Apparition initiale */
+  opacity: 0;
+  visibility: hidden;
+  animation: fadeInSimple 0.8s 1s forwards;
+}
+
+/* Interaction au survol (Hover) */
+.liquid-contact-btn:hover {
+  transform: translateY(-3px); /* Légère remontée */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  background-color: var(--secondary); /* Inversion des couleurs */
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Cache l'ancien fond liquide s'il est encore dans le HTML */
+.liquid-bg {
+  display: none;
+}
+
+/* Animation d'entrée simple */
+@keyframes fadeInSimple {
+  to { opacity: 1; visibility: visible; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .liquid-contact-btn {
+    left: 1.5rem;
+    bottom: 1.5rem;
+    padding: 0.8rem 1.6rem;
+    font-size: 0.85rem;
+  }
+}
+
+.privacy-content strong {
+    color: var(--color-accent-new, #8A2BE2); /* Utilise la couleur d'accent du site */
+    font-weight: 700;
+}
+
+.privacy-content a:hover {
+    color: var(--primary);
+    opacity: 0.8;
 }

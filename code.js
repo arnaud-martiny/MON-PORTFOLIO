@@ -1,5 +1,5 @@
 // =========================================================================
-//                  SCRIPT.JS - VERSION OPTIMISÉE (SNOUSSI UPDATE)
+//                  SCRIPT.JS - VERSION OPTIMISÉE (LOADER UX UPDATE)
 // =========================================================================
 
 // Pont de compatibilité pour les anciens scripts utilisant TweenMax
@@ -37,38 +37,49 @@ window.showPopupNotification = function (message, type) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // --- 1. GESTION DU PRE-LOAD (LOADER) OPTIMISÉE ---
+  // --- 1. GESTION DU PRE-LOAD (LOADER) AVEC DURÉE MINIMUM ---
   const loader = document.querySelector('.loader');
   const heroTitle = document.querySelector('.hero-title-modern');
+
+  // Enregistre l'heure de début pour calculer le temps écoulé
+  const loaderStartTime = Date.now();
+  // Durée minimale d'affichage en millisecondes (2.5 secondes)
+  const MINIMUM_DISPLAY_TIME = 3000;
 
   // Fonction pour masquer le loader et lancer les animations d'entrée
   const dismissLoader = () => {
     if (!loader) return;
     if (loader.classList.contains('hidden')) return; // Déjà masqué
 
-    loader.classList.add('hidden');
+    // Calcul du temps restant à attendre pour respecter le minimum
+    const elapsedTime = Date.now() - loaderStartTime;
+    const remainingTime = Math.max(0, MINIMUM_DISPLAY_TIME - elapsedTime);
 
-    // On lance les animations une fois le rideau levé (délai de transition CSS)
     setTimeout(() => {
-      // 1. Révéler les éléments au scroll (force le check initial)
-      reveal();
+      loader.classList.add('hidden');
 
-      // 2. Animer le titre Hero (effet de texte)
-      if (heroTitle) heroTitle.classList.add('animated');
-
-      // 3. Suppression du loader du DOM pour libérer la mémoire (optionnel mais propre)
+      // On lance les animations une fois le rideau levé (délai de transition CSS)
       setTimeout(() => {
-        loader.style.display = 'none';
-      }, 1000);
-    }, 500);
+        // 1. Révéler les éléments au scroll (force le check initial)
+        if (typeof reveal === "function") reveal();
+
+        // 2. Animer le titre Hero (effet de texte)
+        if (heroTitle) heroTitle.classList.add('animated');
+
+        // 3. Suppression du loader du DOM pour libérer la mémoire
+        setTimeout(() => {
+          loader.style.display = 'none';
+        }, 1000);
+      }, 500); // Correspond à la transition CSS opacity
+    }, remainingTime);
   };
 
   // Stratégie de chargement :
-  // A. Idéal : Attendre que tout (images, CSS, JS) soit chargé
+  // A. On écoute le chargement complet de la fenêtre
   window.addEventListener('load', dismissLoader);
 
-  // B. Fallback : Si le chargement est trop long (ex: image bloquée), on ouvre quand même après 3s
-  setTimeout(dismissLoader, 3000);
+  // B. Fallback de sécurité : Si le chargement est vraiment trop long (ex: 6s), on force l'ouverture
+  setTimeout(dismissLoader, 6000);
 
 
   // --- VARIABLES GLOBALES DU SCRIPT ---
@@ -1002,47 +1013,66 @@ document.addEventListener("DOMContentLoaded", () => {
     // ... code animation retro conservé si la section existe ...
   }
 
-  function initializeExperienceGrid(langData) {
+function initializeExperienceGrid(langData) {
     const container = document.getElementById('experience-grid-container');
+    const wrapper = document.getElementById('experience-layout-wrapper');
     const detailsDisplayDesktop = document.getElementById('experience-details-display');
-    if (!container || !detailsDisplayDesktop || !langData.professionalExperiences?.items) {
+    
+    // Éléments de texte
+    const companyNameEl = document.getElementById('details-company-name');
+    const roleEl = document.getElementById('details-role');
+    const descriptionEl = document.getElementById('details-description');
+
+    if (!container || !langData.professionalExperiences?.items) {
       console.error("Éléments manquants pour la grille des collaborations.");
       return;
     }
+
     const experiences = langData.professionalExperiences.items;
     container.innerHTML = '';
+
+    // LOGIQUE MOBILE (Inchangée, affichage vertical simple)
     if (window.matchMedia("(max-width: 992px)").matches) {
-      detailsDisplayDesktop.style.display = 'none';
+      if(detailsDisplayDesktop) detailsDisplayDesktop.style.display = 'none';
       experiences.forEach(exp => {
         const itemWrapper = document.createElement('div');
         itemWrapper.className = 'experience-item-mobile';
         itemWrapper.innerHTML = `<div class="experience-card" id="${exp.id}"><img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo" loading="lazy"></div><div class="experience-details-mobile"><h4>${exp.companyName}</h4><span class="role">${exp.role}</span><p class="description">${exp.description}</p></div>`;
         container.appendChild(itemWrapper);
       });
-    } else {
-      detailsDisplayDesktop.style.display = 'block';
-      const companyNameEl = document.getElementById('details-company-name');
-      const roleEl = document.getElementById('details-role');
-      const descriptionEl = document.getElementById('details-description');
-      detailsDisplayDesktop.classList.add('hidden');
+    } 
+    // LOGIQUE DESKTOP (Animation Slide)
+    else {
+      if(detailsDisplayDesktop) detailsDisplayDesktop.style.display = 'flex';
+      
       experiences.forEach(exp => {
         const card = document.createElement('div');
-        card.className = 'experience-card';
+        card.className = 'experience-card reveal'; // Ajout reveal pour anim d'entrée
         card.id = exp.id;
         card.innerHTML = `<img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo" loading="lazy">`;
         container.appendChild(card);
+
+        // Au survol d'une carte
         card.addEventListener('mouseenter', () => {
+          // 1. Remplir les données
           companyNameEl.textContent = exp.companyName;
           roleEl.textContent = exp.role;
           descriptionEl.textContent = exp.description;
-          detailsDisplayDesktop.classList.remove('hidden');
-          document.querySelectorAll('.experience-card.active').forEach(c => c.classList.remove('active'));
-          card.classList.add('active');
+
+          // 2. Activer l'état "Split Screen" sur le parent
+          wrapper.classList.add('active');
+
+          // 3. Gérer la classe active sur la carte elle-même
+          document.querySelectorAll('.experience-card.active-card').forEach(c => c.classList.remove('active-card'));
+          card.classList.add('active-card');
         });
       });
-      container.addEventListener('mouseleave', () => {
-        detailsDisplayDesktop.classList.add('hidden');
-        document.querySelectorAll('.experience-card.active').forEach(c => c.classList.remove('active'));
+
+      // Quand on quitte toute la zone du wrapper (Grid + Texte)
+      wrapper.addEventListener('mouseleave', () => {
+        // On revient à l'état initial (Centré)
+        wrapper.classList.remove('active');
+        document.querySelectorAll('.experience-card.active-card').forEach(c => c.classList.remove('active-card'));
       });
     }
   }
@@ -1345,7 +1375,7 @@ document.addEventListener("DOMContentLoaded", () => {
         terminalOutput.appendChild(separator);
         isWaitingForAi = false;
         terminalInput.disabled = false;
-        terminalInput.focus();
+        //terminalInput.focus();
         terminalBody.scrollTop = terminalBody.scrollHeight;
       }
     }

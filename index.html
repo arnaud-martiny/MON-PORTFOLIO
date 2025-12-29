@@ -51,19 +51,14 @@
       color: var(--primary);
     }
 
-    /* Loader Style */
-    .loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: var(--secondary);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 99999;
-      transition: opacity 0.5s ease, visibility 0.5s;
+.loader-text {
+      font-size: 5rem; 
+      font-weight: 700; 
+      font-family: 'Space Grotesk', sans-serif; /* Force la police épaisse */
+      text-transform: uppercase; /* Les majuscules renforcent l'effet "bloc" */
+      overflow: hidden;
+      color: var(--primary);
+      letter-spacing: 2px; /* Un peu d'espacement pour le style */
     }
 
     .loader.hidden {
@@ -310,16 +305,30 @@
     </div>
   </section>
 
-  <!-- COLLABORATIONS -->
-  <section id="experiences-pro" class="professional-experiences-section">
-    <h2 class="section-heading reveal" data-i18n="professionalExperiences.title">COLLABORATIONS</h2>
-    <div class="experience-grid-container reveal" id="experience-grid-container"></div>
-    <div id="experience-details-display" class="experience-details-display reveal">
-      <h4 id="details-company-name"></h4>
-      <p id="details-role"></p>
-      <p id="details-description"></p>
+<!-- COLLABORATIONS -->
+<section id="experiences-pro" class="professional-experiences-section">
+  <h2 class="section-heading reveal" data-i18n="professionalExperiences.title">COLLABORATIONS</h2>
+  
+  <!-- Nouveau Wrapper pour gérer l'animation Gauche/Droite -->
+  <div class="experience-layout-wrapper" id="experience-layout-wrapper">
+    
+    <!-- Partie Gauche : La Grille de Logos -->
+    <div class="experience-grid-container reveal" id="experience-grid-container">
+      <!-- Les cartes seront injectées ici par le JS -->
     </div>
-  </section>
+
+    <!-- Partie Droite : Le Texte (caché par défaut) -->
+    <div id="experience-details-display" class="experience-details-display">
+      <div class="details-content">
+        <h4 id="details-company-name"></h4>
+        <span id="details-role" class="details-role-tag"></span>
+        <div class="details-divider"></div>
+        <p id="details-description"></p>
+      </div>
+    </div>
+
+  </div>
+</section>
 
   <!-- COMPTEURS -->
   <section class="counter-section">
@@ -389,12 +398,14 @@
             data-i18n="contactSection.phone">+32 0492 451 456</a></div>
         <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:arnaudmartiny0@gmail.com"
             data-i18n="contactSection.email">arnaudmartiny0@gmail.com</a></div>
-        <div class="social-icons">
-          <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" class="social-icon"><i
-              class="fab fa-linkedin-in"></i></a>
-          <a href="https://github.com/arnaud-martiny" target="_blank" class="social-icon"><i
-              class="fab fa-github"></i></a>
-        </div>
+            <div class="social-icons">
+              <a href="https://www.linkedin.com/in/arnaud-martiny/" target="_blank" class="social-icon" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://github.com/arnaud-martiny" target="_blank" class="social-icon" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
       </div>
       <div class="contact-form reveal">
         <form id="contact-form" action="traitement-formulaire.php" method="POST">
@@ -429,12 +440,17 @@
   </footer>
 
   <a href="#accueil" class="back-to-top" aria-label="Retour en haut"><i class="fas fa-arrow-up"></i></a>
+        <!-- Bouton Contact Liquide -->
+      <a href="#contact" class="liquid-contact-btn">
+        <span data-i18n="hero.contactButton">Contactez-moi</span>
+        <div class="liquid-bg"></div>
+      </a>
 
   <!-- MODALES -->
 
   <!-- Evolution Popup -->
   <div id="evolution-popup-overlay" class="evolution-popup-overlay">
-    <div id="evolution-popup" class="evolution-popup" data-last-updated="06/12/2025">
+    <div id="evolution-popup" class="evolution-popup" data-last-updated="29/12/2025">
       <button id="evolution-popup-close" class="evolution-popup-close">&times;</button>
       <h4 data-i18n="evolutionPopup.title">Site en évolution</h4>
       <p data-i18n="evolutionPopup.message" data-i18n-html></p>
@@ -467,7 +483,7 @@
     </div>
   </div>
 
-  <!-- MODALE CONFIDENTIALITÉ (RESTRUCTURÉE) -->
+  <!-- MODALE CONFIDENTIALITÉ (CORRIGÉE) -->
   <div id="privacy-modal" class="modal-overlay">
     <div class="modal-content privacy-content">
       <button id="close-privacy-modal-btn" class="modal-close-btn" aria-label="Fermer">&times;</button>
@@ -484,7 +500,8 @@
         <h4 data-i18n="privacyModal.contactFormTitle">1. Formulaire de Contact</h4>
         <p data-i18n="privacyModal.contactFormIntro">Données collectées :</p>
         <ul id="privacy-contact-points"></ul>
-        <p class="privacy-purpose" data-i18n-html="privacyModal.contactFormPurpose"></p>
+        <!-- Correction ici : on met la clé dans data-i18n et on laisse data-i18n-html vide -->
+        <p class="privacy-purpose" data-i18n="privacyModal.contactFormPurpose" data-i18n-html></p>
       </div>
 
       <!-- Section 2: IA -->
@@ -492,7 +509,8 @@
         <h4 data-i18n="privacyModal.aiAssistantTitle">2. Assistant IA</h4>
         <p data-i18n="privacyModal.aiAssistantIntro">Données de conversation :</p>
         <ul id="privacy-ai-points"></ul>
-        <p class="privacy-purpose" data-i18n-html="privacyModal.aiAssistantPurpose"></p>
+        <!-- Correction ici -->
+        <p class="privacy-purpose" data-i18n="privacyModal.aiAssistantPurpose" data-i18n-html></p>
       </div>
 
       <!-- Section 3: Liens -->
@@ -500,13 +518,15 @@
         <h4 data-i18n="privacyModal.landingPageTitle">3. Analyse de Trafic</h4>
         <p data-i18n="privacyModal.landingPageIntro">Données techniques anonymes :</p>
         <ul id="privacy-landing-page-points"></ul>
-        <p class="privacy-purpose" data-i18n-html="privacyModal.landingPagePurpose"></p>
+        <!-- Correction ici -->
+        <p class="privacy-purpose" data-i18n="privacyModal.landingPagePurpose" data-i18n-html></p>
       </div>
 
       <!-- Section 4: Droits -->
       <div class="privacy-section">
         <h4 data-i18n="privacyModal.yourRightsTitle">Vos Droits</h4>
-        <p data-i18n-html="privacyModal.yourRightsText"></p>
+        <!-- C'est ici que ça bloquait : Correction appliquée -->
+        <p data-i18n="privacyModal.yourRightsText" data-i18n-html></p>
       </div>
     </div>
   </div>
