@@ -1,5 +1,5 @@
 // =========================================================================
-//                  SCRIPT.JS - VERSION OPTIMISÉE (LOADER UX UPDATE)
+//                  SCRIPT.JS - VERSION OPTIMISÉE (FIX RESPONSIVE COLLABS)
 // =========================================================================
 
 // Pont de compatibilité pour les anciens scripts utilisant TweenMax
@@ -438,7 +438,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeRetroAnimation(langData);
     initializeTestimonialsTerminal(langData);
     initializeSlotMachine(langData);
-    initializeExperienceGrid(langData);
+    initializeExperienceGrid(langData); // <-- Fonction avec le fix responsive
     initializeTerminal(langData);
     initializeSkillsSandbox(langData);
 
@@ -1013,67 +1013,97 @@ document.addEventListener("DOMContentLoaded", () => {
     // ... code animation retro conservé si la section existe ...
   }
 
-function initializeExperienceGrid(langData) {
+  // --- NOUVELLE VERSION DE LA FONCTION : FIX RESPONSIVE ---
+  function initializeExperienceGrid(langData) {
     const container = document.getElementById('experience-grid-container');
     const wrapper = document.getElementById('experience-layout-wrapper');
     const detailsDisplayDesktop = document.getElementById('experience-details-display');
-    
-    // Éléments de texte
+
+    // Éléments de texte desktop
     const companyNameEl = document.getElementById('details-company-name');
     const roleEl = document.getElementById('details-role');
     const descriptionEl = document.getElementById('details-description');
 
     if (!container || !langData.professionalExperiences?.items) {
-      console.error("Éléments manquants pour la grille des collaborations.");
       return;
     }
 
     const experiences = langData.professionalExperiences.items;
-    container.innerHTML = '';
 
-    // LOGIQUE MOBILE (Inchangée, affichage vertical simple)
-    if (window.matchMedia("(max-width: 992px)").matches) {
-      if(detailsDisplayDesktop) detailsDisplayDesktop.style.display = 'none';
-      experiences.forEach(exp => {
-        const itemWrapper = document.createElement('div');
-        itemWrapper.className = 'experience-item-mobile';
-        itemWrapper.innerHTML = `<div class="experience-card" id="${exp.id}"><img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo" loading="lazy"></div><div class="experience-details-mobile"><h4>${exp.companyName}</h4><span class="role">${exp.role}</span><p class="description">${exp.description}</p></div>`;
-        container.appendChild(itemWrapper);
-      });
-    } 
-    // LOGIQUE DESKTOP (Animation Slide)
-    else {
-      if(detailsDisplayDesktop) detailsDisplayDesktop.style.display = 'flex';
-      
-      experiences.forEach(exp => {
-        const card = document.createElement('div');
-        card.className = 'experience-card reveal'; // Ajout reveal pour anim d'entrée
-        card.id = exp.id;
-        card.innerHTML = `<img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo" loading="lazy">`;
-        container.appendChild(card);
+    // Fonction de rendu (séparée pour pouvoir être rappelée au resize)
+    const renderGrid = () => {
+      container.innerHTML = '';
 
-        // Au survol d'une carte
-        card.addEventListener('mouseenter', () => {
-          // 1. Remplir les données
-          companyNameEl.textContent = exp.companyName;
-          roleEl.textContent = exp.role;
-          descriptionEl.textContent = exp.description;
+      // LOGIQUE MOBILE (< 992px)
+      if (window.matchMedia("(max-width: 992px)").matches) {
+        if (detailsDisplayDesktop) detailsDisplayDesktop.style.display = 'none';
+        if (wrapper) wrapper.classList.remove('active'); // Nettoyage état desktop
 
-          // 2. Activer l'état "Split Screen" sur le parent
-          wrapper.classList.add('active');
+        experiences.forEach(exp => {
+          const itemWrapper = document.createElement('div');
+          itemWrapper.className = 'experience-item-mobile reveal'; // Ajout reveal pour l'anim
 
-          // 3. Gérer la classe active sur la carte elle-même
-          document.querySelectorAll('.experience-card.active-card').forEach(c => c.classList.remove('active-card'));
-          card.classList.add('active-card');
+          // Structure spécifique mobile : Logo en haut, texte en dessous
+          // Note: On utilise les styles CSS ajoutés précédemment
+          itemWrapper.innerHTML = `
+                        <div class="experience-card">
+                            <img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo" loading="lazy">
+                        </div>
+                        <div class="experience-details-mobile">
+                            <h4>${exp.companyName}</h4>
+                            <span class="role">${exp.role}</span>
+                            <p class="description">${exp.description}</p>
+                        </div>
+                    `;
+          container.appendChild(itemWrapper);
         });
-      });
+      }
+      // LOGIQUE DESKTOP (>= 992px)
+      else {
+        if (detailsDisplayDesktop) detailsDisplayDesktop.style.display = 'flex';
 
-      // Quand on quitte toute la zone du wrapper (Grid + Texte)
-      wrapper.addEventListener('mouseleave', () => {
-        // On revient à l'état initial (Centré)
-        wrapper.classList.remove('active');
-        document.querySelectorAll('.experience-card.active-card').forEach(c => c.classList.remove('active-card'));
+        experiences.forEach(exp => {
+          const card = document.createElement('div');
+          card.className = 'experience-card reveal';
+          card.id = exp.id;
+          // Juste le logo
+          card.innerHTML = `<img src="${exp.logoSrc}" alt="Logo ${exp.companyName}" class="experience-card-logo" loading="lazy">`;
+          container.appendChild(card);
+
+          // Hover interaction
+          card.addEventListener('mouseenter', () => {
+            if (companyNameEl) companyNameEl.textContent = exp.companyName;
+            if (roleEl) roleEl.textContent = exp.role;
+            if (descriptionEl) descriptionEl.textContent = exp.description;
+
+            if (wrapper) wrapper.classList.add('active');
+
+            document.querySelectorAll('.experience-card.active-card').forEach(c => c.classList.remove('active-card'));
+            card.classList.add('active-card');
+          });
+        });
+
+        if (wrapper) {
+          wrapper.addEventListener('mouseleave', () => {
+            wrapper.classList.remove('active');
+            document.querySelectorAll('.experience-card.active-card').forEach(c => c.classList.remove('active-card'));
+          });
+        }
+      }
+    };
+
+    // 1. Rendu initial
+    renderGrid();
+
+    // 2. Écouteur de redimensionnement (Pour basculer dynamiquement Mobile/Desktop)
+    // On évite d'ajouter plusieurs écouteurs si la fonction est appelée plusieurs fois (changement de langue)
+    if (!window.experienceGridResizeListenerAdded) {
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(renderGrid, 250); // Debounce pour performance
       });
+      window.experienceGridResizeListenerAdded = true;
     }
   }
 
