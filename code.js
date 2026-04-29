@@ -526,7 +526,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const originalButtonText = getNestedTranslation(translations[currentLang], "contactSection.form.submitButton") || "Envoyer";
       submitButton.disabled = true;
       submitButton.textContent = sendingText;
-      fetch('traitement-formulaire.php', {
+      fetch('api/traitement-formulaire.php', {
         method: 'POST',
         body: formData
       })
@@ -1363,7 +1363,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        const response = await fetch('proxy-groq-ai.php', {
+        const response = await fetch('api/proxy-groq-ai.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -2152,7 +2152,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const formData = new FormData();
       formData.append('rating', currentRating);
 
-      fetch('send-rating.php', {
+      fetch('api/send-rating.php', {
         method: 'POST',
         body: formData
       })
@@ -2232,7 +2232,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       // sendBeacon est plus fiable lors de la fermeture de page
       if (navigator.sendBeacon) {
-        navigator.sendBeacon('send-conversation-summary.php', dataToSend);
+        navigator.sendBeacon('api/send-conversation-summary.php', dataToSend);
       }
     }
   });

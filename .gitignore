@@ -1,0 +1,55 @@
+# ============================================================
+#   .GITIGNORE — Portfolio Arnaud Martiny
+#   Protège les données sensibles et les fichiers locaux
+# ============================================================
+
+# --- SECRETS & CONFIGURATION (NE JAMAIS COMMITTER) ---
+.env
+.env.local
+.env.*.local
+
+# --- PROMPT IA (Données sensibles de config) ---
+assets/txt/
+
+# --- DOSSIERS PRIVÉS / BACKEND ---
+api/
+landing-page/
+private/
+
+# --- SYSTÈME D'EXPLOITATION ---
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+
+# --- ÉDITEURS & IDE ---
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*.kate-swp
+
+# --- LOGS & CACHE ---
+*.log
+*.cache
+npm-debug.log*
+
+# --- NODE (si tu ajoutes des outils build plus tard) ---
+node_modules/
+package-lock.json
+dist/
+build/

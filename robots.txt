@@ -1,0 +1,65 @@
+# ============================================================
+#   ROBOTS.TXT — arnaud-martiny.be
+#   Contrôle l'accès des robots d'indexation
+# ============================================================
+
+# Règles globales pour tous les robots
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /assets/img/
+Allow: /assets/fonts/
+Allow: /assets/logos/
+Allow: /assets/CV/
+
+# Bloquer les dossiers sensibles
+Disallow: /api/
+Disallow: /private/
+Disallow: /assets/txt/
+Disallow: /landing-page/
+
+# Bloquer les fichiers de config/données
+Disallow: /.env
+Disallow: /.env.example
+Disallow: /messages.json
+Disallow: /terminal-data.json
+
+# ============================================================
+#   DIRECTIVES SPÉCIALES POUR LES IA GÉNÉRATIVES (GEO)
+#   Source: https://llmstxt.org
+# ============================================================
+
+# GPTBot (OpenAI / ChatGPT) — Autorisé pour être référencé dans les réponses IA
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+# Claude (Anthropic)
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+# Gemini / Google Extended (Google AI)
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+# Bing AI (Copilot)
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+# ============================================================
+#   SITEMAP
+# ============================================================
+Sitemap: https://www.arnaud-martiny.be/sitemap.xml
