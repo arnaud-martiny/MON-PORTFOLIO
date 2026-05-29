@@ -178,8 +178,8 @@
     ]
   },
   "evolutionPopup": {
-    "title": "Site in constant evolution",
-    "message": "This portfolio is a living project! New features and animations are added regularly. Last update on {{date}}. Check back soon!"
+    "title": "Site under construction",
+    "message": "All information is currently being updated! This is why my CV is more current than this site. A brand new version will be released in less than a month. Last updated on {{date}}."
   },
   "projectsUpdatePopup": {
     "title": "",

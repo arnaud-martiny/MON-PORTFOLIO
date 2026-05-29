@@ -178,8 +178,8 @@
     ]
   },
   "evolutionPopup": {
-    "title": "Site en constante évolution",
-    "message": "Ce portfolio est un projet vivant ! De nouvelles fonctionnalités et animations sont ajoutées régulièrement. Dernière mise à jour le {{date}}. Revenez bientôt !"
+    "title": "Site en travaux",
+    "message": "Toutes les informations sont actuellement en train d'être mises à jour ! C'est pourquoi mon CV est plus actuel que ce site. Une toute nouvelle version verra le jour dans moins d'un mois. Dernière mise à jour le {{date}}."
   },
   "projectsUpdatePopup": {
     "title": "",

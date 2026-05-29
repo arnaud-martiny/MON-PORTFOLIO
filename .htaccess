@@ -100,3 +100,6 @@ RewriteRule ^index\.html$ /index.php [R=301,L]
 
 # Servir le sitemap
 RewriteRule ^sitemap\.xml$ sitemap.xml [L]
+
+# Supprimer l'extension .html pour la page des expériences
+RewriteRule ^experiences-détailles$ experiences-détailles.html [L]

@@ -473,7 +473,7 @@ $jsVersion = file_exists(__DIR__ . '/code.js') ? filemtime(__DIR__ . '/code.js')
 
   <!-- Evolution Popup -->
   <div id="evolution-popup-overlay" class="evolution-popup-overlay">
-    <div id="evolution-popup" class="evolution-popup" data-last-updated="29/04/2026">
+    <div id="evolution-popup" class="evolution-popup" data-last-updated="29/05/2026">
       <button id="evolution-popup-close" class="evolution-popup-close">&times;</button>
       <h4 data-i18n="evolutionPopup.title">Site en évolution</h4>
       <p data-i18n="evolutionPopup.message" data-i18n-html></p>
