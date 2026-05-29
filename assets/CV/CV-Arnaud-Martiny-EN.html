@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arnaud Martiny Resume - Full-Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --primary-color: #0284c7;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --border-color: #0f172a;
+            --text-color: #0f172a;
+            --border-width: 3px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f1f5f9;
+            background-image: 
+                radial-gradient(at 40% 20%, hsla(228,100%,74%,0.15) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, hsla(189,100%,56%,0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, hsla(355,100%,93%,0.15) 0px, transparent 50%),
+                radial-gradient(at 80% 50%, hsla(340,100%,76%,0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, hsla(22,100%,77%,0.15) 0px, transparent 50%),
+                radial-gradient(at 80% 100%, hsla(242,100%,70%,0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 0%, hsla(343,100%,76%,0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-color);
+            line-height: 1.4;
+            font-size: 9pt;
+            padding: 10px;
+        }
+
+        .cv-container {
+            width: 100%;
+            max-width: 240mm;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .header-card {
+            background-color: var(--card-bg);
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            box-shadow: 5px 5px 0px var(--border-color);
+            backdrop-filter: blur(10px);
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-text { flex: 1; }
+
+        .header-photo img {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: var(--border-width) solid var(--border-color);
+            box-shadow: 4px 4px 0px var(--primary-color);
+            background-color: white;
+            flex-shrink: 0; 
+        }
+
+        .header-text h1 {
+            font-size: 24pt;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 2px;
+            line-height: 1;
+        }
+
+        .header-text h2 {
+            font-size: 11pt;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+
+        .portfolio-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: #fde047;
+            color: var(--border-color);
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 9.5pt;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            border: 2px solid var(--border-color);
+            box-shadow: 3px 3px 0px var(--border-color);
+            transition: all 0.15s ease;
+        }
+
+        .portfolio-badge:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px var(--border-color);
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 15px;
+            font-size: 8.5pt;
+            font-weight: 600;
+        }
+        
+        .contact-info a {
+            color: var(--text-color);
+            text-decoration: none;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 12px;
+            align-items: start;
+        }
+
+        .window-card {
+            background-color: var(--card-bg);
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            box-shadow: 4px 4px 0px var(--border-color);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            page-break-inside: avoid; 
+        }
+
+        .window-header {
+            border-bottom: var(--border-width) solid var(--border-color);
+            padding: 5px 12px;
+            display: flex;
+            align-items: center;
+            font-weight: 900;
+            font-size: 10.5pt;
+            text-transform: uppercase;
+            background-color: rgba(241, 245, 249, 0.9);
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 5px;
+            margin-right: 10px;
+        }
+
+        .circle { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--border-color); }
+        .c-red { background-color: #ef4444; }
+        .c-yellow { background-color: #eab308; }
+        .c-green { background-color: #22c55e; }
+
+        .window-body { padding: 10px 12px; }
+
+        h3 {
+            font-size: 10pt;
+            font-weight: 800;
+            margin-bottom: 2px;
+            color: var(--text-color);
+        }
+
+        h4 {
+            font-size: 8.5pt;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .company-name {
+            font-size: 10pt;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--primary-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .company-link {
+            text-decoration: none;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 1px;
+            transition: all 0.2s ease;
+        }
+
+        .company-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+            padding-left: 4px;
+            padding-right: 4px;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .link-icon { font-size: 10pt; line-height: 1; }
+
+        .date-badge {
+            background-color: var(--border-color);
+            color: white;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-size: 7.5pt;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .status-active { color: #16a34a; font-weight: 900; }
+
+        .highlight-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #fde047;
+            color: var(--border-color);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 7.5pt;
+            font-weight: 800;
+            border: 2px solid var(--border-color);
+            box-shadow: 2px 2px 0px var(--border-color);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .highlight-badge.success { background-color: #86efac; }
+
+        .exp-desc {
+            text-align: justify;
+            margin-bottom: 0;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .btn-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 6px;
+            font-size: 7pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 3px 8px;
+            border: 2px solid var(--primary-color);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            background-color: transparent;
+        }
+
+        .btn-more:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .experience-item {
+            margin-bottom: 12px;
+            border-bottom: 2px dashed #cbd5e1;
+            padding-bottom: 12px;
+            page-break-inside: avoid;
+        }
+        .experience-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 5px;
+        }
+
+        .tag {
+            background-color: rgba(241, 245, 249, 0.8);
+            border: 1px solid var(--border-color);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-size: 7pt;
+            font-weight: 700;
+        }
+
+        .skills-category { margin-bottom: 10px; }
+        .skills-category:last-child { margin-bottom: 0; }
+        
+        .skills-title {
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 8.5pt;
+            margin-bottom: 3px;
+        }
+
+        .lang-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 5px;
+            font-weight: 600;
+            font-size: 8.5pt;
+        }
+
+        @media print {
+            @page {
+                margin: 4mm;
+                size: A4 portrait;
+            }
+            body {
+                background-color: white !important;
+                background-image: none !important;
+                padding: 0;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .cv-container {
+                width: 240mm;
+                max-width: none;
+            }
+            .window-card, .header-card {
+                box-shadow: 3px 3px 0px var(--border-color) !important;
+                background-color: white !important;
+            }
+            .header-photo img {
+                box-shadow: 3px 3px 0px var(--primary-color) !important;
+            }
+            .company-link { border-bottom: 1.5px solid var(--primary-color); }
+            .company-link:hover { background-color: transparent; color: var(--primary-color); }
+            .btn-more { border-width: 1.5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cv-container">
+        <header class="header-card">
+            <div class="header-text">
+                <h1>Arnaud Martiny</h1>
+                <h2>Junior Full-Stack Developer | Technical SEO & UX</h2>
+                
+                <a href="https://www.arnaud-martiny.be/?lang=en" target="_blank" class="portfolio-badge">
+                    🌐 Visit my Interactive Portfolio <span class="link-icon">↗</span>
+                </a>
+
+                <div class="contact-info">
+                    <div>📍 Brussels (20 y/o)</div>
+                    <div>📱 +32 0492 451 456</div>
+                    <div>✉️ <a href="mailto:arnaudmartiny0@gmail.com">arnaudmartiny0@gmail.com</a></div>
+                    <div>🔗 <a href="https://linkedin.com/in/arnaud-martiny" target="_blank">linkedin.com/in/arnaud-martiny</a></div>
+                    <div>💻 <a href="https://github.com/arnaud-martiny" target="_blank">github.com/arnaud-martiny</a></div>
+                    <div>🚗 Driver's license + Personal car</div>
+                </div>
+            </div>
+            <div class="header-photo">
+                <img src="https://media.licdn.com/dms/image/v2/D5603AQGVswuvmIZ2AQ/profile-displayphoto-crop_800_800/B56ZniBODAIsAI-/0/1760433598768?e=1781740800&v=beta&t=1cmOirwVoq5N3xi-MfKINCHywmUJkNpFvFdyYBfTKkA" alt="Arnaud Martiny">
+            </div>
+        </header>
+
+        <div class="main-grid">
+            <div class="left-column">
+                <section class="window-card">
+                    <div class="window-header">
+                        <div class="window-controls">
+                            <div class="circle c-red"></div><div class="circle c-yellow"></div><div class="circle c-green"></div>
+                        </div>
+                        Profile
+                    </div>
+                    <div class="window-body">
+                        <p style="text-align: justify; font-weight: 500; margin-bottom:0;">To me, a website is much more than a digital showcase: it’s the meeting point between an idea and its audience. With a strong "Product" mindset, I bridge the gap between technical implementation (Custom PHP, React, CMS) and user experience (UX/UI, SEO). Used to building custom architectures for my clients, I transform technical debt into comprehensive, seamless, and acquisition-driven solutions.</p>
+                    </div>
+                </section>
+
+                <section class="window-card">
+                    <div class="window-header">
+                        <div class="window-controls">
+                            <div class="circle c-red"></div><div class="circle c-yellow"></div><div class="circle c-green"></div>
+                        </div>
+                        Skills
+                    </div>
+                    <div class="window-body">
+                        <div class="skills-category">
+                            <div class="skills-title">Web Development</div>
+                            <div class="tags-container">
+                                <span class="tag">PHP / PDO (MVC)</span>
+                                <span class="tag">SQLite / MySQL</span>
+                                <span class="tag">JavaScript (ES6+)</span>
+                                <span class="tag">React</span>
+                                <span class="tag">GSAP (Animations)</span>
+                                <span class="tag">WordPress / Shopify</span>
+                            </div>
+                        </div>
+
+                        <div class="skills-category" style="margin-top: 12px;">
+                            <div class="skills-title">SEO, Data & E-commerce</div>
+                            <div class="tags-container">
+                                <span class="tag">Technical SEO (JSON-LD)</span>
+                                <span class="tag">Core Web Vitals (100%)</span>
+                                <span class="tag">Native Stripe API</span>
+                                <span class="tag">GTM & Analytics</span>
+                                <span class="tag">Web Scraping</span>
+                            </div>
+                        </div>
+
+                        <div class="skills-category" style="margin-top: 12px;">
+                            <div class="skills-title">Design, Security & Tools</div>
+                            <div class="tags-container">
+                                <span class="tag">Figma (UI/UX)</span>
+                                <span class="tag">Git / GitHub</span>
+                                <span class="tag">i18n (JSON Translations)</span>
+                                <span class="tag">2FA Auth & Honeypot</span>
+                                <span class="tag">XSS / SQLi Prevention</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="window-card">
+                    <div class="window-header">
+                        <div class="window-controls">
+                            <div class="circle c-red"></div><div class="circle c-yellow"></div><div class="circle c-green"></div>
+                        </div>
+                        Education
+                    </div>
+                    <div class="window-body">
+                        <div class="experience-item" style="border-bottom: none; padding-bottom: 0;">
+                            <h3>Multimedia Writing</h3>
+                            <h4><span class="company-name" style="color:var(--text-color);">ISFSC (Brussels)</span> <span class="date-badge">Since 2023</span></h4>
+                            <p style="text-align: justify; font-weight: 500; margin-top: 2px; margin-bottom: 8px;">Curriculum combining Web Development (JS, PHP, SQL), UI/UX Design, and Digital Strategy.</p>
+
+                            <h3>High School Diploma (CESS)</h3>
+                            <h4><span class="company-name" style="color:var(--text-color);">École Plurielle Maritime</span> <span class="date-badge">2023</span></h4>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="window-card">
+                    <div class="window-header">
+                        <div class="window-controls">
+                            <div class="circle c-red"></div><div class="circle c-yellow"></div><div class="circle c-green"></div>
+                        </div>
+                        Languages & Soft Skills
+                    </div>
+                    <div class="window-body">
+                        <div class="lang-grid" style="margin-bottom: 10px;">
+                            <div>🇫🇷 French: Native</div>
+                            <div>🇬🇧 English: Fluent (Technical & Pro)</div>
+                        </div>
+                        <div class="tags-container">
+                            <span class="tag">B2B Autonomy</span>
+                            <span class="tag">Creativity</span>
+                            <span class="tag">Problem Solving</span>
+                            <span class="tag">Team Spirit</span>
+                            <span class="tag">Adaptability</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="right-column">
+                <section class="window-card">
+                    <div class="window-header">
+                        <div class="window-controls">
+                            <div class="circle c-red"></div><div class="circle c-yellow"></div><div class="circle c-green"></div>
+                        </div>
+                        Freelance Missions & Experience
+                    </div>
+                    <div class="window-body">
+                        
+                        <div class="experience-item">
+                            <h3>Full-Stack Developer & SEO Consultant</h3>
+                            <h4>
+                                <a href="http://ozen-esthetique.be/" target="_blank" class="company-name company-link">Ô ZEN Esthétique <span class="link-icon">↗</span></a> 
+                                <span class="date-badge"><span class="status-active">🟢 Present</span> (since Dec. 2025)</span>
+                            </h4>
+                            <p class="exp-desc">
+                                End-to-end development (native PHP) of a custom booking platform replacing TreatWell (0% commission). Integration of a frictionless SPA funnel (native Stripe API) and a comprehensive back-office. Core Web Vitals scores optimized to 100%.
+                            </p>
+                            <a href="https://www.arnaud-martiny.be/experiences-détailles.html?lang=en#o-zen" target="_blank" class="btn-more">Learn more ↗</a>
+                        </div>
+
+                        <div class="experience-item">
+                            <h3>Web Developer & SEO Expert</h3>
+                            <h4>
+                                <a href="https://snoussi-studio.be/" target="_blank" class="company-name company-link">Snoussi Studio <span class="link-icon">↗</span></a> 
+                                <span class="date-badge"><span class="status-active">🟢 Present</span> (since Nov. 2025)</span>
+                            </h4>
+                            <p class="exp-desc">
+                                "Pure Code" architecture (PHP/SQLite) for a premium B2B showcase site guaranteeing load times <1.2s. Implemented an immersive interface via GSAP, a secure backend (2FA), and an SEO strategy generating new B2B contracts.
+                            </p>
+                            <a href="https://www.arnaud-martiny.be/experiences-détailles.html?lang=en#snoussi-studio" target="_blank" class="btn-more">Learn more ↗</a>
+                        </div>
+
+                        <div class="experience-item">
+                            <h3>Technical SEO & Automation Specialist</h3>
+                            <h4>
+                                <a href="https://local-web.be/" target="_blank" class="company-name company-link">Local Web <span class="link-icon">↗</span></a> 
+                                <span class="date-badge"><span class="status-active">🟢 Present</span> (since Jan. 2026)</span>
+                            </h4>
+                            <div class="highlight-badge success" style="margin-bottom: 2px;">🚀 Internship ➔ Continued as Freelance</div>
+                            <p class="exp-desc">
+                                Process automation (B2B Scraping, Lovable No-Code tools) and management of technical SEO strategies. Intensive webmastering for 21 projects including complete UX redesigns and technical translations of multilingual platforms.
+                            </p>
+                            <a href="https://www.arnaud-martiny.be/experiences-détailles.html?lang=en#local-web" target="_blank" class="btn-more">Learn more ↗</a>
+                        </div>
+
+                        <div class="experience-item">
+                            <h3>Consultant & IT Developer</h3>
+                            <h4>
+                                <a href="http://oxxo.be/" target="_blank" class="company-name company-link">Oxxoprint <span class="link-icon">↗</span></a> 
+                                <span class="date-badge"><span class="status-active">🟢 Present</span> (since Aug. 2025)</span>
+                            </h4>
+                            <p class="exp-desc">
+                                Development on the "OnPrintShop" B2B Web-to-Print solution. Creation of custom front-end snippets (HTML/CSS/JS) to streamline the user experience and maximize conversion rates for Key Account client portals.
+                            </p>
+                            <a href="https://www.arnaud-martiny.be/experiences-détailles.html?lang=en#oxxoprint" target="_blank" class="btn-more">Learn more ↗</a>
+                        </div>
+
+                        <div class="experience-item">
+                            <h3>WordPress & SEO Assistant</h3>
+                            <h4>
+                                <a href="https://www.chouiamaison.com/" target="_blank" class="company-name company-link">Chouïa Maison <span class="link-icon">↗</span></a> 
+                                <span class="date-badge"><span class="status-active">🟢 Present</span> (since Aug. 2025)</span>
+                            </h4>
+                            <p class="exp-desc">
+                                Strategic support on WordPress (Flatsome theme): code refactoring, continuous SEO optimization, and data-driven analysis of purchasing funnels to reduce cart abandonment and increase overall sales.
+                            </p>
+                            <a href="https://www.arnaud-martiny.be/experiences-détailles.html?lang=en#chouia-maison" target="_blank" class="btn-more">Learn more ↗</a>
+                        </div>
+
+                        <div class="experience-item">
+                            <h3>Full-Stack Developer</h3>
+                            <h4>
+                                <a href="https://letheatredespoetes.be/" target="_blank" class="company-name company-link">Le Théâtre des Poètes ASBL <span class="link-icon">↗</span></a> 
+                                <span class="date-badge">Jun. 2025 - Sep. 2025</span>
+                            </h4>
+                            <p class="exp-desc">
+                                Full-stack revamp of a hacked and aging website into a secure, modern architecture (PHP/MySQL). Designed a simplified back-office tailored for a non-technical team, strictly respecting an NGO budget.
+                            </p>
+                            <a href="https://www.arnaud-martiny.be/experiences-détailles.html?lang=en#theatre-poetes" target="_blank" class="btn-more">Learn more ↗</a>
+                        </div>
+
+                        <div class="experience-item">
+                            <h3>Digital Project Manager Assistant</h3>
+                            <h4>
+                                <span class="company-name" style="color:var(--text-color);">Nowa Market</span> 
+                                <span class="date-badge">Apr. 2025 - Jun. 2025</span>
+                            </h4>
+                            <div class="highlight-badge" style="margin-bottom: 2px;">🎓 Academic Internship #1</div>
+                            <p class="exp-desc">
+                                End-to-end design of the 'Nowa Logistics' showcase site (Figma, Front-End). UX audit of internal applications, technical translation of the business ERP via JSON, and creation of strategic pitch decks for investors.
+                            </p>
+                            <a href="https://www.arnaud-martiny.be/experiences-détailles.html?lang=en#nowa-market" target="_blank" class="btn-more">Learn more ↗</a>
+                        </div>
+
+                        <div class="experience-item" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+                            <h3>E-commerce & Front-End Manager</h3>
+                            <h4>
+                                <span class="company-name" style="color:var(--text-color);">Degrif Shoes</span> 
+                                <span class="date-badge">Sep. 2024 - Dec. 2024</span>
+                            </h4>
+                            <p class="exp-desc">
+                                Operational management of a Shopify store. Catalog optimization, publishing of collections, and front-end theme adjustments to improve merchandising and reduce purchasing friction.
+                            </p>
+                            <a href="https://www.arnaud-martiny.be/experiences-détailles.html?lang=en#degrif-shoes" target="_blank" class="btn-more">Learn more ↗</a>
+                        </div>
+
+                    </div>
+                </section>
+                
+                <section class="window-card">
+                    <div class="window-header">
+                        <div class="window-controls">
+                            <div class="circle c-red"></div><div class="circle c-yellow"></div><div class="circle c-green"></div>
+                        </div>
+                        Notable Technical Projects
+                    </div>
+                    <div class="window-body">
+                        <div class="experience-item">
+                            <h3>Personal Portfolio Architecture & Development</h3>
+                            <h4><a href="https://www.arnaud-martiny.be/?lang=en" target="_blank" class="company-name company-link">arnaud-martiny.be <span class="link-icon">↗</span></a></h4>
+                            <p class="exp-desc">End-to-end creation of a 'Vanilla' interactive platform (pure HTML5/CSS3/JS) without frameworks to prove my mastery of fundamentals. Integration of GSAP animations and development of an i18n system via JSON.</p>
+                        </div>
+                        <div class="experience-item" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+                            <h3>Development of "Fast 'N Friends"</h3>
+                            <h4><a href="https://github.com/arnaud-martiny/Fast-N-Friends" target="_blank" class="company-name company-link">Carpooling Project (GitHub) <span class="link-icon">↗</span></a></h4>
+                            <p class="exp-desc">Collaborative development (Git) of a PHP/MySQL platform. Designed the Backend logic to manage users, secure sessions, and implement a trip search engine.</p>
+                        </div>
+                    </div>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -461,5 +461,86 @@
     "landingPagePurpose": "Preference data (Local Storage) is exempt from consent as it is strictly necessary for the interface functionality (GDPR Art. 82).",
     "yourRightsTitle": "4. Your Rights",
     "yourRightsText": "In accordance with regulations, you have full control over your data:<br><br><strong>• Right of Access & Rectification:</strong> You may request to see the data I hold about you and correct it.<br><strong>• Right to Erasure ('Right to be Forgotten'):</strong> You may request the immediate deletion of your emails and exchanges.<br><strong>• Right to Restriction:</strong> You may request a temporary freeze on the use of your data.<br><strong>• Right to Object:</strong> You may refuse the use of your data (e.g., deleting Analytics stats).<br><br>To exercise these rights, simply email <strong>arnaudmartiny0@gmail.com</strong>. I commit to responding within 30 days."
+  },
+  "experiencesDetailsPage": {
+    "pageTitle": "Missions & Experiences",
+    "pageSubtitle": "A detailed overview of my freelance collaborations, the challenges faced, and the technical solutions provided.",
+    "backButton": "Back to Portfolio",
+    "contextLabel": "Context & Challenge",
+    "solutionLabel": "Technical & Strategic Solution",
+    "resultsLabel": "The Results",
+    "footer": "© 2026 Arnaud Martiny. All rights reserved.",
+    "ozen": {
+      "date": "December 2025 - Present",
+      "role": "Full-Stack Developer & SEO Consultant",
+      "title": "Ô ZEN Esthétique",
+      "subtitle": "Creation of a custom booking platform",
+      "context": "The Ô ZEN Esthétique institute historically relied on the TreatWell platform for its bookings. The problem? Exorbitant commissions drastically reducing margins, a complete lack of control over content, and a rigid interface. The client had an old, unfinished, and poorly ranked Wix site. The challenge was significant: create a complete independent platform capable of handling bookings, payments, and marketing, all with impeccable local SEO.",
+      "solution": "I decided to abandon traditional CMS platforms to develop a 100% custom solution in PHP (over 103 files and 18,000 lines of code).<br><br><strong>Front-End & Customer Experience:</strong> I designed a frictionless booking funnel as a 'Single Page Application' (SPA) in Vanilla JS. Clients can compose their session, choose their time slots, and pay online. To reduce drop-offs, I integrated a 'Guest' mode (without mandatory registration).<br><br><strong>Secure Payment:</strong> Native integration of the Stripe API (without heavy plugins) with asynchronous Webhook management to validate time slots in the database.<br><br><strong>Back-Office (Admin):</strong> Creation of an ultra-secure administration panel (2FA Authentication, anti-brute force). This dashboard generates time slots, manages the customer CRM, and allows the creation of promotional codes.<br><br><strong>Acquisition & Tracking:</strong> Development of an internal newsletter system with integration of invisible pixels to track open and click rates without relying on third-party solutions like Mailchimp.",
+      "results": "The client was able to break free from third-party platforms. The site achieves 'Core Web Vitals' scores of 100% (PageSpeed Insights), ensuring powerful local SEO. The interface is fast (<800ms on mobile), secure (AES-256 encryption for GDPR data), and evolves weekly according to business needs."
+    },
+    "snoussi": {
+      "date": "November 2025 - Present",
+      "role": "Web Developer & SEO Expert",
+      "title": "Snoussi Studio",
+      "subtitle": "Premium B2B Showcase & Pure Code",
+      "context": "Sofiane, a social media manager and content creator, needed a website to establish the credibility of his studio (Photo, Branding, Podcast). The goal was not to create a simple showcase site, but a high-end, ultra-fast platform capable of converting B2B visitors into regular clients, while aggressively positioning itself on search engines.",
+      "solution": "Rather than using Webflow or WordPress, I opted for a 'Back-to-Basics / Pure Code' approach to guarantee absolute performance.<br><br><strong>Architecture & Speed:</strong> Site coded in PHP and native HTML/CSS with a lightweight SQLite database for the studio's booking system. Result: a loading time of less than 1.2s.<br><br><strong>Visual Immersion (GSAP):</strong> For the 'Wow' effect, I integrated the GSAP library. The site features smooth scroll animations (ScrollTrigger), magnetic effects on buttons, skew on scroll distortions, and a custom morphological cursor.<br><br><strong>SEO Strategy:</strong> Creation of a structure of more than 15 targeted service pages (e.g., 'Portrait photographer Brussels'). I implemented clean URL Rewriting (.htaccess) and injected JSON-LD microdata (FAQPage, LocalBusiness) to dominate Google search results.<br><br><strong>Anti-spam Security:</strong> Rather than using a frustrating reCAPTCHA, I coded an invisible 'Honeypot' system that traps bots, coupled with a secure administration interface using an OTP token (2FA via email).",
+      "results": "The site is a true lead magnet. The premium user experience combined with surgical SEO allowed the studio to sign multiple new B2B contracts shortly after launch."
+    },
+    "localweb": {
+      "date": "January 2026 - Present",
+      "role": "Technical SEO & Automation Specialist",
+      "title": "Local Web",
+      "subtitle": "Automation, Tech SEO & Webmastering",
+      "context": "I joined the Local Web agency for an intensive 3rd-year internship (which turned into a freelance mission). The agency manages a large volume of clients and needed to optimize its internal processes, accelerate its acquisition strategies, and flawlessly maintain a variety of websites.",
+      "solution": "I wore two hats: technical and strategic.<br><br><strong>Automation & Data:</strong> I developed internal No-Code tools (via Lovable) to structure link-building tracking. I also set up massive Web Scraping scripts to build ultra-qualified B2B databases, saving the team dozens of hours.<br><br><strong>Technical SEO & Strategy:</strong> I took charge of managing Core Web Vitals on several projects, fixing CLS and LCP issues. I implemented sharp On-Page strategies and creative Off-Page campaigns (notably via Reddit Backlinking techniques).<br><br><strong>Webmastering (21 Projects):</strong> I managed the daily technical operations for about twenty clients. This includes full UX redesigns (e.g., SOS Diogène), complex integrations, and the technical and structural translation of sites into FR, EN, and NL (e.g., CD Engineering).",
+      "results": "I accomplished over 171 complex technical tasks in record time (estimated at 206h+ during the first period). My ability to automate repetitive tasks and solve infrastructure problems convinced the agency to extend our collaboration as a freelancer."
+    },
+    "oxxoprint": {
+      "date": "August 2025 - Present",
+      "role": "IT Consultant & Developer",
+      "title": "Oxxoprint",
+      "subtitle": "B2B E-commerce Ecosystem (Web-to-Print)",
+      "context": "Oxxoprint, a major player in printing and visual communication, wanted to modernize and digitize order processing for its 'Key Account' clients. The goal was to deploy highly customized B2B webshops using the complex OnPrintShop software solution.",
+      "solution": "I intervened as a technical consultant and front-end developer to bridge the gap between the software platform and the specific needs of clients.<br><br><strong>Front-End Development:</strong> Advanced integration in HTML5, CSS3, and JavaScript to overcome the native limits of the OnPrintShop platform. I created 'snippets' (reusable code blocks) to dynamically modify interfaces and improve UX.<br><br><strong>Configuration & Architecture:</strong> Technical setup of client portals, configuration of complex catalogs, and management of B2B pricing rules.<br><br><strong>UX & Quality Assurance:</strong> Conducting competitive benchmarks and executing in-depth tests on purchasing journeys (QA Testing) to ensure a corporate client can order printed materials without any technical friction.",
+      "results": "The deployment of the first B2B web-to-print portals allowed Oxxoprint to build loyalty with its corporate clientele by offering them total autonomy, while relieving the traditional customer service."
+    },
+    "chouiamaison": {
+      "date": "August 2025 - Present",
+      "role": "WordPress & SEO Assistant",
+      "title": "Chouïa Maison",
+      "subtitle": "E-commerce & Data-driven Optimization",
+      "context": "Chouïa Maison is a rapidly growing decorative crafts store. The WordPress site (using WooCommerce / Flatsome theme) required regular technical support to handle traffic increases, fix historical bugs, and boost organic sales (SEO).",
+      "solution": "I established a continuous optimization routine, blending technical development and marketing analysis.<br><br><strong>Technical Overhaul:</strong> Cleaning up legacy code, securely updating the WordPress ecosystem, and optimizing product page load times.<br><br><strong>SEO Strategy & Content:</strong> Researching transactional keywords, semantic writing for new categories, and structurally managing the blog to attract 'Top of Funnel' traffic.<br><br><strong>Data-Driven Analysis:</strong> Rigorous tracking of conversion funnels. I regularly analyze customer journeys leading to abandoned carts to propose and implement immediate UX fixes.",
+      "results": "A much more stable, faster, and Google-friendly e-commerce platform. This foundational work, carried out over time, significantly increased organic traffic and optimized the store's overall conversion rate."
+    },
+    "theatrepoetes": {
+      "date": "June 2025 - September 2025",
+      "role": "Full-Stack Developer",
+      "title": "Le Théâtre des Poètes NPO",
+      "subtitle": "Digital Resurrection",
+      "context": "This cultural non-profit was in an emergency situation: their website, dating from 2015, had been hacked. It was non-responsive, visually obsolete, and completely impossible for the team (who had no technical skills) to update. The budget was limited, but the need for a clean showcase for the theatrical back-to-school season was critical.",
+      "solution": "Rather than 'patching' the old site, I made the decision to tear it all down to rebuild a clean, secure, and custom architecture.<br><br><strong>Database & Security:</strong> Design of a new, clean MySQL structure. I implemented a system of prepared statements (PDO) to eradicate any future risk of SQL injection.<br><br><strong>Ultra-Simplified Back-Office:</strong> Knowing the end-users were not developers, I created a custom PHP administration panel, stripping it down to the essentials: add a play, edit a date, publish news. Zero fluff.<br><br><strong>Front-End & Accessibility:</strong> Development of a responsive interface, respecting web accessibility standards (contrast, semantic markup) to highlight the troupe's visuals and make the program easy to read.",
+      "results": "A successful launch for the new season. The NPO regained its digital independence with a fast tool, immune to common vulnerabilities, and managed autonomously by the administrative team."
+    },
+    "nowamarket": {
+      "date": "April 2025 - June 2025",
+      "role": "Digital Project Manager Assistant (Internship)",
+      "title": "Nowa Market (Nowa Logistics)",
+      "subtitle": "From Mockup to ERP",
+      "context": "Nowa Market, a zero-waste e-commerce startup, was launching a new branch: Nowa Logistics. My internship (second year of bachelor's) threw me into the deep end: I had to both create the public digital identity for this new service and work on the complex internal tools (ERP) used by warehouse staff.",
+      "solution": "I adopted a hybrid role (Design, Code, Strategy).<br><br><strong>Showcase Site (Front-End):</strong> I managed the project from A to Z. Creation of wireframes and high-fidelity mockups in Figma. Then, I developed the site in HTML/CSS/JS to ensure a pixel-perfect integration.<br><br><strong>UX Audit & Internal Tools:</strong> I conducted usability audits on the mobile app and the warehouse management ERP. I identified frictions in QR code scanning (glass jars) and proposed corrective scenarios. I also technically translated the entire ERP interface via JSON configuration files.<br><br><strong>Business Strategy:</strong> I assisted management in key tasks: analyzing the business plan, drafting presentations (Pitch Decks) for future fundraising, and structuring internal communication.",
+      "results": "A pivotal experience that validated my ability to understand the 'Product' and 'Business' challenges of a company, and not limit myself to writing lines of code."
+    },
+    "degrifshoes": {
+      "date": "September 2024 - December 2024",
+      "role": "E-commerce Manager (Student Position)",
+      "title": "Degrif Shoes",
+      "subtitle": "E-commerce Management & Front-End Optimization",
+      "context": "Managing an active retail store requires great rigor. The challenge at Degrif Shoes was to ensure a smooth and rapid transition of physical products to the digital storefront on Shopify, while ensuring a frictionless purchasing journey for the end user.",
+      "solution": "I took charge of the operational and technical management of the platform.<br><br><strong>Merchandising & Integration:</strong> Full management of the product catalog. Integration of visuals, logical organization of collections, and writing SEO-optimized descriptions for e-commerce.<br><br><strong>Front-End Optimization:</strong> I made direct adjustments to the Shopify theme code (HTML/CSS) to highlight flagship products and fix mobile display issues.<br><br><strong>UX Improvement:</strong> Analysis and modification of the overall ergonomics to streamline navigation between categories and simplify the steps leading to the shopping cart.",
+      "results": "A consistently updated store with a coherent visual presentation and minimized purchasing friction. This hands-on immersion allowed me to develop great versatility in the e-commerce ecosystem, refine my UX sense, and build the rigor essential for digital content management."
+    }
   }
 }

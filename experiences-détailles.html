@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Missions & Expériences - Arnaud Martiny</title>
   
-  <!-- SEO -->
-  <meta name="description" content="Découvrez en détail les missions freelance et expériences professionnelles d'Arnaud Martiny, Développeur Full-Stack et Expert SEO.">
+  <!-- SEO (Noindex pour cette page d'extension) -->
+  <meta name="robots" content="noindex, nofollow">
   
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -455,18 +455,24 @@
   <nav class="mini-nav">
     <a href="index.php" class="logo">AM.</a>
     
-    <!-- Contrôles centraux (Thème) -->
     <div class="nav-controls">
+      <!-- Sélecteur de langue restauré -->
+      <div class="language-switcher">
+        <button id="lang-fr" class="lang-btn active" data-lang="fr" aria-label="Français">FR</button>
+        <button id="lang-en" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+      </div>
       <button id="theme-switcher" class="theme-btn" aria-label="Changer thème"><i class="fas fa-sun"></i></button>
     </div>
 
-    <a href="index.php#experiences-pro" class="back-btn"><i class="fas fa-arrow-left"></i> <span>Retour au Portfolio</span></a>
+    <a href="index.php#experiences-pro" class="back-btn">
+      <i class="fas fa-arrow-left"></i> <span data-i18n="experiencesDetailsPage.backButton">Retour au Portfolio</span>
+    </a>
   </nav>
 
   <!-- Header -->
   <header class="page-header">
-    <h1 class="page-title reveal-elem">Missions & Expériences</h1>
-    <p class="page-subtitle reveal-elem">Un aperçu détaillé de mes collaborations en tant que développeur freelance, des défis rencontrés et des solutions techniques apportées.</p>
+    <h1 class="page-title reveal-elem" data-i18n="experiencesDetailsPage.pageTitle">Missions & Expériences</h1>
+    <p class="page-subtitle reveal-elem" data-i18n="experiencesDetailsPage.pageSubtitle">Un aperçu détaillé de mes collaborations en tant que développeur freelance, des défis rencontrés et des solutions techniques apportées.</p>
     <div class="scroll-down-arrow reveal-elem">
       <i class="fas fa-chevron-down"></i>
     </div>
@@ -479,32 +485,28 @@
       <div class="exp-glass-panel">
         <div class="exp-header">
           <div class="exp-date-role">
-            <span class="exp-date">Décembre 2025 - Présent</span>
-            <span class="exp-role">Développeur Full-Stack & Consultant SEO</span>
+            <span class="exp-date" data-i18n="experiencesDetailsPage.ozen.date">Décembre 2025 - Présent</span>
+            <span class="exp-role" data-i18n="experiencesDetailsPage.ozen.role">Développeur Full-Stack & Consultant SEO</span>
           </div>
-          <h2 class="exp-title">Ô ZEN Esthétique</h2>
-          <h3 class="exp-subtitle">Création d'une plateforme de réservation sur mesure</h3>
+          <h2 class="exp-title" data-i18n="experiencesDetailsPage.ozen.title">Ô ZEN Esthétique</h2>
+          <h3 class="exp-subtitle" data-i18n="experiencesDetailsPage.ozen.subtitle">Création d'une plateforme de réservation sur mesure</h3>
         </div>
         <div class="exp-grid">
           <div class="exp-block">
-            <h4><i class="fas fa-crosshairs"></i> <span>Le Contexte & Le Défi</span></h4>
-            <p>L'institut Ô ZEN Esthétique dépendait historiquement de la plateforme TreatWell pour ses réservations. Le problème ? Des commissions exorbitantes réduisant drastiquement les marges, un manque de contrôle total sur le contenu, et une interface rigide. La cliente possédait un ancien site Wix inachevé et mal référencé. Le défi était de taille : créer une plateforme indépendante complète, capable de gérer les réservations, les paiements et le marketing, le tout avec un référencement local irréprochable.</p>
+            <h4><i class="fas fa-crosshairs"></i> <span data-i18n="experiencesDetailsPage.contextLabel">Le Contexte & Le Défi</span></h4>
+            <p data-i18n="experiencesDetailsPage.ozen.context" data-i18n-html>L'institut Ô ZEN Esthétique dépendait historiquement de la plateforme TreatWell pour ses réservations...</p>
           </div>
           <div class="exp-block">
-            <h4><i class="fas fa-code"></i> <span>Ma Solution Technique & Stratégique</span></h4>
-            <p>J'ai pris la décision d'abandonner les CMS traditionnels pour développer une solution 100% sur mesure en PHP (plus de 103 fichiers et 18 000 lignes de code).<br><br>
-            <strong>Front-End & Expérience Client :</strong> J'ai conçu un tunnel de réservation sans friction sous forme de "Single Page Application" (SPA) en Vanilla JS. Les clients peuvent composer leur séance, choisir leurs créneaux, et payer en ligne. Pour réduire les abandons, j'ai intégré un mode "Invité" (sans inscription obligatoire).<br><br>
-            <strong>Paiement Sécurisé :</strong> Intégration native de l'API Stripe (sans plugins lourds) avec gestion asynchrone des Webhooks pour valider les créneaux en base de données.<br><br>
-            <strong>Back-Office (Admin) :</strong> Création d'un panel d'administration ultra-sécurisé (Authentification 2FA, anti-brute force). Ce dashboard génère les créneaux horaires, gère le CRM client, et permet la création de codes promotionnels.<br><br>
-            <strong>Acquisition & Tracking :</strong> Développement d'un système de newsletter interne avec intégration de pixels invisibles pour traquer les taux d'ouverture et de clics sans dépendre de solutions tierces comme Mailchimp.</p>
+            <h4><i class="fas fa-code"></i> <span data-i18n="experiencesDetailsPage.solutionLabel">Ma Solution Technique & Stratégique</span></h4>
+            <p data-i18n="experiencesDetailsPage.ozen.solution" data-i18n-html>J'ai pris la décision d'abandonner les CMS traditionnels...</p>
           </div>
           <div class="exp-block">
-            <h4><i class="fas fa-chart-line"></i> <span>Les Résultats</span></h4>
-            <p>La cliente a pu s'affranchir des plateformes tierces. Le site affiche des scores "Core Web Vitals" de 100% (PageSpeed Insights), garantissant un SEO local puissant. L'interface est rapide (&lt;800ms sur mobile), sécurisée (chiffrement AES-256 pour les données RGPD), et évolue chaque semaine selon les besoins métiers.</p>
+            <h4><i class="fas fa-chart-line"></i> <span data-i18n="experiencesDetailsPage.resultsLabel">Les Résultats</span></h4>
+            <p data-i18n="experiencesDetailsPage.ozen.results" data-i18n-html>La cliente a pu s'affranchir des plateformes tierces...</p>
           </div>
         </div>
         <div class="tech-stack-container">
-          <div class="tech-stack-title">Stack Technique</div>
+          <div class="tech-stack-title" data-i18n="experiencesDetailsPage.techStackLabel">Stack Technique</div>
           <div class="tech-tags">
             <span class="tech-tag">PHP 8</span>
             <span class="tech-tag">PDO/MySQL</span>
@@ -522,32 +524,28 @@
       <div class="exp-glass-panel">
         <div class="exp-header">
           <div class="exp-date-role">
-            <span class="exp-date">Novembre 2025 - Présent</span>
-            <span class="exp-role">Développeur Web & Expert SEO</span>
+            <span class="exp-date" data-i18n="experiencesDetailsPage.snoussi.date">Novembre 2025 - Présent</span>
+            <span class="exp-role" data-i18n="experiencesDetailsPage.snoussi.role">Développeur Web & Expert SEO</span>
           </div>
-          <h2 class="exp-title">Snoussi Studio</h2>
-          <h3 class="exp-subtitle">Vitrine B2B Premium & Code Pur</h3>
+          <h2 class="exp-title" data-i18n="experiencesDetailsPage.snoussi.title">Snoussi Studio</h2>
+          <h3 class="exp-subtitle" data-i18n="experiencesDetailsPage.snoussi.subtitle">Vitrine B2B Premium & Code Pur</h3>
         </div>
         <div class="exp-grid">
           <div class="exp-block">
-            <h4><i class="fas fa-crosshairs"></i> <span>Le Contexte & Le Défi</span></h4>
-            <p>Sofiane, gestionnaire de réseaux sociaux et créateur de contenu, avait besoin d'un site web pour asseoir la crédibilité de son studio (Photo, Branding, Podcast). L'objectif n'était pas de faire un simple site vitrine, mais une plateforme haut de gamme, ultra-rapide, capable de convertir des visiteurs B2B en clients réguliers, tout en se positionnant agressivement sur les moteurs de recherche.</p>
+            <h4><i class="fas fa-crosshairs"></i> <span data-i18n="experiencesDetailsPage.contextLabel">Le Contexte & Le Défi</span></h4>
+            <p data-i18n="experiencesDetailsPage.snoussi.context" data-i18n-html>Sofiane, gestionnaire de réseaux sociaux...</p>
           </div>
           <div class="exp-block">
-            <h4><i class="fas fa-code"></i> <span>Ma Solution Technique & Stratégique</span></h4>
-            <p>Plutôt que d'utiliser Webflow ou WordPress, j'ai opté pour une approche "Back-to-Basics / Code Pur" afin de garantir une performance absolue.<br><br>
-            <strong>Architecture & Vitesse :</strong> Site codé en PHP et HTML/CSS natif avec une base de données SQLite légère pour le système de réservation du studio. Résultat : un temps de chargement inférieur à 1.2s.<br><br>
-            <strong>Immersion Visuelle (GSAP) :</strong> Pour l'effet "Waouh", j'ai intégré la librairie GSAP. Le site dispose d'animations fluides au scroll (ScrollTrigger), d'effets magnétiques sur les boutons, de distorsions au défilement (Skew on Scroll) et d'un curseur personnalisé morphologique.<br><br>
-            <strong>Stratégie SEO :</strong> Création d'une arborescence de plus de 15 pages de services ciblées (ex: "Photographe portrait Bruxelles"). J'ai implémenté de l'URL Rewriting propre (.htaccess) et injecté des microdonnées JSON-LD (FAQPage, LocalBusiness) pour dominer les résultats de recherche Google.<br><br>
-            <strong>Sécurité anti-spam :</strong> Plutôt que d'utiliser un reCAPTCHA frustrant, j'ai codé un système de "Honeypot" invisible qui piège les robots, couplé à une interface d'administration sécurisée par jeton OTP (2FA par email).</p>
+            <h4><i class="fas fa-code"></i> <span data-i18n="experiencesDetailsPage.solutionLabel">Ma Solution Technique & Stratégique</span></h4>
+            <p data-i18n="experiencesDetailsPage.snoussi.solution" data-i18n-html>Plutôt que d'utiliser Webflow ou WordPress...</p>
           </div>
           <div class="exp-block">
-            <h4><i class="fas fa-chart-line"></i> <span>Les Résultats</span></h4>
-            <p>Le site est un véritable aimant à prospects. L'expérience utilisateur premium alliée au référencement chirurgical a permis au studio de signer de multiples nouveaux contrats B2B peu après le lancement.</p>
+            <h4><i class="fas fa-chart-line"></i> <span data-i18n="experiencesDetailsPage.resultsLabel">Les Résultats</span></h4>
+            <p data-i18n="experiencesDetailsPage.snoussi.results" data-i18n-html>Le site est un véritable aimant à prospects...</p>
           </div>
         </div>
         <div class="tech-stack-container">
-          <div class="tech-stack-title">Stack Technique</div>
+          <div class="tech-stack-title" data-i18n="experiencesDetailsPage.techStackLabel">Stack Technique</div>
           <div class="tech-tags">
             <span class="tech-tag">PHP Custom</span>
             <span class="tech-tag">SQLite 3</span>
@@ -564,31 +562,28 @@
       <div class="exp-glass-panel">
         <div class="exp-header">
           <div class="exp-date-role">
-            <span class="exp-date">Janvier 2026 - Présent</span>
-            <span class="exp-role">Technical SEO & Automation Specialist</span>
+            <span class="exp-date" data-i18n="experiencesDetailsPage.localweb.date">Janvier 2026 - Présent</span>
+            <span class="exp-role" data-i18n="experiencesDetailsPage.localweb.role">Technical SEO & Automation Specialist</span>
           </div>
-          <h2 class="exp-title">Local Web</h2>
-          <h3 class="exp-subtitle">Automatisation, SEO Tech & Webmastering</h3>
+          <h2 class="exp-title" data-i18n="experiencesDetailsPage.localweb.title">Local Web</h2>
+          <h3 class="exp-subtitle" data-i18n="experiencesDetailsPage.localweb.subtitle">Automatisation, SEO Tech & Webmastering</h3>
         </div>
         <div class="exp-grid">
           <div class="exp-block">
-            <h4><i class="fas fa-crosshairs"></i> <span>Le Contexte & Le Défi</span></h4>
-            <p>J'ai intégré l'agence Local Web pour un stage intensif de 3ème année (qui s'est transformé en mission freelance). L'agence gère un volume important de clients et avait besoin d'optimiser ses processus internes, d'accélérer ses stratégies d'acquisition et de maintenir un parc de sites web variés de manière irréprochable.</p>
+            <h4><i class="fas fa-crosshairs"></i> <span data-i18n="experiencesDetailsPage.contextLabel">Le Contexte & Le Défi</span></h4>
+            <p data-i18n="experiencesDetailsPage.localweb.context" data-i18n-html>J'ai intégré l'agence Local Web pour un stage intensif...</p>
           </div>
           <div class="exp-block">
-            <h4><i class="fas fa-code"></i> <span>Ma Solution Technique & Stratégique</span></h4>
-            <p>J'ai porté une double casquette : technique et stratégique.<br><br>
-            <strong>Automatisation & Data :</strong> J'ai développé des outils internes en No-Code (via Lovable) pour structurer le suivi du netlinking. J'ai également mis en place des scripts de Web Scraping massifs pour constituer des bases de données B2B ultra-qualifiées, faisant gagner des dizaines d'heures à l'équipe.<br><br>
-            <strong>SEO Technique & Stratégie :</strong> J'ai pris en charge le pilotage des Core Web Vitals sur plusieurs projets, corrigeant les problèmes de CLS et LCP. J'ai implémenté des stratégies On-Page pointues et des campagnes Off-Page créatives (notamment via des techniques de Reddit Backlinking).<br><br>
-            <strong>Webmastering (21 Projets) :</strong> J'ai géré le quotidien technique d'une vingtaine de clients. Cela inclut des refontes UX complètes (ex: SOS Diogène), des intégrations complexes, et la traduction technique et structurelle de sites en FR, EN et NL (ex: CD Engineering).</p>
+            <h4><i class="fas fa-code"></i> <span data-i18n="experiencesDetailsPage.solutionLabel">Ma Solution Technique & Stratégique</span></h4>
+            <p data-i18n="experiencesDetailsPage.localweb.solution" data-i18n-html>J'ai porté une double casquette : technique et stratégique...</p>
           </div>
           <div class="exp-block">
-            <h4><i class="fas fa-chart-line"></i> <span>Les Résultats</span></h4>
-            <p>J'ai accompli plus de 171 tâches techniques complexes en un temps record (estimé à 206h+ sur la première période). Ma capacité à automatiser les tâches répétitives et à résoudre les problèmes d'infrastructure a convaincu l'agence de prolonger notre collaboration en freelance.</p>
+            <h4><i class="fas fa-chart-line"></i> <span data-i18n="experiencesDetailsPage.resultsLabel">Les Résultats</span></h4>
+            <p data-i18n="experiencesDetailsPage.localweb.results" data-i18n-html>J'ai accompli plus de 171 tâches techniques complexes...</p>
           </div>
         </div>
         <div class="tech-stack-container">
-          <div class="tech-stack-title">Stack Technique</div>
+          <div class="tech-stack-title" data-i18n="experiencesDetailsPage.techStackLabel">Stack Technique</div>
           <div class="tech-tags">
             <span class="tech-tag">Lovable (No-Code)</span>
             <span class="tech-tag">Python / JS (Scraping)</span>
@@ -605,31 +600,28 @@
       <div class="exp-glass-panel">
         <div class="exp-header">
           <div class="exp-date-role">
-            <span class="exp-date">Août 2025 - Présent</span>
-            <span class="exp-role">Consultant & Développeur IT</span>
+            <span class="exp-date" data-i18n="experiencesDetailsPage.oxxoprint.date">Août 2025 - Présent</span>
+            <span class="exp-role" data-i18n="experiencesDetailsPage.oxxoprint.role">Consultant & Développeur IT</span>
           </div>
-          <h2 class="exp-title">Oxxoprint</h2>
-          <h3 class="exp-subtitle">Écosystème E-commerce B2B (Web-to-Print)</h3>
+          <h2 class="exp-title" data-i18n="experiencesDetailsPage.oxxoprint.title">Oxxoprint</h2>
+          <h3 class="exp-subtitle" data-i18n="experiencesDetailsPage.oxxoprint.subtitle">Écosystème E-commerce B2B (Web-to-Print)</h3>
         </div>
         <div class="exp-grid">
           <div class="exp-block">
-            <h4><i class="fas fa-crosshairs"></i> <span>Le Contexte & Le Défi</span></h4>
-            <p>Oxxoprint, acteur majeur de l'impression et de la communication visuelle, souhaitait moderniser et digitaliser la prise de commande pour ses clients "Grands Comptes". L'objectif était de déployer des webshops B2B hautement personnalisés en utilisant la solution logicielle complexe OnPrintShop.</p>
+            <h4><i class="fas fa-crosshairs"></i> <span data-i18n="experiencesDetailsPage.contextLabel">Le Contexte & Le Défi</span></h4>
+            <p data-i18n="experiencesDetailsPage.oxxoprint.context" data-i18n-html>Oxxoprint, acteur majeur de l'impression...</p>
           </div>
           <div class="exp-block">
-            <h4><i class="fas fa-code"></i> <span>Ma Solution Technique & Stratégique</span></h4>
-            <p>Je suis intervenu comme consultant technique et développeur front-end pour combler le pont entre la plateforme logicielle et les besoins spécifiques des clients.<br><br>
-            <strong>Développement Front-End :</strong> Intégration avancée en HTML5, CSS3 et JavaScript pour outrepasser les limites natives de la plateforme OnPrintShop. J'ai créé des "snippets" (bribes de code réutilisables) pour modifier dynamiquement les interfaces et améliorer l'UX.<br><br>
-            <strong>Configuration & Architecture :</strong> Paramétrage technique des portails clients, configuration des catalogues complexes et gestion des règles tarifaires B2B.<br><br>
-            <strong>UX & Assurance Qualité :</strong> Réalisation de benchmarks concurrentiels et exécution de tests approfondis sur les parcours d'achat (QA Testing) pour s'assurer qu'un client corporate puisse commander ses supports imprimés sans la moindre friction technique.</p>
+            <h4><i class="fas fa-code"></i> <span data-i18n="experiencesDetailsPage.solutionLabel">Ma Solution Technique & Stratégique</span></h4>
+            <p data-i18n="experiencesDetailsPage.oxxoprint.solution" data-i18n-html>Je suis intervenu comme consultant technique...</p>
           </div>
           <div class="exp-block">
-            <h4><i class="fas fa-chart-line"></i> <span>Les Résultats</span></h4>
-            <p>Le déploiement des premiers portails web-to-print B2B a permis à Oxxoprint de fidéliser sa clientèle corporate en lui offrant une autonomie totale, tout en soulageant le service client traditionnel.</p>
+            <h4><i class="fas fa-chart-line"></i> <span data-i18n="experiencesDetailsPage.resultsLabel">Les Résultats</span></h4>
+            <p data-i18n="experiencesDetailsPage.oxxoprint.results" data-i18n-html>Le déploiement des premiers portails web-to-print...</p>
           </div>
         </div>
         <div class="tech-stack-container">
-          <div class="tech-stack-title">Stack Technique</div>
+          <div class="tech-stack-title" data-i18n="experiencesDetailsPage.techStackLabel">Stack Technique</div>
           <div class="tech-tags">
             <span class="tech-tag">OnPrintShop (SaaS)</span>
             <span class="tech-tag">HTML5</span>
@@ -646,31 +638,28 @@
       <div class="exp-glass-panel">
         <div class="exp-header">
           <div class="exp-date-role">
-            <span class="exp-date">Août 2025 - Présent</span>
-            <span class="exp-role">Assistant WordPress & SEO</span>
+            <span class="exp-date" data-i18n="experiencesDetailsPage.chouiamaison.date">Août 2025 - Présent</span>
+            <span class="exp-role" data-i18n="experiencesDetailsPage.chouiamaison.role">Assistant WordPress & SEO</span>
           </div>
-          <h2 class="exp-title">Chouïa Maison</h2>
-          <h3 class="exp-subtitle">Optimisation E-commerce & Data-driven</h3>
+          <h2 class="exp-title" data-i18n="experiencesDetailsPage.chouiamaison.title">Chouïa Maison</h2>
+          <h3 class="exp-subtitle" data-i18n="experiencesDetailsPage.chouiamaison.subtitle">Optimisation E-commerce & Data-driven</h3>
         </div>
         <div class="exp-grid">
           <div class="exp-block">
-            <h4><i class="fas fa-crosshairs"></i> <span>Le Contexte & Le Défi</span></h4>
-            <p>Chouïa Maison est une boutique d'artisanat de décoration en pleine croissance. Le site WordPress (sous WooCommerce / thème Flatsome) nécessitait un accompagnement technique régulier pour supporter l'augmentation du trafic, corriger les bugs historiques et booster les ventes organiques (SEO).</p>
+            <h4><i class="fas fa-crosshairs"></i> <span data-i18n="experiencesDetailsPage.contextLabel">Le Contexte & Le Défi</span></h4>
+            <p data-i18n="experiencesDetailsPage.chouiamaison.context" data-i18n-html>Chouïa Maison est une boutique d'artisanat...</p>
           </div>
           <div class="exp-block">
-            <h4><i class="fas fa-code"></i> <span>Ma Solution Technique & Stratégique</span></h4>
-            <p>J'ai instauré une routine d'optimisation continue, mêlant développement technique et analyse marketing.<br><br>
-            <strong>Refonte Technique :</strong> Assainissement du code hérité, mise à jour sécurisée de l'écosystème WordPress, et optimisation des temps de chargement des fiches produits.<br><br>
-            <strong>Stratégie SEO & Contenu :</strong> Recherche de mots-clés transactionnels, rédaction sémantique pour les nouvelles catégories, et animation structurelle du blog pour attirer du trafic "Top of Funnel".<br><br>
-            <strong>Analyse Data-Driven :</strong> Suivi rigoureux des entonnoirs de conversion. J'analyse régulièrement les parcours clients ayant mené à des paniers abandonnés afin de proposer et d'implémenter des correctifs UX immédiats.</p>
+            <h4><i class="fas fa-code"></i> <span data-i18n="experiencesDetailsPage.solutionLabel">Ma Solution Technique & Stratégique</span></h4>
+            <p data-i18n="experiencesDetailsPage.chouiamaison.solution" data-i18n-html>J'ai instauré une routine d'optimisation continue...</p>
           </div>
           <div class="exp-block">
-            <h4><i class="fas fa-chart-line"></i> <span>Les Résultats</span></h4>
-            <p>Une plateforme e-commerce beaucoup plus stable, rapide et lisible pour Google. Ce travail de fond, réalisé sur la durée, a permis d'accroître significativement le trafic organique et d'optimiser le taux de conversion global de la boutique.</p>
+            <h4><i class="fas fa-chart-line"></i> <span data-i18n="experiencesDetailsPage.resultsLabel">Les Résultats</span></h4>
+            <p data-i18n="experiencesDetailsPage.chouiamaison.results" data-i18n-html>Une plateforme e-commerce beaucoup plus stable...</p>
           </div>
         </div>
         <div class="tech-stack-container">
-          <div class="tech-stack-title">Stack Technique</div>
+          <div class="tech-stack-title" data-i18n="experiencesDetailsPage.techStackLabel">Stack Technique</div>
           <div class="tech-tags">
             <span class="tech-tag">WordPress</span>
             <span class="tech-tag">WooCommerce</span>
@@ -687,31 +676,28 @@
       <div class="exp-glass-panel">
         <div class="exp-header">
           <div class="exp-date-role">
-            <span class="exp-date">Juin 2025 - Septembre 2025</span>
-            <span class="exp-role">Développeur Full-Stack</span>
+            <span class="exp-date" data-i18n="experiencesDetailsPage.theatrepoetes.date">Juin 2025 - Septembre 2025</span>
+            <span class="exp-role" data-i18n="experiencesDetailsPage.theatrepoetes.role">Développeur Full-Stack</span>
           </div>
-          <h2 class="exp-title">Le Théâtre des Poètes ASBL</h2>
-          <h3 class="exp-subtitle">Résurrection Digitale</h3>
+          <h2 class="exp-title" data-i18n="experiencesDetailsPage.theatrepoetes.title">Le Théâtre des Poètes ASBL</h2>
+          <h3 class="exp-subtitle" data-i18n="experiencesDetailsPage.theatrepoetes.subtitle">Résurrection Digitale</h3>
         </div>
         <div class="exp-grid">
           <div class="exp-block">
-            <h4><i class="fas fa-crosshairs"></i> <span>Le Contexte & Le Défi</span></h4>
-            <p>Cette ASBL culturelle se trouvait dans une situation d'urgence : leur site web, datant de 2015, avait été piraté. Il était non-responsive, visuellement obsolète, et totalement impossible à mettre à jour pour l'équipe (qui n'avait aucune compétence technique). Le budget était limité, mais le besoin d'une vitrine propre pour la rentrée théâtrale était critique.</p>
+            <h4><i class="fas fa-crosshairs"></i> <span data-i18n="experiencesDetailsPage.contextLabel">Le Contexte & Le Défi</span></h4>
+            <p data-i18n="experiencesDetailsPage.theatrepoetes.context" data-i18n-html>Cette ASBL culturelle se trouvait dans une situation d'urgence...</p>
           </div>
           <div class="exp-block">
-            <h4><i class="fas fa-code"></i> <span>Ma Solution Technique & Stratégique</span></h4>
-            <p>Plutôt que de "rustiner" l'ancien site, j'ai pris la décision de tout raser pour reconstruire une architecture saine, sécurisée et sur mesure.<br><br>
-            <strong>Base de Données & Sécurité :</strong> Conception d'une nouvelle structure MySQL propre. J'ai implémenté un système de requêtes préparées (PDO) pour éradiquer tout risque futur d'injection SQL.<br><br>
-            <strong>Back-Office Ultra-Simplifié :</strong> Conscient que les utilisateurs finaux n'étaient pas des développeurs, j'ai créé un panel d'administration en PHP sur mesure, allant à l'essentiel : ajouter une pièce de théâtre, modifier une date, publier une actualité. Zéro superflu.<br><br>
-            <strong>Front-End & Accessibilité :</strong> Développement d'une interface responsive, respectant les normes d'accessibilité web (contraste, balisage sémantique) pour mettre en valeur les visuels de la troupe et faciliter la lecture du programme.</p>
+            <h4><i class="fas fa-code"></i> <span data-i18n="experiencesDetailsPage.solutionLabel">Ma Solution Technique & Stratégique</span></h4>
+            <p data-i18n="experiencesDetailsPage.theatrepoetes.solution" data-i18n-html>Plutôt que de "rustiner" l'ancien site...</p>
           </div>
           <div class="exp-block">
-            <h4><i class="fas fa-chart-line"></i> <span>Les Résultats</span></h4>
-            <p>Un lancement réussi pour la nouvelle saison. L'ASBL a retrouvé son indépendance digitale avec un outil rapide, immunisé contre les failles courantes, et géré de manière autonome par l'équipe administrative.</p>
+            <h4><i class="fas fa-chart-line"></i> <span data-i18n="experiencesDetailsPage.resultsLabel">Les Résultats</span></h4>
+            <p data-i18n="experiencesDetailsPage.theatrepoetes.results" data-i18n-html>Un lancement réussi pour la nouvelle saison...</p>
           </div>
         </div>
         <div class="tech-stack-container">
-          <div class="tech-stack-title">Stack Technique</div>
+          <div class="tech-stack-title" data-i18n="experiencesDetailsPage.techStackLabel">Stack Technique</div>
           <div class="tech-tags">
             <span class="tech-tag">PHP 8</span>
             <span class="tech-tag">MySQL (PDO)</span>
@@ -728,31 +714,28 @@
       <div class="exp-glass-panel">
         <div class="exp-header">
           <div class="exp-date-role">
-            <span class="exp-date">Avril 2025 - Juin 2025</span>
-            <span class="exp-role">Assistant Chef de Projets Digitaux (Stage)</span>
+            <span class="exp-date" data-i18n="experiencesDetailsPage.nowamarket.date">Avril 2025 - Juin 2025</span>
+            <span class="exp-role" data-i18n="experiencesDetailsPage.nowamarket.role">Assistant Chef de Projets Digitaux (Stage)</span>
           </div>
-          <h2 class="exp-title">Nowa Market (Nowa Logistics)</h2>
-          <h3 class="exp-subtitle">Du Maquettage à l'ERP</h3>
+          <h2 class="exp-title" data-i18n="experiencesDetailsPage.nowamarket.title">Nowa Market (Nowa Logistics)</h2>
+          <h3 class="exp-subtitle" data-i18n="experiencesDetailsPage.nowamarket.subtitle">Du Maquettage à l'ERP</h3>
         </div>
         <div class="exp-grid">
           <div class="exp-block">
-            <h4><i class="fas fa-crosshairs"></i> <span>Le Contexte & Le Défi</span></h4>
-            <p>Nowa Market, startup de l'e-commerce zéro déchet, lançait une nouvelle branche : Nowa Logistics. Mon stage (de deuxième année de bachelier) m'a plongé dans le grand bain : je devais à la fois créer l'identité digitale publique de ce nouveau service et intervenir sur les outils internes complexes (ERP) utilisés par les magasiniers.</p>
+            <h4><i class="fas fa-crosshairs"></i> <span data-i18n="experiencesDetailsPage.contextLabel">Le Contexte & Le Défi</span></h4>
+            <p data-i18n="experiencesDetailsPage.nowamarket.context" data-i18n-html>Nowa Market, startup de l'e-commerce zéro déchet...</p>
           </div>
           <div class="exp-block">
-            <h4><i class="fas fa-code"></i> <span>Ma Solution Technique & Stratégique</span></h4>
-            <p>J'ai adopté une posture hybride (Design, Code, Stratégie).<br><br>
-            <strong>Site Vitrine (Front-End) :</strong> J'ai géré le projet de A à Z. Création des wireframes et maquettes haute-fidélité sur Figma. Ensuite, j'ai développé le site en HTML/CSS/JS pour garantir une intégration pixel-perfect.<br><br>
-            <strong>Audit UX & Outils Internes :</strong> J'ai mené des audits d'utilisabilité sur l'application mobile et l'ERP de gestion de dépôts. J'ai identifié les frictions dans le scan des QR codes (bocaux en verre) et proposé des scénarios correctifs. J'ai également traduit techniquement toute l'interface de l'ERP via des fichiers de configuration JSON.<br><br>
-            <strong>Stratégie Business :</strong> J'ai assisté la direction dans des tâches clés : analyse du business plan, rédaction de présentations (Pitch Decks) pour de futures levées de fonds, et structuration de la communication interne.</p>
+            <h4><i class="fas fa-code"></i> <span data-i18n="experiencesDetailsPage.solutionLabel">Ma Solution Technique & Stratégique</span></h4>
+            <p data-i18n="experiencesDetailsPage.nowamarket.solution" data-i18n-html>J'ai adopté une posture hybride (Design, Code, Stratégie)...</p>
           </div>
           <div class="exp-block">
-            <h4><i class="fas fa-chart-line"></i> <span>Les Résultats</span></h4>
-            <p>Une expérience charnière qui a validé ma capacité à comprendre les enjeux "Produit" et "Business" d'une entreprise, et à ne pas me limiter à l'écriture de lignes de code.</p>
+            <h4><i class="fas fa-chart-line"></i> <span data-i18n="experiencesDetailsPage.resultsLabel">Les Résultats</span></h4>
+            <p data-i18n="experiencesDetailsPage.nowamarket.results" data-i18n-html>Une expérience charnière qui a validé ma capacité...</p>
           </div>
         </div>
         <div class="tech-stack-container">
-          <div class="tech-stack-title">Stack Technique</div>
+          <div class="tech-stack-title" data-i18n="experiencesDetailsPage.techStackLabel">Stack Technique</div>
           <div class="tech-tags">
             <span class="tech-tag">Figma</span>
             <span class="tech-tag">HTML/CSS/JS</span>
@@ -763,17 +746,55 @@
         </div>
       </div>
     </article>
+    
+    <!-- EXP 8: Degrif Shoes -->
+    <article id="degrif-shoes" class="exp-card reveal-elem">
+      <div class="exp-glass-panel">
+        <div class="exp-header">
+          <div class="exp-date-role">
+            <span class="exp-date" data-i18n="experiencesDetailsPage.degrifshoes.date">Septembre 2024 - Décembre 2024</span>
+            <span class="exp-role" data-i18n="experiencesDetailsPage.degrifshoes.role">Gestionnaire E-commerce (Poste étudiant)</span>
+          </div>
+          <h2 class="exp-title" data-i18n="experiencesDetailsPage.degrifshoes.title">Degrif Shoes</h2>
+          <h3 class="exp-subtitle" data-i18n="experiencesDetailsPage.degrifshoes.subtitle">Gestion E-commerce & Optimisation Front-End</h3>
+        </div>
+        <div class="exp-grid">
+          <div class="exp-block">
+            <h4><i class="fas fa-crosshairs"></i> <span data-i18n="experiencesDetailsPage.contextLabel">Le Contexte & Le Défi</span></h4>
+            <p data-i18n="experiencesDetailsPage.degrifshoes.context" data-i18n-html>Gérer une boutique de vente au détail...</p>
+          </div>
+          <div class="exp-block">
+            <h4><i class="fas fa-code"></i> <span data-i18n="experiencesDetailsPage.solutionLabel">Ma Solution Technique & Stratégique</span></h4>
+            <p data-i18n="experiencesDetailsPage.degrifshoes.solution" data-i18n-html>J'ai pris en charge la gestion opérationnelle...</p>
+          </div>
+          <div class="exp-block">
+            <h4><i class="fas fa-chart-line"></i> <span data-i18n="experiencesDetailsPage.resultsLabel">Les Résultats</span></h4>
+            <p data-i18n="experiencesDetailsPage.degrifshoes.results" data-i18n-html>Une boutique toujours à jour avec une présentation...</p>
+          </div>
+        </div>
+        <div class="tech-stack-container">
+          <div class="tech-stack-title" data-i18n="experiencesDetailsPage.techStackLabel">Stack Technique</div>
+          <div class="tech-tags">
+            <span class="tech-tag">Shopify (CMS)</span>
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag">Liquid (Notions)</span>
+            <span class="tech-tag">UX Design</span>
+            <span class="tech-tag">Copywriting e-commerce</span>
+          </div>
+        </div>
+      </div>
+    </article>
 
   </main>
 
   <footer class="footer-custom">
-    <p>© 2026 Arnaud Martiny. Tous droits réservés.</p>
+    <p data-i18n="experiencesDetailsPage.footer">© 2026 Arnaud Martiny. Tous droits réservés.</p>
   </footer>
 
   <!-- GSAP for Animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <!-- Chargement du code global pour le thème -->
+  <!-- Chargement du code global pour le thème et traductions -->
   <script src="code.js"></script>
   
   <script>

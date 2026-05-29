@@ -123,6 +123,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- 3. GESTION DES LANGUES & TRADUCTIONS ---
   const translations = {};
   let currentLang = localStorage.getItem("language") || "fr";
+  
+  // Surcharge via l'URL (ex: ?lang=en)
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has("lang")) {
+    const overrideLang = urlParams.get("lang");
+    if (overrideLang === "fr" || overrideLang === "en") {
+      currentLang = overrideLang;
+      localStorage.setItem("language", currentLang);
+    }
+  }
 
   const langFrBtn = document.getElementById("lang-fr");
   const langEnBtn = document.getElementById("lang-en");
@@ -490,6 +500,7 @@ document.addEventListener("DOMContentLoaded", () => {
     currentLang = lang;
     localStorage.setItem("language", lang);
     applyTranslations(lang);
+    updateLangButtons(); // Ajout de la mise à jour visuelle des boutons
   }
 
   function updateLangButtons() {

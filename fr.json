@@ -461,5 +461,86 @@
     "landingPagePurpose": "Les données de préférence (Local Storage) sont exemptées de consentement car elles sont strictement nécessaires au fonctionnement de l'interface (Art. 82 RGPD).",
     "yourRightsTitle": "4. Vos Droits",
     "yourRightsText": "Conformément à la réglementation, vous disposez d'un contrôle total sur vos données :<br><br><strong>• Droit d'accès et de rectification :</strong> Vous pouvez demander à voir les données que je détiens sur vous et les corriger.<br><strong>• Droit à l'effacement (« Droit à l'oubli ») :</strong> Vous pouvez demander la suppression immédiate de vos emails et échanges.<br><strong>• Droit à la limitation :</strong> Vous pouvez demander de geler temporairement l'utilisation de vos données.<br><strong>• Droit d'opposition :</strong> Vous pouvez refuser que vos données soient utilisées (ex: suppression des stats Analytics).<br><br>Pour exercer ces droits, envoyez un simple email à <strong>arnaudmartiny0@gmail.com</strong>. Je m'engage à répondre sous 30 jours."
+  },
+  "experiencesDetailsPage": {
+    "pageTitle": "Missions & Expériences",
+    "pageSubtitle": "Un aperçu détaillé de mes collaborations en tant que développeur freelance, des défis rencontrés et des solutions techniques apportées.",
+    "backButton": "Retour au Portfolio",
+    "contextLabel": "Le Contexte & Le Défi",
+    "solutionLabel": "Ma Solution Technique & Stratégique",
+    "resultsLabel": "Les Résultats",
+    "footer": "© 2026 Arnaud Martiny. Tous droits réservés.",
+    "ozen": {
+      "date": "Décembre 2025 - Présent",
+      "role": "Développeur Full-Stack & Consultant SEO",
+      "title": "Ô ZEN Esthétique",
+      "subtitle": "Création d'une plateforme de réservation sur mesure",
+      "context": "L'institut Ô ZEN Esthétique dépendait historiquement de la plateforme TreatWell pour ses réservations. Le problème ? Des commissions exorbitantes réduisant drastiquement les marges, un manque de contrôle total sur le contenu, et une interface rigide. La cliente possédait un ancien site Wix inachevé et mal référencé. Le défi était de taille : créer une plateforme indépendante complète, capable de gérer les réservations, les paiements et le marketing, le tout avec un référencement local irréprochable.",
+      "solution": "J'ai pris la décision d'abandonner les CMS traditionnels pour développer une solution 100% sur mesure en PHP (plus de 103 fichiers et 18 000 lignes de code).<br><br><strong>Front-End & Expérience Client :</strong> J'ai conçu un tunnel de réservation sans friction sous forme de \"Single Page Application\" (SPA) en Vanilla JS. Les clients peuvent composer leur séance, choisir leurs créneaux, et payer en ligne. Pour réduire les abandons, j'ai intégré un mode \"Invité\" (sans inscription obligatoire).<br><br><strong>Paiement Sécurisé :</strong> Intégration native de l'API Stripe (sans plugins lourds) avec gestion asynchrone des Webhooks pour valider les créneaux en base de données.<br><br><strong>Back-Office (Admin) :</strong> Création d'un panel d'administration ultra-sécurisé (Authentification 2FA, anti-brute force). Ce dashboard génère les créneaux horaires, gère le CRM client, et permet la création de codes promotionnels.<br><br><strong>Acquisition & Tracking :</strong> Développement d'un système de newsletter interne avec intégration de pixels invisibles pour traquer les taux d'ouverture et de clics sans dépendre de solutions tierces comme Mailchimp.",
+      "results": "La cliente a pu s'affranchir des plateformes tierces. Le site affiche des scores \"Core Web Vitals\" de 100% (PageSpeed Insights), garantissant un SEO local puissant. L'interface est rapide (<800ms sur mobile), sécurisée (chiffrement AES-256 pour les données RGPD), et évolue chaque semaine selon les besoins métiers."
+    },
+    "snoussi": {
+      "date": "Novembre 2025 - Présent",
+      "role": "Développeur Web & Expert SEO",
+      "title": "Snoussi Studio",
+      "subtitle": "Vitrine B2B Premium & Code Pur",
+      "context": "Sofiane, gestionnaire de réseaux sociaux et créateur de contenu, avait besoin d'un site web pour asseoir la crédibilité de son studio (Photo, Branding, Podcast). L'objectif n'était pas de faire un simple site vitrine, mais une plateforme haut de gamme, ultra-rapide, capable de convertir des visiteurs B2B en clients réguliers, tout en se positionnant agressivement sur les moteurs de recherche.",
+      "solution": "Plutôt que d'utiliser Webflow ou WordPress, j'ai opté pour une approche \"Back-to-Basics / Code Pur\" afin de garantir une performance absolue.<br><br><strong>Architecture & Vitesse :</strong> Site codé en PHP et HTML/CSS natif avec une base de données SQLite légère pour le système de réservation du studio. Résultat : un temps de chargement inférieur à 1.2s.<br><br><strong>Immersion Visuelle (GSAP) :</strong> Pour l'effet \"Waouh\", j'ai intégré la librairie GSAP. Le site dispose d'animations fluides au scroll (ScrollTrigger), d'effets magnétiques sur les boutons, de distorsions au défilement (Skew on Scroll) et d'un curseur personnalisé morphologique.<br><br><strong>Stratégie SEO :</strong> Création d'une arborescence de plus de 15 pages de services ciblées (ex: \"Photographe portrait Bruxelles\"). J'ai implémenté de l'URL Rewriting propre (.htaccess) et injecté des microdonnées JSON-LD (FAQPage, LocalBusiness) pour dominer les résultats de recherche Google.<br><br><strong>Sécurité anti-spam :</strong> Plutôt que d'utiliser un reCAPTCHA frustrant, j'ai codé un système de \"Honeypot\" invisible qui piège les robots, couplé à une interface d'administration sécurisée par jeton OTP (2FA par email).",
+      "results": "Le site est un véritable aimant à prospects. L'expérience utilisateur premium alliée au référencement chirurgical a permis au studio de signer de multiples nouveaux contrats B2B peu après le lancement."
+    },
+    "localweb": {
+      "date": "Janvier 2026 - Présent",
+      "role": "Technical SEO & Automation Specialist",
+      "title": "Local Web",
+      "subtitle": "Automatisation, SEO Tech & Webmastering",
+      "context": "J'ai intégré l'agence Local Web pour un stage intensif de 3ème année (qui s'est transformé en mission freelance). L'agence gère un volume important de clients et avait besoin d'optimiser ses processus internes, d'accélérer ses stratégies d'acquisition et de maintenir un parc de sites web variés de manière irréprochable.",
+      "solution": "J'ai porté une double casquette : technique et stratégique.<br><br><strong>Automatisation & Data :</strong> J'ai développé des outils internes en No-Code (via Lovable) pour structurer le suivi du netlinking. J'ai également mis en place des scripts de Web Scraping massifs pour constituer des bases de données B2B ultra-qualifiées, faisant gagner des dizaines d'heures à l'équipe.<br><br><strong>SEO Technique & Stratégie :</strong> J'ai pris en charge le pilotage des Core Web Vitals sur plusieurs projets, corrigeant les problèmes de CLS et LCP. J'ai implémenté des stratégies On-Page pointues et des campagnes Off-Page créatives (notamment via des techniques de Reddit Backlinking).<br><br><strong>Webmastering (21 Projets) :</strong> J'ai géré le quotidien technique d'une vingtaine de clients. Cela inclut des refontes UX complètes (ex: SOS Diogène), des intégrations complexes, et la traduction technique et structurelle de sites en FR, EN et NL (ex: CD Engineering).",
+      "results": "J'ai accompli plus de 171 tâches techniques complexes en un temps record (estimé à 206h+ sur la première période). Ma capacité à automatiser les tâches répétitives et à résoudre les problèmes d'infrastructure a convaincu l'agence de prolonger notre collaboration en freelance."
+    },
+    "oxxoprint": {
+      "date": "Août 2025 - Présent",
+      "role": "Consultant & Développeur IT",
+      "title": "Oxxoprint",
+      "subtitle": "Écosystème E-commerce B2B (Web-to-Print)",
+      "context": "Oxxoprint, acteur majeur de l'impression et de la communication visuelle, souhaitait moderniser et digitaliser la prise de commande pour ses clients \"Grands Comptes\". L'objectif était de déployer des webshops B2B hautement personnalisés en utilisant la solution logicielle complexe OnPrintShop.",
+      "solution": "Je suis intervenu comme consultant technique et développeur front-end pour combler le pont entre la plateforme logicielle et les besoins spécifiques des clients.<br><br><strong>Développement Front-End :</strong> Intégration avancée en HTML5, CSS3 et JavaScript pour outrepasser les limites natives de la plateforme OnPrintShop. J'ai créé des \"snippets\" (bribes de code réutilisables) pour modifier dynamiquement les interfaces et améliorer l'UX.<br><br><strong>Configuration & Architecture :</strong> Paramétrage technique des portails clients, configuration des catalogues complexes et gestion des règles tarifaires B2B.<br><br><strong>UX & Assurance Qualité :</strong> Réalisation de benchmarks concurrentiels et exécution de tests approfondis sur les parcours d'achat (QA Testing) pour s'assurer qu'un client corporate puisse commander ses supports imprimés sans la moindre friction technique.",
+      "results": "Le déploiement des premiers portails web-to-print B2B a permis à Oxxoprint de fidéliser sa clientèle corporate en lui offrant une autonomie totale, tout en soulageant le service client traditionnel."
+    },
+    "chouiamaison": {
+      "date": "Août 2025 - Présent",
+      "role": "Assistant WordPress & SEO",
+      "title": "Chouïa Maison",
+      "subtitle": "Optimisation E-commerce & Data-driven",
+      "context": "Chouïa Maison est une boutique d'artisanat de décoration en pleine croissance. Le site WordPress (sous WooCommerce / thème Flatsome) nécessitait un accompagnement technique régulier pour supporter l'augmentation du trafic, corriger les bugs historiques et booster les ventes organiques (SEO).",
+      "solution": "J'ai instauré une routine d'optimisation continue, mêlant développement technique et analyse marketing.<br><br><strong>Refonte Technique :</strong> Assainissement du code hérité, mise à jour sécurisée de l'écosystème WordPress, et optimisation des temps de chargement des fiches produits.<br><br><strong>Stratégie SEO & Contenu :</strong> Recherche de mots-clés transactionnels, rédaction sémantique pour les nouvelles catégories, et animation structurelle du blog pour attirer du trafic \"Top of Funnel\".<br><br><strong>Analyse Data-Driven :</strong> Suivi rigoureux des entonnoirs de conversion. J'analyse régulièrement les parcours clients ayant mené à des paniers abandonnés afin de proposer et d'implémenter des correctifs UX immédiats.",
+      "results": "Une plateforme e-commerce beaucoup plus stable, rapide et lisible pour Google. Ce travail de fond, réalisé sur la durée, a permis d'accroître significativement le trafic organique et d'optimiser le taux de conversion global de la boutique."
+    },
+    "theatrepoetes": {
+      "date": "Juin 2025 - Septembre 2025",
+      "role": "Développeur Full-Stack",
+      "title": "Le Théâtre des Poètes ASBL",
+      "subtitle": "Résurrection Digitale",
+      "context": "Cette ASBL culturelle se trouvait dans une situation d'urgence : leur site web, datant de 2015, avait été piraté. Il était non-responsive, visuellement obsolète, et totalement impossible à mettre à jour pour l'équipe (qui n'avait aucune compétence technique). Le budget était limité, mais le besoin d'une vitrine propre pour la rentrée théâtrale était critique.",
+      "solution": "Plutôt que de \"rustiner\" l'ancien site, j'ai pris la décision de tout raser pour reconstruire une architecture saine, sécurisée et sur mesure.<br><br><strong>Base de Données & Sécurité :</strong> Conception d'une nouvelle structure MySQL propre. J'ai implémenté un système de requêtes préparées (PDO) pour éradiquer tout risque futur d'injection SQL.<br><br><strong>Back-Office Ultra-Simplifié :</strong> Conscient que les utilisateurs finaux n'étaient pas des développeurs, j'ai créé un panel d'administration en PHP sur mesure, allant à l'essentiel : ajouter une pièce de théâtre, modifier une date, publier une actualité. Zéro superflu.<br><br><strong>Front-End & Accessibilité :</strong> Développement d'une interface responsive, respectant les normes d'accessibilité web (contraste, balisage sémantique) pour mettre en valeur les visuels de la troupe et faciliter la lecture du programme.",
+      "results": "Un lancement réussi pour la nouvelle saison. L'ASBL a retrouvé son indépendance digitale avec un outil rapide, immunisé contre les failles courantes, et géré de manière autonome par l'équipe administrative."
+    },
+    "nowamarket": {
+      "date": "Avril 2025 - Juin 2025",
+      "role": "Assistant Chef de Projets Digitaux (Stage)",
+      "title": "Nowa Market (Nowa Logistics)",
+      "subtitle": "Du Maquettage à l'ERP",
+      "context": "Nowa Market, startup de l'e-commerce zéro déchet, lançait une nouvelle branche : Nowa Logistics. Mon stage (de deuxième année de bachelier) m'a plongé dans le grand bain : je devais à la fois créer l'identité digitale publique de ce nouveau service et intervenir sur les outils internes complexes (ERP) utilisés par les magasiniers.",
+      "solution": "J'ai adopté une posture hybride (Design, Code, Stratégie).<br><br><strong>Site Vitrine (Front-End) :</strong> J'ai géré le projet de A à Z. Création des wireframes et maquettes haute-fidélité sur Figma. Ensuite, j'ai développé le site en HTML/CSS/JS pour garantir une intégration pixel-perfect.<br><br><strong>Audit UX & Outils Internes :</strong> J'ai mené des audits d'utilisabilité sur l'application mobile et l'ERP de gestion de dépôts. J'ai identifié les frictions dans le scan des QR codes (bocaux en verre) et proposé des scénarios correctifs. J'ai également traduit techniquement toute l'interface de l'ERP via des fichiers de configuration JSON.<br><br><strong>Stratégie Business :</strong> J'ai assisté la direction dans des tâches clés : analyse du business plan, rédaction de présentations (Pitch Decks) pour de futures levées de fonds, et structuration de la communication interne.",
+      "results": "Une expérience charnière qui a validé ma capacité à comprendre les enjeux \"Produit\" et \"Business\" d'une entreprise, et à ne pas me limiter à l'écriture de lignes de code."
+    },
+    "degrifshoes": {
+      "date": "Septembre 2024 - Décembre 2024",
+      "role": "Gestionnaire E-commerce (Poste étudiant, Ixelles)",
+      "title": "Degrif Shoes",
+      "subtitle": "Gestion E-commerce & Optimisation Front-End",
+      "context": "Gérer une boutique de vente au détail en pleine activité demande une grande rigueur. L'enjeu chez Degrif Shoes était d'assurer une transition fluide et rapide des produits physiques vers la vitrine digitale sur Shopify, tout en garantissant un parcours d'achat sans friction pour l'utilisateur final.",
+      "solution": "J'ai pris en charge la gestion opérationnelle et technique de la plateforme.<br><br><strong>Merchandising & Intégration :</strong> Gestion complète du catalogue produit. Intégration des visuels, organisation logique des collections et rédaction de descriptions optimisées pour le e-commerce.<br><br><strong>Optimisation Front-End :</strong> J'ai opéré des ajustements directement dans le code du thème Shopify (HTML/CSS) pour mettre en valeur les produits phares et corriger des défauts d'affichage sur mobile.<br><br><strong>Amélioration UX :</strong> Analyse et modification de l'ergonomie globale pour fluidifier la navigation entre les catégories et simplifier les étapes menant au panier d'achat.",
+      "results": "Une boutique toujours à jour avec une présentation visuelle cohérente et des frictions d'achat réduites au maximum. Cette immersion concrète m'a permis de développer une grande polyvalence dans l'écosystème e-commerce, d'affiner mon sens de l'UX, et de forger une rigueur indispensable à la gestion de contenu digital."
+    }
   }
 }
