@@ -1408,7 +1408,11 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (error) {
         console.error("Erreur de communication avec l'IA:", error);
         showAiTyping(false);
-        await typeAiResponse("Oups... Erreur de connexion avec le modèle d'IA. Détail : " + error.message);
+        if (error.message.includes("Limite") || error.message.includes("limit")) {
+          await typeAiResponse(error.message);
+        } else {
+          await typeAiResponse("Oups... Erreur de connexion avec le modèle d'IA. Détail : " + error.message);
+        }
       } finally {
         const separator = document.createElement('p');
         separator.className = 'terminal-separator';
